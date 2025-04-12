@@ -1,0 +1,25 @@
+// fonts
+@import "fonts/fonts";
+
+
+
+// reset
+@import "reset/rest";
+
+// component
+@import "componet'/header";
+@import "componet'/product";
+@import "componet'/slider";
+@import "componet'/top-banners";
+@import "componet'/time-banner";
+@import "componet'/gray-center";
+
+// layouts
+@import "layout/about";
+@import "layout/contact";
+@import "layout/collections";
+@import "layout/blog";
+@import "layout/login.and.more";
+@import "layout/single.product";
+@import "layout/user.profile";
+@import "layout/search";

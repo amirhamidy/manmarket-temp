@@ -1,0 +1,11 @@
+
+.box-icon{
+  padding: 6px 8px;
+  border: 2px solid #f96747;
+  color: #f96747;
+  transition: 0.3s;
+  &:hover{
+    color: white;
+    background-color: #f96747;
+  }
+}

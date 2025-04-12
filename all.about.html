@@ -1,0 +1,760 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من مارکت</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<!--Shadow Overly start-->
+    <div class="overlay" data-overlay></div>
+<!--Shadow Overly start-->
+
+
+
+<div id="cart-dashboard" class="hidden-dashboard">
+    <button id="close-cart">
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="1.4em"
+                height="1.4em"
+        >
+            <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="square"
+                    stroke-linejoin="round"
+                    d="M18 6L6 18M6 6l12 12"
+            ></path>
+        </svg>
+    </button>
+    <h6 class="header-in-shop">سبد خرید</h6>
+    <div id="cart-items-container">
+        <ul id="cart-items"></ul>
+    </div>
+    <div id="total-price">جمع کل: 0 تومان</div>
+</div>
+
+<!--Header Start-->
+<header>
+    <nav class="desktop-navigation-menu d-flex justify-content-evenly mt-3 px-4 text-center">
+
+        <!--icons in header -- :: start-->
+        <div class="d-flex justify-content-between mt-2 icons-in-header">
+            <div class="px-3 show-search-modal">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
+                    ></path>
+                </svg>
+            </div>
+            <div class="px-3">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 16"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="currentColor"
+                            d="M8 .5A7.77 7.77 0 0 0 0 8a7.77 7.77 0 0 0 8 7.5A7.77 7.77 0 0 0 16 8A7.77 7.77 0 0 0 8 .5M5.16 13.67A2.84 2.84 0 0 1 8 11.51a2.82 2.82 0 0 1 2.84 2.16a7.24 7.24 0 0 1-5.68 0m6.84-.61a4.09 4.09 0 0 0-4-2.77a4.09 4.09 0 0 0-3.95 2.78A6.14 6.14 0 0 1 1.25 8A6.52 6.52 0 0 1 8 1.75A6.52 6.52 0 0 1 14.75 8A6.11 6.11 0 0 1 12 13.06"
+                    ></path>
+                    <path
+                            fill="currentColor"
+                            d="M8.05 4.3A2.33 2.33 0 0 0 5.8 6.7a2.33 2.33 0 0 0 2.25 2.4a2.33 2.33 0 0 0 2.25-2.4a2.33 2.33 0 0 0-2.25-2.4m0 3.55a1.08 1.08 0 0 1-1-1.15a1.08 1.08 0 0 1 1-1.15a1.08 1.08 0 0 1 1 1.15a1.08 1.08 0 0 1-1 1.15"
+                    ></path>
+                </svg>
+            </div>
+            <div class="px-3 position-relative">
+                <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 14 14"
+                            width="1em"
+                            height="1em"
+                    >
+                        <path
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="m7 12.45l-5.52-5c-3-3 1.41-8.76 5.52-4.1c4.11-4.66 8.5 1.12 5.52 4.1Z"
+                        ></path>
+                    </svg>
+                <!--like and shop number start-->
+                <span class="number-top-icon">
+                    0
+                </span>
+                <!--like and shop number end---->
+            </div>
+            <div class="px-3 position-relative">
+                <svg class="shop-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 14 14"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M12.182 7.5h-8.18l-1-5h10a.5.5 0 0 1 .49.59l-.82 4a.49.49 0 0 1-.49.41m-9.18-5L2.582.9a.5.5 0 0 0-.49-.4H.502m3.5 7l.42 2.1a.5.5 0 0 0 .49.4h6.09m-.5 3.5a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1m-5 0a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1"
+                    ></path>
+                </svg>
+                <!--like and shop number start-->
+                <span class="number-top-icon number-top-icon-shop">
+                    0
+                </span>
+                <!--like and shop number end---->
+            </div>
+        </div>
+        <!--icons in header -- :: end---->
+
+        <!--menu -- : start-->
+        <div class="container">
+            <ul class="desktop-menu-category-list">
+                <li class="menu-category">
+                    <a href="index.html" class="menu-title">خانه</a>
+                </li>
+                <li class="menu-category">
+                    <a href="#" class="menu-title">فروشگاه</a>
+
+                    <div class="dropdown-panel">
+                        <ul class="dropdown-panel-list">
+                            <li class="menu-title"><a href="#">الکترونیکی</a></li>
+                            <li class="panel-list-item"><a href="#">دستاپ</a></li>
+                            <li class="panel-list-item"><a href="#">لب تاب</a></li>
+                            <li class="panel-list-item"><a href="#">دوربین</a></li>
+                            <li class="panel-list-item"><a href="#">هدفون</a></li>
+                            <li class="panel-list-item">
+                            </li>
+                        </ul>
+
+                        <ul class="dropdown-panel-list">
+                            <li class="menu-title"><a href="#">صوتی</a></li>
+                            <li class="panel-list-item"><a href="#">باند</a></li>
+                            <li class="panel-list-item"><a href="#">هندزفری</a></li>
+                            <li class="panel-list-item"><a href="#">ایرپاد</a></li>
+                            <li class="panel-list-item"><a href="#">هدفون</a></li>
+                            <li class="panel-list-item">
+                            </li>
+                        </ul>
+
+                        <ul class="dropdown-panel-list">
+                            <li class="menu-title"><a href="#">ساعت</a></li>
+                            <li class="panel-list-item"><a href="#">ساعت هوشمند</a></li>
+                            <li class="panel-list-item"><a href="#">اپل واچ</a></li>
+                            <li class="panel-list-item"><a href="#">ساعت دیجیتال</a></li>
+                            <li class="panel-list-item"><a href="#">ساعت دیواری</a></li>
+                            <li class="panel-list-item">
+                            </li>
+                        </ul>
+
+                        <ul class="dropdown-panel-list">
+                            <li class="menu-title"><a href="#">مانیتور</a></li>
+                            <li class="panel-list-item"><a href="#">مانیتور گیمینگ</a></li>
+                            <li class="panel-list-item"><a href="#">اسمارت تی وی</a></li>
+                            <li class="panel-list-item"><a href="#">مانیتور لامپی</a></li>
+                            <li class="panel-list-item"><a href="#">تلویزیون</a></li>
+                            <li class="panel-list-item">
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-category">
+                    <a href="#" class="menu-title">تماس  با  ما</a>
+                </li>
+                <li class="menu-category">
+                    <a href="#" class="menu-title">درباره  ما</a>
+                </li>
+                <li class="menu-category">
+                    <a href="#" class="menu-title">بلاگ</a>
+                </li>
+                <li class="menu-category">
+                    <a href="#" class="menu-title">اعتبار من</a>
+                </li>
+            </ul>
+        </div>
+        <!--menu -- : end---->
+
+        <!--logo in header -- : start-->
+        <div class="text-center"><img class="w-75" alt="من مارکت" src="assets/img/logox.webp"></div>
+        <!--logo in header -- : end---->
+
+    </nav>
+
+    <div class="mobile-bottom-navigation">
+        <button class="action-btn" data-mobile-menu-open-btn>
+            <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <button class="action-btn">
+            <ion-icon name="bag-handle-outline"></ion-icon>
+            <span class="count">0</span>
+        </button>
+
+        <button class="action-btn">
+            <ion-icon name="home-outline"></ion-icon>
+        </button>
+
+        <button class="action-btn">
+            <ion-icon name="heart-outline"></ion-icon>
+            <span class="count">0</span>
+        </button>
+
+        <button class="action-btn" data-mobile-menu-open-btn>
+            <ion-icon name="grid-outline"></ion-icon>
+        </button>
+    </div>
+
+    <nav class="mobile-navigation-menu has-scrollbar " data-mobile-menu>
+        <div class="menu-top">
+            <h2 class="menu-title">منو</h2>
+
+            <button class="menu-close-btn" data-mobile-menu-close-btn>
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+        </div>
+
+        <ul class="mobile-menu-category-list">
+            <li class="menu-category"><a href="#" class="menu-title">خانه</a></li>
+
+            <li class="menu-category">
+                <button class="accordion-menu" data-accordion-btn>
+                    <p class="menu-title">برای آقایان</p>
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="submenu-category-list " data-accordion>
+                    <li class="submenu-category"><a href="#" class="submenu-title">تی شرت</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">کلاه</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">کفش</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">لوازم ورزشی</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-category">
+                <button class="accordion-menu" data-accordion-btn>
+                    <p class="menu-title">برای خانوم ها</p>
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="submenu-category-list" data-accordion>
+                    <li class="submenu-category"><a href="#" class="submenu-title"> لباس </a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">کلاه</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">کفش</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">لوازم ورزشی</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-category">
+                <button class="accordion-menu" data-accordion-btn>
+                    <p class="menu-title">اسپرت</p>
+
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="submenu-category-list" data-accordion>
+                    <li class="submenu-category"><a href="#" class="submenu-title">کفش</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">لگ</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">فوتبالی</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">توپ</a></li>
+                </ul>
+            </li>
+
+
+            <li class="menu-category"><a href="#" class="menu-title">وبلاگ</a></li>
+
+            <li class="menu-category"><a href="#" class="menu-title">تخفیف های بزرگ</a></li>
+        </ul>
+
+        <div class="menu-bottom">
+            <ul class="menu-social-container">
+                <li><a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#" class="social-link"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                <li><a href="#" class="social-link"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!--Header End---->
+
+<div style="display: none !important;" class="sidebar has-scrollbar">
+
+    <div class="sidebar-category">
+        <div class="sidebar-top">
+            <h2 class="sidebar-title">دسته بندی</h2>
+
+            <button class="sidebar-close-btn" data-mobile-menu-close-btn>
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+        </div>
+
+        <ul class="sidebar-menu-category-list">
+            <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                    <div class="menu-title-flex">
+                        <p>لباس </p>
+                    </div>
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">تی شرت</p>
+                            <data value="300" class="stock" title="Available Stock">300</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">اجناس برند</p>
+                            <data value="60" class="stock" title="Available Stock">60</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">ژاکت</p>
+                            <data value="50" class="stock" title="Available Stock">50</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">زنانه</p>
+                            <data value="87" class="stock" title="Available Stock">87</data>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                    <div class="menu-title-flex">
+                        <p class="menu-title">دیجیتال</p>
+                    </div>
+
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">لب تاب</p>
+                            <data value="45" class="stock" title="Available Stock">45</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">هندزفری</p>
+                            <data value="75" class="stock" title="Available Stock">75</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">هدفون</p>
+                            <data value="35" class="stock" title="Available Stock">35</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">اپل واچ</p>
+                            <data value="26" class="stock" title="Available Stock">26</data>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                    <div class="menu-title-flex">
+                        <p class="menu-title">اسباب بازی</p>
+                    </div>
+
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">پسرانه</p>
+                            <data value="46" class="stock" title="Available Stock">46</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">دخترانه</p>
+                            <data value="73" class="stock" title="Available Stock">73</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">زیر 10 سال</p>
+                            <data value="61" class="stock" title="Available Stock">61</data>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                    <div class="menu-title-flex">
+                        <p class="menu-title">لوازم جانبی</p>
+                    </div>
+
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">موبایل</p>
+                            <data value="12" class="stock" title="Available Stock">12 pcs</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">لب تاب</p>
+                            <data value="60" class="stock" title="Available Stock">60 pcs</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">کیف</p>
+                            <data value="50" class="stock" title="Available Stock">50 pcs</data>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="product-showcase">
+        <h3 class="showcase-heading">بهترین های این هفته</h3>
+
+        <div class="showcase-wrapper s-img">
+            <div class="showcase-container">
+                <div class="showcase">
+                    <a href="#" class="showcase-img-box">
+                        <img src="assets/img/K.F.1.png" alt="baby fabric shoes" class="showcase-img" width="75" height="75">
+                    </a>
+
+                    <div class="showcase-content">
+                        <a href="#"><h4 class="showcase-title">کفش دخترانه</h4></a>
+
+                        <div class="showcase-rating">
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                        </div>
+
+                        <div class="price-box">
+                            <p class="price">350 هزار تومان</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase">
+                    <a href="#" class="showcase-img-box">
+                        <img src="assets/img/T.S.1.png" alt="men's hoodies t-shirt" class="showcase-img" width="75" height="75">
+                    </a>
+
+                    <div class="showcase-content">
+                        <a href="#"><h4 class="showcase-title">تیشرت مردانه</h4></a>
+
+                        <div class="showcase-rating">
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                        </div>
+
+                        <div class="price-box">
+                            <p class="price">300 هزار تومان </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase">
+                    <a href="#" class="showcase-img-box">
+                        <img src="assets/img/GT.S.1.png" alt="girls t-shirt" class="showcase-img" width="75" height="75">
+                    </a>
+
+                    <div class="showcase-content">
+                        <a href="#"><h4 class="showcase-title">تیشرت دخترانه</h4></a>
+
+                        <div class="showcase-rating">
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                        </div>
+
+                        <div class="price-box">
+                            <p class="price">300 هزار تومان </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase">
+                    <a href="#" class="showcase-img-box">
+                        <img src="assets/img/H.T.1.webp" alt="woolen hat for men" class="showcase-img" width="75" height="75">
+                    </a>
+
+                    <div class="showcase-content">
+                        <a href="#"><h4 class="showcase-title">کلاه اسپرت</h4></a>
+
+                        <div class="showcase-rating">
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                        </div>
+
+                        <div class="price-box">
+                            <p class="price">120 هزار تومان</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--search modal __ :: start-->
+<section class="search-box">
+    <span class="close-modal mx-5">
+         <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="1em"
+            height="1em"
+             >
+             <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="square"
+              stroke-linejoin="round"
+              d="M18 6L6 18M6 6l12 12"
+             ></path>
+         </svg>
+    </span>
+    <h5 class="py-3 text-center">دنبال چی میگردی ؟</h5>
+    <form class="text-center position-relative container">
+        <input class="form-control my-inp" type="search" placeholder="مثلا آیفون 16 ">
+        <div>
+            <button class="sub-btn" type="submit">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 32 32"
+                    width="1em"
+                    height="1em"
+            >
+                <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
+                ></path>
+            </svg></button>
+        </div>
+    </form>
+</section>
+<!--search modal __ :: end---->
+
+
+
+
+
+
+
+
+
+
+
+<main class="d-flex justify-content-center flex-column">
+
+</main>
+
+
+
+<!--footer :: start------>
+<footer class="mt-5">
+    <div class="footer-nav">
+        <div class="container">
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">دسته بندی کلی</h2></li>
+
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
+            </ul>
+
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">محصولات</h2></li>
+
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
+            </ul>
+
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">کمپانی ها</h2></li>
+
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
+            </ul>
+
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">سرویس ها</h2></li>
+
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
+            </ul>
+
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">ارتباط با ما</h2></li>
+
+                <li class="footer-nav-item flex">
+                    <div class="icon-box">
+                        <ion-icon name="location-outline"></ion-icon>
+                    </div>
+
+                    <address class="content">
+                        لوکیشن ما
+                    </address>
+                </li>
+
+                <li class="footer-nav-item flex">
+                    <div class="icon-box">
+                        <ion-icon name="call-outline"></ion-icon>
+                    </div>
+
+                    <a href="tel:+607936-8058" class="footer-nav-link">تلفن ما 0915 878 2312</a>
+                </li>
+
+                <li class="footer-nav-item flex">
+                    <div class="icon-box">
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </div>
+
+                    <a href="mailto:example@gmail.com" class="footer-nav-link">example@gmail.com</a>
+                </li>
+            </ul>
+
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">Follow Us</h2></li>
+
+                <li>
+                    <ul class="social-link">
+                        <li class="footer-nav-item">
+                            <a href="#" class="footer-nav-link"><ion-icon name="logo-facebook"></ion-icon></a>
+                        </li>
+
+                        <li class="footer-nav-item">
+                            <a href="#" class="footer-nav-link"><ion-icon name="logo-twitter"></ion-icon></a>
+                        </li>
+
+                        <li class="footer-nav-item">
+                            <a href="#" class="footer-nav-link"><ion-icon name="logo-linkedin"></ion-icon></a>
+                        </li>
+
+                        <li class="footer-nav-item">
+                            <a href="#" class="footer-nav-link"><ion-icon name="logo-instagram"></ion-icon></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="copyright"> تمامی حقوق مادی و معنوی این سایت متعلق به شرکت راه ابریشم نو مسیر توسعه تحول جهانی می باشد .</p>
+        </div>
+    </div>
+</footer>
+<!--footer :: end-------->
+
+
+
+
+
+
+
+<div class="custom-overlay"></div>
+<script src="assets/js/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script  src="script.js"></script>
+</body>
+<!-- partial -->
+</html>
+
+
+

@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من مارکت</title>
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/libraries/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!--Shadow Overly start-->
+<div class="overlay" data-overlay></div>
+<!--Shadow Overly start-->
+
+
+
+<div id="cart-dashboard" class="hidden-dashboard">
+    <button id="close-cart">
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="1.4em"
+                height="1.4em"
+        >
+            <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="square"
+                    stroke-linejoin="round"
+                    d="M18 6L6 18M6 6l12 12"
+            ></path>
+        </svg>
+    </button>
+    <h6 class="header-in-shop">سبد خرید</h6>
+    <div id="cart-items-container">
+        <ul id="cart-items"></ul>
+    </div>
+    <div id="total-price">جمع کل: 0 تومان</div>
+</div>
+
+<!--Header Start-->
+<header>
+    <nav class="desktop-navigation-menu d-flex justify-content-evenly mt-3 px-4 text-center">
+
+        <!--icons in header -- :: start-->
+        <div class="d-flex justify-content-between mt-2 icons-in-header">
+            <div class="mx-2 show-search-modal btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="جست و جو ">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
+                    ></path>
+                </svg>
+            </div>
+            <div class="mx-2 btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="حساب کاربری">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 16"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="currentColor"
+                            d="M8 .5A7.77 7.77 0 0 0 0 8a7.77 7.77 0 0 0 8 7.5A7.77 7.77 0 0 0 16 8A7.77 7.77 0 0 0 8 .5M5.16 13.67A2.84 2.84 0 0 1 8 11.51a2.82 2.82 0 0 1 2.84 2.16a7.24 7.24 0 0 1-5.68 0m6.84-.61a4.09 4.09 0 0 0-4-2.77a4.09 4.09 0 0 0-3.95 2.78A6.14 6.14 0 0 1 1.25 8A6.52 6.52 0 0 1 8 1.75A6.52 6.52 0 0 1 14.75 8A6.11 6.11 0 0 1 12 13.06"
+                    ></path>
+                    <path
+                            fill="currentColor"
+                            d="M8.05 4.3A2.33 2.33 0 0 0 5.8 6.7a2.33 2.33 0 0 0 2.25 2.4a2.33 2.33 0 0 0 2.25-2.4a2.33 2.33 0 0 0-2.25-2.4m0 3.55a1.08 1.08 0 0 1-1-1.15a1.08 1.08 0 0 1 1-1.15a1.08 1.08 0 0 1 1 1.15a1.08 1.08 0 0 1-1 1.15"
+                    ></path>
+                </svg>
+            </div>
+            <div class="mx-2 btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="مورد علاقه ها" >
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 14 14"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="m7 12.45l-5.52-5c-3-3 1.41-8.76 5.52-4.1c4.11-4.66 8.5 1.12 5.52 4.1Z"
+                    ></path>
+                </svg>
+                <!--like and shop number start-->
+                <span class="number-top-icon">
+                    0
+                </span>
+                <!--like and shop number end---->
+            </div>
+            <div class="mx-2 btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="سبد خرید">
+                <svg class="shop-icon"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 14 14"
+                     width="1em"
+                     height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M12.182 7.5h-8.18l-1-5h10a.5.5 0 0 1 .49.59l-.82 4a.49.49 0 0 1-.49.41m-9.18-5L2.582.9a.5.5 0 0 0-.49-.4H.502m3.5 7l.42 2.1a.5.5 0 0 0 .49.4h6.09m-.5 3.5a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1m-5 0a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1"
+                    ></path>
+                </svg>
+                <!--like and shop number start-->
+                <span class="number-top-icon number-top-icon-shop">
+                    0
+                </span>
+                <!--like and shop number end---->
+            </div>
+        </div>
+        <!--icons in header -- :: end---->
+
+        <!--menu -- : start-->
+        <div class="container">
+            <ul class="desktop-menu-category-list">
+                <li class="menu-category">
+                    <a href="collection.html" target="_blank" class="menu-title">تینیجر من</a>
+                </li>
+                <li class="menu-category">
+                    <a href="collection.html" class="menu-title">فروشگاه</a>
+                    <div class="dropdown-panel">
+                        <ul class="dropdown-panel-list">
+                            <li class="menu-title"><a href="#">الکترونیکی</a></li>
+                            <li class="panel-list-item"><a href="#">دستاپ</a></li>
+                            <li class="panel-list-item"><a href="#">لب تاب</a></li>
+                            <li class="panel-list-item"><a href="#">دوربین</a></li>
+                            <li class="panel-list-item"><a href="#">هدفون</a></li>
+                            <li class="panel-list-item">
+                            </li>
+                        </ul>
+
+                        <ul class="dropdown-panel-list">
+                            <li class="menu-title"><a href="#">صوتی</a></li>
+                            <li class="panel-list-item"><a href="#">باند</a></li>
+                            <li class="panel-list-item"><a href="#">هندزفری</a></li>
+                            <li class="panel-list-item"><a href="#">ایرپاد</a></li>
+                            <li class="panel-list-item"><a href="#">هدفون</a></li>
+                            <li class="panel-list-item">
+                            </li>
+                        </ul>
+
+                        <ul class="dropdown-panel-list">
+                            <li class="menu-title"><a href="#">ساعت</a></li>
+                            <li class="panel-list-item"><a href="#">ساعت هوشمند</a></li>
+                            <li class="panel-list-item"><a href="#">اپل واچ</a></li>
+                            <li class="panel-list-item"><a href="#">ساعت دیجیتال</a></li>
+                            <li class="panel-list-item"><a href="#">ساعت دیواری</a></li>
+                            <li class="panel-list-item">
+                            </li>
+                        </ul>
+
+                        <ul class="dropdown-panel-list">
+                            <li class="menu-title"><a href="#">مانیتور</a></li>
+                            <li class="panel-list-item"><a href="#">مانیتور گیمینگ</a></li>
+                            <li class="panel-list-item"><a href="#">اسمارت تی وی</a></li>
+                            <li class="panel-list-item"><a href="#">مانیتور لامپی</a></li>
+                            <li class="panel-list-item"><a href="#">تلویزیون</a></li>
+                            <li class="panel-list-item">
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-category">
+                    <a href="index.html" class="menu-title">خانه</a>
+                </li>
+                <li class="menu-category">
+                    <a href="contact.html" class="menu-title">تماس  با  ما</a>
+                </li>
+                <li class="menu-category">
+                    <a href="about.html" class="menu-title">درباره  ما</a>
+                </li>
+                <li class="menu-category">
+                    <a href="blog.html" class="menu-title">بلاگ</a>
+                </li>
+                <li class="menu-category">
+                    <a href="#" class="menu-title">اعتبار من</a>
+                </li>
+            </ul>
+        </div>
+        <!--menu -- : end---->
+
+        <!--logo in header -- : start-->
+        <div class="text-center"><img class="w-75" alt="من مارکت" src="assets/img/logox.webp"></div>
+        <!--logo in header -- : end---->
+
+    </nav>
+
+    <div class="mobile-bottom-navigation">
+        <button class="action-btn" data-mobile-menu-open-btn>
+            <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <button class="action-btn">
+            <div class="show-search-modal btn p-0 m-0" data-bs-toggle="tooltip" data-bs-placement="top" title="جست و جو ">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                        width="1.3em"
+                        height="1.3em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
+                    ></path>
+                </svg>
+            </div>
+        </button>
+        <button class="action-btn">
+            <ion-icon name="home-outline"></ion-icon>
+        </button>
+
+        <button class="action-btn">
+            <ion-icon name="heart-outline"></ion-icon>
+            <span class="count">0</span>
+        </button>
+
+        <button class="action-btn" data-mobile-menu-open-btn>
+            <ion-icon name="grid-outline"></ion-icon>
+        </button>
+    </div>
+
+    <nav class="mobile-navigation-menu has-scrollbar " data-mobile-menu>
+        <div class="menu-top">
+            <h2 class="menu-title">منو</h2>
+
+            <button class="menu-close-btn" data-mobile-menu-close-btn>
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+        </div>
+
+        <ul class="mobile-menu-category-list">
+            <li class="menu-category"><a href="#" class="menu-title">خانه</a></li>
+
+            <li class="menu-category">
+                <button class="accordion-menu" data-accordion-btn>
+                    <p class="menu-title">برای آقایان</p>
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="submenu-category-list " data-accordion>
+                    <li class="submenu-category"><a href="#" class="submenu-title">تی شرت</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">کلاه</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">کفش</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">لوازم ورزشی</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-category">
+                <button class="accordion-menu" data-accordion-btn>
+                    <p class="menu-title">برای خانوم ها</p>
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="submenu-category-list" data-accordion>
+                    <li class="submenu-category"><a href="#" class="submenu-title"> لباس </a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">کلاه</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">کفش</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">لوازم ورزشی</a></li>
+                </ul>
+            </li>
+
+            <li class="menu-category">
+                <button class="accordion-menu" data-accordion-btn>
+                    <p class="menu-title">اسپرت</p>
+
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="submenu-category-list" data-accordion>
+                    <li class="submenu-category"><a href="#" class="submenu-title">کفش</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">لگ</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">فوتبالی</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">توپ</a></li>
+                </ul>
+            </li>
+
+
+            <li class="menu-category"><a href="#" class="menu-title">وبلاگ</a></li>
+
+            <li class="menu-category"><a href="#" class="menu-title">تخفیف های بزرگ</a></li>
+        </ul>
+
+        <div class="menu-bottom">
+            <ul class="menu-social-container">
+                <li><a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#" class="social-link"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                <li><a href="#" class="social-link"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!--Header End---->
+
+<div style="display: none !important;" class="sidebar has-scrollbar ">
+    <div class="sidebar-category">
+        <div class="sidebar-top">
+            <h2 class="sidebar-title">دسته بندی</h2>
+
+            <button class="sidebar-close-btn" data-mobile-menu-close-btn>
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+        </div>
+
+        <ul class="sidebar-menu-category-list">
+            <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                    <div class="menu-title-flex">
+                        <p>لباس </p>
+                    </div>
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">تی شرت</p>
+                            <data value="300" class="stock" title="Available Stock">300</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">اجناس برند</p>
+                            <data value="60" class="stock" title="Available Stock">60</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">ژاکت</p>
+                            <data value="50" class="stock" title="Available Stock">50</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">زنانه</p>
+                            <data value="87" class="stock" title="Available Stock">87</data>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                    <div class="menu-title-flex">
+                        <p class="menu-title">دیجیتال</p>
+                    </div>
+
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">لب تاب</p>
+                            <data value="45" class="stock" title="Available Stock">45</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">هندزفری</p>
+                            <data value="75" class="stock" title="Available Stock">75</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">هدفون</p>
+                            <data value="35" class="stock" title="Available Stock">35</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">اپل واچ</p>
+                            <data value="26" class="stock" title="Available Stock">26</data>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                    <div class="menu-title-flex">
+                        <p class="menu-title">اسباب بازی</p>
+                    </div>
+
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">پسرانه</p>
+                            <data value="46" class="stock" title="Available Stock">46</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">دخترانه</p>
+                            <data value="73" class="stock" title="Available Stock">73</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">زیر 10 سال</p>
+                            <data value="61" class="stock" title="Available Stock">61</data>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="sidebar-menu-category">
+                <button class="sidebar-accordion-menu" data-accordion-btn>
+                    <div class="menu-title-flex">
+                        <p class="menu-title">لوازم جانبی</p>
+                    </div>
+
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="sidebar-submenu-category-list" data-accordion>
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">موبایل</p>
+                            <data value="12" class="stock" title="Available Stock">12 pcs</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">لب تاب</p>
+                            <data value="60" class="stock" title="Available Stock">60 pcs</data>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-submenu-category">
+                        <a href="#" class="sidebar-submenu-title">
+                            <p class="product-name">کیف</p>
+                            <data value="50" class="stock" title="Available Stock">50 pcs</data>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="product-showcase">
+        <h3 class="showcase-heading">بهترین های این هفته</h3>
+
+        <div class="showcase-wrapper s-img">
+            <div class="showcase-container">
+                <div class="showcase">
+                    <a href="#" class="showcase-img-box">
+                        <img src="assets/img/K.F.1.png" alt="baby fabric shoes" class="showcase-img" width="75" height="75">
+                    </a>
+
+                    <div class="showcase-content">
+                        <a href="#"><h4 class="showcase-title">کفش دخترانه</h4></a>
+
+                        <div class="showcase-rating">
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                        </div>
+
+                        <div class="price-box">
+                            <p class="price">350 هزار تومان</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase">
+                    <a href="#" class="showcase-img-box">
+                        <img src="assets/img/T.S.1.png" alt="men's hoodies t-shirt" class="showcase-img" width="75" height="75">
+                    </a>
+
+                    <div class="showcase-content">
+                        <a href="#"><h4 class="showcase-title">تیشرت مردانه</h4></a>
+
+                        <div class="showcase-rating">
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                        </div>
+
+                        <div class="price-box">
+                            <p class="price">300 هزار تومان </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase">
+                    <a href="#" class="showcase-img-box">
+                        <img src="assets/img/GT.S.1.png" alt="girls t-shirt" class="showcase-img" width="75" height="75">
+                    </a>
+
+                    <div class="showcase-content">
+                        <a href="#"><h4 class="showcase-title">تیشرت دخترانه</h4></a>
+
+                        <div class="showcase-rating">
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                        </div>
+
+                        <div class="price-box">
+                            <p class="price">300 هزار تومان </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showcase">
+                    <a href="#" class="showcase-img-box">
+                        <img src="assets/img/H.T.1.webp" alt="woolen hat for men" class="showcase-img" width="75" height="75">
+                    </a>
+
+                    <div class="showcase-content">
+                        <a href="#"><h4 class="showcase-title">کلاه اسپرت</h4></a>
+
+                        <div class="showcase-rating">
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                            <ion-icon name="star"></ion-icon>
+                        </div>
+
+                        <div class="price-box">
+                            <p class="price">120 هزار تومان</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--search modal __ :: start-->
+<section class="search-box">
+    <span class="close-modal mx-5">
+         <svg
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24"
+                 width="1em"
+                 height="1em"
+         >
+             <path
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-linecap="square"
+                     stroke-linejoin="round"
+                     d="M18 6L6 18M6 6l12 12"
+             ></path>
+         </svg>
+    </span>
+    <h5 class="py-3 text-center">دنبال چی میگردی ؟</h5>
+    <form class="text-center position-relative container">
+        <input class="form-control my-inp" type="search" placeholder="مثلا آیفون 16 ">
+        <div>
+            <button class="sub-btn" type="submit">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
+                    ></path>
+                </svg></button>
+        </div>
+    </form>
+</section>
+<!--search modal __ :: end---->
+
+
+
+<!--main single product ::::: start--------->
+
+<main class="d-flex justify-content-center flex-column text-start">
+
+<section class="row align-items-start px-3 text-center">
+    <div class="tr-z-slider-container col-md-6 col-sm-12 align-items-center px-5 my-1">
+        <div class="tr-z-slider" id="tr-z-slider-for">
+            <div class="tr-z-slide tr-z-active"><img src="assets/img/product/Samsung/A-15/A-15-yellow/Samsung-A-15-1.png" alt="گوشی سامسونگ گلسی a15"/></div>
+            <div class="tr-z-slide"><img src="assets/img/product/Samsung/A-15/A-15-yellow/Samsung-A-15-3.png" alt="گوشی سامسونگ گلسی a15" /></div>
+            <div class="tr-z-slide"><img src="assets/img/product/Samsung/A-15/A-15-yellow/Samsung-A-15-4.png" alt="گوشی سامسونگ گلسی a15"/></div>
+            <div class="tr-z-slide"><img src="assets/img/product/Samsung/A-15/A-15-yellow/Samsung-A-15-2.png"  alt="گوشی سامسونگ گلسی a15"/></div>
+        </div>
+        <div class="tr-z-nav mt-5" id="tr-z-slider-nav">
+            <img src="assets/img/product/Samsung/A-15/A-15-yellow/Samsung-A-15-1.png" alt="گوشی سامسونگ گلسی a15" data-index="0" />
+            <img src="assets/img/product/Samsung/A-15/A-15-yellow/Samsung-A-15-3.png" alt="گوشی سامسونگ گلسی a15" data-index="1" />
+            <img src="assets/img/product/Samsung/A-15/A-15-yellow/Samsung-A-15-4.png" alt="گوشی سامسونگ گلسی a15" data-index="2" />
+            <img src="assets/img/product/Samsung/A-15/A-15-yellow/Samsung-A-15-2.png" alt="گوشی سامسونگ گلسی a15" data-index="2" />
+        </div>
+        <button class="tr-z-button tr-z-next">
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="1em"
+                    height="1em"
+            >
+                <path
+                        fill="currentColor"
+                        d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z"
+                ></path>
+            </svg>
+        </button>
+        <button class="tr-z-button tr-z-prev">
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="1em"
+                    height="1em"
+            >
+                <path
+                        fill="currentColor"
+                        d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6z"
+                ></path>
+            </svg>
+        </button>
+    </div>
+    <article class="col-md-6 col-sm-12 d-flex justify-content-start flex-column mt-5 text-end px-3">
+<!--name product ::: start------->
+        <h5>
+            گوشی سامسونگ مدل samsung A 15
+        </h5>
+<!--name product ::: end--------->
+
+<!--price or money product ::: start-------->
+        <span class="my-3">
+            قیمت : 120000 <svg class="ms-3" width="25" height="25" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="text-gray-880 dark:text-white" d="M1.14878 6.91843C1.44428 6.91843 1.70285 6.87142 1.92447 6.77739C2.15282 6.68337 2.34422 6.55577 2.49869 6.39458C2.65316 6.2334 2.77069 6.04535 2.85128 5.83044C2.93187 5.62224 2.97888 5.40062 2.99231 5.16556H1.98492C1.6424 5.16556 1.36033 5.12862 1.1387 5.05474C0.917077 4.98087 0.742461 4.87341 0.614858 4.73238C0.487254 4.59134 0.396588 4.42344 0.34286 4.22868C0.295849 4.0272 0.272343 3.80221 0.272343 3.55372C0.272343 3.29852 0.309281 3.05674 0.383156 2.8284C0.457032 2.60005 0.564488 2.39857 0.705523 2.22396C0.846559 2.04934 1.02117 1.91167 1.22937 1.81093C1.44428 1.70347 1.68941 1.64974 1.96477 1.64974C2.1864 1.64974 2.39795 1.68668 2.59943 1.76056C2.80091 1.83443 2.97888 1.95196 3.13335 2.11315C3.28782 2.26761 3.40871 2.47245 3.49601 2.72766C3.59004 2.97615 3.63705 3.27837 3.63705 3.63431V4.47045H4.60415C4.68474 4.47045 4.73847 4.50068 4.76533 4.56112C4.79891 4.61485 4.8157 4.6988 4.8157 4.81297C4.8157 4.93386 4.79891 5.02452 4.76533 5.08497C4.73847 5.13869 4.68474 5.16556 4.60415 5.16556H3.6169C3.60347 5.49464 3.53631 5.80693 3.41542 6.10244C3.30125 6.39794 3.14007 6.65651 2.93187 6.87813C2.72368 7.09976 2.47518 7.27438 2.1864 7.40198C1.89761 7.5363 1.57188 7.60346 1.20922 7.60346H0.141381L0.0809373 6.91843H1.14878ZM0.896929 3.51343C0.896929 3.68133 0.913719 3.82572 0.947299 3.94661C0.987594 4.0675 1.0514 4.16823 1.1387 4.24883C1.23273 4.3227 1.35697 4.37979 1.51144 4.42008C1.66591 4.45366 1.86067 4.47045 2.09573 4.47045H3.00239V3.71491C3.00239 3.21792 2.90501 2.86198 2.71024 2.64707C2.51548 2.43215 2.24684 2.3247 1.90433 2.3247C1.58196 2.3247 1.33347 2.43215 1.15885 2.64707C0.984237 2.86198 0.896929 3.15076 0.896929 3.51343ZM6.26895 4.47045C6.35626 4.47045 6.41335 4.50068 6.44021 4.56112C6.47379 4.61485 6.49058 4.6988 6.49058 4.81297C6.49058 4.93386 6.47379 5.02452 6.44021 5.08497C6.41335 5.13869 6.35626 5.16556 6.26895 5.16556H4.60675C4.51944 5.16556 4.46235 5.13869 4.43549 5.08497C4.40191 5.03124 4.38512 4.94729 4.38512 4.83312C4.38512 4.71223 4.40191 4.62156 4.43549 4.56112C4.46235 4.50068 4.51944 4.47045 4.60675 4.47045H6.26895ZM7.93155 4.47045C8.01886 4.47045 8.07594 4.50068 8.10281 4.56112C8.13639 4.61485 8.15318 4.6988 8.15318 4.81297C8.15318 4.93386 8.13639 5.02452 8.10281 5.08497C8.07594 5.13869 8.01886 5.16556 7.93155 5.16556H6.26935C6.18204 5.16556 6.12495 5.13869 6.09809 5.08497C6.06451 5.03124 6.04772 4.94729 6.04772 4.83312C6.04772 4.71223 6.06451 4.62156 6.09809 4.56112C6.12495 4.50068 6.18204 4.47045 6.26935 4.47045H7.93155ZM9.59415 4.47045C9.68146 4.47045 9.73854 4.50068 9.76541 4.56112C9.79899 4.61485 9.81578 4.6988 9.81578 4.81297C9.81578 4.93386 9.79899 5.02452 9.76541 5.08497C9.73854 5.13869 9.68146 5.16556 9.59415 5.16556H7.93194C7.84464 5.16556 7.78755 5.13869 7.76069 5.08497C7.72711 5.03124 7.71032 4.94729 7.71032 4.83312C7.71032 4.71223 7.72711 4.62156 7.76069 4.56112C7.78755 4.50068 7.84464 4.47045 7.93194 4.47045H9.59415ZM11.2567 4.47045C11.3441 4.47045 11.4011 4.50068 11.428 4.56112C11.4616 4.61485 11.4784 4.6988 11.4784 4.81297C11.4784 4.93386 11.4616 5.02452 11.428 5.08497C11.4011 5.13869 11.3441 5.16556 11.2567 5.16556H9.59454C9.50723 5.16556 9.45015 5.13869 9.42328 5.08497C9.3897 5.03124 9.37291 4.94729 9.37291 4.83312C9.37291 4.71223 9.3897 4.62156 9.42328 4.56112C9.45015 4.50068 9.50723 4.47045 9.59454 4.47045H11.2567ZM12.1638 4.47045C12.4257 4.47045 12.6339 4.39994 12.7884 4.2589C12.9496 4.11787 13.0302 3.9231 13.0302 3.67461V2.2844H13.685V3.67461C13.685 4.15144 13.5506 4.52082 13.282 4.78275C13.0201 5.03795 12.6608 5.16556 12.2041 5.16556H11.2571C11.1698 5.16556 11.1127 5.13869 11.0859 5.08497C11.0523 5.03124 11.0355 4.94729 11.0355 4.83312C11.0355 4.71223 11.0523 4.62156 11.0859 4.56112C11.1127 4.50068 11.1698 4.47045 11.2571 4.47045H12.1638ZM13.7857 0.994934H12.9798V0.279683H13.7857V0.994934ZM12.5063 0.994934H11.7004V0.279683H12.5063V0.994934ZM5.64177 12.9641C5.64177 13.3267 5.58468 13.6659 5.47051 13.9815C5.35634 14.3039 5.1918 14.5826 4.97689 14.8177C4.76198 15.0595 4.50005 15.2509 4.19112 15.3919C3.8889 15.5329 3.54638 15.6035 3.16357 15.6035H2.56921C1.81702 15.6035 1.23273 15.3718 0.816337 14.9084C0.399946 14.445 0.191751 13.8103 0.191751 13.0044V11.2414H0.836485V12.9842C0.836485 13.273 0.870065 13.5349 0.937225 13.77C1.0111 14.0051 1.12191 14.2065 1.26967 14.3744C1.42413 14.549 1.61554 14.6834 1.84388 14.7774C2.07223 14.8714 2.34758 14.9184 2.66995 14.9184H3.1132C3.42885 14.9184 3.70421 14.8647 3.93927 14.7572C4.17433 14.6565 4.36909 14.5188 4.52356 14.3442C4.68474 14.1696 4.80227 13.9648 4.87615 13.7297C4.95674 13.4946 4.99703 13.2495 4.99703 12.9943V10.2844H5.64177V12.9641ZM3.21394 10.0628H2.36773V9.32738H3.21394V10.0628ZM8.24526 13.1656C8.07064 13.1656 7.90274 13.1421 7.74156 13.095C7.58038 13.0413 7.43598 12.954 7.30838 12.8331C7.18749 12.7122 7.09011 12.5544 7.01624 12.3596C6.94236 12.1582 6.90542 11.9097 6.90542 11.6142V6.9197H7.56023V11.4933C7.56023 11.7754 7.62067 12.0104 7.74156 12.1985C7.86916 12.3798 8.074 12.4705 8.35607 12.4705H8.52733C8.67508 12.4705 8.74896 12.5846 8.74896 12.813C8.74896 13.048 8.67508 13.1656 8.52733 13.1656H8.24526ZM8.69324 12.4705C8.95516 12.4705 9.15328 12.4067 9.2876 12.279C9.42192 12.1514 9.48908 11.9802 9.48908 11.7653V11.3825C9.48908 10.7982 9.63683 10.3415 9.93233 10.0124C10.2346 9.68332 10.6509 9.51878 11.1815 9.51878C11.4569 9.51878 11.6986 9.56243 11.9068 9.64974C12.115 9.73705 12.2863 9.8613 12.4206 10.0225C12.5616 10.1837 12.6657 10.3751 12.7329 10.5967C12.8001 10.8183 12.8336 11.0635 12.8336 11.3321C12.8336 11.9097 12.6825 12.3596 12.3803 12.682C12.0781 13.0044 11.6651 13.1656 11.1412 13.1656C10.8726 13.1656 10.614 13.1152 10.3655 13.0144C10.117 12.907 9.92226 12.7189 9.78123 12.4503C9.72078 12.6048 9.64691 12.729 9.5596 12.823C9.47229 12.9171 9.38162 12.9909 9.2876 13.0447C9.19358 13.0917 9.09284 13.1253 8.98538 13.1454C8.88464 13.1588 8.78726 13.1656 8.69324 13.1656H8.53205C8.44475 13.1656 8.38766 13.1387 8.3608 13.085C8.32722 13.0312 8.31043 12.9473 8.31043 12.8331C8.31043 12.7122 8.32722 12.6216 8.3608 12.5611C8.38766 12.5007 8.44475 12.4705 8.53205 12.4705H8.69324ZM12.1889 11.3925C12.1889 11.0433 12.1117 10.7612 11.9572 10.5463C11.8027 10.3247 11.5375 10.2139 11.1614 10.2139C10.4629 10.2139 10.1137 10.6202 10.1137 11.4328C10.1137 11.7754 10.2077 12.0339 10.3957 12.2085C10.5905 12.3831 10.839 12.4705 11.1412 12.4705C11.4837 12.4705 11.7423 12.3764 11.9169 12.1884C12.0982 12.0003 12.1889 11.7351 12.1889 11.3925Z" fill="currentColor"></path>
+                            </svg>
+        </span>
+<!--price or money product ::: end---------->
+
+<!--color product :: start------>
+        <div class="my-2">
+            <div class="color-circle bg-danger" onclick="selectColor(this)">
+            <span class="checkmark"><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 15 15"
+                    width="1em"
+                    height="1em"
+            >
+      <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="square"
+              d="m1 7l4.5 4.5L14 3"
+      ></path>
+    </svg></span>
+            </div>
+            <div class="color-circle bg-success" onclick="selectColor(this)">
+    <span class="checkmark"><svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 15 15"
+            width="1em"
+            height="1em"
+    >
+      <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="square"
+              d="m1 7l4.5 4.5L14 3"
+      ></path>
+    </svg></span>
+            </div>
+            <div class="color-circle bg-primary"  onclick="selectColor(this)">
+    <span class="checkmark"><svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 15 15"
+            width="1em"
+            height="1em"
+    >
+      <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="square"
+              d="m1 7l4.5 4.5L14 3"
+      ></path>
+    </svg></span>
+            </div>
+            <div class="color-circle bg-light"  onclick="selectColor(this)">
+        <span class="checkmark"><svg class="text-dark "
+                                     xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 15 15"
+                                     width="1em"
+                                     height="1em"
+        >
+      <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="square"
+              d="m1 7l4.5 4.5L14 3"
+      ></path>
+    </svg></span>
+            </div>
+            <div class="color-circle bg-dark"  onclick="selectColor(this)">
+        <span class="checkmark"><svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 15 15"
+                width="1em"
+                height="1em"
+        >
+      <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="square"
+              d="m1 7l4.5 4.5L14 3"
+      ></path>
+    </svg></span>
+            </div>
+            <div class="color-circle bg-warning"  onclick="selectColor(this)">
+        <span class="checkmark"><svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 15 15"
+                width="1em"
+                height="1em"
+        >
+      <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="square"
+              d="m1 7l4.5 4.5L14 3"
+      ></path>
+    </svg></span>
+            </div>
+        </div>
+<!--color product :: end-------->
+
+<!--like and add to shop button :: start-->
+        <div class="d-flex justify-content-center text-end flex-column">
+            <div class=""><button class="btn-tv add-to-cart">افزودن به سبد خرید</button></div>
+            <div class=""><button class="btn-tv like">اضافه کردن به علاقه مندی ها</button></div>
+        </div>
+<!--like and add to shop button :: end---->
+
+<!--count plus and minus ---- in product :: start-->
+        <div class="mt-4 position-relative d-flex justify-content-start text-start">
+            <span class="custom-text">
+                    تعداد مد نظرتون ؟
+                </span>
+            <div class="wrapper mx-0 mt-2">
+
+                <div id="minus" onclick="count('minus')"><span></span></div>
+                <div id="number"><span id="number-input"></span></div>
+                <div id="plus" onclick="count('plus')"><span></span></div>
+            </div>
+        </div>
+<!--count plus and minus ---- in product :: end---->
+
+<!--category product ::: start-->
+        <div class="d-flex justify-content-start">
+            <div class="d-flex justify-content-center align-items-center">
+                <p class="custom-text">دسته بندی : </p> <b class="mx-1">   موبایل   </b>
+            </div>
+        </div>
+<!--category product ::: end---->
+
+<!--share buttons ::: start-->
+        <div class="d-flex justify-content-start mt-3">
+            <div class="d-flex justify-content-center align-items-center">
+                <p class="custom-text px-1 py-1">به اشتراک گذاشتن محصول در :</p>
+                <a class="mx-3" href="https://www.instagram.com/" target="_blank">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 256 256"
+                            width="1.4em"
+                            height="1.4em"
+                    >
+                        <g fill="none">
+                            <rect
+                                    width="256"
+                                    height="256"
+                                    fill="url(#skillIconsInstagram0)"
+                                    rx="60"
+                            ></rect>
+                            <rect
+                                    width="256"
+                                    height="256"
+                                    fill="url(#skillIconsInstagram1)"
+                                    rx="60"
+                            ></rect>
+                            <path
+                                    fill="#fff"
+                                    d="M128.009 28c-27.158 0-30.567.119-41.233.604c-10.646.488-17.913 2.173-24.271 4.646c-6.578 2.554-12.157 5.971-17.715 11.531c-5.563 5.559-8.98 11.138-11.542 17.713c-2.48 6.36-4.167 13.63-4.646 24.271c-.477 10.667-.602 14.077-.602 41.236s.12 30.557.604 41.223c.49 10.646 2.175 17.913 4.646 24.271c2.556 6.578 5.973 12.157 11.533 17.715c5.557 5.563 11.136 8.988 17.709 11.542c6.363 2.473 13.631 4.158 24.275 4.646c10.667.485 14.073.604 41.23.604c27.161 0 30.559-.119 41.225-.604c10.646-.488 17.921-2.173 24.284-4.646c6.575-2.554 12.146-5.979 17.702-11.542c5.563-5.558 8.979-11.137 11.542-17.712c2.458-6.361 4.146-13.63 4.646-24.272c.479-10.666.604-14.066.604-41.225s-.125-30.567-.604-41.234c-.5-10.646-2.188-17.912-4.646-24.27c-2.563-6.578-5.979-12.157-11.542-17.716c-5.562-5.562-11.125-8.979-17.708-11.53c-6.375-2.474-13.646-4.16-24.292-4.647c-10.667-.485-14.063-.604-41.23-.604zm-8.971 18.021c2.663-.004 5.634 0 8.971 0c26.701 0 29.865.096 40.409.575c9.75.446 15.042 2.075 18.567 3.444c4.667 1.812 7.994 3.979 11.492 7.48c3.5 3.5 5.666 6.833 7.483 11.5c1.369 3.52 3 8.812 3.444 18.562c.479 10.542.583 13.708.583 40.396s-.104 29.855-.583 40.396c-.446 9.75-2.075 15.042-3.444 18.563c-1.812 4.667-3.983 7.99-7.483 11.488c-3.5 3.5-6.823 5.666-11.492 7.479c-3.521 1.375-8.817 3-18.567 3.446c-10.542.479-13.708.583-40.409.583c-26.702 0-29.867-.104-40.408-.583c-9.75-.45-15.042-2.079-18.57-3.448c-4.666-1.813-8-3.979-11.5-7.479s-5.666-6.825-7.483-11.494c-1.369-3.521-3-8.813-3.444-18.563c-.479-10.542-.575-13.708-.575-40.413s.096-29.854.575-40.396c.446-9.75 2.075-15.042 3.444-18.567c1.813-4.667 3.983-8 7.484-11.5s6.833-5.667 11.5-7.483c3.525-1.375 8.819-3 18.569-3.448c9.225-.417 12.8-.542 31.437-.563zm62.351 16.604c-6.625 0-12 5.37-12 11.996c0 6.625 5.375 12 12 12s12-5.375 12-12s-5.375-12-12-12zm-53.38 14.021c-28.36 0-51.354 22.994-51.354 51.355s22.994 51.344 51.354 51.344c28.361 0 51.347-22.983 51.347-51.344c0-28.36-22.988-51.355-51.349-51.355zm0 18.021c18.409 0 33.334 14.923 33.334 33.334c0 18.409-14.925 33.334-33.334 33.334s-33.333-14.925-33.333-33.334c0-18.411 14.923-33.334 33.333-33.334"
+                            ></path>
+                            <defs>
+                                <radialGradient
+                                        id="skillIconsInstagram0"
+                                        cx="0"
+                                        cy="0"
+                                        r="1"
+                                        gradientTransform="matrix(0 -253.715 235.975 0 68 275.717)"
+                                        gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop stop-color="#FD5"></stop>
+                                    <stop offset=".1" stop-color="#FD5"></stop>
+                                    <stop offset=".5" stop-color="#FF543E"></stop>
+                                    <stop offset="1" stop-color="#C837AB"></stop>
+                                </radialGradient>
+                                <radialGradient
+                                        id="skillIconsInstagram1"
+                                        cx="0"
+                                        cy="0"
+                                        r="1"
+                                        gradientTransform="matrix(22.25952 111.2061 -458.39518 91.75449 -42.881 18.441)"
+                                        gradientUnits="userSpaceOnUse"
+                                >
+                                    <stop stop-color="#3771C8"></stop>
+                                    <stop offset=".128" stop-color="#3771C8"></stop>
+                                    <stop offset="1" stop-color="#60F" stop-opacity="0"></stop>
+                                </radialGradient>
+                            </defs>
+                        </g>
+                    </svg>
+                </a>
+                <a class="mx-3 mt-1" href="https://x.com/?lang=en" target="_blank">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 209 256"
+                            width="1.5em"
+                            height="1.4em"
+                    >
+                        <path
+                                fill="#55acee"
+                                d="M256 25.45a105 105 0 0 1-30.166 8.27c10.845-6.5 19.172-16.793 23.093-29.057a105.2 105.2 0 0 1-33.351 12.745C205.995 7.201 192.346.822 177.239.822c-29.006 0-52.523 23.516-52.523 52.52c0 4.117.465 8.125 1.36 11.97c-43.65-2.191-82.35-23.1-108.255-54.876c-4.52 7.757-7.11 16.78-7.11 26.404c0 18.222 9.273 34.297 23.365 43.716a52.3 52.3 0 0 1-23.79-6.57q-.004.33-.003.661c0 25.447 18.104 46.675 42.13 51.5a52.6 52.6 0 0 1-23.718.9c6.683 20.866 26.08 36.05 49.062 36.475c-17.975 14.086-40.622 22.483-65.228 22.483c-4.24 0-8.42-.249-12.529-.734c23.243 14.902 50.85 23.597 80.51 23.597c96.607 0 149.434-80.031 149.434-149.435q0-3.417-.152-6.795A106.8 106.8 0 0 0 256 25.45"
+                        ></path>
+                    </svg>
+                </a>
+                <a class="mx-3" href="https://telegram.org/" target="_blank">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 256 256"
+                            width="1.3em"
+                            height="1.3em"
+                    >
+                        <defs>
+                            <linearGradient id="logosTelegram0" x1="50%" x2="50%" y1="0%" y2="100%">
+                                <stop offset="0%" stop-color="#2AABEE"></stop>
+                                <stop offset="100%" stop-color="#229ED9"></stop>
+                            </linearGradient>
+                        </defs>
+                        <path
+                                fill="url(#logosTelegram0)"
+                                d="M128 0C94.06 0 61.48 13.494 37.5 37.49A128.04 128.04 0 0 0 0 128c0 33.934 13.5 66.514 37.5 90.51C61.48 242.506 94.06 256 128 256s66.52-13.494 90.5-37.49c24-23.996 37.5-56.576 37.5-90.51s-13.5-66.514-37.5-90.51C194.52 13.494 161.94 0 128 0"
+                        ></path>
+                        <path
+                                fill="#FFF"
+                                d="M57.94 126.648q55.98-24.384 74.64-32.152c35.56-14.786 42.94-17.354 47.76-17.441c1.06-.017 3.42.245 4.96 1.49c1.28 1.05 1.64 2.47 1.82 3.467c.16.996.38 3.266.2 5.038c-1.92 20.24-10.26 69.356-14.5 92.026c-1.78 9.592-5.32 12.808-8.74 13.122c-7.44.684-13.08-4.912-20.28-9.63c-11.26-7.386-17.62-11.982-28.56-19.188c-12.64-8.328-4.44-12.906 2.76-20.386c1.88-1.958 34.64-31.748 35.26-34.45c.08-.338.16-1.598-.6-2.262c-.74-.666-1.84-.438-2.64-.258c-1.14.256-19.12 12.152-54 35.686c-5.1 3.508-9.72 5.218-13.88 5.128c-4.56-.098-13.36-2.584-19.9-4.708c-8-2.606-14.38-3.984-13.82-8.41c.28-2.304 3.46-4.662 9.52-7.072"
+                        ></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+<!--share buttons ::: end---->
+
+
+
+    </article>
+
+
+    <!--Menu Section:start-->
+    <section class="menu-section mt-0 ">
+        <ul class="nav nav-tabs text-center" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active text-dark" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button">توضیحات</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link text-dark" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button">مشخصات</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link text-dark" id="comment-tab" data-bs-toggle="tab" data-bs-target="#comment" type="button">نظرات کاربران</button>
+            </li>
+        </ul>
+        <div class="container mt-3">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home">
+                    <div class="row">
+                        <div class="col-12 text-end my-3">
+                            <h6>توضیحات فنی</h6>
+                            <p class="custom-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium eligendi, enim ex ratione repudiandae sequi tenetur? A asperiores autem debitis dolor excepturi explicabo, iste sit. Asperiores perspiciatis repudiandae veritatis vero.</p>
+                        </div>
+                        <div class="col-12 text-end my-3">
+                            <h6>توضیحات فنی</h6>
+                            <p class="custom-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium eligendi, enim ex ratione repudiandae sequi tenetur? A asperiores autem debitis dolor excepturi explicabo, iste sit. Asperiores perspiciatis repudiandae veritatis vero.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel">
+                    <div class="d-flex justify-content-start flex-column">
+                        <div class="d-flex justify-content-center my-1">
+                            <div class=" px-5 py-2 custom-text bg-custom w-50 at-100 text-end custom-box-s">
+                                حافظه داخلی
+                            </div>
+                            <div class=" px-5 py-2 w-50 at-100 text-end custom-box-s custom-text">
+                                256 گیگابایت
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-1">
+                            <div class=" px-5 py-2 custom-text bg-custom w-50 at-100 text-end custom-box-s">
+                                حافظه ram
+                            </div>
+                            <div class=" px-5 py-2 w-50 at-100 text-end custom-box-s custom-text">
+                                8 گیگابایت
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-1">
+                            <div class=" px-5 py-2 custom-text bg-custom w-50 at-100 text-end custom-box-s">
+                                دوربین پشت
+                            </div>
+                            <div class=" px-5 py-2 w-50 at-100 text-end custom-box-s custom-text">
+                                50 مگاپیکسل
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-1">
+                            <div class=" px-5 py-2 custom-text bg-custom w-50 at-100 text-end custom-box-s">
+                                ظرفیت باطری
+                            </div>
+                            <div class=" px-5 py-2 w-50 at-100 text-end custom-box-s custom-text">
+                                5000 میلی آمپر
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-1">
+                            <div class=" px-5 py-2 custom-text bg-custom w-50 at-100 text-end custom-box-s">
+                                دوربین سلفی
+                            </div>
+                            <div class=" px-5 py-2 w-50 at-100 text-end custom-box-s custom-text">
+                                13 مگاپیکسل
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-1">
+                            <div class=" px-5 py-2 custom-text bg-custom w-50 at-100 text-end custom-box-s">
+                                وزن
+                            </div>
+                            <div class=" px-5 py-2 w-50 at-100 text-end custom-box-s custom-text">
+                                200 گرم
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-1">
+                            <div class=" px-5 py-2 custom-text bg-custom w-50 at-100 text-end custom-box-s">
+                                حسگر ها
+                            </div>
+                            <div class=" px-5 py-2 w-50 text-end custom-box-s custom-text">
+                                حسگر اثر انگشت , شتاب ‌سنج , قطب نما
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-1">
+                            <div class=" px-5 py-2 custom-text bg-custom w-50 at-100 text-end custom-box-s">
+                                درگاه ارتباطی
+                            </div>
+                            <div class=" px-5 py-2 w-50 at-100 text-end custom-box-s custom-text">
+                                usb type-c 2.0
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center my-1">
+                            <div class=" px-5 py-2 custom-text bg-custom w-50 at-100 text-end custom-box-s">
+                                سایز صفحه نمایش
+                            </div>
+                            <div class=" px-5 py-2 w-50 at-100 text-end custom-box-s custom-text">
+                                6.5 اینچ
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="comment" role="tabpanel">
+                    <div class="row">
+
+                        <div class="col-md-6 d-flex flex-column">
+                            <h6 class="mt-2">
+                                نظرتون رو برامون ارسال کنید
+                            </h6>
+                            <form action="" class="container">
+                                <div class="row">
+                                    <div class="col-md-6 form-group my-2">
+                                        <input name="name" type="text" class="form-control py-2" placeholder="نام شما">
+                                    </div>
+                                    <div class="col-md-6 form-group my-2">
+                                        <input name="email" type="text" class="form-control py-2" placeholder="ایمیل شما">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group my-2">
+                                        <textarea name="comment" class="form-control py-2" placeholder="نظر شما"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <button type="submit" class="btn-tv rounded-1">ارسال نظر</button>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                        <!--                            profile and comment start-->
+                        <div class="d-flex flex-column col-12 col-md-6 comments-st py-2">
+                            <div class="d-flex flex-column justify-content-center my-2">
+                                <div class="d-flex align-items-center">
+                                    <img class="profile-img" alt="profile" src="assets/img/profile.png">
+                                    <p class="custom-text mx-3">محمد کرابی</p>
+                                </div>
+                                <div class=" py-1 px-2 w-75 my-2 bg-custom rounded-3 mx-2">
+                                    <p class="text-wrap px-3 py-1 custom-text">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dolore eveniet fuga ipsum, labore laboriosam, nostrum odio possimus quam soluta unde voluptas. Aspernatur debitis, harum iusto reiciendis rerum sed voluptatibus?   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolores, doloribus! Accusantium delectus eum eveniet, molestiae molestias necessitatibus nisi nostrum odio odit officiis optio reiciendis reprehenderit sint sunt ullam, velit.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center my-2">
+                                <div class="d-flex align-items-center">
+                                    <img class="profile-img" alt="profile" src="assets/img/profile.png">
+                                    <p class="custom-text mx-3">محمد کرابی</p>
+                                </div>
+                                <div class=" py-1 px-2 w-75 my-2 bg-custom rounded-3 mx-2">
+                                    <p class="text-wrap px-3 py-1 custom-text">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dolore eveniet fuga ipsum, labore laboriosam, nostrum odio possimus quam soluta unde voluptas. Aspernatur debitis, harum iusto reiciendis rerum sed voluptatibus?   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolores, doloribus! Accusantium delectus eum eveniet, molestiae molestias necessitatibus nisi nostrum odio odit officiis optio reiciendis reprehenderit sint sunt ullam, velit.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center my-2">
+                                <div class="d-flex align-items-center">
+                                    <img class="profile-img" alt="profile" src="assets/img/profile.png">
+                                    <p class="custom-text mx-3">محمد کرابی</p>
+                                </div>
+                                <div class=" py-1 px-2 w-75 my-2 bg-custom rounded-3 mx-2">
+                                    <p class="text-wrap px-3 py-1 custom-text">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dolore eveniet fuga ipsum, labore laboriosam, nostrum odio possimus quam soluta unde voluptas. Aspernatur debitis, harum iusto reiciendis rerum sed voluptatibus?   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolores, doloribus! Accusantium delectus eum eveniet, molestiae molestias necessitatibus nisi nostrum odio odit officiis optio reiciendis reprehenderit sint sunt ullam, velit.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center my-2">
+                                <div class="d-flex align-items-center">
+                                    <img class="profile-img" alt="profile" src="assets/img/profile.png">
+                                    <p class="custom-text mx-3">محمد کرابی</p>
+                                </div>
+                                <div class=" py-1 px-2 w-75 my-2 bg-custom rounded-3 mx-2">
+                                    <p class="text-wrap px-3 py-1 custom-text">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dolore eveniet fuga ipsum, labore laboriosam, nostrum odio possimus quam soluta unde voluptas. Aspernatur debitis, harum iusto reiciendis rerum sed voluptatibus?   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolores, doloribus! Accusantium delectus eum eveniet, molestiae molestias necessitatibus nisi nostrum odio odit officiis optio reiciendis reprehenderit sint sunt ullam, velit.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center my-2">
+                                <div class="d-flex align-items-center">
+                                    <img class="profile-img" alt="profile" src="assets/img/profile.png">
+                                    <p class="custom-text mx-3">محمد کرابی</p>
+                                </div>
+                                <div class=" py-1 px-2 w-75 my-2 bg-custom rounded-3 mx-2">
+                                    <p class="text-wrap px-3 py-1 custom-text">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dolore eveniet fuga ipsum, labore laboriosam, nostrum odio possimus quam soluta unde voluptas. Aspernatur debitis, harum iusto reiciendis rerum sed voluptatibus?   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolores, doloribus! Accusantium delectus eum eveniet, molestiae molestias necessitatibus nisi nostrum odio odit officiis optio reiciendis reprehenderit sint sunt ullam, velit.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center my-2">
+                                <div class="d-flex align-items-center">
+                                    <img class="profile-img" alt="profile" src="assets/img/profile.png">
+                                    <p class="custom-text mx-3">محمد کرابی</p>
+                                </div>
+                                <div class=" py-1 px-2 w-75 my-2 bg-custom rounded-3 mx-2">
+                                    <p class="text-wrap px-3 py-1 custom-text">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dolore eveniet fuga ipsum, labore laboriosam, nostrum odio possimus quam soluta unde voluptas. Aspernatur debitis, harum iusto reiciendis rerum sed voluptatibus?   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolores, doloribus! Accusantium delectus eum eveniet, molestiae molestias necessitatibus nisi nostrum odio odit officiis optio reiciendis reprehenderit sint sunt ullam, velit.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--                            profile and comment end---->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Menu Section:end-->
+
+
+</section>
+
+
+</main>
+
+<!--main single product ::::: end----------->
+
+
+
+
+<!--footer :: start------>
+<footer class="mt-2">
+    <div class="footer-nav">
+        <div class="container">
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">دسته بندی کلی</h2></li>
+
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
+            </ul>
+
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">محصولات</h2></li>
+
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
+            </ul>
+
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">کمپانی ها</h2></li>
+
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
+            </ul>
+
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">سرویس ها</h2></li>
+
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
+            </ul>
+
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">ارتباط با ما</h2></li>
+
+                <li class="footer-nav-item flex">
+                    <div class="icon-box">
+                        <ion-icon name="location-outline"></ion-icon>
+                    </div>
+
+                    <address class="content">
+                        لوکیشن ما
+                    </address>
+                </li>
+
+                <li class="footer-nav-item flex">
+                    <div class="icon-box">
+                        <ion-icon name="call-outline"></ion-icon>
+                    </div>
+
+                    <a href="tel:+607936-8058" class="footer-nav-link">تلفن ما 0915 878 2312</a>
+                </li>
+
+                <li class="footer-nav-item flex">
+                    <div class="icon-box">
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </div>
+
+                    <a href="mailto:example@gmail.com" class="footer-nav-link">example@gmail.com</a>
+                </li>
+            </ul>
+
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">Follow Us</h2></li>
+
+                <li>
+                    <ul class="social-link">
+                        <li class="footer-nav-item">
+                            <a href="#" class="footer-nav-link"><ion-icon name="logo-facebook"></ion-icon></a>
+                        </li>
+
+                        <li class="footer-nav-item">
+                            <a href="#" class="footer-nav-link"><ion-icon name="logo-twitter"></ion-icon></a>
+                        </li>
+
+                        <li class="footer-nav-item">
+                            <a href="#" class="footer-nav-link"><ion-icon name="logo-linkedin"></ion-icon></a>
+                        </li>
+
+                        <li class="footer-nav-item">
+                            <a href="#" class="footer-nav-link"><ion-icon name="logo-instagram"></ion-icon></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="copyright"> تمامی حقوق مادی و معنوی این سایت متعلق به شرکت راه ابریشم نو مسیر توسعه تحول جهانی می باشد .</p>
+        </div>
+    </div>
+</footer>
+<!--footer :: end-------->
+
+
+<div class="custom-overlay"></div>
+<script src="assets/js/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
+<script src="script.js"></script>
+<script src="assets/js/single.product.js"></script>
+</body>
+</html>
+
+
+

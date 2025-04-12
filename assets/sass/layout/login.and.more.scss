@@ -1,0 +1,31 @@
+
+.login{
+  height: 90vh;
+  width: 100%;
+  form{
+    border: 1px ridge #dadada;
+    width: 400px !important;
+    label , input{
+    text-align: right;
+  }
+    a{
+      &:hover{
+        color: #f96747 !important;
+      }
+    }
+  }
+  form *{
+    text-align: center;
+
+  }
+}
+
+
+.custom-text{
+  font-size: 13px;
+  color: gray;
+  white-space: normal !important;
+}
+
+
+

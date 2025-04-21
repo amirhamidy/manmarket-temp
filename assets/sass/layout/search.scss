@@ -2057,6 +2057,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   position: absolute;
   top: 45px;
   left: 15px;
+  text-align: -webkit-center;
 }
 
 .discount-d span {
@@ -2066,10 +2067,11 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   color: #fff;
   background: #e26e6e;
   border-radius: 14px 5px 14px 5px;
+  text-align: -webkit-center;
 }
 
 .shop-archive-content .product-items .product-box .thumb img {
-  max-width: 100%;
+  max-width: 250px !important;
   margin-top: 15px;
 }
 
@@ -4018,7 +4020,7 @@ span.shipping-destination {
   padding: 20px;
   border-radius: 10px;
   float: right;
-  box-shadow: rgba(225, 225, 225, 0.93) 0 1px 1px, rgba(236, 236, 236, 0.93) 0 0 1px 1px;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
 
 .product .product-gallery {
@@ -7807,6 +7809,7 @@ body.light .progress-wrap svg.progress-circle path {
 
 a{
   cursor: pointer !important;
+  text-align: -webkit-center !important;
 }
 
 
@@ -8016,4 +8019,14 @@ a{
 .price-field input[type=range]:active::-webkit-slider-thumb {
   box-shadow: 0 0 0 0.5px #606060;
   transition-duration: 0.3s;
+}
+
+.cs-star{
+
+  width: 12px !important;
+
+}
+
+.cs-span{
+  font-size: 12px;
 }

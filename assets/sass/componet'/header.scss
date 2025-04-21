@@ -3,6 +3,18 @@
   width: 10%;
 }
 
+.cs-mx{
+  padding: 4px 16px;
+}
+
+.cs-mx{
+  &:hover{
+    svg{
+      color: red;
+    }
+  }
+}
+
 
 .icons-in-header{
   svg{
@@ -22,6 +34,10 @@
     padding: 3px 8.5px;
     border-radius: 50%;
   }
+}
+
+.cs-w{
+  width: 80px;
 }
 
 .search-box{
@@ -68,5 +84,7 @@
   }
 }
 
-
-
+.cus-fs-1{
+  font-size: 15px !important;
+  color: black ;
+}

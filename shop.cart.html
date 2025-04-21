@@ -1,14 +1,444 @@
+
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>من مارکت</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        :root {
+            /* --- NEW Color Theme --- */
+            --dk-red: #f96747; /* New primary red/orange */
+            --dk-red-darker: #e05230; /* Darker shade for hover */
+
+            /* --- Other Colors (mostly unchanged) --- */
+            --dk-blue: #19bfd3; /* Kept for potential future use, but not for quantity */
+            --dk-text-primary: #3f4064; /* Slightly softer black */
+            --dk-text-secondary: #777;
+            --dk-border-color: #e0e0e6;
+            --dk-background-light: #f5f5f5;
+            --dk-background-white: #fff;
+            --transition-speed: 0.3s;
+            --transition-fast: 0.15s; /* Faster transition for price updates */
+        }
+
+
+
+        a {
+            color: var(--dk-blue);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+
+        a:hover {
+            color: #0a8a99;
+        }
+
+        .more-shop {
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            transition: background-color var(--transition-speed) ease, opacity var(--transition-speed) ease, color var(--transition-speed) ease; /* Added color transition */
+        }
+
+        svg {
+            transition: fill var(--transition-speed) ease;
+        }
+
+        .currency {
+            font-size: 0.8em;
+            margin-right: 4px;
+            font-weight: 400;
+        }
+
+        /* --- Container --- */
+        .shopping-cart-container {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 15px;
+        }
+
+        .shopping-cart-container h1 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #555;
+            font-weight: 500;
+            padding-right: 10px;
+        }
+
+        /* --- Cart Content Layout --- */
+        .cart-content {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .cart-items {
+            flex: 3;
+            background-color: var(--dk-background-white);
+            border: 1px solid var(--dk-border-color);
+            border-radius: 8px;
+            padding: 5px 20px 20px 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .cart-summary {
+            flex: 1;
+            background-color: var(--dk-background-white);
+            border: 1px solid var(--dk-border-color);
+            border-radius: 8px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            transition: opacity var(--transition-speed) ease;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Cart Items Header --- */
+        .cart-items-header {
+            display: none;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            font-weight: 500;
+            color: var(--dk-text-secondary);
+            font-size: 0.9em;
+        }
+
+        /* --- Items List --- */
+        .items-list {
+            list-style: none;
+        }
+
+        /* --- Cart Item Styling --- */
+        .cart-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f0f1;
+            gap: 15px;
+            transition: opacity 0.4s ease-out, max-height 0.4s ease-out, transform 0.4s ease-out,
+            padding 0.4s ease-out, margin 0.4s ease-out;
+            opacity: 1;
+            max-height: 300px;
+            transform: scaleY(1);
+            overflow: hidden;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Removal Animation State */
+        .cart-item.removing {
+            opacity: 0;
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-bottom: -1px;
+            border: none;
+            transform: scaleY(0.8);
+            pointer-events: none;
+        }
+
+
+        .item-info {
+            flex: 1;
+            display: flex;
+            gap: 15px;
+            min-width: 200px;
+        }
+
+        .item-info img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            border: 1px solid var(--dk-border-color);
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .item-details {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-grow: 1;
+        }
+
+        .item-details h3 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .item-details p {
+            font-size: 0.8rem;
+            color: var(--dk-text-secondary);
+        }
+
+        /* --- Item Actions (Quantity + Remove) --- */
+        .item-actions-pricing {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 25px;
+            min-width: 180px;
+            padding-left: 10px;
+        }
+
+        .item-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--dk-border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            height: 36px;
+            width: 110px;
+            justify-content: space-between;
+        }
+
+        .quantity-btn {
+            color: var(--dk-red); /* Use new red */
+            padding: 0 10px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .quantity-btn svg {
+            width: 16px; height: 16px;
+            stroke: currentColor; /* Make SVG color follow button color */
+        }
+
+        .quantity-btn:hover:not(:disabled) {
+            background-color: rgba(249, 103, 71, 0.08); /* Lighter shade of new red */
+        }
+
+        .quantity-btn:disabled {
+            color: #ccc !important; /* Ensure disabled color overrides */
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .quantity-btn:disabled svg {
+            stroke: #ccc !important; /* Disabled SVG color */
+        }
+
+        .quantity-value {
+            font-size: 1.1em;
+            font-weight: 700;
+            /* --- NEW: Quantity color changed to primary text --- */
+            color: var(--dk-text-primary);
+            min-width: 30px;
+            text-align: center;
+            padding: 0 5px;
+        }
+
+        .remove-item-btn {
+            color: var(--dk-text-secondary);
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .remove-item-btn svg {
+            width: 20px; height: 20px;
+            fill: currentColor;
+            stroke: currentColor; /* Ensure stroke also changes if needed */
+            stroke-width: 1.5; /* Slightly thinner trash icon lines */
+        }
+
+        .remove-item-btn:hover {
+            color: var(--dk-red); /* Use new red on hover */
+            opacity: 1; /* Full opacity on hover */
+        }
+
+        .item-pricing {
+            text-align: left;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--dk-text-primary);
+            /* --- Add transition properties for price update --- */
+            transition: transform var(--transition-fast) ease-out, opacity var(--transition-fast) ease-out;
+            display: inline-block; /* Helps with transform */
+        }
+
+        /* Class added during price update */
+        .item-pricing.price-updating {
+            transform: scale(0.95);
+            opacity: 0.6;
+        }
+
+        /* --- Cart Summary --- */
+        .cart-summary h2 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+        .summary-row span:first-child {
+            color: var(--dk-text-secondary);
+        }
+        .summary-row span:last-child {
+            font-weight: 500;
+            color: var(--dk-text-primary);
+            /* --- Add transition properties for price update --- */
+            transition: transform var(--transition-fast) ease-out, opacity var(--transition-fast) ease-out;
+            display: inline-block; /* Helps with transform */
+        }
+        /* Class added during price update */
+        .summary-row span:last-child.price-updating {
+            transform: scale(0.95);
+            opacity: 0.6;
+        }
+
+        .summary-row.discount span:last-child {
+            color: var(--dk-red); /* Use new red for discount */
+            font-weight: 700;
+        }
+
+        .summary-row.total {
+            font-weight: 700;
+            font-size: 14px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            color: var(--dk-text-primary);
+        }
+        .summary-row.total span:first-child {
+            color: var(--dk-text-primary);
+        }
+        .summary-row.total span:last-child {
+            font-weight: 700; /* Ensure total price is bold */
+        }
+
+        .checkout-btn {
+            background-color: var(--dk-red); /* Use new red */
+            color: var(--dk-background-white);
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 8px;
+            margin-top: 15px;
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--dk-red-darker); /* Use darker new red */
+        }
+
+        .shipping-info {
+            font-size: 0.75rem;
+            color: var(--dk-text-secondary);
+            margin-top: 20px;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        /* --- Empty Cart --- */
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            background-color: var(--dk-background-white);
+            transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+            z-index: 10;
+        }
+        .empty-cart.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .empty-cart svg { /* Style the empty cart SVG */
+            width: 120px; height: 120px;
+            stroke: #dfe4ea; /* Lighter grey */
+            margin-bottom: 20px;
+            stroke-width: 1; /* Thinner lines */
+        }
+        .empty-cart p { font-size: 1.2rem; margin-bottom: 25px; color: #444; font-weight: 500; }
+        .empty-cart a { background-color: var(--dk-blue); color: var(--dk-background-white); padding: 10px 30px; border-radius: 8px; font-size: 1rem; font-weight: 500; transition: background-color var(--transition-speed) ease; }
+        .empty-cart a:hover { background-color: #0a8a99; color: var(--dk-background-white); }
+
+
+        /* --- Responsiveness (mostly unchanged, check adjustments) --- */
+        @media (min-width: 768px) {
+            .cart-items-header {
+                display: flex; justify-content: space-between; padding: 10px 0;
+            }
+            .cart-items-header > div:nth-child(1) { flex: 1; text-align: right; padding-right: 120px; }
+            .cart-items-header > div:nth-child(2) { width: 180px; text-align: left; padding-left: 10px;}
+        }
+        @media (max-width: 992px) {
+            .cart-content { flex-direction: column; }
+            .cart-summary { position: static; width: 100%; margin-top: 20px; }
+        }
+        @media (max-width: 767px) {
+            .cart-item { flex-direction: column; align-items: stretch; gap: 10px; max-height: 500px; }
+            .item-info { gap: 10px; min-width: 0; }
+            .item-info img { width: 80px; height: 80px; }
+            .item-details h3 { font-size: 0.9rem; }
+            .item-actions-pricing { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; gap: 10px; margin-top: 15px; padding-left: 0; min-width: 0; }
+            .item-actions { margin-top: 0; gap: 10px; }
+            .item-quantity { width: 100px; height: 32px; }
+            .quantity-btn svg { width: 14px; height: 14px; }
+            .remove-item-btn svg { width: 18px; height: 18px; }
+            .item-pricing { font-size: 0.95rem; }
+        }
+        @media (max-width: 480px) {
+            body { font-size: 13px; }
+            .shopping-cart-container { padding: 10px; margin: 15px auto; }
+            .cart-items, .cart-summary { padding: 15px; }
+            .shopping-cart-container h1 { font-size: 1.3rem; margin-bottom: 15px;}
+            .item-info img { width: 65px; height: 65px; }
+            .item-details h3 { font-size: 0.85rem; }
+            .item-details p { font-size: 0.75rem; }
+            .item-actions-pricing { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .item-actions { width: 100%; justify-content: flex-start; }
+            .item-pricing { align-self: flex-end; }
+            .remove-item-btn { margin-right: auto; }
+            .summary-row { font-size: 0.85rem; }
+            .summary-row.total { font-size: 1rem; }
+            .checkout-btn { font-size: 0.95rem; padding: 10px 15px; }
+        }
+
+
+    </style>
+
 </head>
 <body>
-
 <!--Shadow Overly start-->
 <div class="overlay" data-overlay></div>
 <!--Shadow Overly start-->
@@ -49,8 +479,8 @@
                 <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 32 32"
-                        width="0.9em"
-                        height="0.9em"
+                        width="1em"
+                        height="1em"
                 >
                     <path
                             fill="none"
@@ -67,8 +497,8 @@
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 16 16"
-                            width="0.9em"
-                            height="0.9em"
+                            width="1em"
+                            height="1em"
                     >
                         <path
                                 fill="currentColor"
@@ -86,8 +516,8 @@
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 14 14"
-                            width="0.9em"
-                            height="0.9em"
+                            width="1em"
+                            height="1em"
                     >
                         <path
                                 fill="none"
@@ -108,8 +538,8 @@
                 <svg class="shop-icon"
                      xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 14 14"
-                     width="0.9em"
-                     height="0.9em"
+                     width="1em"
+                     height="1em"
                 >
                     <path
                             fill="none"
@@ -496,7 +926,7 @@
                 <ul class="sidebar-submenu-category-list" data-accordion>
                     <li class="sidebar-submenu-category">
                         <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">لب تاب</p>
+                            <p class="product-name">لپ تاپ</p>
                             <data value="45" class="stock" title="Available Stock">45</data>
                         </a>
                     </li>
@@ -583,7 +1013,7 @@
 
                     <li class="sidebar-submenu-category">
                         <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">لب تاب</p>
+                            <p class="product-name">لپ تاپ</p>
                             <data value="60" class="stock" title="Available Stock">60 pcs</data>
                         </a>
                     </li>
@@ -742,173 +1172,186 @@
 
 
 
-<!--main single product ::::: start--------->
 
-<main>
-    <div class="container">
-        <section class="user-panel">
-            <div class="row">
-                <div class="col-md-3 mb-3">
-                    <aside class="user-panel-aside">
-                        <div class="aside-header d-flex align-items-center flex-column">
-                            <img class="profile-img" src="assets/img/profile.png" alt="">
-                            <div class="me-2 flex-column d-flex mx-3 mt-3">
-                                <span class="mb-1 d-inline-block custom-text text-wrap text-center">علی قنبری</span>
-                                <span class="text-muted fw-lighter">09120515343</span>
-                            </div>
-                        </div>
-                        <div class="aside-menu">
-                            <a href="" class="active custom-text">
-                                <svg
-                                        viewBox="0 0 448 512"
-                                        fill="currentColor"
-                                        height="1.4em"
-                                        width="1.4em"
-                                >
-                                    <path d="M272 304h-96C78.8 304 0 382.8 0 480c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32 0-97.2-78.8-176-176-176zM48.99 464c7.9-63.1 61.81-112 127.01-112h96c65.16 0 119.1 48.95 127 112H48.99zM224 256c70.69 0 128-57.31 128-128S294.69 0 224 0 96 57.31 96 128c0 70.7 57.3 128 128 128zm0-208c44.11 0 80 35.89 80 80s-35.89 80-80 80-80-35.9-80-80c0-44.11 35.9-80 80-80z" />
-                                </svg>
-                                پروفایل
-                            </a>
-                            <a href="track.orders.html" class="custom-text">
+<div class="shopping-cart-container">
+    <h6>سبد خرید شما</h6>
 
-                                <svg
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="{2}"
-                                        viewBox="0 0 24 24"
-                                        height="1.4em"
-                                        width="1.4em"
-                                >
-                                    <path stroke="none" d="M0 0h24v24H0z" />
-                                    <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2" />
-                                    <path d="M11 3 H13 A2 2 0 0 1 15 5 V5 A2 2 0 0 1 13 7 H11 A2 2 0 0 1 9 5 V5 A2 2 0 0 1 11 3 z" />
-                                    <path d="M9 12h.01M13 12h2M9 16h.01M13 16h2" />
-                                </svg>
-                                پیگیری سفارشات
-                            </a>
-                            <a href="whilist.html" class="custom-text">
-                                <svg
-                                        viewBox="0 0 1024 1024"
-                                        fill="currentColor"
-                                        height="1.4em"
-                                        width="1.4em"
-                                >
-                                    <path d="M923 283.6a260.04 260.04 0 00-56.9-82.8 264.4 264.4 0 00-84-55.5A265.34 265.34 0 00679.7 125c-49.3 0-97.4 13.5-139.2 39-10 6.1-19.5 12.8-28.5 20.1-9-7.3-18.5-14-28.5-20.1-41.8-25.5-89.9-39-139.2-39-35.5 0-69.9 6.8-102.4 20.3-31.4 13-59.7 31.7-84 55.5a258.44 258.44 0 00-56.9 82.8c-13.9 32.3-21 66.6-21 101.9 0 33.3 6.8 68 20.3 103.3 11.3 29.5 27.5 60.1 48.2 91 32.8 48.9 77.9 99.9 133.9 151.6 92.8 85.7 184.7 144.9 188.6 147.3l23.7 15.2c10.5 6.7 24 6.7 34.5 0l23.7-15.2c3.9-2.5 95.7-61.6 188.6-147.3 56-51.7 101.1-102.7 133.9-151.6 20.7-30.9 37-61.5 48.2-91 13.5-35.3 20.3-70 20.3-103.3.1-35.3-7-69.6-20.9-101.9zM512 814.8S156 586.7 156 385.5C156 283.6 240.3 201 344.3 201c73.1 0 136.5 40.8 167.7 100.4C543.2 241.8 606.6 201 679.7 201c104 0 188.3 82.6 188.3 184.5 0 201.2-356 429.3-356 429.3z" />
-                                </svg>
-                                علاقه مندی ها
-                            </a>
-                            <a href="user.address.html" class="custom-text">
-                                <svg
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                        height="1.4em"
-                                        width="1.4em"
-                                >
-                                    <path d="M20.46 9.63A8.5 8.5 0 007.3 3.36a8.56 8.56 0 00-3.76 6.27A8.46 8.46 0 006 16.46l5.3 5.31a1 1 0 001.42 0L18 16.46a8.46 8.46 0 002.46-6.83zm-3.86 5.42l-4.6 4.6-4.6-4.6a6.49 6.49 0 01-1.87-5.22A6.57 6.57 0 018.42 5a6.47 6.47 0 017.16 0 6.57 6.57 0 012.89 4.81 6.49 6.49 0 01-1.87 5.24zM12 6a4.5 4.5 0 104.5 4.5A4.51 4.51 0 0012 6zm0 7a2.5 2.5 0 112.5-2.5A2.5 2.5 0 0112 13z" />
-                                </svg>
-                                آدرس های من
-                            </a>
-                            <a href="index.html" class="custom-text">
-                                <svg
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                        height="1.4em"
-                                        width="1.4em"
-                                >
-                                    <path fill="none" d="M0 0h24v24H0z" />
-                                    <path d="M5 11h8v2H5v3l-5-4 5-4v3zm-1 7h2.708a8 8 0 100-12H4a9.985 9.985 0 018-4c5.523 0 10 4.477 10 10s-4.477 10-10 10a9.985 9.985 0 01-8-4z" />
-                                </svg>
-                                خروج
-                            </a>
-                        </div>
-                    </aside>
-                </div>
-                <div class="col-md-9">
-                    <div class="user-panel-content">
-                        <h6 class="">
-                            ویرایش پروفایل
-                        </h6>
-                        <form action="" class="mt-3">
-                            <div class="row profile-input">
-                                <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control" placeholder="نام">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control" placeholder="نام خانوادگی">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control" placeholder="آدرس ایمیل">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control" placeholder="شماره همراه">
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control" placeholder="نام نمایشی">
-                                </div>
-                                <div class="col-12 text-start">
-                                    <button class="btn bg-light btn-tv rounded-1 text-dark">
-                                        انصراف</button>
-                                    <button class="btn btn-tv rounded-1 text-light">
-                                        ذخیره اطلاعات</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+    <div class="cart-content">
+        <div class="cart-items">
+            <!-- Empty Cart Message -->
+            <div id="empty-cart-message" class="empty-cart">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#bdc3c7" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="20.5" r="1"/><circle cx="18" cy="20.5" r="1"/><path d="M2.5 2.5h3l2.7 12.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6l1.6-8.4H7.1"/></svg>
+                <p>سبد خرید شما خالی است!</p>
+                <a href="#">بازگشت به صفحه اصلی</a>
             </div>
-        </section>
-    </div>
-</main>
 
-<!--main single product ::::: end----------->
+            <div class="cart-items-header">
+                <div>شرح محصول</div>
+                <div>قیمت کل</div>
+            </div>
+
+            <ul class="items-list">
+                <!-- Cart Items -->
+                <li class="cart-item" data-id="1">
+                    <div class="item-info">
+                        <img src="assets/img/product/Samsung_Galaxy_A15_2.jpg" alt="گوشی موبایل سامسونگ A15">
+                        <div class="item-details">
+                            <h3>گوشی موبایل سامسونگ مدل Galaxy A15 ظرفیت 128 گیگابایت رم 4 گیگابایت</h3>
+                            <p class="variant">رنگ: آبی روشن</p>
+                            <p class="seller">فروشنده: من مارکت</p>
+                        </div>
+                    </div>
+                    <div class="item-actions-pricing">
+                        <div class="item-actions">
+                            <div class="item-quantity">
+                                <button class="quantity-btn increase" data-id="1" aria-label="افزایش تعداد">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                </button>
+                                <span class="quantity-value">1</span>
+                                <button class="quantity-btn decrease" data-id="1" aria-label="کاهش تعداد">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                </button>
+                            </div>
+                            <button class="remove-item-btn" aria-label="حذف محصول">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 2048 2048"
+                                        width="1em"
+                                        height="1em"
+                                >
+                                    <path
+                                            fill="currentColor"
+                                            d="M1792 384h-128v1472q0 40-15 75t-41 61t-61 41t-75 15H448q-40 0-75-15t-61-41t-41-61t-15-75V384H128V256h512V128q0-27 10-50t27-40t41-28t50-10h384q27 0 50 10t40 27t28 41t10 50v128h512zM768 256h384V128H768zm768 128H384v1472q0 26 19 45t45 19h1024q26 0 45-19t19-45zM768 1664H640V640h128zm256 0H896V640h128zm256 0h-128V640h128z"
+                                    ></path>
+
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- Added data-unit-price here -->
+                        <div class="item-pricing" data-unit-price="5800000">
+                            <span class="item-total-price">۵,۸۰۰,۰۰۰</span> <span class="currency">تومان</span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="cart-item" data-id="2">
+                    <div class="item-info">
+                        <img src="assets/img/product/lenovo-laptop-1.jpg" alt="لپ تاپ لنوو IdeaPad Slim 3">
+                        <div class="item-details">
+                            <h3>لپ تاپ 15.6 اینچی لنوو مدل IdeaPad Slim 3 15IRU8-i3 1305U 8GB 512SSD</h3>
+                            <p class="variant">گارانتی: ۱۸ ماهه سازگار</p>
+                            <p class="seller">فروشنده: من مارکت</p>
+                        </div>
+                    </div>
+                    <div class="item-actions-pricing">
+                        <div class="item-actions">
+                            <div class="item-quantity">
+                                <button class="quantity-btn increase" data-id="2" aria-label="افزایش تعداد">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                </button>
+                                <span class="quantity-value">1</span>
+                                <button class="quantity-btn decrease" data-id="2" aria-label="کاهش تعداد">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                </button>
+                            </div>
+                            <button class="remove-item-btn" aria-label="حذف محصول">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 2048 2048"
+                                        width="1em"
+                                        height="1em"
+                                >
+                                    <path
+                                            fill="currentColor"
+                                            d="M1792 384h-128v1472q0 40-15 75t-41 61t-61 41t-75 15H448q-40 0-75-15t-61-41t-41-61t-15-75V384H128V256h512V128q0-27 10-50t27-40t41-28t50-10h384q27 0 50 10t40 27t28 41t10 50v128h512zM768 256h384V128H768zm768 128H384v1472q0 26 19 45t45 19h1024q26 0 45-19t19-45zM768 1664H640V640h128zm256 0H896V640h128zm256 0h-128V640h128z"
+                                    ></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <!-- Added data-unit-price here -->
+                        <div class="item-pricing" data-unit-price="18500000">
+                            <span class="item-total-price">۱۸,۵۰۰,۰۰۰</span> <span class="currency">تومان</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="cart-summary">
+            <h6 class="my-2">خلاصه سفارش</h6>
+            <div class="summary-row mt-1">
+                <span>قیمت کالاها (<span id="total-items-count">0</span> کالا)</span>
+                <span id="subtotal-price">۰ <span class="currency">تومان</span></span>
+            </div>
+            <div class="summary-row mt-1 discount">
+                <span>سود شما از خرید</span>
+                <span id="discount-amount">۰ <span class="currency">تومان</span></span>
+            </div>
+            <div class="summary-row mt-1 total">
+                <span>جمع سبد خرید</span>
+                <span id="total-payable">۰ <span class="currency">تومان</span></span>
+            </div>
+            <button class="checkout-btn more-shop">ادامه فرآیند خرید</button>
+        </div>
+    </div>
+</div>
+
+
+
 
 
 
 
 <!--footer :: start------>
-<footer class="mt-2">
+<footer class="mt-5 py-4">
     <div class="footer-nav">
         <div class="container">
             <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">دسته بندی کلی</h2></li>
+                <li class="footer-nav-item"><h2 class="nav-title">لینک های مفید</h2></li>
 
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
+                <li class="footer-nav-item"><a href="faq.html" class="footer-nav-link">سوالات متداول</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">پیگیری سفارشات</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">راهنمای خرید اقساطی</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">پلتفرم مالی اعتبار من</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">مفاد ضمانت هفت روزه برگشت وجه</a></li>
             </ul>
 
             <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">محصولات</h2></li>
+                <li class="footer-nav-item"><h2 class="nav-title">درباره ما</h2></li>
 
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
+                <li class="footer-nav-item"><a href="man.market.call.we.html" class="footer-nav-link">تماس با ما</a></li>
+                <li class="footer-nav-item"><a href="man.market.target.t.html" class="footer-nav-link">قوانین و مقررات</a></li>
+                <li class="footer-nav-item"><a href="man.market.Rules.html" class="footer-nav-link">اهداف و تعهدات ما</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فروشگاه های حضوری</a></li>
+                <li class="footer-nav-item"><a href="man.market.one.seen.html" class="footer-nav-link">من مارکت در یک نگاه</a></li>
             </ul>
 
-            <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">کمپانی ها</h2></li>
+            <ul class="footer-nav-list d-flex flex-wrap flex-column">
+                <li class="footer-nav-item"><h2 class="nav-title">من مارکت</h2></li>
+                <div class="container">
+                    <div class="d-flex flex-wrap justify-content-between">
+                        <div class="footer-nav-item b-x-s">
+                            <img class="w-75" alt="من مارکت" src="assets/img/E.namad.png">
+                        </div>
+                        <div class="footer-nav-item b-x-s">
+                            <img class="w-75" alt="من مارکت" src="assets/img/E.namad.t">
+                        </div>
+                        <div class="footer-nav-item b-x-s">
+                            <img class="w-75" alt="من مارکت" src="assets/img/E.namad.3.png">
+                        </div>
+                        <div class="footer-nav-item b-x-s">
+                            <img class="w-75 mt-2" alt="من مارکت" src="assets/img/E.namad.4.png">
+                        </div>
+                        <div class="footer-nav-item b-x-s">
+                            <img class="w-75" alt="من مارکت" src="assets/img/E.namad.5.png">
+                        </div>
+                        <div class="footer-nav-item b-x-s">
+                            <img class="w-75" alt="من مارکت" src="assets/img/E.namad.6.jpg">
+                        </div>
+                    </div>
+                </div>
 
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
-            </ul>
 
-            <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">سرویس ها</h2></li>
-
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
             </ul>
 
             <ul class="footer-nav-list">
@@ -941,51 +1384,225 @@
                 </li>
             </ul>
 
-            <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">Follow Us</h2></li>
-
-                <li>
-                    <ul class="social-link">
-                        <li class="footer-nav-item">
-                            <a href="#" class="footer-nav-link"><ion-icon name="logo-facebook"></ion-icon></a>
-                        </li>
-
-                        <li class="footer-nav-item">
-                            <a href="#" class="footer-nav-link"><ion-icon name="logo-twitter"></ion-icon></a>
-                        </li>
-
-                        <li class="footer-nav-item">
-                            <a href="#" class="footer-nav-link"><ion-icon name="logo-linkedin"></ion-icon></a>
-                        </li>
-
-                        <li class="footer-nav-item">
-                            <a href="#" class="footer-nav-link"><ion-icon name="logo-instagram"></ion-icon></a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
         </div>
     </div>
 
     <div class="footer-bottom">
         <div class="container">
-            <p class="copyright"> تمامی حقوق مادی و معنوی این سایت متعلق به شرکت راه ابریشم نو مسیر توسعه تحول جهانی می باشد .</p>
+            <p class="copyright">زیرمجموعه‌ای از اکوسیستم راه ابریشم نو</p>
         </div>
     </div>
 </footer>
 <!--footer :: end-------->
 
 
+
+
+
+
 <div class="custom-overlay"></div>
+<script src="assets/js/remove.js"></script>
 <script src="assets/js/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
-<script src="script.js"></script>
-<script src="assets/js/single.product.js"></script>
+<script src="assets/js/slider.in.index.js"></script>
+<script src="assets/js/stras.js"></script>
+<script  src="script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cartItemsList = document.querySelector('.items-list');
+        const subtotalPriceEl = document.getElementById('subtotal-price');
+        const totalItemsCountEl = document.getElementById('total-items-count');
+        const discountAmountEl = document.getElementById('discount-amount');
+        const totalPayableEl = document.getElementById('total-payable');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const cartItemsContainer = document.querySelector('.cart-items');
+        const cartSummaryContainer = document.querySelector('.cart-summary');
+        const cartItemsHeader = cartItemsContainer.querySelector('.cart-items-header');
+
+        // --- Helper Function: Format Price ---
+        function formatPrice(price, includeCurrency = true) {
+            const num = Number(price);
+            if (isNaN(num)) return includeCurrency ? `۰ <span class="currency">تومان</span>` : '۰';
+            const formatted = num.toLocaleString('fa-IR');
+            return includeCurrency ? `${formatted} <span class="currency">تومان</span>` : formatted;
+        }
+
+        // --- Helper Function: Parse Price (from data-unit-price) ---
+        function parsePrice(priceContainerElement) {
+            if (!priceContainerElement || !priceContainerElement.dataset.unitPrice) return 0;
+            return parseFloat(priceContainerElement.dataset.unitPrice) || 0;
+        }
+
+        // --- Helper Function: Animate Price Update ---
+        function triggerPriceAnimation(element) {
+            if (!element) return;
+            element.classList.add('price-updating');
+            // Use requestAnimationFrame to ensure the class is applied before removing
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => { // Double RAF for better reliability across browsers
+                    element.classList.remove('price-updating');
+                });
+            });
+            // Optional: Fallback with setTimeout if RAF is not enough
+            // setTimeout(() => element.classList.remove('price-updating'), 50);
+        }
+
+
+        // --- Update Item Total Price Display & Animate ---
+        function updateItemDisplay(itemElement) {
+            const priceContainer = itemElement.querySelector('.item-pricing');
+            const quantityEl = itemElement.querySelector('.quantity-value');
+            const itemTotalEl = itemElement.querySelector('.item-total-price');
+            const decreaseBtn = itemElement.querySelector('.decrease');
+
+            const unitPrice = parsePrice(priceContainer);
+            const quantity = parseInt(quantityEl.textContent, 10);
+            const itemTotal = unitPrice * quantity;
+
+            // Update total price display (without currency for animation)
+            itemTotalEl.textContent = formatPrice(itemTotal, false); // Format without currency span initially
+
+            // Trigger animation on the container
+            triggerPriceAnimation(priceContainer);
+
+            // Update decrease button state
+            if(decreaseBtn) decreaseBtn.disabled = (quantity <= 1);
+        }
+
+
+        // --- Update Cart Summary & Animate ---
+        function updateCartSummary() {
+            const allItems = cartItemsList.querySelectorAll('.cart-item:not(.removing)');
+            let subtotal = 0;
+            let totalItems = 0;
+            let totalDiscount = 0;
+
+            allItems.forEach(item => {
+                const priceContainer = item.querySelector('.item-pricing');
+                const quantityEl = item.querySelector('.quantity-value');
+                const unitPrice = parsePrice(priceContainer);
+                const quantity = parseInt(quantityEl.textContent, 10);
+                subtotal += unitPrice * quantity;
+                totalItems += quantity;
+            });
+
+            const totalPayable = subtotal - totalDiscount;
+
+            // Update DOM elements and trigger animation
+            subtotalPriceEl.innerHTML = formatPrice(subtotal);
+            triggerPriceAnimation(subtotalPriceEl);
+
+            discountAmountEl.innerHTML = formatPrice(totalDiscount);
+            triggerPriceAnimation(discountAmountEl);
+
+            totalPayableEl.innerHTML = formatPrice(totalPayable);
+            triggerPriceAnimation(totalPayableEl);
+
+            // Update item count (no animation needed here usually)
+            totalItemsCountEl.textContent = totalItems.toLocaleString('fa-IR');
+
+            checkEmptyCart();
+        }
+
+        // --- Check if Cart is Empty ---
+        function checkEmptyCart() {
+            const items = cartItemsList.querySelectorAll('.cart-item:not(.removing)');
+            const isEmpty = items.length === 0;
+
+            if (isEmpty) {
+                emptyCartMessage.classList.add('visible');
+                if (cartItemsHeader) cartItemsHeader.style.display = 'none';
+                cartSummaryContainer.style.opacity = '0.6';
+                cartSummaryContainer.style.pointerEvents = 'none';
+            } else {
+                emptyCartMessage.classList.remove('visible');
+                if (cartItemsHeader) {
+                    cartItemsHeader.style.display = window.innerWidth >= 768 ? 'flex' : 'none';
+                }
+                cartSummaryContainer.style.opacity = '1';
+                cartSummaryContainer.style.pointerEvents = 'auto';
+            }
+        }
+
+
+        // --- Event Listener for Item Actions ---
+        cartItemsList.addEventListener('click', (event) => {
+            const target = event.target;
+            const button = target.closest('button');
+
+            if (!button) return;
+
+            const itemElement = button.closest('.cart-item');
+            if (!itemElement) return;
+
+            const quantityEl = itemElement.querySelector('.quantity-value');
+            let quantity = parseInt(quantityEl.textContent, 10);
+
+            if (button.classList.contains('increase')) {
+                quantity++;
+                quantityEl.textContent = quantity;
+                updateItemDisplay(itemElement); // Updates item price + animates it
+                updateCartSummary();          // Updates summary + animates it
+            }
+            else if (button.classList.contains('decrease')) {
+                if (quantity > 1) {
+                    quantity--;
+                    quantityEl.textContent = quantity;
+                    updateItemDisplay(itemElement); // Updates item price + animates it
+                    updateCartSummary();          // Updates summary + animates it
+                }
+            }
+            else if (button.classList.contains('remove-item-btn')) {
+                removeItem(itemElement);
+            }
+        });
+
+        // --- Remove Item Function with Animation ---
+        function removeItem(itemElement) {
+            if (itemElement.classList.contains('removing')) return;
+            itemElement.classList.add('removing');
+
+            // Update summary immediately (before animation finishes)
+            // This update itself will trigger summary price animations
+            updateCartSummary();
+
+            itemElement.addEventListener('transitionend', () => {
+                if(document.body.contains(itemElement)) { // Double check exists
+                    itemElement.remove();
+                    // Check empty state *after* the element is truly removed
+                    checkEmptyCart();
+                }
+            }, { once: true });
+
+            setTimeout(() => {
+                if (document.body.contains(itemElement)) {
+                    itemElement.remove();
+                    checkEmptyCart();
+                }
+            }, 500);
+        }
+
+        // --- Initial Calculation on Load ---
+        function initializeCart() {
+            const items = cartItemsList.querySelectorAll('.cart-item');
+            items.forEach(item => {
+                updateItemDisplay(item); // Calculate initial total & set button state (no animation needed here)
+            });
+            updateCartSummary(); // Calculate initial summary (no animation needed here)
+            checkEmptyCart();
+        }
+
+        initializeCart();
+
+        // --- Responsive Header Display on Resize ---
+        window.addEventListener('resize', checkEmptyCart);
+
+    });
+</script>
+
 </body>
+<!-- partial -->
 </html>
 
 

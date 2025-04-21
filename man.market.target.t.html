@@ -1,0 +1,629 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من مارکت</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+<!--Shadow Overly start-->
+    <div class="overlay" data-overlay></div>
+<!--Shadow Overly start-->
+
+
+
+<div id="cart-dashboard" class="hidden-dashboard">
+    <button id="close-cart">
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="1.4em"
+                height="1.4em"
+        >
+            <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="square"
+                    stroke-linejoin="round"
+                    d="M18 6L6 18M6 6l12 12"
+            ></path>
+        </svg>
+    </button>
+    <h6 class="header-in-shop">سبد خرید</h6>
+    <div id="cart-items-container">
+        <ul id="cart-items"></ul>
+    </div>
+    <div id="total-price">جمع کل: 0 تومان</div>
+</div>
+
+<!--Header Start-->
+<header>
+    <nav class="desktop-navigation-menu d-flex justify-content-evenly mt-3 px-4 text-center">
+
+        <!--icons in header -- :: start-->
+        <div class="d-flex justify-content-between mt-2 icons-in-header">
+            <div class="mx-2 show-search-modal btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="جست و جو ">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
+                    ></path>
+                </svg>
+            </div>
+            <div class="mx-2 btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="حساب کاربری">
+                <a class="login-a text-dark" href="sing.up.html">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 16 16"
+                            width="1em"
+                            height="1em"
+                    >
+                        <path
+                                fill="currentColor"
+                                d="M8 .5A7.77 7.77 0 0 0 0 8a7.77 7.77 0 0 0 8 7.5A7.77 7.77 0 0 0 16 8A7.77 7.77 0 0 0 8 .5M5.16 13.67A2.84 2.84 0 0 1 8 11.51a2.82 2.82 0 0 1 2.84 2.16a7.24 7.24 0 0 1-5.68 0m6.84-.61a4.09 4.09 0 0 0-4-2.77a4.09 4.09 0 0 0-3.95 2.78A6.14 6.14 0 0 1 1.25 8A6.52 6.52 0 0 1 8 1.75A6.52 6.52 0 0 1 14.75 8A6.11 6.11 0 0 1 12 13.06"
+                        ></path>
+                        <path
+                                fill="currentColor"
+                                d="M8.05 4.3A2.33 2.33 0 0 0 5.8 6.7a2.33 2.33 0 0 0 2.25 2.4a2.33 2.33 0 0 0 2.25-2.4a2.33 2.33 0 0 0-2.25-2.4m0 3.55a1.08 1.08 0 0 1-1-1.15a1.08 1.08 0 0 1 1-1.15a1.08 1.08 0 0 1 1 1.15a1.08 1.08 0 0 1-1 1.15"
+                        ></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="mx-2 btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="مورد علاقه ها" >
+                <a class="text-dark" href="whilist.html">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 14 14"
+                            width="1em"
+                            height="1em"
+                    >
+                        <path
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="m7 12.45l-5.52-5c-3-3 1.41-8.76 5.52-4.1c4.11-4.66 8.5 1.12 5.52 4.1Z"
+                        ></path>
+                    </svg>
+                </a>
+                <!--like and shop number start-->
+                <span class="number-top-icon num-like" id="total-likes">
+                    0
+                </span>
+                <!--like and shop number end---->
+            </div>
+            <div class="mx-2 btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="سبد خرید">
+                <svg class="shop-icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 14 14"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M12.182 7.5h-8.18l-1-5h10a.5.5 0 0 1 .49.59l-.82 4a.49.49 0 0 1-.49.41m-9.18-5L2.582.9a.5.5 0 0 0-.49-.4H.502m3.5 7l.42 2.1a.5.5 0 0 0 .49.4h6.09m-.5 3.5a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1m-5 0a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1"
+                    ></path>
+                </svg>
+                <!--like and shop number start-->
+                <span class="number-top-icon number-top-icon-shop">
+                    0
+                </span>
+                <!--like and shop number end---->
+            </div>
+        </div>
+        <!--icons in header -- :: end---->
+
+        <!--menu -- : start-->
+        <div class="container">
+            <ul class="desktop-menu-category-list">
+                <li class="menu-category">
+                    <a href="collection.html" target="_blank" class="menu-title">تینیجر من</a>
+                </li>
+                <li class="menu-category">
+                    <a href="collection.html" class="menu-title">فروشگاه</a>
+                    <div class="dropdown-panel">
+                        <ul class="dropdown-panel-list">
+                            <li class="menu-title"><a href="#">من پلاس </a></li>
+                            <li class="panel-list-item"><a href="#">خرید اکانت</a></li>
+                            <li class="panel-list-item"><a href="#">انرژی مثبت</a></li>
+                            <li class="panel-list-item"><a href="#">خرید بین الملل</a></li>
+                            <li class="panel-list-item"><a href="#">خرید کالا به سفارش شما</a></li>
+                            <li class="panel-list-item">
+                            </li>
+                        </ul>
+
+                        <ul class="dropdown-panel-list">
+                            <li class="menu-title"><a href="#">کالای دیجیتال </a></li>
+                            <li class="panel-list-item"><a href="search.html">موبایل</a></li>
+                            <li class="panel-list-item"><a href="search.html">تبلت</a></li>
+                            <li class="panel-list-item"><a href="search.html">دایرکت</a></li>
+                            <li class="panel-list-item"><a href="search.html">لپ تاپ</a></li>
+                            <li class="panel-list-item"><a href="search.html">مانیتور</a></li>
+                            <li class="panel-list-item"><a href="search.html">لوازم جانبی</a></li>
+                            <li class="panel-list-item"><a href="search.html">کنسول بازی</a></li>
+                            <li class="panel-list-item"><a href="search.html">دوربین عکاسی</a></li>
+                            <li class="panel-list-item"><a href="search.html">کامپیوتر همه کاره</a></li>
+                            <li class="panel-list-item"><a href="search.html">دوربین مدار بسته</a></li>
+                            <li class="panel-list-item"><a href="search.html">ماشین های اداری</a></li>
+                            <li class="panel-list-item"><a href="search.html">بیمه تجهیزات دیجیتال</a></li>
+                            <li class="panel-list-item">
+                            </li>
+                        </ul>
+
+                        <ul class="dropdown-panel-list">
+                            <li class="menu-title"><a href="#">خانه و آشپز خانه </a></li>
+                            <li class="panel-list-item"><a href="search.html">مبلمان</a></li>
+                            <li class="panel-list-item"><a href="search.html">تلویزیون</a></li>
+                            <li class="panel-list-item"><a href="search.html">لوازم برقی</a></li>
+                            <li class="panel-list-item"><a href="search.html">دزدگیر اماکن</a></li>
+                            <li class="panel-list-item"><a href="search.html">اندروید باکس</a></li>
+                            <li class="panel-list-item"><a href="search.html">یخچال و فریزر</a></li>
+                            <li class="panel-list-item"><a href="search.html">سرمایش و گرمایش</a></li>
+                            <li class="panel-list-item">
+                            </li>
+                        </ul>
+
+                        <ul class="dropdown-panel-list">
+                            <li class="menu-title"><a href="#">من تریپ</a></li>
+                            <li class="panel-list-item">
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-category">
+                    <a href="index.html" class="menu-title">خانه</a>
+                </li>
+                <li class="menu-category">
+                    <a href="contact.html" class="menu-title">تماس  با  ما</a>
+                </li>
+                <li class="menu-category">
+                    <a href="about.html" class="menu-title">درباره  ما</a>
+                </li>
+                <li class="menu-category">
+                    <a href="blog.html" class="menu-title">بلاگ</a>
+                </li>
+                <li class="menu-category">
+                    <a href="#" class="menu-title">اعتبار من</a>
+                </li>
+            </ul>
+        </div>
+        <!--menu -- : end---->
+
+        <!--logo in header -- : start-->
+        <div class="text-center"><img class="w-75" alt="من مارکت" src="assets/img/logox.webp"></div>
+        <!--logo in header -- : end---->
+
+    </nav>
+
+    <div class="mobile-bottom-navigation align-items-center">
+        <button class="action-btn" data-mobile-menu-open-btn>
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    width="0.8em"
+                    height="0.8em"
+            >
+                <path
+                        fill="none"
+                        stroke="currentColor"
+                        d="M2 12.5h12M2 8h12M2 3.5h12"
+                ></path>
+            </svg>
+        </button>
+
+        <button class="action-btn">
+            <div class="show-search-modal btn p-0 m-0">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                        width="1.4em"
+                        height="1.4em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
+                    ></path>
+                </svg>
+            </div>
+        </button>
+        <button class="action-btn">
+            <a class="text-dark" href="index.html"><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"
+                    width="0.8em"
+                    height="0.8em"
+            >
+                <path
+                        fill="currentColor"
+                        d="M469.666 216.45L271.078 33.749a34 34 0 0 0-47.062.98L41.373 217.373L32 226.745V496h176V328h96v168h176V225.958ZM248.038 56.771c.282 0 .108.061-.013.18c-.125-.119-.269-.18.013-.18M448 464H336V328a32 32 0 0 0-32-32h-96a32 32 0 0 0-32 32v136H64V240L248.038 57.356c.013-.012.014-.023.024-.035L448 240Z"
+                ></path>
+            </svg></a>
+        </button>
+
+        <button class="action-btn">
+            <a class="text-dark" href="collection.html"><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="1em"
+                    height="1em"
+            >
+                <path
+                        fill="currentColor"
+                        d="M3.5 3.5h7v7h-7zm1 1v5zm9-1h7v7h-7zm1 1v5zm-11 9h7v7h-7zm1 1v5zm12-1h1v3h3v1h-3v3h-1v-3h-3v-1h3zm-2-9v5h5v-5zm-10 0v5h5v-5zm0 10v5h5v-5z"
+                ></path>
+            </svg></a>
+        </button>
+
+        <button class="action-btn">
+            <svg class="shop-icon"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 14 14"
+                 width="0.8em"
+                 height="0.8em"
+            >
+                <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12.182 7.5h-8.18l-1-5h10a.5.5 0 0 1 .49.59l-.82 4a.49.49 0 0 1-.49.41m-9.18-5L2.582.9a.5.5 0 0 0-.49-.4H.502m3.5 7l.42 2.1a.5.5 0 0 0 .49.4h6.09m-.5 3.5a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1m-5 0a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1"
+                ></path>
+            </svg>
+        </button>
+    </div>
+
+    <nav class="mobile-navigation-menu has-scrollbar " data-mobile-menu>
+        <div class="menu-top">
+            <h2 class="menu-title">منو</h2>
+
+            <button class="menu-close-btn" data-mobile-menu-close-btn>
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+        </div>
+
+        <ul class="mobile-menu-category-list">
+            <li class="menu-category"><a href="index.html" class="menu-title">خانه</a></li>
+
+            <li class="menu-category">
+                <button class="accordion-menu" data-accordion-btn>
+                    <p class="menu-title">فروشگاه</p>
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    width="1.5em"
+                                    height="1.5em"
+                            >
+                                <path
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M6 12h6m6 0h-6m0 0V6m0 6v6"
+                                ></path>
+                            </svg>
+                        </ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="submenu-category-list " data-accordion>
+                    <li class="submenu-category"><a href="#" class="submenu-title">من پلاس </a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">خرید اکانت</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">انرژی مثبت</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">خرید بین الملل</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">خرید کالا به سفارش شما</a></li>
+                </ul>
+            </li>
+            <li class="menu-category">
+                <button class="accordion-menu" data-accordion-btn>
+                    <p class="menu-title">کالای دیجیتال</p>
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    width="1.5em"
+                                    height="1.5em"
+                            >
+                                <path
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M6 12h6m6 0h-6m0 0V6m0 6v6"
+                                ></path>
+                            </svg>
+                        </ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="submenu-category-list " data-accordion>
+                    <li class="submenu-category"><a href="#" class="submenu-title">موبایل</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">تبلت</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">دایرکت</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">لپ تاپ</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">مانیتور</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">لوازم جانبی</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">کنسول بازی</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">دوربین عکاسی</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">کامپیوتر همه کاره</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">دوربین مدار بسته</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">ماشین های اداری</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">بیمه تجهیزات دیجیتال</a></li>
+                </ul>
+            </li>
+            <li class="menu-category">
+                <button class="accordion-menu" data-accordion-btn>
+                    <p class="menu-title">خانه و آشپز خانه </p>
+                    <div>
+                        <ion-icon name="add-outline" class="add-icon">
+                            <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    width="1.5em"
+                                    height="1.5em"
+                            >
+                                <path
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M6 12h6m6 0h-6m0 0V6m0 6v6"
+                                ></path>
+                            </svg>
+                        </ion-icon>
+                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                    </div>
+                </button>
+
+                <ul class="submenu-category-list " data-accordion>
+                    <li class="submenu-category"><a href="#" class="submenu-title">مبلمان</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">تلویزیون</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">لوازم برقی</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">دزدگیر اماکن</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">اندروید باکس</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">یخچال و فریزر</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">سرمایش و گرمایش</a></li>
+                </ul>
+            </li>
+            <li class="menu-category"><a href="index.html" class="menu-title">من تریپ</a></li>
+
+
+
+            <li class="menu-category"><a href="blog.html" class="menu-title">وبلاگ</a></li>
+
+        </ul>
+
+        <div class="menu-bottom">
+            <ul class="menu-social-container">
+                <li><a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#" class="social-link"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                <li><a href="#" class="social-link"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!--Header End---->
+
+<!--search modal __ :: start-->
+<section class="search-box">
+    <span class="close-modal mx-5">
+         <svg
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24"
+                 width="1em"
+                 height="1em"
+         >
+             <path
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-linecap="square"
+                     stroke-linejoin="round"
+                     d="M18 6L6 18M6 6l12 12"
+             ></path>
+         </svg>
+    </span>
+    <h5 class="py-3 text-center">دنبال چی میگردی ؟</h5>
+    <form class="text-center position-relative container">
+        <input class="form-control my-inp" type="search" placeholder="مثلا آیفون 16 ">
+        <div>
+            <button class="sub-btn" type="submit">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
+                    ></path>
+                </svg></button>
+        </div>
+    </form>
+</section>
+<!--search modal __ :: end---->
+
+
+
+
+
+<main class="d-flex justify-content-center flex-column my-5 container">
+
+    <h5 class="  py-2 my-1">اهداف و تعهدات ما</h5>
+    <p class="my-1 py-2 custom-text  ">در من مارکت، هدف ما تنها فروش کالا نیست؛ ما به‌دنبال خلق تجربه‌ای لذت‌بخش، مطمئن و دوستانه در فرآیند خرید آنلاین هستیم. تیم پشتیبانی و مدیریتی ما با چشم‌اندازی بلندمدت و برنامه‌ریزی دقیق، مسیر توسعه فروشگاه را به‌گونه‌ای ترسیم کرده‌اند که اعتماد، وفاداری و رضایت مشتریان، در مرکز آن قرار داشته باشد.</p>
+    <p class="my-1 py-2 custom-text  ">ما باور داریم که موفقیت پایدار فقط با رضایت واقعی مشتریان و تبدیل آن‌ها به مشتریان وفادار و در نهایت مشتریان طرفدار به دست می‌آید.</p>
+    <h5 class=" py-2 my-1">مهم‌ترین اهداف و اصول کاری ما در من مارکت:</h5>
+    <p class="my-1 py-2 custom-text ">ارائه‌ی اطلاعات دقیق، کامل و به‌روز از کلیه محصولات</p>
+    <p class="my-1 py-2 custom-text ">عرضه‌ی کالاهایی که اعتبار آن‌ها از کیفیت واقعی‌شان می‌آید، نه صرفاً تبلیغات</p>
+    <p class="my-1 py-2 custom-text ">همکاری با تأمین‌کنندگان معتبر، باسابقه و دارای چشم‌انداز بلندمدت</p>
+    <p class="my-1 py-2 custom-text ">پاسخ‌گو بودن کامل من مارکت در برابر تمامی محصولات عرضه‌شده</p>
+    <p class="my-1 py-2 custom-text ">انتخاب برندهایی پایدار که حضورشان در بازار زودگذر و مقطعی نباشد</p>
+    <p class="my-1 py-2 custom-text ">تبدیل شدن به یک مرجع معتبر اطلاعات برای کاربران و حتی سایر فروشگاه‌ها</p>
+    <p class="my-1 py-2 custom-text ">پشتیبانی واقعی از مشتری، قبل، حین و پس از خرید</p>
+    <p class="my-1 py-2 custom-text ">همراهی خریداران در استفاده از خدمات گارانتی و پشتیبانی پس از فروش</p>
+    <p class="my-1 py-2 custom-text ">تضمین قیمت‌های رقابتی و موجودی به‌روز تمامی محصولات فروشگاه</p>
+    <p class="my-1 py-2 custom-text ">حمایت از حقوق خریداران در برابر شرکت‌های تأمین‌کننده یا گارانتی‌کننده</p>
+    <p class="my-1 py-2 custom-text ">ایفای نقش مسئولیت اجتماعی با هدف ایجاد ارزش‌افزوده برای جامعه مشتریان</p>
+    <p class="my-1 py-2 custom-text ">ایجاد آرامش در خرید با امکاناتی مانند: پرداخت آنلاین امن، ارسال سریع، تضمین اصالت و کیفیت کالا</p>
+    <p class="my-1 py-2 custom-text ">تلاش مداوم برای بهبود تجربه کاربری و ارتقاء کیفیت خدمات</p>
+    <p class="my-1 py-2 custom-text ">در من مارکت ما به آینده فکر می‌کنیم؛ آینده‌ای که در آن، مشتریان نه فقط خریدار، بلکه همراهان همیشگی ما باشند.</p>
+</main>
+
+
+
+
+<!--footer :: start------>
+<footer class="mt-5 py-5">
+    <div class="footer-nav">
+        <div class="container">
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">لینک های مفید</h2></li>
+
+                <li class="footer-nav-item"><a href="faq.html" class="footer-nav-link">سوالات متداول</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">پیگیری سفارشات</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">راهنمای خرید اقساطی</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">پلتفرم مالی اعتبار من</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">مفاد ضمانت هفت روزه برگشت وجه</a></li>
+            </ul>
+
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">درباره ما</h2></li>
+
+                <li class="footer-nav-item"><a href="man.market.call.we.html" class="footer-nav-link">تماس با ما</a></li>
+                <li class="footer-nav-item"><a href="man.market.target.t.html" class="footer-nav-link">قوانین و مقررات</a></li>
+                <li class="footer-nav-item"><a href="man.market.Rules.html" class="footer-nav-link">اهداف و تعهدات ما</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فروشگاه های حضوری</a></li>
+                <li class="footer-nav-item"><a href="man.market.one.seen.html" class="footer-nav-link">من مارکت در یک نگاه</a></li>
+            </ul>
+
+            <ul class="footer-nav-list row">
+                <li class="footer-nav-item"><h2 class="nav-title">من مارکت</h2></li>
+
+                <li class="footer-nav-item  col-sm-6 col-6">
+                    <div class=" w-50 b-x-s px-1 py-1">
+                        <img alt="E namad" class="w-100" src="assets/img/E.namad.png">
+                    </div>
+                </li>
+                <li class="footer-nav-item  col-sm-6 col-6">
+                    <div class=" w-50 b-x-s px-1 py-1">
+                        <img alt="E namad" class="w-100" src="assets/img/E.namad.3.png">
+                    </div>
+                </li>
+                <li class="footer-nav-item  col-sm-6 col-6">
+                    <div class=" w-50 b-x-s px-1 py-1">
+                        <img alt="E namad" class="w-100" src="assets/img/E.namad.4.png">
+                    </div>
+                </li>
+                <li class="footer-nav-item  col-sm-6 col-6">
+                    <div class=" w-50 b-x-s px-1 py-1">
+                        <img alt="E namad" class="w-100" src="assets/img/E.namad.t">
+                    </div>
+                </li>
+                <li class="footer-nav-item  col-sm-6 col-6">
+                    <div class=" w-50 px-2 py-1 b-x-s">
+                        <img alt="E namad" class="w-100" src="assets/img/E.namad.6.jpg">
+                    </div>
+                </li>
+                <li class="footer-nav-item  col-sm-6 col-6">
+                    <div class="  w-50 b-x-s px-1">
+                        <img alt="E namad" class="w-100" src="assets/img/E.namad.5.png">
+                    </div>
+                </li>
+
+            </ul>
+
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">ارتباط با ما</h2></li>
+
+                <li class="footer-nav-item flex">
+                    <div class="icon-box">
+                        <ion-icon name="location-outline"></ion-icon>
+                    </div>
+
+                    <address class="content">
+                        لوکیشن ما
+                    </address>
+                </li>
+
+                <li class="footer-nav-item flex">
+                    <div class="icon-box">
+                        <ion-icon name="call-outline"></ion-icon>
+                    </div>
+
+                    <a href="tel:+607936-8058" class="footer-nav-link">تلفن ما 0915 878 2312</a>
+                </li>
+
+                <li class="footer-nav-item flex">
+                    <div class="icon-box">
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </div>
+
+                    <a href="mailto:example@gmail.com" class="footer-nav-link">example@gmail.com</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="copyright"> تمامی حقوق مادی و معنوی این سایت متعلق به زیرمجموعه‌ای از اکوسیستم راه ابریشم نو هست .</p>
+        </div>
+    </div>
+</footer>
+<!--footer :: end-------->
+
+
+
+
+<div class="custom-overlay"></div>
+<!--<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>-->
+<!--<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>-->
+<script src="assets/js/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/slider.in.index.js"></script>
+<script src="assets/js/stras.js"></script>
+
+<script  src="script.js"></script>
+</body>
+<!-- partial -->
+</html>
+
+
+

@@ -105,5 +105,87 @@ aside{
     }
   }
 
+.br-in-profile{
+
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 20px;
+
+
+}
+.navi{
+  cursor: pointer;
+}
+
+.true-c{
+  display: none;
+}
+
+.box-comment{
+  height: 100vh;
+  width: 100vh;
+  .comment-s{
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    top: 10%;
+  }
+}
+.pr-in-comment{
+  text-align: -webkit-center;
+}
+
+.comment-text{
+  height: 100px;
+  &:focus{
+    background-color: #EEEEEE;
+  }
+}
+
+
+.custom-radio {
+  width: 0.7rem;
+  height: 0.7rem;
+}
+
+
+.file-input {
+  z-index: 99999999999;
+  opacity: 0;
+  cursor: pointer;
+}
+.custom-file-input {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  background-color: #f5f5f5;
+  opacity: 99999;
+  color: rgba(103, 83, 76, 0.8);
+}
+
+.mini-fs{
+  font-size: 11px !important;
+  white-space: nowrap !important;
+}
+
+.one-form{
+  transition: 0.3s;
+  visibility: hidden;
+  z-index: 999999999900999999;
+  opacity: 0;
+}
+
+
+.two-form{
+  visibility: hidden;
+  transition: 0.3s;
+  z-index: 999999999900999999;
+  opacity: 0;
+}
 
 

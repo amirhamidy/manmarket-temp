@@ -695,104 +695,28 @@
 <!--price or money product ::: end---------->
 
 <!--color product :: start------>
-        <div class="my-2">
-            <div class="color-circle bg-danger" onclick="selectColor(this)">
-            <span class="checkmark"><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 15 15"
-                    width="1em"
-                    height="1em"
-            >
-      <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="square"
-              d="m1 7l4.5 4.5L14 3"
-      ></path>
-    </svg></span>
-            </div>
-            <div class="color-circle bg-success" onclick="selectColor(this)">
-    <span class="checkmark"><svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 15 15"
-            width="1em"
-            height="1em"
-    >
-      <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="square"
-              d="m1 7l4.5 4.5L14 3"
-      ></path>
-    </svg></span>
-            </div>
-            <div class="color-circle bg-primary"  onclick="selectColor(this)">
-    <span class="checkmark"><svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 15 15"
-            width="1em"
-            height="1em"
-    >
-      <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="square"
-              d="m1 7l4.5 4.5L14 3"
-      ></path>
-    </svg></span>
-            </div>
-            <div class="color-circle bg-light"  onclick="selectColor(this)">
-        <span class="checkmark"><svg class="text-dark "
-                                     xmlns="http://www.w3.org/2000/svg"
-                                     viewBox="0 0 15 15"
-                                     width="1em"
-                                     height="1em"
-        >
-      <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="square"
-              d="m1 7l4.5 4.5L14 3"
-      ></path>
-    </svg></span>
-            </div>
-            <div class="color-circle bg-dark"  onclick="selectColor(this)">
-        <span class="checkmark"><svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 15 15"
-                width="1em"
-                height="1em"
-        >
-      <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="square"
-              d="m1 7l4.5 4.5L14 3"
-      ></path>
-    </svg></span>
-            </div>
-            <div class="color-circle bg-warning"  onclick="selectColor(this)">
-        <span class="checkmark"><svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 15 15"
-                width="1em"
-                height="1em"
-        >
-      <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="square"
-              d="m1 7l4.5 4.5L14 3"
-      ></path>
-    </svg></span>
-            </div>
+        <div class="my-2 d-flex row w-100">
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 active-cs">سرمه ای</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">آبی روشن</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">سفید</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">مشکی</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">آبی یخی</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">زرد</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">آبی</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">خاکستری</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">نقره ای</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">زرد لیمویی</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">قرمز</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">بنفش</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">سبز</button>
+            <button class="col-md-3 bg-custom mx-1 px-3 cs-space col-sm-4 col-3 rounded-3 ">صدفی</button>
         </div>
 <!--color product :: end-------->
 
 <!--like and add to shop button :: start-->
         <div class="d-flex justify-content-center text-end flex-column">
-            <div class=""><button class="btn-tv add-to-cart">افزودن به سبد خرید</button></div>
-            <div class=""><button class="btn-tv like">اضافه کردن به علاقه مندی ها</button></div>
+            <div class=""><button class="btn-tv add-to-cart rounded-3">افزودن به سبد خرید</button></div>
+            <div class=""><button class="btn-tv like rounded-3">اضافه کردن به علاقه مندی ها</button></div>
         </div>
 <!--like and add to shop button :: end---->
 
@@ -801,7 +725,7 @@
             <span class="custom-text">
                     تعداد مد نظرتون ؟
                 </span>
-            <div class="wrapper mx-0 mt-2">
+            <div class="wrapper mx-0 mt-2 rounded-3">
 
                 <div id="minus" onclick="count('minus')"><span></span></div>
                 <div id="number"><span id="number-input"></span></div>
@@ -1143,47 +1067,63 @@
 
 
 <!--footer :: start------>
-<footer class="mt-2">
+<footer class="mt-5 py-5">
     <div class="footer-nav">
         <div class="container">
             <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">دسته بندی کلی</h2></li>
+                <li class="footer-nav-item"><h2 class="nav-title">لینک های مفید</h2></li>
 
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
+                <li class="footer-nav-item"><a href="faq.html" class="footer-nav-link">سوالات متداول</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">پیگیری سفارشات</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">راهنمای خرید اقساطی</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">پلتفرم مالی اعتبار من</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">مفاد ضمانت هفت روزه برگشت وجه</a></li>
             </ul>
 
             <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">محصولات</h2></li>
+                <li class="footer-nav-item"><h2 class="nav-title">درباره ما</h2></li>
 
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
+                <li class="footer-nav-item"><a href="man.market.call.we.html" class="footer-nav-link">تماس با ما</a></li>
+                <li class="footer-nav-item"><a href="man.market.target.t.html" class="footer-nav-link">قوانین و مقررات</a></li>
+                <li class="footer-nav-item"><a href="man.market.Rules.html" class="footer-nav-link">اهداف و تعهدات ما</a></li>
+                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فروشگاه های حضوری</a></li>
+                <li class="footer-nav-item"><a href="man.market.one.seen.html" class="footer-nav-link">من مارکت در یک نگاه</a></li>
             </ul>
 
-            <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">کمپانی ها</h2></li>
+            <ul class="footer-nav-list row">
+                <li class="footer-nav-item"><h2 class="nav-title">من مارکت</h2></li>
 
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
-            </ul>
+                <li class="footer-nav-item  col-sm-6 col-6">
+                    <div class=" w-50 b-x-s px-1 py-1">
+                        <img alt="E namad" class="w-100" src="assets/img/E.namad.png">
+                    </div>
+                </li>
+                <li class="footer-nav-item  col-sm-6 col-6">
+                    <div class=" w-50 b-x-s px-1 py-1">
+                        <img alt="E namad" class="w-100" src="assets/img/E.namad.3.png">
+                    </div>
+                </li>
+                <li class="footer-nav-item  col-sm-6 col-6">
+                    <div class=" w-50 b-x-s px-1 py-1">
+                        <img alt="E namad" class="w-100" src="assets/img/E.namad.4.png">
+                    </div>
+                </li>
+                <li class="footer-nav-item  col-sm-6 col-6">
+                    <div class=" w-50 b-x-s px-1 py-1">
+                        <img alt="E namad" class="w-100" src="assets/img/E.namad.t">
+                    </div>
+                </li>
+                <li class="footer-nav-item  col-sm-6 col-6">
+                    <div class=" w-50 px-2 py-1 b-x-s">
+                        <img alt="E namad" class="w-100" src="assets/img/E.namad.6.jpg">
+                    </div>
+                </li>
+                <li class="footer-nav-item  col-sm-6 col-6">
+                    <div class="  w-50 b-x-s px-1">
+                        <img alt="E namad" class="w-100" src="assets/img/E.namad.5.png">
+                    </div>
+                </li>
 
-            <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">سرویس ها</h2></li>
-
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
             </ul>
 
             <ul class="footer-nav-list">
@@ -1216,46 +1156,23 @@
                 </li>
             </ul>
 
-            <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">Follow Us</h2></li>
-
-                <li>
-                    <ul class="social-link">
-                        <li class="footer-nav-item">
-                            <a href="#" class="footer-nav-link"><ion-icon name="logo-facebook"></ion-icon></a>
-                        </li>
-
-                        <li class="footer-nav-item">
-                            <a href="#" class="footer-nav-link"><ion-icon name="logo-twitter"></ion-icon></a>
-                        </li>
-
-                        <li class="footer-nav-item">
-                            <a href="#" class="footer-nav-link"><ion-icon name="logo-linkedin"></ion-icon></a>
-                        </li>
-
-                        <li class="footer-nav-item">
-                            <a href="#" class="footer-nav-link"><ion-icon name="logo-instagram"></ion-icon></a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
         </div>
     </div>
 
     <div class="footer-bottom">
         <div class="container">
-            <p class="copyright"> تمامی حقوق مادی و معنوی این سایت متعلق به شرکت راه ابریشم نو مسیر توسعه تحول جهانی می باشد .</p>
+            <p class="copyright"> تمامی حقوق مادی و معنوی این سایت متعلق به زیرمجموعه‌ای از اکوسیستم راه ابریشم نو هست .</p>
         </div>
     </div>
 </footer>
 <!--footer :: end-------->
 
 
+
 <div class="custom-overlay"></div>
 <script src="assets/js/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js"></script>
 <script src="script.js"></script>
 <script src="assets/js/single.product.js"></script>
 </body>

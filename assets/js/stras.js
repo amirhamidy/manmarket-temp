@@ -34,14 +34,9 @@ starContainers.forEach(container => {
                     s.classList.remove('rated');
                 }
             });
-
-            Swal.fire({
-                title: 'مرسی از ثبت نظرتون!',
-                icon: 'success',
-                confirmButtonText: 'باشه',
-                timer: 3000,
-                timerProgressBar: true,
-            });
         });
     });
 });
+
+
+

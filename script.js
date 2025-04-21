@@ -114,53 +114,59 @@ var swiper = new Swiper(".mySwiper", {
 });
 
 
+
 let cartItems = [];
 
 function updateCart() {
     const cartList = document.getElementById('cart-items');
     cartList.innerHTML = '';
     let totalPrice = 0;
-
     const itemCounts = {};
 
     cartItems.forEach(item => {
-        itemCounts[item.name] = itemCounts[item.name]
-            ? { count: itemCounts[item.name].count + 1, image: itemCounts[item.name].image, price: itemCounts[item.name].price }
-            : { count: 1, image: item.image, price: item.price };
+        itemCounts[item.name] = itemCounts[item.name] || { count: 0, image: item.image, price: item.price };
+        itemCounts[item.name].count++;
     });
-
-    const emptyCartMessage = document.createElement('div');
-    emptyCartMessage.textContent = 'سبد خرید شما خالی است.';
-    emptyCartMessage.classList.add('empty-cart-message');
 
     for (const [productName, { count, image, price }] of Object.entries(itemCounts)) {
         const cartItem = document.createElement('li');
         cartItem.classList.add('cart-item');
 
+
         const img = document.createElement('img');
         img.src = image;
         img.alt = productName;
-        img.style.width = '100px';
+        img.style.width = '90px';
 
-        cartItem.innerHTML = `<div style="width: 100%; white-space: nowrap; font-size: 13px">${productName}</div>`;
+        cartItem.innerHTML = `<div style="width: 100%; white-space: nowrap; font-size: 12px">${productName}</div>`;
         cartItem.appendChild(img);
 
         totalPrice += price * count;
 
-        const plusButton = createSvgButton('+', () => addProduct(productName, image, price));
-        const minusButton = createSvgButton('-', () => removeProduct(productName));
+        cartItem.appendChild(createSvgButton('+', () => addProduct(productName, image, price)));
+        cartItem.appendChild(createSvgButton('-', () => removeSingleProduct(productName)));
+        cartItem.appendChild(createDeleteButton(() => removeProduct(productName)));
+
         const countSpan = document.createElement('span');
         countSpan.classList.add('count');
         countSpan.textContent = `تعداد محصول: ${count}`;
-        cartItem.appendChild(plusButton);
-        cartItem.appendChild(minusButton);
+        countSpan.style.marginTop = '10px';
         cartItem.appendChild(countSpan);
 
+        const priceSpan = document.createElement('span');
+        priceSpan.classList.add('price');
+        priceSpan.textContent = `قیمت محصول: ${price} تومان`;
+        priceSpan.style.fontSize = '13px';
+        priceSpan.style.marginTop = '10px';
+        cartItem.appendChild(priceSpan);
+
         cartList.appendChild(cartItem);
-        countSpan.style.padding = "0 5px"; 
     }
 
-    if (cartItems.length === 0) {
+    if (Object.keys(itemCounts).length === 0) {
+        const emptyCartMessage = document.createElement('div');
+        emptyCartMessage.textContent = 'سبد خرید شما خالی است.';
+        emptyCartMessage.classList.add('empty-cart-message');
         cartList.appendChild(emptyCartMessage);
     }
 
@@ -168,16 +174,15 @@ function updateCart() {
     totalPriceElement.textContent = `جمع کل: ${totalPrice} تومان`;
 }
 
-
 function createSvgButton(type, onClick) {
     const button = document.createElement('span');
     button.classList.add('icon-button');
 
     let svg = '';
     if (type === '+') {
-        svg = `<svg class="plus" style="position: absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em"><path fill="none" stroke="currentColor" stroke-linecap="round" d="M12 3.5v17m8.5-8.5h-17"></path></svg>`;
+        svg = `<svg class="plus" style="position: absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="0.9em" height="1em"><path fill="none" stroke="currentColor" stroke-linecap="round" d="M12 3.5v17m8.5-8.5h-17"></path></svg>`;
     } else if (type === '-') {
-        svg = `<svg class="minus" style="position: absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="1em" height="1em"><path fill="currentColor" d="M72 240h368v32H72z"></path></svg>`;
+        svg = `<svg class="minus" style="position: absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="0.9em" height="1em"><path fill="currentColor" d="M72 240h368v32H72z"></path></svg>`;
     }
 
     button.innerHTML = svg;
@@ -185,6 +190,16 @@ function createSvgButton(type, onClick) {
     return button;
 }
 
+function createDeleteButton(onClick) {
+    const button = document.createElement('span');
+    button.classList.add('icon-button');
+    button.classList.add('delete-button');
+
+    const svg = `<svg class="delete position-absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.2em" height="1.2em"><path fill="currentColor" d="M14.885 17.5v-1h3v1zm0-8v-1h6v1zm0 4v-1h5v1zM4.115 8h-1V7h3.731v-.885h2.538V7h3.732v1h-1v10h-8zm1 0v9h6V8zm0 0v9z"></path></svg>`;
+    button.innerHTML = svg;
+    button.addEventListener('click', onClick);
+    return button;
+}
 
 function addProduct(productName, image, price) {
     const priceNumber = Number(price);
@@ -195,20 +210,18 @@ function addProduct(productName, image, price) {
         cartDashboard.classList.add('show-dashboard');
         cartDashboard.classList.remove('hidden-dashboard');
         overlay.classList.add('active');
-
     } else {
         console.error("Error: Invalid product price.");
     }
 }
 
-overlay.addEventListener('click' , () =>{
+overlay.addEventListener('click', () => {
     cartDashboard.classList.remove('show-dashboard');
     cartDashboard.classList.add('hidden-dashboard');
     overlay.classList.remove('active');
-})
+});
 
-
-function removeProduct(productName) {
+function removeSingleProduct(productName) {
     const index = cartItems.findIndex(item => item.name === productName);
     if (index > -1) {
         cartItems.splice(index, 1);
@@ -216,14 +229,19 @@ function removeProduct(productName) {
     }
 }
 
+function removeProduct(productName) {
+    cartItems = cartItems.filter(item => item.name !== productName);
+    updateCart();
+}
+
 document.querySelectorAll('.add-to-cart').forEach(button => {
     button.addEventListener('click', () => {
-        const productElement = button.closest('.product'); 
-        const productName = productElement.querySelector('img.one-img').alt; 
+        const productElement = button.closest('.product');
+        const productName = productElement.querySelector('img.one-img').alt;
         const productImage = productElement.querySelector('img.one-img').src;
-        const productPriceElement = productElement.nextElementSibling; 
+        const productPriceElement = productElement.nextElementSibling;
 
-        if (productPriceElement && productPriceElement.classList.contains('price')) { 
+        if (productPriceElement && productPriceElement.classList.contains('price')) {
             const productPrice = parseFloat(productPriceElement.textContent);
             if (!isNaN(productPrice)) {
                 addProduct(productName, productImage, productPrice);
@@ -260,6 +278,7 @@ document.querySelectorAll('.like').forEach(function (likeElement) {
             numLikes += 1;
             colorLikeElement.setAttribute('fill', 'white');
             numLikeElement.setAttribute('data-liked', 'true');
+
         } else {
             numLikes -= 1;
             colorLikeElement.setAttribute('fill', 'none');
@@ -275,6 +294,8 @@ document.querySelectorAll('.like').forEach(function (likeElement) {
     });
 });
 
+
+
 const cartDashboard = document.getElementById('cart-dashboard');
 const ShopIcon = document.querySelector('.shop-icon')
 ShopIcon.addEventListener('click' , () =>{
@@ -282,3 +303,23 @@ ShopIcon.addEventListener('click' , () =>{
     cartDashboard.classList.remove('hidden-dashboard');
     overlay.classList.add('active');
 })
+
+const buttons = document.querySelectorAll('.cs-space');
+
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+        buttons.forEach(btn => btn.classList.remove('active-cs'));
+
+        this.classList.add('active-cs');
+    });
+});
+
+
+
+
+
+
+
+
+
+

@@ -29,7 +29,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="11">
+          <list size="13">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -41,6 +41,8 @@
             <item index="8" class="java.lang.String" itemvalue="marquee" />
             <item index="9" class="java.lang.String" itemvalue="p" />
             <item index="10" class="java.lang.String" itemvalue="max-width" />
+            <item index="11" class="java.lang.String" itemvalue="px" />
+            <item index="12" class="java.lang.String" itemvalue="min-width" />
           </list>
         </value>
       </option>

@@ -1103,7 +1103,7 @@ footer {
     visibility: hidden;
     pointer-events: none;
     transition: var(--transition-timing);
-    z-index: 5;
+    z-index: 999999999;
   }
 
   .dropdown-panel-list .menu-title a {
@@ -1348,3 +1348,15 @@ footer {
   }
 
 }
+
+
+@media (max-width: 674px){
+
+.footer-nav-list{
+  width: 100%!important;;
+}
+
+}
+
+
+

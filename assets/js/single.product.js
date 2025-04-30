@@ -6,8 +6,6 @@ const trZNextButton = document.querySelector('.tr-z-next');
 let trZCurrentIndex = 0;
 
 function trZShowSlide(index) {
-    $('.zom-img').elevateZoom('destroy');
-
     trZSlides.forEach((slide) => {
         slide.classList.remove('tr-z-active');
     });
@@ -21,12 +19,6 @@ function trZShowSlide(index) {
 
     trZCurrentIndex = index;
 
-    $('.tr-z-active .zom-img').elevateZoom({
-        zoomType: "inner",
-        cursor: "crosshair",
-        zoomWindowFadeIn: 500,
-        zoomWindowFadeOut: 500,
-    });
 }
 
 trZThumbnails.forEach((thumb, index) => {
@@ -47,13 +39,6 @@ trZNextButton.addEventListener('click', () => {
 
 trZShowSlide(trZCurrentIndex);
 
-
-$('.tr-z-active .zom-img').elevateZoom({
-    zoomType: "inner",
-    cursor: "crosshair",
-    zoomWindowFadeIn: 500,
-    zoomWindowFadeOut: 500,
-});
 
 
 function selectColor(selectedElement) {

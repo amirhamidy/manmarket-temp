@@ -744,202 +744,94 @@
 </section>
 <!--search modal __ :: end---->
 
-<section class="p-wrap">
 
-
-    <div class="dj-sh-checkout-container dj-sh-container">
-        <main class="dj-sh-checkout-main">
-            <section class="dj-sh-checkout-section dj-sh-address-section">
-                <h2 class="dj-sh-section-title">
-                    <svg class="dj-sh-icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
-                    انتخاب آدرس تحویل سفارش
-                </h2>
-                <div class="dj-sh-address-list" id="address-list-container">
-                    <article class="dj-sh-address-card dj-sh-selectable" data-address-id="addr-1">
-                        <svg class="dj-sh-icon-svg dj-sh-selected-icon"
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 15 15"
-                                width="1em"
-                                height="1em"
-                        >
-                            <path
-                                    fill="none"
-                                    stroke="currentColor"
-                                    d="M4 7.5L7 10l4-5m-3.5 9.5a7 7 0 1 1 0-14a7 7 0 0 1 0 14Z"
-                            ></path>
-                        </svg>
-                        <div class="dj-sh-address-card-header">
-                            <span><svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg> کاربر نمونه ۱</span>
-                            <span><svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"></path></svg> ۰۹۱۲۳۴۵۶۷۸۹</span>
-                        </div>
-                        <p class="dj-sh-address-text">
-                            <svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg> استان تهران، شهر تهران، خیابان آزادی، پلاک ۱۲۳، واحد ۴
-                        </p>
-                        <div class="dj-sh-address-card-actions">
-                            <button class="dj-sh-btn dj-sh-btn-delete dj-sh-btn-delete-address" title="حذف آدرس"><svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg></button>
-                            <button class="dj-sh-btn dj-sh-btn-edit" data-modal-target="#edit-address-modal" data-address-id="addr-1"><svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg> ویرایش</button>
-                            <button class="dj-sh-btn dj-sh-btn-select-address">انتخاب</button>
-                        </div>
-                    </article>
-                    <article class="dj-sh-address-card dj-sh-selectable" data-address-id="addr-2">
-                        <svg class="dj-sh-icon-svg dj-sh-selected-icon"
-                             xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 15 15"
-                             width="1em"
-                             height="1em"
-                        >
-                            <path
-                                    fill="none"
-                                    stroke="currentColor"
-                                    d="M4 7.5L7 10l4-5m-3.5 9.5a7 7 0 1 1 0-14a7 7 0 0 1 0 14Z"
-                            ></path>
-                        </svg>
-                        <div class="dj-sh-address-card-header">
-                            <span><svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg> کاربر نمونه ۲</span>
-                            <span><svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"></path></svg> ۰۹۳۵۱۲۳۴۵۶۷</span>
-                        </div>
-                        <p class="dj-sh-address-text">
-                            <svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg> استان البرز، شهر کرج، میدان کرج، ساختمان نمونه، طبقه ۵
-                        </p>
-                        <div class="dj-sh-address-card-actions">
-                            <button class="dj-sh-btn dj-sh-btn-delete dj-sh-btn-delete-address" title="حذف آدرس"><svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg></button>
-                            <button class="dj-sh-btn dj-sh-btn-edit" data-modal-target="#edit-address-modal" data-address-id="addr-2"><svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"></path></svg> ویرایش</button>
-                            <button class="dj-sh-btn dj-sh-btn-select-address">انتخاب</button>
-                        </div>
-                    </article>
-                </div>
-                <button class="dj-sh-btn dj-sh-btn-add-address" data-modal-target="#add-address-modal">
-                    <svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path></svg> افزودن آدرس جدید
-                </button>
-            </section>
-
-            <section class="dj-sh-checkout-section dj-sh-product-overview">
-                <h3 class="dj-sh-product-overview-title">مرسوله ۱ از ۱</h3>
-                <div class="dj-sh-product-list" id="product-list-container">
-                    <div class="dj-sh-product-item" data-product-id="p1" data-price-per-item="4500000">
-                        <img src="https://dkstatics-public.digikala.com/digikala-products/119193886.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" alt="Product Image" class="dj-sh-product-image">
-                        <div class="dj-sh-product-details">
-                            <p class="dj-sh-product-title">گوشی موبایل سامسونگ مدل Galaxy A15</p>
-                            <p class="dj-sh-product-variant">رنگ: مشکی</p>
-                        </div>
-                        <div class="dj-sh-product-controls">
-                            <div class="dj-sh-product-quantity-stepper">
-                                <button class="dj-sh-quantity-btn dj-sh-increase-qty" aria-label="افزایش تعداد">+</button>
-                                <span class="dj-sh-quantity-display">1</span>
-                                <button class="dj-sh-quantity-btn dj-sh-decrease-qty" aria-label="کاهش تعداد" disabled>-</button>
-                            </div>
-                            <button class="dj-sh-btn dj-sh-btn-delete dj-sh-btn-delete-product" title="حذف محصول"><svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg></button>
-                        </div>
-                    </div>
-                    <div class="dj-sh-product-item" data-product-id="p2" data-price-per-item="350000">
-                        <img src="https://dkstatics-public.digikala.com/digikala-products/97324f7025b2b1f053f7634e8674784b1967b9e6_1656411538.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" alt="Product Image" class="dj-sh-product-image">
-                        <div class="dj-sh-product-details">
-                            <p class="dj-sh-product-title">هندزفری بلوتوثی مدل M10</p>
-                        </div>
-                        <div class="dj-sh-product-controls">
-                            <div class="dj-sh-product-quantity-stepper">
-                                <button class="dj-sh-quantity-btn dj-sh-increase-qty" aria-label="افزایش تعداد">+</button>
-                                <span class="dj-sh-quantity-display">1</span>
-                                <button class="dj-sh-quantity-btn dj-sh-decrease-qty" aria-label="کاهش تعداد" disabled>-</button>
-                            </div>
-                            <button class="dj-sh-btn dj-sh-btn-delete dj-sh-btn-delete-product" title="حذف محصول"><svg class="dj-sh-icon-svg" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path></svg></button>
-                        </div>
+<div class="py-m-container p-wrap">
+    <main class="py-m-main-content">
+        <h2 class="py-m-section-title">شیوه پرداخت</h2>
+        <div class="py-m-payment-method-section">
+            <div class="py-m-payment-option" onclick="pyMselectPaymentMethod(this, 'py-m-online_payment_radio')">
+                <input type="radio" name="payment_method" id="py-m-online_payment_radio" value="online">
+                <div class="py-m-payment-option-details">
+                    <label for="py-m-online_payment_radio">پرداخت اینترنتی</label>
+                    <p class="py-m-description">پرداخت امن از طریق کلیه کارت‌های بانکی عضو شبکه شتاب.</p>
+                    <div class="py-m-card-icons">
+                        <!-- آیکون های کارت بانکی از اینجا حذف شدند -->
                     </div>
                 </div>
-            </section>
-
-        </main>
-        <aside class="dj-sh-order-summary">
-            <h3 class="dj-sh-summary-title">خلاصه سفارش</h3>
-            <div class="dj-sh-summary-totals">
-                <div class="dj-sh-total-row" id="summary-items-total-row"><span>قیمت کالاها</span><span id="summary-items-total-value">۴٬۸۵۰٬۰۰۰ <span class="dj-sh-currency">تومان</span></span></div>
-                <div class="dj-sh-total-row dj-sh-shipping-cost">
-                    <span>هزینه ارسال <svg class="dj-sh-icon-svg" viewBox="0 0 24 24" fill="currentColor" title="هزینه ارسال بر اساس آدرس، زمان و روش ارسال محاسبه می‌شود"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path></svg></span>
-                    <span id="shipping-cost-display">وابسته به آدرس و زمان</span>
-                </div>
-                <div class="dj-sh-total-row" id="summary-discount-row"><span>تخفیف کالاها</span><span class="dj-sh-discount" id="summary-discount-value">۰ <span class="dj-sh-currency">تومان</span></span></div>
-                <div class="dj-sh-total-row dj-sh-final-total"><span>مبلغ قابل پرداخت</span><span id="final-total-display">۴٬۸۵۰٬۰۰۰ <span class="dj-sh-currency">تومان</span></span></div>
-            </div>
-            <button id="continue-button" class="dj-sh-btn dj-sh-btn-primary dj-sh-btn-block dj-sh-btn-continue" disabled>ادامه فرآیند خرید</button>
-            <p class="dj-sh-terms">ثبت سفارش به معنی موافقت با <a href="#">شرایط و قوانین من مارکت</a> است.</p>
-        </aside>
-    </div>
-
-    <div class="dj-sh-modal" id="add-address-modal">
-        <div class="dj-sh-modal-overlay" data-modal-close></div>
-        <div class="dj-sh-modal-dialog">
-            <div class="dj-sh-modal-content">
-                <div class="dj-sh-modal-header"><h5 class="dj-sh-modal-title" id="addAddressModalLabel">افزودن آدرس جدید</h5></div>
-                <div class="dj-sh-modal-body">
-                    <form id="add-address-form">
-                        <div class="dj-sh-form-group dj-sh-row">
-                            <div><label for="add-province-input" class="dj-sh-form-label">استان *</label><input type="text" class="dj-sh-form-control" id="add-province-input" required placeholder="استان"></div>
-                            <div><label for="add-city-input" class="dj-sh-form-label">شهر *</label><input type="text" class="dj-sh-form-control" id="add-city-input" required placeholder="شهر"></div>
-                        </div>
-                        <div class="dj-sh-form-group"><label for="add-address-textarea" class="dj-sh-form-label">آدرس پستی *</label><textarea class="dj-sh-form-control" id="add-address-textarea" required placeholder="آدرس دقیق پستی"></textarea></div>
-                        <div class="dj-sh-form-group dj-sh-row">
-                            <div><label for="add-postal-code-input" class="dj-sh-form-label">کد پستی *</label><input type="text" pattern="[0-9]{10}" class="dj-sh-form-control" id="add-postal-code-input" required placeholder="مثال: ۱۲۳۴۵۶۷۸۹۰"></div>
-                            <div><label for="add-unit-input" class="dj-sh-form-label">پلاک / واحد</label><input type="text" class="dj-sh-form-control" id="add-unit-input" placeholder="پلاک و واحد"></div>
-                        </div>
-                        <div class="dj-sh-form-group dj-sh-row">
-                            <div><label for="add-recipient-name-input" class="dj-sh-form-label">نام گیرنده *</label><input type="text" class="dj-sh-form-control" id="add-recipient-name-input" required placeholder="نام و نام خانوادگی"></div>
-                            <div><label for="add-recipient-mobile-input" class="dj-sh-form-label">شماره موبایل *</label><input type="tel" pattern="09[0-9]{9}" class="dj-sh-form-control" id="add-recipient-mobile-input" required placeholder="مثال: ۰۹۱۲۳۴۵۶۷۸۹"></div>
-                        </div>
-                        <p style="font-size: 0.8em; color: #767790;">* پر کردن فیلدهای ستاره‌دار الزامی است.</p>
-                    </form>
-                </div>
-                <div class="dj-sh-modal-footer"><button type="button" class="dj-sh-btn dj-sh-btn-cancel" data-modal-close>انصراف</button><button type="submit" form="add-address-form" class="dj-sh-btn dj-sh-btn-primary">ثبت آدرس</button></div>
             </div>
         </div>
-    </div>
 
-    <div class="dj-sh-modal" id="edit-address-modal">
-        <div class="dj-sh-modal-overlay" data-modal-close></div>
-        <div class="dj-sh-modal-dialog">
-            <div class="dj-sh-modal-content">
-                <div class="dj-sh-modal-header"><h5 class="dj-sh-modal-title" id="editAddressModalLabel">ویرایش آدرس</h5></div>
-                <div class="dj-sh-modal-body">
-                    <form id="edit-address-form">
-                        <input type="hidden" id="edit-address-id-hidden">
-                        <div class="dj-sh-form-group dj-sh-row">
-                            <div><label for="edit-province-input" class="dj-sh-form-label">استان *</label><input type="text" class="dj-sh-form-control" id="edit-province-input" required></div>
-                            <div><label for="edit-city-input" class="dj-sh-form-label">شهر *</label><input type="text" class="dj-sh-form-control" id="edit-city-input" required></div>
-                        </div>
-                        <div class="dj-sh-form-group"><label for="edit-address-textarea" class="dj-sh-form-label">آدرس پستی *</label><textarea class="dj-sh-form-control" id="edit-address-textarea" required></textarea></div>
-                        <div class="dj-sh-form-group dj-sh-row">
-                            <div><label for="edit-postal-code-input" class="dj-sh-form-label">کد پستی *</label><input type="text" pattern="[0-9]{10}" class="dj-sh-form-control" id="edit-postal-code-input" required></div>
-                            <div><label for="edit-unit-input" class="dj-sh-form-label">پلاک / واحد</label><input type="text" class="dj-sh-form-control" id="edit-unit-input"></div>
-                        </div>
-                        <div class="dj-sh-form-group dj-sh-row">
-                            <div><label for="edit-recipient-name-input" class="dj-sh-form-label">نام گیرنده *</label><input type="text" class="dj-sh-form-control" id="edit-recipient-name-input" required></div>
-                            <div><label for="edit-recipient-mobile-input" class="dj-sh-form-label">شماره موبایل *</label><input type="tel" pattern="09[0-9]{9}" class="dj-sh-form-control" id="edit-recipient-mobile-input" required></div>
-                        </div>
-                        <p style="font-size: 0.8em; color: #767790;">* پر کردن فیلدهای ستاره‌دار الزامی است.</p>
-                    </form>
-                </div>
-                <div class="dj-sh-modal-footer"><button type="button" class="dj-sh-btn dj-sh-btn-cancel" data-modal-close>انصراف</button><button type="submit" form="edit-address-form" class="dj-sh-btn dj-sh-btn-primary">ذخیره تغییرات</button></div>
+        <!-- کارت هدیه -->
+        <div class="py-m-promo-section">
+            <h3>کارت هدیه</h3>
+            <div class="py-m-input-group">
+                <input type="text" id="py-m-gift_card_code" placeholder="کد کارت هدیه خود را وارد کنید">
+                <button onclick="pyMapplyGiftCard()">ثبت کارت</button>
+            </div>
+            <p id="py-m-gift_card_message" class="py-m-promo-message"></p>
+        </div>
+
+        <!-- بخش مشاهده کالاهای سفارش -->
+        <div class="py-m-order-items-section" id="py-m-order-items-container-main">
+            <div class="py-m-order-items-toggle" onclick="pyMtoggleOrderItems()">
+                <span class="py-m-order-items-toggle-title" id="py-m-items-toggle-text">مشاهده کالاهای سفارش (۰ کالا)</span>
+                <span class="py-m-order-items-toggle-icon">
+                        <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>
+                    </span>
+            </div>
+            <div class="py-m-order-items-list-container" id="py-m-items-list-content">
+                <!-- آیتم‌های سفارش اینجا با جاوااسکریپت اضافه می شوند -->
             </div>
         </div>
-    </div>
 
-    <div class="dj-sh-modal" id="confirmation-modal">
-        <div class="dj-sh-modal-overlay" data-modal-close></div>
-        <div class="dj-sh-modal-dialog dj-sh-confirmation-dialog">
-            <div class="dj-sh-modal-content">
-                <div class="dj-sh-modal-body">
-                    <p id="confirmation-message">آیا از حذف این مورد اطمینان دارید؟</p>
-                </div>
-                <div class="dj-sh-modal-footer">
-                    <button type="button" class="dj-sh-btn dj-sh-btn-cancel" id="cancel-delete-btn" data-modal-close>انصراف</button>
-                    <button type="button" class="dj-sh-btn" id="confirm-delete-btn">بله، حذف کن</button>
-                </div>
+        <!-- کد تخفیف -->
+        <div class="py-m-promo-section">
+            <h3>کد تخفیف</h3>
+            <div class="py-m-input-group">
+                <input type="text" id="py-m-discount_code" placeholder="کد تخفیف خود را وارد کنید">
+                <button onclick="pyMapplyDiscount()">ثبت کد</button>
+            </div>
+            <p id="py-m-discount_message" class="py-m-promo-message"></p>
+        </div>
+
+        <!-- باکس هشدار خاکستری -->
+        <div class="py-m-info-notice">
+                <span class="py-m-info-notice-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 15c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1v4c0 .55-.45 1-1 1zm1-8h-2V7h2v2z"></path>
+                    </svg>
+                </span>
+            <p class="py-m-info-notice-text">
+                پس از اتمام فرآیند خرید و پرداخت موفق، امکان لغو یا تغییر سفارش وجود ندارد. در صورت نیاز به راهنمایی با پشتیبانی تماس بگیرید.
+            </p>
+        </div>
+
+    </main>
+
+    <aside class="py-m-sidebar">
+        <h2 class="py-m-section-title">خلاصه پرداخت</h2>
+        <div class="py-m-order-summary-totals">
+            <ul>
+                <li>
+                    <span>مبلغ کل کالاها</span>
+                    <span id="py-m-subtotal_price" class="py-m-price-value">۰ <span class="py-m-currency">تومان</span></span>
+                </li>
+                <li>
+                    <span>هزینه ارسال</span>
+                    <span id="py-m-shipping_cost" class="py-m-price-value">۰ <span class="py-m-currency">تومان</span></span>
+                </li>
+            </ul>
+            <div class="py-m-total-price-row">
+                <span>مبلغ قابل پرداخت</span>
+                <span class="py-m-price-amount" id="py-m-total_payable">۰ <span class="py-m-currency">تومان</span></span>
             </div>
         </div>
-    </div>
-
-</section>
-
-
+        <button class="py-m-pay-button" id="py-m-final-pay-button" onclick="pyMproceedToPayment()" disabled>پرداخت و تکمیل خرید</button>
+        <p class="py-m-checkout-agreement">
+            ثبت سفارش به معنی پذیرش <a href="#">شرایط و قوانین</a> است.
+        </p>
+    </aside>
+</div>
 
 
 
@@ -1008,7 +900,139 @@
 
 
 
+<script>
+    let pyM_initialSubtotal = 0;
+    let pyM_shippingCost = 0;
+    let pyM_appliedGiftCardAmount = 0;
+    let pyM_appliedDiscountCodeAmount = 0;
+    let pyM_isPaymentMethodSelected = false;
 
+    const pyM_orderItemsData = [
+        { id: 1, name: "گوشی موبایل سامسونگ مدل Galaxy A54 5G دو سیم کارت ظرفیت 256 گیگابایت و رم 8 گیگابایت - ویتنام", quantity: 1, unitPrice: 1250000, image: "https://dkstatics-public.digikala.com/digikala-products/f880161405764447808928861428212643375716_1680349761.jpg?x-oss-process=image/resize,m_lfit,h_80,w_80/quality,q_80" },
+        { id: 2, name: "هدفون بی سیم اپل مدل AirPods Pro (2nd generation) همراه با محفظه شارژ", quantity: 1, unitPrice: 1300000, image: "https://dkstatics-public.digikala.com/digikala-products/ec9a96388938099799846834a51be38d85930363_1663490049.jpg?x-oss-process=image/resize,m_lfit,h_80,w_80/quality,q_80" }
+    ];
+
+    const pyM_payButton = document.getElementById('py-m-final-pay-button');
+    const pyM_itemsListContent = document.getElementById('py-m-items-list-content');
+    const pyM_itemsToggleText = document.getElementById('py-m-items-toggle-text');
+    const pyM_orderItemsContainerMain = document.getElementById('py-m-order-items-container-main');
+
+
+    function pyMtogglePayButton() { pyM_payButton.disabled = !pyM_isPaymentMethodSelected; }
+    function pyMselectPaymentMethod(element, radioId) {
+        document.querySelectorAll('.py-m-payment-option').forEach(opt => opt.classList.remove('py-m-selected'));
+        element.classList.add('py-m-selected');
+        document.getElementById(radioId).checked = true;
+        pyM_isPaymentMethodSelected = true;
+        pyMtogglePayButton();
+    }
+    function pyMformatPrice(number) { return number.toLocaleString('fa-IR'); }
+    function pyMshowMessage(elementId, message, type) {
+        const el = document.getElementById(elementId);
+        el.textContent = message;
+        el.className = 'py-m-promo-message';
+        el.classList.add(`py-m-${type}`);
+        el.classList.add('py-m-show');
+        setTimeout(() => { el.classList.remove('py-m-show'); }, 4000);
+    }
+    function pyMapplyGiftCard() {
+        const codeInput = document.getElementById('py-m-gift_card_code');
+        if (codeInput.value.toLowerCase() === "gift100") {
+            pyM_appliedGiftCardAmount = 100000;
+            pyMshowMessage('py-m-gift_card_message', `کارت هدیه ${pyMformatPrice(pyM_appliedGiftCardAmount)} تومانی اعمال شد.`, 'success');
+        } else if (codeInput.value) {
+            pyM_appliedGiftCardAmount = 0;
+            pyMshowMessage('py-m-gift_card_message', 'کد کارت هدیه نامعتبر است.', 'error');
+        } else {
+            pyM_appliedGiftCardAmount = 0;
+            document.getElementById('py-m-gift_card_message').classList.remove('py-m-show');
+        }
+        codeInput.value = '';
+        pyMupdateTotals();
+    }
+    function pyMapplyDiscount() {
+        const codeInput = document.getElementById('py-m-discount_code');
+        if (codeInput.value.toLowerCase() === "takhfif20") {
+            let baseForDiscount = pyM_initialSubtotal - pyM_appliedGiftCardAmount;
+            if (baseForDiscount < 0) baseForDiscount = 0;
+            let discountVal = Math.min(baseForDiscount * 0.20, 50000);
+            pyM_appliedDiscountCodeAmount = Math.max(0, discountVal);
+            pyMshowMessage('py-m-discount_message', `تخفیف ${pyMformatPrice(pyM_appliedDiscountCodeAmount)} تومانی اعمال شد.`, 'success');
+        } else if (codeInput.value) {
+            pyM_appliedDiscountCodeAmount = 0;
+            pyMshowMessage('py-m-discount_message', 'کد تخفیف نامعتبر است.', 'error');
+        } else {
+            pyM_appliedDiscountCodeAmount = 0;
+            document.getElementById('py-m-discount_message').classList.remove('py-m-show');
+        }
+        codeInput.value = '';
+        pyMupdateTotals();
+    }
+
+    function pyMrenderOrderItems() {
+        pyM_itemsListContent.innerHTML = '';
+        let currentSubtotal = 0;
+        let totalItemsCount = 0;
+        pyM_orderItemsData.forEach(item => {
+            const itemTotalPrice = item.quantity * item.unitPrice;
+            currentSubtotal += itemTotalPrice;
+            totalItemsCount += item.quantity;
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('py-m-order-item');
+            itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name.substring(0,30)}" class="py-m-order-item-image">
+                    <div class="py-m-order-item-info">
+                        <div class="py-m-order-item-name">${item.name}</div>
+                        <div class="py-m-order-item-details-row">
+                            <span>تعداد: ${pyMformatPrice(item.quantity)}</span>
+                            <span class="py-m-order-item-price">${pyMformatPrice(itemTotalPrice)} <span class="py-m-currency">تومان</span></span>
+                        </div>
+                    </div>`;
+            pyM_itemsListContent.appendChild(itemElement);
+        });
+        pyM_initialSubtotal = currentSubtotal;
+        pyM_itemsToggleText.textContent = `مشاهده کالاهای سفارش (${pyMformatPrice(totalItemsCount)} کالا)`;
+    }
+
+    function pyMupdateTotals() {
+        const subtotalDisplay = document.getElementById('py-m-subtotal_price');
+        const shippingDisplay = document.getElementById('py-m-shipping_cost');
+        const totalPayableDisplay = document.getElementById('py-m-total_payable');
+        subtotalDisplay.innerHTML = `${pyMformatPrice(pyM_initialSubtotal)} <span class="py-m-currency">تومان</span>`;
+        if (pyM_shippingCost === 0) {
+            shippingDisplay.textContent = "رایگان";
+            shippingDisplay.classList.add('py-m-shipping-free');
+        } else {
+            shippingDisplay.innerHTML = `${pyMformatPrice(pyM_shippingCost)} <span class="py-m-currency">تومان</span>`;
+            shippingDisplay.classList.remove('py-m-shipping-free');
+        }
+        let priceAfterGiftCard = pyM_initialSubtotal - pyM_appliedGiftCardAmount;
+        if (priceAfterGiftCard < 0) priceAfterGiftCard = 0;
+        let priceAfterDiscountCode = priceAfterGiftCard - pyM_appliedDiscountCodeAmount;
+        if (priceAfterDiscountCode < 0) priceAfterDiscountCode = 0;
+        let finalPayable = priceAfterDiscountCode + pyM_shippingCost;
+        if (finalPayable < 0) finalPayable = 0;
+        totalPayableDisplay.innerHTML = `${pyMformatPrice(finalPayable)} <span class="py-m-currency">تومان</span>`;
+    }
+
+    function pyMtoggleOrderItems() {
+        pyM_orderItemsContainerMain.classList.toggle('py-m-open');
+    }
+
+    function pyMproceedToPayment() {
+        if (!pyM_isPaymentMethodSelected) {
+            alert("لطفا ابتدا شیوه پرداخت را انتخاب کنید."); return;
+        }
+        const totalPayable = parseFloat(document.getElementById('py-m-total_payable').textContent.replace(/,/g, '').replace(/ تومان/g, ''));
+        alert(`در حال هدایت به درگاه پرداخت برای مبلغ: ${pyMformatPrice(totalPayable)} تومان`);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        pyMrenderOrderItems();
+        pyMupdateTotals();
+        pyMtogglePayButton();
+    });
+</script>
 
 <div class="custom-overlay"></div>
 <!--<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>-->

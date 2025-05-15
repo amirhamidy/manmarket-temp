@@ -91,12 +91,6 @@ p{
   margin-bottom: 0 !important;
 }
 
-input{
-  display: block;
-  width: 100%;
-  font: inherit;
-}
-
 input::placeholder { font: inherit; }
 
 body {
@@ -204,6 +198,15 @@ main{
   overflow-y: hidden !important;
 }
 
+
+
+
+.p-wrap{
+
+  p{
+    white-space: normal !important;
+  }
+}
 
 
 

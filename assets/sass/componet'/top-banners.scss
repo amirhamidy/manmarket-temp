@@ -1,56 +1,61 @@
-.btn-tv{
-  background-color: #f96747;
-  border-radius: 30px;
-  color: white;
-  transition: 1s;
-  font-size: 10px;
-  &:hover{
-    background-color: black;
-    color: white;
-    a{
-      color: white;
-    }
-  }
-  a{
-    text-decoration: none;
-    color: black;
-    transition: 1s;
-  }
+.w-center{
+  text-align: -webkit-center;
 }
 
-.btn-camera{
-  background-color: #f96747;
-  border-radius: 30px;
-  color: white;
-  transition: 1s;
-  &:hover{
-    background-color: black;
-    color: white;
-  }
-}
-
-p , button{
-  white-space: nowrap !important;
-}
-
-.title-banner{
-  font-size: 13px;
-}
-
-
-
-
-.copyright{
-  white-space: normal !important;
-  padding: 5px 0;
-}
-
-.btn-for-tv,.btn-for-camera,.btn-for-camera-x,.btn-for-computer{
-  padding: 9px 10px;
-}
-
-
-.cs-center{
+.category-slider-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
   text-align: -webkit-center !important;
 }
+
+.w-right{
+  text-align: -webkit-right !important;
+}
+
+
+.slider-wrapper {
+  display: flex;
+  gap: 20px;
+  user-select: none;
+  will-change: transform;
+
+}
+
+.slide-item {
+  text-align: center;
+  position: relative;
+
+}
+
+.category-circle {
+  width: 90px;
+  height: 90px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.slide-item img {
+  width: 140px;
+  height: auto;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+  object-fit: contain;
+}
+
+.category-name {
+  margin-top: 30px;
+  font-size: 13px;
+  color: #333;
+  white-space: nowrap;
+}
+
 

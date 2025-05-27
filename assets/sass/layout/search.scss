@@ -1782,8 +1782,11 @@ aside.main-row-bg .card-product-horizontal .card-product-horizontal-content {
   width: 100%;
   display: block;
   margin: 0 auto;
+  height: 200px;
 }
-
+.card-main-2{
+  overflow-y: scroll !important;
+}
 /* redio--------------------------*/
 
 .form-auth-row {

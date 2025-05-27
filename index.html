@@ -5,11 +5,448 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>من مارکت</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <style>
+        :root {
+            --base-text-color: #1f1f1f;
+            --secondary-text-color: #5f5f5f;
+            --accent-color-hover: hsl(353, 80%, 60%);
+            --accent-color-hover-rgb: 240, 78, 106;
+            --accent-color-active: hsl(353, 85%, 55%);
+            --accent-primary-static: #ef4056;
+            --border-color: #ededed;
+            --background-light: #ffffff;
+            --background-section: #fafafa;
+            --border-radius-base: 8px;
+            --transition-base: all 0.3s ease-in-out;
+            --transition-fast: all 0.2s ease-out;
+            --shadow-sm: 0 3px 6px rgba(0, 0, 0, 0.04);
+            --shadow-base: 0 6px 15px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- STYLES FOR THE MEGA MENU TRIGGER (Adapted from .navbar-nav .nav-link) --- */
+        .mega-menu-trigger-wrapper {
+            margin-bottom: 5px; /* Space before panel if it's directly below */
+            position: relative; /* Important for panel positioning */
+            z-index: 99999999999; /* Above panel when not shown, but panel needs higher when shown */
+        }
+        .nav-link-mega-trigger {
+            color: var(--secondary-text-color);
+            position: relative;
+            border-radius: var(--border-radius-base);
+            font-size: 0.9rem;
+            display: inline-block;
+            background-color: var(--background-light);
+        }
+
+
+
+        /* --- DESKTOP MEGA TAB MENU STYLES --- */
+        .mega-menu-panel.mega-tab-menu {
+            display: block;
+            position: absolute; /* Positioned relative to .mega-menu-trigger-wrapper or a similar parent */
+            top: 100%; /* Directly below the trigger wrapper */
+            right: 0;
+            left: 0;
+            width: 100vh;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color); /* Added border to match original header structure */
+            border-top: none; /* No top border if it's attached below a header bar */
+            z-index: 1000;
+            padding: 0;
+            border-bottom-left-radius: 7px ;
+            border-bottom-right-radius: 7px ;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+            pointer-events: none;
+            background-color: white;
+            max-height: 520px; /* Original max-height */
+            /* overflow: hidden; */ /* Original: overflow: hidden; Changed to auto when shown */
+        }
+        .mega-menu-panel.mega-tab-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            transition-delay: 0s;
+            pointer-events: auto;
+            overflow: visible;
+        }
+        .mega-menu-panel.mega-tab-menu .row {
+            /* height: 100%; */ /* Removed, let content dictate height up to max-height of panel */
+            margin-right: 0; /* Bootstrap override for g-0 */
+            margin-left: 0;  /* Bootstrap override for g-0 */
+        }
+        .mega-menu-categories {
+            background-color: var(--background-section);
+            padding: 0 0;
+            border-left: 1px solid var(--border-color); /* RTL: border on the left */
+            /* height: 100%; */ /* Let it take height of content */
+            overflow-y: auto;
+            max-height: calc(520px - 2rem); /* Adjust for padding if panel has fixed height */
+        }
+        .mega-category-list {
+            margin: 0;
+            /* Space at the bottom */
+            padding: 0 ;
+        }
+        .mega-category-item {
+            list-style: none;
+        }
+        .mega-category-item a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--secondary-text-color);
+            border-right: 3px solid transparent; /* RTL: border on the right */
+            transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+            white-space: nowrap;
+        }
+        .mega-category-item a svg {
+            width: 1.4em;
+            font-size: 1.1em;
+            color: var(--secondary-text-color);
+            transition: color 0.15s ease;
+            margin-left: 0.5rem;
+        }
+        .mega-category-item:hover a,
+        .mega-category-item.active a {
+            background-color: #FFEEF1F9;
+            color: #ff4f29 !important;
+            border-right-color: #f96747;
+        }
+        .mega-category-item:hover a i,
+        .mega-category-item.active a i {
+            color: var(--accent-primary-static);
+        }
+        .mega-menu-content-area {
+            padding: 1.5rem 2rem;
+            position: relative;
+            /* height: 100%; */ /* Let it take height of content */
+            overflow-y: auto;
+            max-height: calc(520px - 3rem); /* Adjust for padding if panel has fixed height */
+        }
+        .mega-menu-pane {
+            display: none;
+            padding-bottom: 1rem;
+        }
+        .mega-menu-pane.active {
+            display: block;
+            animation: fadeInMegaMenu 0.3s ease-out;
+        }
+        @keyframes fadeInMegaMenu {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .mega-menu-sub-column h6 {
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .mega-menu-sub-column h6 a {
+            color: var(--base-text-color);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .mega-menu-sub-column h6 a i { /* Chevron icon */
+            font-size: 0.7em;
+            color: var(--secondary-text-color);
+            transition: transform 0.2s ease;
+        }
+        .mega-menu-sub-column h6 a:hover {
+            color: #ff4f29 !important;
+        }
+        .mega-menu-sub-column h6 a svg{
+            transition: 0.3s;
+        }
+        .mega-menu-sub-column h6 a:hover svg {
+            transform: translateX(-3px); /* RTL: moves left */
+            color: var(--accent-color-hover);
+        }
+        .mega-menu-sub-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .mega-menu-sub-column ul li a {
+            display: block;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            color: var(--secondary-text-color);
+            transition: color 0.2s ease, padding-right 0.2s ease;
+            margin: 5px auto ;
+            white-space: nowrap;
+        }
+        .mega-menu-sub-column ul li a:hover {
+            color: #ff4f29 !important;
+            padding-right: 2px; /* RTL: indent on hover */
+        }
+        .mega-menu-banner img {
+            border-radius: calc(var(--border-radius-base) / 2);
+            max-width: 100%;
+            height: auto;
+        }
+        /* --- Brand Logo Slider --- */
+        .brand-sl-container {
+            width: 100%; /* یا هر عرضی که برای کانتینر اصلی در نظر دارید */
+            overflow: hidden; /* این خیلی مهمه! */
+            padding: 20px 0;
+            position: relative; /* برای کنترل بهتر */
+            box-sizing: border-box;
+        }
+
+        .brand-sl-wrapper {
+            display: flex; /* برای چیدن افقی آیتم‌ها */
+            /* عرض wrapper توسط جاوااسکریپت تنظیم می‌شود */
+            /* transition برای انیمیشن نرم */
+            transition: transform 0.5s ease-in-out; /* سرعت انیمیشن حرکت اسلاید */
+        }
+
+        .brand-sl-item {
+            /* هر آیتم 20% عرض کانتینر رو می‌گیره تا 5 تا نمایش داده بشه */
+            flex: 0 0 20%;
+            box-sizing: border-box;
+            padding: 0 15px; /* فاصله بین لوگوها */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ow-container { /* تغییر نام کلاس */
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+        .ow-item { /* تغییر نام کلاس */
+            padding: 20px 60px;
+            margin: 10px;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+        .ow-item h4 {
+            margin: 0;
+        }
+
+        .owl-nav button.owl-prev,
+        .owl-nav button.owl-next {
+            display: none !important;
+            visibility: hidden !important;
+        }
+
+        .owl-dots .owl-dot span {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        .owl-dots .owl-dot.active span,
+        .owl-dots .owl-dot:hover span {
+                display: none !important;
+            visibility: hidden !important;
+        }
+
+
+
+
+
+
+        /* استایل‌های پایه مودال */
+        .modal {
+            display: none; /* به صورت پیش‌فرض مخفی */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* اسکرول در صورت نیاز */
+            background-color: rgba(0,0,0,0.6); /* پس‌زمینه نیمه‌شفاف */
+            -webkit-overflow-scrolling: touch;
+            direction: rtl; /* برای محتوای فارسی */
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 25px;
+            border: 1px solid #ccc;
+            width: 90%;
+            max-width: 750px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            /*
+            animation-name: fadeInModal;
+            animation-duration: 0.3s;
+            animation-timing-function: ease-out;
+            */
+            text-align: right;
+        }
+
+        /*
+        @keyframes fadeInModal {
+            from { opacity: 0; transform: translateY(-20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        */
+
+        .modal-body {
+            display: flex;
+            flex-direction: row;
+            gap: 25px;
+        }
+
+        .modal-image-container {
+            flex: 1;
+            max-width: 40%;
+        }
+
+        .modal-image-container img#modalProductImage {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            object-fit: contain;
+            max-height: 400px;
+        }
+
+        .modal-details-container {
+            flex: 1.5;
+        }
+
+        #modalProductName {
+            margin-top: 0;
+            font-size: 1.6em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        #modalProductPriceContainer .price { /* استایل برای span.price داخل مودال */
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #28a745;
+            margin: 10px 0 20px 0;
+            display: block;
+        }
+        #modalProductPriceContainer .price svg { /* استایل برای SVG داخل span.price در مودال */
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+
+        #modalProductColors h4 {
+            font-size: 1.1em;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        #modalProductColors p {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .color-swatch {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-left: 8px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .color-swatch:hover {
+            transform: scale(1.1);
+        }
+
+        .view-details-button { /* کلاس bg-danger از بوت استرپ رنگ را تعیین می کند */
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            color: white !important; /* برای اطمینان از سفید بودن متن روی bg-danger */
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.2s ease, border-color 0.2s ease; /* برای هاور بوت استرپ */
+        }
+        /* اگر از کلاس bg-danger بوت استرپ استفاده می‌کنید، نیازی به هاور جدا نیست */
+
+
+        .close-button {
+            color: #888;
+            position: absolute;
+            top: 10px;
+            left: 20px; /* برای زبان فارسی، دکمه بستن سمت چپ */
+            font-size: 30px;
+            font-weight: bold;
+            line-height: 1;
+            padding: 0 5px; /* کمی فضا برای کلیک راحت تر */
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        button.view:disabled { /* استایل برای دکمه view وقتی غیرفعاله (اگر ازش استفاده کردید) */
+            cursor: wait;
+            opacity: 0.7;
+        }
+
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 10% auto; /* فاصله بیشتر از بالا در موبایل */
+                padding: 15px;
+            }
+            .modal-body {
+                flex-direction: column; /* چیدمان عمودی */
+            }
+            .modal-image-container {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+            .modal-image-container img#modalProductImage {
+                max-height: 300px; /* ارتفاع تصویر در موبایل */
+            }
+            .modal-details-container {
+                text-align: center; /* وسط‌چین کردن متن در موبایل */
+            }
+            #modalProductName {
+                font-size: 1.3em;
+            }
+            .close-button {
+                top: 8px;
+                left: 15px;
+                font-size: 24px;
+            }
+        }
+    </style>
 
 </head>
 <body>
@@ -44,44 +481,666 @@
 </div>
 
 <!--Header Start-->
-<header>
-    <nav class="desktop-navigation-menu d-flex justify-content-around mt-3 px-5 text-center align-items-center">
+<header class="mb-3">
+    <nav class="desktop-navigation-menu d-flex justify-content-center mt-3 px-5 text-center align-items-center">
+        <!--logo in header -- : start-->
+        <div class="mx-1"><img class="cs-w" alt="من مارکت" src="assets/img/main.logo.jpg"></div>
+        <!--logo in header -- : end---->
+
+        <!--menu -- : start-->
+        <div class="container w-center mr-cs">
+            <ul class="desktop-menu-category-list mb-2 w-center">
+                <li class="menu-category">
+                    <div class="mega-menu-trigger-wrapper">
+                    <a id="mega-menu-trigger-btn-desktop" class="nav-link-mega-trigger" href="#">
+                        <i class="fas fa-bars mx-2"></i>دسته‌بندی کالاها
+                    </a>
+
+                    <!-- Mega Tab Menu -->
+                    <div class="mega-menu-panel mega-tab-menu" id="mega-menu-panel-content-desktop">
+                        <div class="row g-0"> <!-- g-0 removes gutters -->
+                            <div class="col-lg-3 mega-menu-categories">
+                                <ul class="list-unstyled mega-category-list">
+                                    <li class="mega-category-item active" data-target="#pane-digital-desktop">
+                                        <a href="#">
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    width="1em"
+                                                    height="1em"
+                                            >
+                                                <path
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="1.5"
+                                                        d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"
+                                                ></path>
+                                            </svg>
+                                            موبایل
+                                        </a></li>
+                                    <li class="mega-category-item" data-target="#pane-home-desktop">
+                                        <a href="#">
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 1024 1024"
+                                                    width="1em"
+                                                    height="1em"
+                                            >
+                                                <path
+                                                        fill="currentColor"
+                                                        d="M832.144 0H191.856c-53.024 0-96 42.976-96 96v832c0 53.024 42.976 96 96 96h640.288c53.024 0 96-42.976 96-96V96c0-53.024-42.976-96-96-96m32 928c0 17.664-14.336 32-32 32H191.856c-17.664 0-32-14.336-32-32V96c0-17.664 14.336-32 32-32h640.288c17.664 0 32 14.336 32 32zM512.048 800.176c-35.28 0-63.84 28.592-63.84 63.824s28.56 63.841 63.84 63.841c35.264 0 63.84-28.608 63.84-63.84s-28.576-63.825-63.84-63.825m64-704.176h-128c-17.664 0-32 14.336-32 32s14.336 32 32 32h128c17.664 0 32-14.336 32-32s-14.336-32-32-32"
+                                                ></path>
+                                            </svg>
+                                            تبلت
+                                        </a>
+                                    </li>
+                                    <li class="mega-category-item" data-target="#pane-fashion-desktop">
+                                        <a href="#">
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    width="1em"
+                                                    height="1em"
+                                            >
+                                                <path
+                                                        fill="currentColor"
+                                                        fill-rule="evenodd"
+                                                        d="M8.945 2.25h6.11c1.367 0 2.47 0 3.337.117c.9.12 1.658.38 2.26.981c.602.602.86 1.36.982 2.26c.116.867.116 1.97.116 3.337v5.107c0 .899 0 1.648-.08 2.242c-.084.628-.27 1.195-.726 1.65c-.455.456-1.022.642-1.65.726c-.594.08-1.343.08-2.242.08H6.948c-.898 0-1.648 0-2.242-.08c-.628-.084-1.195-.27-1.65-.726c-.456-.455-.642-1.022-.726-1.65c-.08-.594-.08-1.344-.08-2.242V8.945c0-1.367 0-2.47.117-3.337c.12-.9.38-1.658.981-2.26c.602-.602 1.36-.86 2.26-.981c.867-.117 1.97-.117 3.337-.117M5.808 3.853c-.734.099-1.122.28-1.399.556c-.277.277-.457.665-.556 1.4C3.752 6.562 3.75 7.564 3.75 9v5c0 .964.002 1.612.067 2.095c.062.461.169.659.3.789s.327.237.788.3c.483.064 1.131.066 2.095.066h10c.964 0 1.612-.002 2.095-.067c.461-.062.659-.169.789-.3s.237-.327.3-.788c.064-.483.066-1.131.066-2.095V9c0-1.435-.002-2.437-.103-3.192c-.099-.734-.28-1.122-.556-1.399c-.277-.277-.665-.457-1.4-.556c-.755-.101-1.756-.103-3.191-.103H9c-1.435 0-2.437.002-3.192.103M8.25 15a.75.75 0 0 1 .75-.75h6a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75m-7 6a.75.75 0 0 1 .75-.75h20a.75.75 0 0 1 0 1.5H2a.75.75 0 0 1-.75-.75"
+                                                        clip-rule="evenodd"
+                                                ></path>
+                                            </svg>
+                                            لپ تاپ
+                                        </a>
+                                    </li>
+                                    <li class="mega-category-item" data-target="#pane-beauty-desktop">
+                                        <a href="#">
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 14 14"
+                                                    width="1em"
+                                                    height="1em"
+                                            >
+                                                <g
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                >
+                                                    <rect width="13" height="9" x=".5" y="2" rx=".5"></rect>
+                                                    <path d="m6 11l-1 2.5M8 11l1 2.5m-5 0h6"></path>
+                                                </g>
+                                            </svg>
+                                            مانیتور
+                                        </a>
+                                    </li>
+                                    <li class="mega-category-item" data-target="#pane-sports-desktop">
+                                        <a href="#">
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 512 512"
+                                                    width="1em"
+                                                    height="1em"
+                                            >
+                                                <path
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-miterlimit="10"
+                                                        stroke-width="32"
+                                                        d="M467.51 248.83c-18.4-83.18-45.69-136.24-89.43-149.17A91.5 91.5 0 0 0 352 96c-26.89 0-48.11 16-96 16s-69.15-16-96-16a99 99 0 0 0-27.2 3.66C89 112.59 61.94 165.7 43.33 248.83c-19 84.91-15.56 152 21.58 164.88c26 9 49.25-9.61 71.27-37c25-31.2 55.79-40.8 119.82-40.8s93.62 9.6 118.66 40.8c22 27.41 46.11 45.79 71.42 37.16c41.02-14.01 40.44-79.13 21.43-165.04Z"
+                                                ></path>
+                                                <circle cx="292" cy="224" r="20" fill="currentColor"></circle>
+                                                <path
+                                                        fill="currentColor"
+                                                        d="M336 288a20 20 0 1 1 20-19.95A20 20 0 0 1 336 288"
+                                                ></path>
+                                                <circle cx="336" cy="180" r="20" fill="currentColor"></circle>
+                                                <circle cx="380" cy="224" r="20" fill="currentColor"></circle>
+                                                <path
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="32"
+                                                        d="M160 176v96m48-48h-96"
+                                                ></path>
+                                            </svg>
+                                            کنسول بازی
+                                        </a>
+                                    </li>
+                                    <li class="mega-category-item" data-target="#pane-books-desktop">
+                                        <a href="#">
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 16 16"
+                                                    width="1em"
+                                                    height="1em"
+                                            >
+                                                <g fill="currentColor">
+                                                    <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"></path>
+                                                    <path d="M8 4.75a.75.75 0 1 1 0-1.5a.75.75 0 0 1 0 1.5M8 6a2 2 0 1 0 0-4a2 2 0 0 0 0 4m0 3a1.5 1.5 0 1 0 0 3a1.5 1.5 0 0 0 0-3m-3.5 1.5a3.5 3.5 0 1 1 7 0a3.5 3.5 0 0 1-7 0"></path>
+                                                </g>
+                                            </svg>
+                                            اسپیکر
+                                        </a>
+                                    </li>
+                                    <li class="mega-category-item" data-target="#pane-toys-desktop">
+                                        <a href="#">
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 16 16"
+                                                    width="1em"
+                                                    height="1em"
+                                            >
+                                                <path
+                                                        fill="currentColor"
+                                                        d="M8 3a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a6 6 0 1 1 12 0v5a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1V8a5 5 0 0 0-5-5"
+                                                ></path>
+                                            </svg>
+                                            هدست و هدفون
+                                        </a>
+                                    </li>
+                                    <li class="mega-category-item" data-target="#pane-tools-desktop">
+                                        <a href="#">
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    width="1em"
+                                                    height="1em"
+
+                                            >
+                                                <path
+                                                        fill="currentColor"
+                                                        d="M14.5 2a2 2 0 0 1 1.79 1.105c-.187.427-.29.9-.29 1.395c0 .66.183 1.277.5 1.804V6.4l.102.062c.25.368.567.686.935.935C17.83 7.862 18 8.411 18 9v1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v2a3 3 0 0 1-1.5 2.599V20a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-2.401A3 3 0 0 1 6 15V9a3 3 0 0 1 1.5-2.599V4a2 2 0 0 1 2-2zm-5 1.5A.5.5 0 0 0 9 4v2h6V4a.5.5 0 0 0-.5-.5zm7 11.5V9A1.5 1.5 0 0 0 15 7.5H9A1.5 1.5 0 0 0 7.5 9v6A1.5 1.5 0 0 0 9 16.5h6a1.5 1.5 0 0 0 1.5-1.5M9 20a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-2H9zM22 4.5a2.5 2.5 0 1 0-5 0a2.5 2.5 0 0 0 5 0"
+                                                ></path>
+                                            </svg>
+                                            ساعت هوشمند
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-9 mega-menu-content-area">
+                                <!-- Phone in mega-menu -->
+                                <div class="mega-menu-pane active" id="pane-digital-desktop">
+                                    <div class="d-flex justify-content-end flex-column">
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                     اپل
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                     سامسونگ
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                 شیائومی
+                                            </a>
+                                        </h6>
+                                    </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                     نوکیا
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                     آنر
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    متفرقه
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2 w-right justify-content-end">
+                                                <a href="" class="w-right a-cl">
+                                                      دیدن همه ی برند های موبایل ...
+                                                </a>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Tablet in mega-menu -->
+                                <div class="mega-menu-pane" id="pane-home-desktop">
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                اپل
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                سامسونگ
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                شیائومی
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                اچ پی
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                ال جی
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                متفرقه
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2 w-right justify-content-end">
+                                            <a href="" class="w-right a-cl">
+                                                دیدن همه ی برند های تبلت ...
+                                            </a>
+                                        </h6>
+                                    </div>
+                                </div>
+                                <!-- LapTop in mega-menu -->
+                                <div class="mega-menu-pane" id="pane-fashion-desktop">
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                اپل
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                ایسوس
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                ایسر
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                لنوو
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                               اچ پی
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                متفرقه
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2 w-right justify-content-end">
+                                            <a href="" class="w-right a-cl">
+                                                دیدن همه ی برند های لپ تاپ ...
+                                            </a>
+                                        </h6>
+                                    </div>
+                                </div>
+                                <!-- Monitor in mega-menu -->
+                                <div class="mega-menu-pane" id="pane-beauty-desktop">
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                ال جی
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                سامسونگ
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                ام اس ای
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                جی پلاس
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                شیائومی
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                متفرقه
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2 w-right justify-content-end">
+                                            <a href="" class="w-right a-cl">
+                                                دیدن همه ی برند های مانیتور ...
+                                            </a>
+                                        </h6>
+                                </div>
+                                </div>
+                                <!-- Console in mega-menu -->
+                                <div class="mega-menu-pane" id="pane-sports-desktop">
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                پلی استیشن
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                ایکس باکس
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                نینتندو
+                                            </a>
+                                        </h6>
+                                    </div>
+
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                متفرقه
+                                            </a>
+                                        </h6>
+                                    </div>
+                                    <div class="mega-menu-sub-column">
+                                        <h6 class="px-2 w-right justify-content-end">
+                                            <a href="" class="w-right a-cl">
+                                                دیدن همه ی برند های کنسول بازی ...
+                                            </a>
+                                        </h6>
+                                    </div>
+                                </div>
+                                <!-- Speaker in mega-menu -->
+                                <div class="mega-menu-pane" id="pane-books-desktop">
+                                    <div class="d-flex justify-content-end flex-column">
+
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    جی بی ال
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    سونی
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    شیائومی
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                        <h6 class="px-2">
+                                            <a class=" d-flex justify-content-start" href="#">
+                                                آنر
+                                            </a>
+                                        </h6>
+                                    </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                   متفرقه
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2 w-right justify-content-end">
+                                                <a href="" class="w-right a-cl">
+                                                    دیدن همه ی برند های اسپیکر ...
+                                                </a>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- HeadPhone in mega-menu -->
+                                <div class="mega-menu-pane" id="pane-toys-desktop">
+                                    <div class="d-flex justify-content-end flex-column">
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    اپل
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    سامسونگ
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    شیائومی
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    انکر
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    متفرقه
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2 w-right justify-content-end">
+                                                <a href="" class="w-right a-cl">
+                                                    دیدن همه ی برند های هدفون و هدست ...
+                                                </a>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- AplleWatch in mega-menu -->
+                                <div class="mega-menu-pane" id="pane-tools-desktop">
+                                    <div class="d-flex justify-content-end flex-column">
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    اپل
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    سامسونگ
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    شیائومی
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    آنر
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    متفرقه
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2 w-right justify-content-end">
+                                                <a href="" class="w-right a-cl">
+                                                    دیدن همه ی برند های ساعت هوشمند ...
+                                                </a>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Accessory in mega-menu -->
+                                <div class="mega-menu-pane" id="pane-supermarket-desktop">
+                                    <div class="d-flex justify-content-end flex-column">
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    پاور بانک
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    فلش
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    هارد اکسترنال
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                    گجت
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2">
+                                                <a class=" d-flex justify-content-start" href="#">
+                                                   متفرقه
+                                                </a>
+                                            </h6>
+                                        </div>
+                                        <div class="mega-menu-sub-column">
+                                            <h6 class="px-2 w-right justify-content-end">
+                                                <a href="" class="w-right a-cl">
+                                                    دیدن همه ی برند های تبلت ...
+                                                </a>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <li class="menu-category">
+                    <a href="index.html" class="menu-title">خانه</a>
+                </li>
+                <li class="menu-category">
+                    <a href="contact.html" class="menu-title">تماس  با  ما</a>
+                </li>
+                <li class="menu-category">
+                    <a href="about.html" class="menu-title">درباره  ما</a>
+                </li>
+                <li class="menu-category">
+                    <a href="blog.html" class="menu-title">بلاگ</a>
+                </li>
+            </ul>
+        </div>
+        <!--menu -- : end---->
 
         <!--icons in header -- :: start-->
         <div class="d-flex justify-content-between icons-in-header">
             <div class="cs-mx show-search-modal btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="جست و جو ">
-                <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 32 32"
-                        width="1em"
-                        height="1em"
-                >
-                    <path
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
-                    ></path>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.3em" height="1.3em"><path fill="currentColor" d="M10.77 18.3a7.53 7.53 0 1 1 7.53-7.53a7.53 7.53 0 0 1-7.53 7.53m0-13.55a6 6 0 1 0 6 6a6 6 0 0 0-6-6"></path><path fill="currentColor" d="M20 20.75a.74.74 0 0 1-.53-.22l-4.13-4.13a.75.75 0 0 1 1.06-1.06l4.13 4.13a.75.75 0 0 1 0 1.06a.74.74 0 0 1-.53.22"></path></svg>
             </div>
             <div class="cs-mx btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="حساب کاربری">
                 <a class="login-a text-dark" href="sing.up.html">
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 16 16"
-                            width="1em"
-                            height="1em"
+                            width="1.1em"
+                            height="1.1em"
                     >
-                        <path
-                                fill="currentColor"
-                                d="M8 .5A7.77 7.77 0 0 0 0 8a7.77 7.77 0 0 0 8 7.5A7.77 7.77 0 0 0 16 8A7.77 7.77 0 0 0 8 .5M5.16 13.67A2.84 2.84 0 0 1 8 11.51a2.82 2.82 0 0 1 2.84 2.16a7.24 7.24 0 0 1-5.68 0m6.84-.61a4.09 4.09 0 0 0-4-2.77a4.09 4.09 0 0 0-3.95 2.78A6.14 6.14 0 0 1 1.25 8A6.52 6.52 0 0 1 8 1.75A6.52 6.52 0 0 1 14.75 8A6.11 6.11 0 0 1 12 13.06"
-                        ></path>
-                        <path
-                                fill="currentColor"
-                                d="M8.05 4.3A2.33 2.33 0 0 0 5.8 6.7a2.33 2.33 0 0 0 2.25 2.4a2.33 2.33 0 0 0 2.25-2.4a2.33 2.33 0 0 0-2.25-2.4m0 3.55a1.08 1.08 0 0 1-1-1.15a1.08 1.08 0 0 1 1-1.15a1.08 1.08 0 0 1 1 1.15a1.08 1.08 0 0 1-1 1.15"
-                        ></path>
+                        <g fill="none" stroke="currentColor">
+                            <circle cx="8" cy="8" r="7.5"></circle>
+                            <circle cx="8" cy="5.5" r="2"></circle>
+                            <path
+                                    stroke-linecap="round"
+                                    d="M11.5 12c-.6-1.5-1.8-2.5-3.5-2.5s-2.9 1-3.5 2.5"
+                            ></path>
+                        </g>
                     </svg>
                 </a>
             </div>
@@ -89,16 +1148,13 @@
                 <a class="text-dark" href="whilist.html">
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 14 14"
-                            width="1em"
-                            height="1em"
+                            viewBox="0 0 256 256"
+                            width="1.2em"
+                            height="1.2em"
                     >
                         <path
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="m7 12.45l-5.52-5c-3-3 1.41-8.76 5.52-4.1c4.11-4.66 8.5 1.12 5.52 4.1Z"
+                                fill="currentColor"
+                                d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82m-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"
                         ></path>
                     </svg>
                 </a>
@@ -110,10 +1166,10 @@
             </div>
             <div class="cs-mx btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="سبد خرید">
                 <svg class="shop-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 14 14"
-                        width="1em"
-                        height="1em"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 14 14"
+                     width="1em"
+                     height="1em"
                 >
                     <path
                             fill="none"
@@ -131,84 +1187,6 @@
             </div>
         </div>
         <!--icons in header -- :: end---->
-
-        <!--menu -- : start-->
-        <div class="container">
-            <ul class="desktop-menu-category-list">
-                <li class="menu-category">
-                    <a href="index.html" class="menu-title">خانه</a>
-                </li>
-                <li class="menu-category">
-                <a href="collection.html" class="menu-title">فروشگاه</a>
-                <div class="dropdown-panel">
-                    <ul class="dropdown-panel-list">
-                        <li class="menu-title"><a href="#">من پلاس </a></li>
-                        <li class="panel-list-item"><a href="#">خرید اکانت</a></li>
-                        <li class="panel-list-item"><a href="#">انرژی مثبت</a></li>
-                        <li class="panel-list-item"><a href="#">خرید بین الملل</a></li>
-                        <li class="panel-list-item"><a href="#">خرید کالا به سفارش شما</a></li>
-                        <li class="panel-list-item">
-                        </li>
-                    </ul>
-
-                    <ul class="dropdown-panel-list">
-                        <li class="menu-title"><a href="#">کالای دیجیتال </a></li>
-                        <li class="panel-list-item"><a href="search.html">موبایل</a></li>
-                        <li class="panel-list-item"><a href="search.html">تبلت</a></li>
-                        <li class="panel-list-item"><a href="search.html">دایرکت</a></li>
-                        <li class="panel-list-item"><a href="search.html">لپ تاپ</a></li>
-                        <li class="panel-list-item"><a href="search.html">مانیتور</a></li>
-                        <li class="panel-list-item"><a href="search.html">لوازم جانبی</a></li>
-                        <li class="panel-list-item"><a href="search.html">کنسول بازی</a></li>
-                        <li class="panel-list-item"><a href="search.html">دوربین عکاسی</a></li>
-                        <li class="panel-list-item"><a href="search.html">کامپیوتر همه کاره</a></li>
-                        <li class="panel-list-item"><a href="search.html">دوربین مدار بسته</a></li>
-                        <li class="panel-list-item"><a href="search.html">ماشین های اداری</a></li>
-                        <li class="panel-list-item"><a href="search.html">بیمه تجهیزات دیجیتال</a></li>
-                        <li class="panel-list-item">
-                        </li>
-                    </ul>
-
-                    <ul class="dropdown-panel-list">
-                        <li class="menu-title"><a href="#">خانه و آشپز خانه </a></li>
-                        <li class="panel-list-item"><a href="search.html">مبلمان</a></li>
-                        <li class="panel-list-item"><a href="search.html">تلویزیون</a></li>
-                        <li class="panel-list-item"><a href="search.html">لوازم برقی</a></li>
-                        <li class="panel-list-item"><a href="search.html">دزدگیر اماکن</a></li>
-                        <li class="panel-list-item"><a href="search.html">اندروید باکس</a></li>
-                        <li class="panel-list-item"><a href="search.html">یخچال و فریزر</a></li>
-                        <li class="panel-list-item"><a href="search.html">سرمایش و گرمایش</a></li>
-                        <li class="panel-list-item">
-                        </li>
-                    </ul>
-
-                    <ul class="dropdown-panel-list">
-                        <li class="menu-title"><a href="#">من تریپ</a></li>
-                        <li class="panel-list-item">
-                        </li>
-                    </ul>
-                </div>
-            </li>
-                <li class="menu-category">
-                    <a href="contact.html" class="menu-title">تماس  با  ما</a>
-                </li>
-                <li class="menu-category">
-                    <a href="about.html" class="menu-title">درباره  ما</a>
-                </li>
-                <li class="menu-category">
-                    <a href="blog.html" class="menu-title">بلاگ</a>
-                </li>
-                <li class="menu-category">
-                    <a href="#" class="menu-title">اعتبار من</a>
-                </li>
-            </ul>
-        </div>
-        <!--menu -- : end---->
-
-        <!--logo in header -- : start-->
-        <div class="mx-1"><img class="cs-w" alt="من مارکت" src="assets/img/main.logo.jpg"></div>
-        <!--logo in header -- : end---->
-
     </nav>
 
     <div class="mobile-bottom-navigation align-items-center">
@@ -432,273 +1410,6 @@
 </header>
 <!--Header End---->
 
-<div style="display: none !important;" class="sidebar has-scrollbar ">
-    <div class="sidebar-category">
-        <div class="sidebar-top">
-            <h2 class="sidebar-title">دسته بندی</h2>
-
-            <button class="sidebar-close-btn" data-mobile-menu-close-btn>
-                <ion-icon name="close-outline"></ion-icon>
-            </button>
-        </div>
-
-        <ul class="sidebar-menu-category-list">
-            <li class="sidebar-menu-category">
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-                    <div class="menu-title-flex">
-                        <p>لباس </p>
-                    </div>
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
-                <ul class="sidebar-submenu-category-list" data-accordion>
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">تی شرت</p>
-                            <data value="300" class="stock" title="Available Stock">300</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">اجناس برند</p>
-                            <data value="60" class="stock" title="Available Stock">60</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">ژاکت</p>
-                            <data value="50" class="stock" title="Available Stock">50</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">زنانه</p>
-                            <data value="87" class="stock" title="Available Stock">87</data>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-menu-category">
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-                    <div class="menu-title-flex">
-                        <p class="menu-title">دیجیتال</p>
-                    </div>
-
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
-                <ul class="sidebar-submenu-category-list" data-accordion>
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">لپ تاپ</p>
-                            <data value="45" class="stock" title="Available Stock">45</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">هندزفری</p>
-                            <data value="75" class="stock" title="Available Stock">75</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">هدفون</p>
-                            <data value="35" class="stock" title="Available Stock">35</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">اپل واچ</p>
-                            <data value="26" class="stock" title="Available Stock">26</data>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-menu-category">
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-                    <div class="menu-title-flex">
-                        <p class="menu-title">اسباب بازی</p>
-                    </div>
-
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
-                <ul class="sidebar-submenu-category-list" data-accordion>
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">پسرانه</p>
-                            <data value="46" class="stock" title="Available Stock">46</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">دخترانه</p>
-                            <data value="73" class="stock" title="Available Stock">73</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">زیر 10 سال</p>
-                            <data value="61" class="stock" title="Available Stock">61</data>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="sidebar-menu-category">
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-                    <div class="menu-title-flex">
-                        <p class="menu-title">لوازم جانبی</p>
-                    </div>
-
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
-                <ul class="sidebar-submenu-category-list" data-accordion>
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">موبایل</p>
-                            <data value="12" class="stock" title="Available Stock">12 pcs</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">لپ تاپ</p>
-                            <data value="60" class="stock" title="Available Stock">60 pcs</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">کیف</p>
-                            <data value="50" class="stock" title="Available Stock">50 pcs</data>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-
-    <div class="product-showcase">
-        <h3 class="showcase-heading">بهترین های این هفته</h3>
-
-        <div class="showcase-wrapper s-img">
-            <div class="showcase-container">
-                <div class="showcase">
-                    <a href="#" class="showcase-img-box">
-                        <img src="assets/img/K.F.1.png" alt="baby fabric shoes" class="showcase-img" width="75" height="75">
-                    </a>
-
-                    <div class="showcase-content">
-                        <a href="#"><h4 class="showcase-title">کفش دخترانه</h4></a>
-
-                        <div class="showcase-rating">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
-
-                        <div class="price-box">
-                            <p class="price">350 هزار تومان</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase">
-                    <a href="#" class="showcase-img-box">
-                        <img src="assets/img/T.S.1.png" alt="men's hoodies t-shirt" class="showcase-img" width="75" height="75">
-                    </a>
-
-                    <div class="showcase-content">
-                        <a href="#"><h4 class="showcase-title">تیشرت مردانه</h4></a>
-
-                        <div class="showcase-rating">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
-
-                        <div class="price-box">
-                            <p class="price">300 هزار تومان </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase">
-                    <a href="#" class="showcase-img-box">
-                        <img src="assets/img/GT.S.1.png" alt="girls t-shirt" class="showcase-img" width="75" height="75">
-                    </a>
-
-                    <div class="showcase-content">
-                        <a href="#"><h4 class="showcase-title">تیشرت دخترانه</h4></a>
-
-                        <div class="showcase-rating">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
-
-                        <div class="price-box">
-                            <p class="price">300 هزار تومان </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase">
-                    <a href="#" class="showcase-img-box">
-                        <img src="assets/img/H.T.1.webp" alt="woolen hat for men" class="showcase-img" width="75" height="75">
-                    </a>
-
-                    <div class="showcase-content">
-                        <a href="#"><h4 class="showcase-title">کلاه اسپرت</h4></a>
-
-                        <div class="showcase-rating">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
-
-                        <div class="price-box">
-                            <p class="price">120 هزار تومان</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <!--search modal __ :: start-->
@@ -746,9 +1457,15 @@
 
 
 
+<!--Admin Icon start -->
+<div class="position-fixed ad-icon">
+<img class="w-25" alt="لگوی ادمین" src="assets/img/category/admin.logo.png">
+</div>
+<!--Admin Icon end -->
+
 
 <!--    main slider :: start------------>
-<section class="swiper mySwiper px-3 my-4">
+<section class="swiper mySwiper px-3">
     <div class="swiper-wrapper">
         <div class="swiper-slide one-bg">
             <img alt="product-slider" src="assets/img/1.slider.png"/>
@@ -774,50 +1491,148 @@
 </section>
 <!--    main slider :: end-------------->
 
+<main class="d-flex justify-content-center flex-column container position-relative px-5 w-center">
 
-
-<main class="d-flex justify-content-center flex-column container position-relative px-5">
-
-
-    <!--top banner :: start------------->
-    <section  class="mt-3 row text-center px-3">
-        <div class="col-md-4 col-sm-6 col-6 position-relative">
-            <img alt="man-market-banners" class="w-100" src="assets/img/4.banner.jpg">
-            <div class="d-flex justify-content-around align-items-baseline flex-wrap">
-                <p class="title-banner">کامپیوتر</p>
-                <a href="#"><button class="btn-tv btn-for-computer ">اکنون خرید کنید</button></a>
+    <section class="w-center">
+        <div class="row">
+            <div class="col-md-3">
+                <span class="align-items-center">
+                کوپن هدیه
+                  <svg class="theme-c mx-2"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 32 32"
+            width="1.5em"
+            height="1.5em"
+    >
+      <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 14v16h24V14M2 9v5h28V9Zm14 0s-2-9-8-6s8 6 8 6s2-9 8-6s-8 6-8 6m0 0v21"
+      ></path>
+    </svg>
+                </span>
             </div>
-        </div>
-        <div class="col-md-2 col-sm-6 col-6 position-relative">
-            <img alt="man-market-banners" class="w-100" src="assets/img/3.banner.jpg">
-            <div class="d-flex justify-content-between align-items-center text-center flex-wrap">
-                <p class="title-banner">دوربین مدار بسته</p>
-                <a href="#"><button class="btn-tv btn-for-camera-x ">اکنون خرید کنید</button></a>
+            <div class="col-md-3">
+                <span class="align-items-center">
+                    بهترین کیفیت
+                  <svg class="theme-c mx-2"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="1.5em"
+            height="1.5em"
+    >
+      <path
+              fill="currentColor"
+              fill-rule="evenodd"
+              d="M12 1.25c-1.828 0-3.339.161-4.502.357l-.134.023c-1.01.169-1.85.31-2.507 1.118c-.42.519-.557 1.08-.588 1.705l-.492.164c-.463.154-.87.29-1.191.44c-.348.162-.667.37-.911.709s-.341.707-.385 1.088c-.04.353-.04.78-.04 1.269v.145c0 .402 0 .757.03 1.054c.032.321.103.634.28.936c.179.303.417.517.683.701c.245.17.555.343.907.538l2.64 1.467c.54 1.061 1.281 2.007 2.3 2.69c.887.596 1.952.97 3.213 1.069a.8.8 0 0 0-.053.277v1.75H9.82a1.75 1.75 0 0 0-1.716 1.407l-.219 1.093H6a.75.75 0 0 0 0 1.5h12a.75.75 0 0 0 0-1.5h-1.885l-.219-1.093a1.75 1.75 0 0 0-1.716-1.407h-1.43V17a.8.8 0 0 0-.053-.277c1.261-.1 2.326-.473 3.213-1.068c1.02-.684 1.76-1.63 2.3-2.691l2.64-1.467c.352-.195.662-.368.907-.538c.265-.184.504-.398.682-.7c.178-.303.25-.616.281-.937c.03-.297.03-.652.03-1.054v-.145c0-.488 0-.916-.04-1.269c-.044-.381-.14-.75-.385-1.088c-.244-.339-.563-.547-.91-.71c-.323-.15-.729-.285-1.192-.439l-.492-.164c-.03-.626-.167-1.186-.588-1.705c-.656-.809-1.496-.95-2.506-1.118l-.135-.023A27 27 0 0 0 12 1.25m2.585 20l-.16-.799a.25.25 0 0 0-.245-.201H9.82a.25.25 0 0 0-.245.201l-.16.799zM4.288 6.028l.014-.005c.072 1.52.243 3.2.671 4.77l-1.066-.591c-.389-.217-.633-.353-.809-.475c-.162-.113-.215-.18-.244-.23c-.03-.05-.062-.128-.082-.324a11 11 0 0 1-.022-.938v-.073c0-.539.001-.88.03-1.138c.028-.238.072-.327.112-.381c.039-.055.109-.125.326-.226c.236-.11.56-.219 1.07-.39m15.41-.005c-.071 1.52-.243 3.2-.67 4.77l1.065-.591c.389-.217.633-.353.809-.475c.162-.113.215-.18.244-.23c.03-.05.062-.128.082-.324c.021-.214.022-.493.022-.938v-.073c0-.539-.001-.88-.03-1.138c-.028-.238-.072-.327-.112-.381c-.039-.055-.109-.125-.326-.226c-.236-.11-.56-.219-1.07-.39zM7.748 3.086A25.6 25.6 0 0 1 12 2.75c1.74 0 3.167.153 4.252.336c1.207.204 1.46.28 1.727.608c.262.322.287.628.233 1.983c-.09 2.258-.388 4.696-1.31 6.55c-.456.914-1.052 1.662-1.827 2.182c-.771.517-1.766.841-3.075.841s-2.303-.324-3.074-.841c-.776-.52-1.372-1.268-1.827-2.183c-.923-1.853-1.22-4.29-1.31-6.55c-.054-1.354-.03-1.66.233-1.982c.266-.328.519-.404 1.726-.608"
+              clip-rule="evenodd"
+      ></path>
+    </svg>
+                </span>
             </div>
-        </div>
-        <div class="col-md-2 col-sm-6 col-6 position-relative">
-            <img alt="man-market-banners" class="w-100" src="assets/img/2.baner.jpg">
-            <div class="d-flex justify-content-between align-items-center text-center">
-                <p class="title-banner">دوربین عکاسی</p>
-                <a href="#"><button class="btn-tv btn-for-camera ">اکنون خرید کنید</button></a>
+            <div class="col-md-3">
+                <span class="align-items-center">
+                      پشتیبانی 7 روزه و 24 ساعته
+               <svg class="theme-c mx-2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="1.5em"
+                    height="1.5em"
+               >
+      <path
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193c-.34.027-.68.052-1.02.072v3.091l-3-3a49.5 49.5 0 0 1-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095a48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402c-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235c.577.075 1.157.14 1.74.194V21l4.155-4.155"
+      ></path>
+    </svg>
+                </span>
             </div>
-        </div>
-        <div class="col-md-2 col-sm-6 col-6 position-relative">
-            <img alt="man-market-banners" class="w-100" src="assets/img/2.baner.jpg">
-            <div class="d-flex justify-content-between align-items-center text-center">
-                <p class="title-banner">دوربین عکاسی</p>
-                <a href="#"><button class="btn-tv btn-for-camera ">اکنون خرید کنید</button></a>
-            </div>
-        </div>
-        <div class="col-md-2 col-sm-6 col-6 position-relative">
-            <img alt="man-market-banners" class="w-100" src="assets/img/2.baner.jpg">
-            <div class="d-flex justify-content-between align-items-center text-center">
-                <p class="title-banner">دوربین عکاسی</p>
-                <a href="#"><button class="btn-tv btn-for-camera ">اکنون خرید کنید</button></a>
+            <div class="col-md-3">
+                <span class="align-items-center">
+                    تحویل سریع و رایگان
+                     <svg class="theme-c mx-2"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                          width="1.5em"
+                          height="1.5em"
+                     >
+      <g fill="currentColor">
+        <path
+                fill-rule="evenodd"
+                d="M1.25 10a8.75 8.75 0 1 0 17.5 0a8.75 8.75 0 0 0-17.5 0m16 0a7.25 7.25 0 1 1-14.5 0a7.25 7.25 0 0 1 14.5 0"
+                clip-rule="evenodd"
+        ></path>
+        <path
+                fill-rule="evenodd"
+                d="M6.25 10c0 4.522 1.491 8.25 3.75 8.25s3.75-3.728 3.75-8.25S12.259 1.75 10 1.75S6.25 5.478 6.25 10m6 0c0 3.762-1.195 6.75-2.25 6.75S7.75 13.762 7.75 10S8.945 3.25 10 3.25s2.25 2.988 2.25 6.75"
+                clip-rule="evenodd"
+        ></path>
+        <path d="m3.602 5.467l1.006-1.112q.15.136.325.267c1.271.952 3.3 1.54 5.515 1.54c1.891 0 3.653-.427 4.931-1.158q.463-.265.819-.57l.974 1.141q-.466.399-1.048.73c-1.516.868-3.534 1.356-5.676 1.356c-2.522 0-4.865-.678-6.415-1.839a6 6 0 0 1-.431-.355m0 9.082l1.006 1.112q.15-.136.325-.267c1.271-.952 3.3-1.54 5.515-1.54c1.891 0 3.653.427 4.931 1.158q.463.265.819.57l.974-1.141a7 7 0 0 0-1.048-.73c-1.516-.868-3.534-1.356-5.676-1.356c-2.522 0-4.865.678-6.415 1.839a6 6 0 0 0-.431.355M1.75 10.75v-1.5h16.5v1.5z"></path>
+      </g>
+    </svg>
+                </span>
             </div>
         </div>
     </section>
-    <!--top banner :: end--------------->
+
+<!--category top banners :: start------>
+    <section class="w-center">
+            <div class="d-flex justify-content-center flex-wrap">
+                <a href="search.html" class="slide-item my-2 mx-2">
+                    <img src="assets/img/main.logo.png" alt="موبایل">
+                    <div class="category-circle"></div>
+                    <p class="category-name">موبایل</p>
+                </a>
+                <a href="search.html" class="slide-item my-2 mx-2">
+                    <img src="assets/img/main.logo.png" alt="تبلت">
+                    <div class="category-circle"></div>
+                    <p class="category-name">تبلت</p>
+                </a>
+                <a href="search.html" class="slide-item my-2 mx-2">
+                    <img src="assets/img/main.logo.png" alt="لپ تاپ">
+                    <div class="category-circle"></div>
+                    <p class="category-name">لپ تاپ</p>
+                </a>
+                <a href="search.html" class="slide-item my-2 mx-2">
+                    <img src="assets/img/main.logo.png" alt="مانیتور">
+                    <div class="category-circle"></div>
+                    <p class="category-name">مانیتور</p>
+                </a>
+                <a href="search.html" class="slide-item my-2 mx-2">
+                    <img src="assets/img/main.logo.png" alt="کنسول بازی">
+                    <div class="category-circle"></div>
+                    <p class="category-name">کنسول بازی</p>
+                </a>
+                <a href="search.html" class="slide-item my-2 mx-2">
+                    <img src="assets/img/main.logo.png" alt="اسپیکر">
+                    <div class="category-circle"></div>
+                    <p class="category-name">اسپیکر</p>
+                </a>
+                <a href="search.html" class="slide-item my-2 mx-2">
+                    <img src="assets/img/main.logo.png" alt="هدست هدفون">
+                    <div class="category-circle"></div>
+                    <p class="category-name">هدست هدفون</p>
+                </a>
+                <a href="search.html" class="slide-item my-2 mx-2">
+                    <img src="assets/img/main.logo.png" alt="ساعت هوشمند">
+                    <div class="category-circle"></div>
+                    <p class="category-name">ساعت هوشمند</p>
+                </a>
+                <a href="search.html" class="slide-item my-2 mx-2">
+                    <img src="assets/img/main.logo.png" alt="لوازم جانبی">
+                    <div class="category-circle"></div>
+                    <p class="category-name">لوازم جانبی</p>
+                </a>
+            </div>
+    </section>
+<!--category top banners :: end-------->
+
 
 
 
@@ -1968,23 +2783,92 @@
 
             </div>
         </div>
+        <div class="d-flex justify-content-center mt-5">
+            <a href="blog.html" class="btn rounded-3 theme-color text-light">
+                دیدن همه
+            </a>
+        </div>
     </div>
 <!-- blog img :: end------->
 
 
 
 <!--gray scale logo :: start-->
-    <section class="container row mt-5 text-center">
-        <h5 class="text-center mb-5">
+    <section>
+        <h5 class="text-center">
 
             <span style="color: red;letter-spacing: -4px;font-size: 20px">------</span>
-            <span class="px-2">برند ها </span>
+            <span class="px-2">محبوب ترین برند ها</span>
             <span style="color: red;letter-spacing: -4px;font-size: 20px">------</span>
         </h5>
-        <div class="col-md-3 col-sm-3 col-6 box-gray-logo"><img alt="logo-in-man-market" class="gray-logo" src="assets/img/test.1.avif"></div>
-        <div class="col-md-3 col-sm-3 col-6 box-gray-logo"><img alt="logo-in-man-market" class="gray-logo" src="assets/img/test.2.webp"></div>
-        <div class="col-md-3 col-sm-3 col-6 box-gray-logo"><img alt="logo-in-man-market" class="gray-logo" src="assets/img/test.3.webp"></div>
-        <div class="col-md-3 col-sm-3 col-6 box-gray-logo"><img alt="logo-in-man-market" class="gray-logo" src="assets/img/test.4.webp"></div>
+
+        <div class="row">
+            <div class="ow-container container col-12">
+                <div class="owl-carousel owl-theme">
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/acer.png" alt="لوگوی برند Acer">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/Anker.png" alt="لوگوی برند Anker">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/Apple.png" alt="لوگوی برند Apple">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/samsung.png" alt="لوگوی برند Samsung">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/xiaomi.png" alt="لوگوی برند Xiaomi">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/Asus.png" alt="لوگوی برند Asus">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/Canon.png" alt="لوگوی برند Canon">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/Dell.b.png" alt="لوگوی برند Dell">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/epson.png" alt="لوگوی برند Epson">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/hp.png" alt="لوگوی برند Hp">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/JBL.png" alt="لوگوی برند JBL">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/lenovo.png" alt="لوگوی برند Lenovo">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/Lg.png" alt="لوگوی برند LG">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/msi.png" alt="لوگوی برند Msi">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/nokia.png" alt="لوگوی برند Nokia">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/acer.png" alt="اییومن">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/playstation.png" alt="لوگوی برند PlayStation">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/QCY.png" alt="لوگوی برند QYC">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/xbox.png" alt="لوگوی برند xbox">
+                    </div>
+                    <div class="ow-item">
+                        <img class="w-100" src="assets/img/category/barnd.png" alt="برند">
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 <!--gray scale logo :: end---->
 
@@ -1995,14 +2879,11 @@
 
 
 
-
-
-
 <!--footer :: start------>
-<footer class="mt-5 py-4">
+<footer class="mt-5">
     <div class="footer-nav">
         <div class="container align-items-baseline">
-            <ul class="footer-nav-list">
+            <ul style="margin-right: 10px !important; padding-right: 35px !important;" class="footer-nav-list">
                 <li class="footer-nav-item"><h2 class="nav-title">لینک های مفید</h2></li>
 
                 <li class="footer-nav-item mt-2"><a href="faq.html" class="footer-nav-link">سوالات متداول</a></li>
@@ -2011,7 +2892,7 @@
                 <li class="footer-nav-item mt-2"><a href="#" class="footer-nav-link">پلتفرم مالی اعتبار من</a></li>
                 <li class="footer-nav-item mt-2"><a href="#" class="footer-nav-link">مفاد ضمانت هفت روزه برگشت وجه</a></li>
             </ul>
-            <ul class="footer-nav-list">
+            <ul style="margin-right: 10px !important; padding-right: 35px !important;" class="footer-nav-list">
                 <li class="footer-nav-item"><h2 class="nav-title">درباره ما</h2></li>
 
                 <li class="footer-nav-item mt-2"><a href="man.market.call.we.html" class="footer-nav-link">تماس با ما</a></li>
@@ -2020,60 +2901,311 @@
                 <li class="footer-nav-item mt-2"><a href="#" class="footer-nav-link">فروشگاه های حضوری</a></li>
                 <li class="footer-nav-item mt-2"><a href="man.market.one.seen.html" class="footer-nav-link">من مارکت در یک نگاه</a></li>
             </ul>
-            <ul class="footer-nav-list d-flex flex-wrap flex-column w-50">
+            <ul style="margin-left: -130px !important;" class="footer-nav-list d-flex flex-wrap flex-column text-center w-50">
                 <li class="footer-nav-item"><h2 class="nav-title">من مارکت</h2></li>
                 <div class="">
-                    <div class="d-flex flex-wrap justify-content-between">
-                        <div class="footer-nav-item b-x-s">
-                            <img class="w-50 mt-2" alt="من مارکت" src="assets/img/E.namad.png">
-                        </div>
-                        <div class="footer-nav-item b-x-s">
+                    <div class="d-flex flex-wrap justify-content-center">
+                        <a referrerpolicy='origin' target='_blank'  href="https://trustseal.enamad.ir/?id=527464&Code=pPrrLy886QxLMhLkgAStOwlJBtPaDni4" class="footer-nav-item b-x-s">
+                            <img referrerpolicy='origin' class="w-50 mt-2" alt="من مارکت" src="assets/img/E.namad.png">
+                        </a>
+                        <a href="" class="footer-nav-item b-x-s">
                             <img class="w-50 mt-2" alt="من مارکت" src="assets/img/E.namad.t">
-                        </div>
-                        <div class="footer-nav-item b-x-s">
+                        </a>
+                        <a href="https://qr.mojavez.ir/track/11011459" class="footer-nav-item b-x-s">
                             <img class="w-50" alt="من مارکت" src="assets/img/E.namad.3.png">
-                        </div>
-                        <div class="footer-nav-item b-x-s">
+                        </a>
+                        <a target="_blank" href="https://www.irannsr.org/" class="footer-nav-item b-x-s">
                             <img class="w-50 mt-3" alt="من مارکت" src="assets/img/E.namad.4.png">
-                        </div>
-                        <div class="footer-nav-item b-x-s">
+                        </a>
+                        <a target="_blank" href="https://daneshbonyan.isti.ir/" class="footer-nav-item b-x-s">
                             <img class="w-50" alt="من مارکت" src="assets/img/E.namad.5.png">
-                        </div>
-                        <div class="footer-nav-item b-x-s">
+                        </a>
+                        <a target="_blank" href="https://www.mcth.ir/" class="footer-nav-item b-x-s">
                             <img class="w-50 mt-2" alt="من مارکت" src="assets/img/E.namad.6.jpg">
-                        </div>
+                        </a>
                     </div>
                 </div>
             </ul>
         </div>
     </div>
 
-    <div class="footer-bottom">
-        <div class="container">
-            <p class="copyright">زیرمجموعه‌ای از اکوسیستم راه ابریشم نو</p>
-        </div>
-    </div>
+    <h6 class="text-center my-4 coppy">زیرمجموعه‌ای از اکوسیستم راه ابریشم نو</h6>
 </footer>
 <!--footer :: end-------->
 
 
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- DESKTOP MEGA TAB MENU ---
+        const megaMenuTriggerDesktop = document.getElementById('mega-menu-trigger-btn-desktop');
+        const megaMenuPanelDesktop = document.getElementById('mega-menu-panel-content-desktop');
+        let megaMenuTimeoutIdDesktop = null;
+        let isMouseInsidePanelOrTriggerDesktop = false;
 
+        if (megaMenuTriggerDesktop && megaMenuPanelDesktop) {
+            const hideDelay = 250; // Milliseconds to wait before hiding
+            const categoryItems = megaMenuPanelDesktop.querySelectorAll('.mega-category-item');
+            const contentPanes = megaMenuPanelDesktop.querySelectorAll('.mega-menu-pane');
+
+            const showMenu = () => {
+                isMouseInsidePanelOrTriggerDesktop = true;
+                clearTimeout(megaMenuTimeoutIdDesktop);
+                megaMenuPanelDesktop.classList.add('show');
+                // Activate first tab if no tab is active yet
+                const firstCategory = categoryItems[0];
+                if (firstCategory && !megaMenuPanelDesktop.querySelector('.mega-category-item.active')) {
+                    activateTab(firstCategory);
+                }
+            };
+
+            const hideMenu = () => {
+                isMouseInsidePanelOrTriggerDesktop = false;
+                megaMenuTimeoutIdDesktop = setTimeout(() => {
+                    if (!isMouseInsidePanelOrTriggerDesktop) {
+                        megaMenuPanelDesktop.classList.remove('show');
+                        // Deactivate all categories and panes when hiding
+                        categoryItems.forEach(item => item.classList.remove('active'));
+                        contentPanes.forEach(pane => pane.classList.remove('active'));
+                    }
+                }, hideDelay);
+            };
+
+            const activateTab = (categoryElement) => {
+                const targetPaneId = categoryElement.dataset.target;
+                if (!targetPaneId) return;
+
+                const targetPane = megaMenuPanelDesktop.querySelector(targetPaneId);
+                if (!targetPane) return;
+
+                // Deactivate all other categories and panes
+                categoryItems.forEach(item => item.classList.remove('active'));
+                contentPanes.forEach(pane => pane.classList.remove('active'));
+
+                // Activate the current one
+                categoryElement.classList.add('active');
+                targetPane.classList.add('active');
+            };
+
+            megaMenuTriggerDesktop.addEventListener('mouseenter', showMenu);
+            megaMenuTriggerDesktop.addEventListener('mouseleave', hideMenu);
+
+            megaMenuPanelDesktop.addEventListener('mouseenter', () => {
+                isMouseInsidePanelOrTriggerDesktop = true;
+                clearTimeout(megaMenuTimeoutIdDesktop); // Keep panel open if mouse enters panel
+            });
+            megaMenuPanelDesktop.addEventListener('mouseleave', hideMenu);
+
+            categoryItems.forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    clearTimeout(megaMenuTimeoutIdDesktop); // Ensure panel stays open
+                    isMouseInsidePanelOrTriggerDesktop = true;
+                    activateTab(item);
+                });
+                // Optional: Handle click on category item to keep menu open or navigate
+                // item.addEventListener('click', (e) => { e.preventDefault(); activateTab(item); });
+            });
+
+            // Close menu on Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && megaMenuPanelDesktop.classList.contains('show')) {
+                    clearTimeout(megaMenuTimeoutIdDesktop); // Clear any pending hide
+                    megaMenuPanelDesktop.classList.remove('show');
+                    isMouseInsidePanelOrTriggerDesktop = false; // Reset state
+                    categoryItems.forEach(item => item.classList.remove('active'));
+                    contentPanes.forEach(pane => pane.classList.remove('active'));
+                }
+            });
+        }
+
+        // --- Minimal THEME TOGGLE for testing ---
+        const themeToggleButtonTest = document.getElementById('theme-toggle-btn-test');
+        const htmlElement = document.documentElement;
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                htmlElement.setAttribute('data-theme', 'dark');
+            } else {
+                htmlElement.removeAttribute('data-theme');
+            }
+            localStorage.setItem('theme', theme);
+        }
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+        if (themeToggleButtonTest) {
+            themeToggleButtonTest.addEventListener('click', () => {
+                const currentTheme = htmlElement.hasAttribute('data-theme') ? 'dark' : 'light';
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                applyTheme(newTheme);
+            });
+        }
+    });
+</script>
+<!-- 3. jQuery (مورد نیاز Owl Carousel) -->
+<!-- 4. Owl Carousel JS -->
 
 
 <div class="custom-overlay"></div>
-<!--<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>-->
-<!--<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>-->
+
+
+
 <script src="assets/js/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script src="assets/js/slider.in.index.js"></script>
 <script  src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- ساختار HTML مودال ---
+        // این مودال یک بار به صفحه اضافه میشه و برای همه محصولات استفاده میشه.
+        const modalHTML = `
+        <div id="productQuickViewModal" class="modal">
+            <div class="modal-content">
+                <span class="close-button">×</span>
+                <div class="modal-body">
+                    <div class="modal-image-container">
+                         <img id="modalProductImage" src="" alt="تصویر محصول">
+                    </div>
+                    <div class="modal-details-container">
+                        <h3 id="modalProductName"></h3>
+                        <div id="modalProductPriceContainer">
+                            <!-- قیمت محصول اینجا قرار میگیره -->
+                        </div>
+                        <div id="modalProductColors">
+                            <h4>رنگ‌های موجود:</h4>
+                            <p id="modalColorInfo">برای نمایش رنگ‌ها، داده مربوطه را به محصول اضافه کنید.</p>
+                        </div>
+                        <a href="single.product.html" id="modalViewDetailsLink" class="view-details-button bg-danger">مشاهده جزئیات کامل محصول</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+        // اضافه کردن مودال به انتهای body
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+        // --- انتخاب اِلِمان‌های مودال ---
+        const quickViewModal = document.getElementById('productQuickViewModal');
+        const closeModalButton = quickViewModal.querySelector('.close-button');
+        const modalProductImage = document.getElementById('modalProductImage');
+        const modalProductName = document.getElementById('modalProductName');
+        const modalProductPriceContainer = document.getElementById('modalProductPriceContainer');
+        const modalViewDetailsLink = document.getElementById('modalViewDetailsLink');
+        const modalColorInfo = document.getElementById('modalColorInfo');
+
+        // --- انتخاب همه دکمه‌های "view" ---
+        const viewButtons = document.querySelectorAll('.slider .slide article .icons button.view');
+
+        viewButtons.forEach(button => {
+            // وظیفه اول: تغییر ساختار دکمه "view" برای حذف تگ <a>
+            const linkTag = button.querySelector('a');
+            if (linkTag) {
+                const svgIcon = linkTag.querySelector('svg');
+                if (svgIcon) {
+                    // خالی کردن محتوای فعلی دکمه
+                    button.innerHTML = '';
+                    // اضافه کردن خود SVG به عنوان فرزند مستقیم دکمه
+                    button.appendChild(svgIcon.cloneNode(true));
+                }
+            }
+
+            // اضافه کردن event listener برای کلیک
+            button.addEventListener('click', function(event) {
+                const currentButton = event.currentTarget; // دکمه‌ای که کلیک شده
+                // currentButton.disabled = true; // می توانید برای تست فعال/غیرفعال کردن دکمه استفاده کنید
+
+                const productArticle = currentButton.closest('article');
+                if (!productArticle) {
+                    // currentButton.disabled = false;
+                    return; // اگر article پیدا نشد، کاری نکن
+                }
+
+                // استخراج اطلاعات محصول از article
+                const productImageElement = productArticle.querySelector('.product img.one-img');
+                const productNameElement = productArticle.querySelector('h3.Specifications');
+                const productPriceElement = productArticle.querySelector('span.price');
+
+                const productDetailHref = "single.product.html"; // اگر لینک‌ها داینامیک هستند، باید از محصول گرفته شود
+
+                // --- پر کردن مودال با اطلاعات محصول ---
+                if (productImageElement) {
+                    modalProductImage.src = productImageElement.src;
+                    modalProductImage.alt = productImageElement.alt;
+                }
+
+                if (productNameElement) {
+                    modalProductName.textContent = productNameElement.textContent.trim();
+                }
+
+                if (productPriceElement) {
+                    modalProductPriceContainer.innerHTML = ''; // پاک کردن محتوای قبلی
+                    const priceClone = productPriceElement.cloneNode(true);
+                    priceClone.classList.remove('position-absolute'); // حذف کلاس موقعیت‌دهی از قیمت
+                    modalProductPriceContainer.appendChild(priceClone);
+                }
+
+                // --- اطلاعات رنگ‌ها (مثال ساده) ---
+                modalColorInfo.innerHTML = "<p>برای نمایش رنگ‌های موجود، لطفاً داده‌های مربوط به رنگ را (مثلاً با data-attribute) به هر محصول در HTML خود اضافه کنید.</p>";
+
+                // تنظیم لینک دکمه "مشاهده جزئیات کامل" در مودال
+                modalViewDetailsLink.href = productDetailHref;
+
+
+                // --- نمایش مودال ---
+                quickViewModal.style.display = 'block';
+
+                // currentButton.disabled = false;
+            });
+        });
+
+        // --- بستن مودال ---
+        if(closeModalButton) {
+            closeModalButton.addEventListener('click', function() {
+                quickViewModal.style.display = 'none';
+            });
+        }
+
+        window.addEventListener('click', function(event) {
+            if (event.target === quickViewModal) {
+                quickViewModal.style.display = 'none';
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        // کلاس .owl-carousel کلاس اصلی کتابخانه است و نباید تغییر کند
+        $(".owl-carousel").owlCarousel({
+            rtl: true,
+            loop: true,
+            margin: 20,
+            nav: true,
+            dots: true,
+            autoplay: true,
+            autoplayTimeout: 1000,
+            autoplayHoverPause: true,
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:1,
+                    nav:false
+                },
+                600:{
+                    items:3,
+                    nav:true
+                },
+                1000:{
+                    items:4
+                },
+                1200:{
+                    items:5
+                }
+            }
+        });
+    });
+</script>
 </body>
-<!-- partial -->
 </html>
-
-
-

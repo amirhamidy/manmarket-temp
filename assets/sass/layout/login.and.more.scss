@@ -20,12 +20,42 @@
   }
 }
 
+.theme-color{
+  background-color: #ff4f29 !important;
+  font-size: 14px;
+}
+
+.theme-c{
+  color: #ff4f29 !important;
+}
 
 .custom-text{
-  font-size: 13px;
+  font-size: 15px;
   color: gray;
   white-space: normal !important;
 }
 
 
 
+.a-cl{
+  color: #f96747 !important;
+}
+
+.w-for-brand{
+  width: 2em;
+}
+.w-for-brand-2{
+  width: 1em;
+}
+.w-for-brand-3{
+  width: 2.4em;
+}
+
+.ad-icon{
+  top: 75%;
+  right: 2%;
+  z-index: 9999999;
+  img{
+    width: 100px !important;
+  }
+}

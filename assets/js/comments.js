@@ -51,25 +51,25 @@ function updateUserComment() {
     }
 }
 
-//
-// document.querySelector('.navi').addEventListener('click', function() {
-//     const codeElement = document.querySelector('.code');
-//     const codeText = codeElement.textContent;
-//     const TrCode = document.querySelector('.true-c');
-//     const number = codeText.match(/\d+/);
-//
-//     if (number) {
-//         navigator.clipboard.writeText(number[0])
-//             .then(() => {
-//                 document.querySelector('.navi').style.display = 'none';
-//                 TrCode.style.display = 'inline-block';
-//             })
-//             .catch(err => {
-//                 console.error('خطا در کپی:', err);
-//             });
-//     } else {
-//         alert('هیچ عددی یافت نشد.');
-//     }
-// });
+
+document.querySelector('.navi').addEventListener('click', function() {
+    const codeElement = document.querySelector('.code');
+    const codeText = codeElement.textContent;
+    const TrCode = document.querySelector('.true-c');
+    const number = codeText.match(/\d+/);
+
+    if (number) {
+        navigator.clipboard.writeText(number[0])
+            .then(() => {
+                document.querySelector('.navi').style.display = 'none';
+                TrCode.style.display = 'inline-block';
+            })
+            .catch(err => {
+                console.error('خطا در کپی:', err);
+            });
+    } else {
+        alert('هیچ عددی یافت نشد.');
+    }
+});
 
 

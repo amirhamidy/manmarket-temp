@@ -55,7 +55,472 @@
   top: 75%;
   right: 2%;
   z-index: 9999999;
-  img{
-    width: 100px !important;
+}
+
+
+:root {
+  --base-text-color: #1f1f1f;
+  --secondary-text-color: #5f5f5f;
+  --accent-color-hover: hsl(353, 80%, 60%);
+  --accent-color-hover-rgb: 240, 78, 106;
+  --accent-color-active: hsl(353, 85%, 55%);
+  --accent-primary-static: #ef4056;
+  --border-color: #ededed;
+  --background-light: #ffffff;
+  --background-section: #fafafa;
+  --border-radius-base: 8px;
+  --transition-base: all 0.3s ease-in-out;
+  --transition-fast: all 0.2s ease-out;
+  --shadow-sm: 0 3px 6px rgba(0, 0, 0, 0.04);
+  --shadow-base: 0 6px 15px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* --- STYLES FOR THE MEGA MENU TRIGGER (Adapted from .navbar-nav .nav-link) --- */
+.mega-menu-trigger-wrapper {
+  margin-bottom: 5px; /* Space before panel if it's directly below */
+  position: relative; /* Important for panel positioning */
+  z-index: 99999999999; /* Above panel when not shown, but panel needs higher when shown */
+}
+.nav-link-mega-trigger {
+  color: var(--secondary-text-color);
+  position: relative;
+  border-radius: var(--border-radius-base);
+  font-size: 0.9rem;
+  display: inline-block;
+  background-color: var(--background-light);
+}
+
+
+
+/* --- DESKTOP MEGA TAB MENU STYLES --- */
+.mega-menu-panel.mega-tab-menu {
+  display: block;
+  position: absolute; /* Positioned relative to .mega-menu-trigger-wrapper or a similar parent */
+  top: 100%; /* Directly below the trigger wrapper */
+  right: 0;
+  left: 0;
+  width: 100vh;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color); /* Added border to match original header structure */
+  border-top: none; /* No top border if it's attached below a header bar */
+  z-index: 999999999;
+  padding: 0;
+  border-bottom-left-radius: 7px ;
+  border-bottom-right-radius: 7px ;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+  pointer-events: none;
+  background-color: white;
+  max-height: 520px; /* Original max-height */
+  /* overflow: hidden; */ /* Original: overflow: hidden; Changed to auto when shown */
+}
+.mega-menu-panel.mega-tab-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0s;
+  pointer-events: auto;
+  overflow: visible;
+}
+.mega-menu-panel.mega-tab-menu .row {
+  /* height: 100%; */ /* Removed, let content dictate height up to max-height of panel */
+  margin-right: 0; /* Bootstrap override for g-0 */
+  margin-left: 0;  /* Bootstrap override for g-0 */
+}
+.mega-menu-categories {
+  background-color: var(--background-section);
+  padding: 0 0;
+  border-left: 1px solid var(--border-color); /* RTL: border on the left */
+  /* height: 100%; */ /* Let it take height of content */
+  overflow-y: auto;
+  max-height: calc(520px - 2rem); /* Adjust for padding if panel has fixed height */
+  ::-webkit-scrollbar {
+    display: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 }
+.mega-category-list {
+  margin: 0;
+  padding: 0 ;
+}
+.mega-category-list::-webkit-scrollbar{
+  display: none !important;
+}
+
+*{
+  ::-webkit-scrollbar {
+    display: none !important;
+  }
+  *{
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+}
+
+
+.mega-category-item {
+  list-style: none;
+}
+.mega-category-item a {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--secondary-text-color);
+  border-right: 3px solid transparent; /* RTL: border on the right */
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+.mega-category-item a svg {
+  width: 1.4em;
+  font-size: 1.1em;
+  color: var(--secondary-text-color);
+  transition: color 0.15s ease;
+  margin-left: 0.5rem;
+}
+.mega-category-item:hover a,
+.mega-category-item.active a {
+  background-color: #FFEEF1F9;
+  color: #ff4f29 !important;
+  border-right-color: #f96747;
+}
+.mega-category-item:hover a i,
+.mega-category-item.active a i {
+  color: var(--accent-primary-static);
+}
+.mega-menu-content-area {
+  padding: 1.5rem 2rem;
+  position: relative;
+  /* height: 100%; */ /* Let it take height of content */
+  overflow-y: auto;
+  max-height: calc(520px - 3rem); /* Adjust for padding if panel has fixed height */
+}
+.mega-menu-pane {
+  display: none;
+  padding-bottom: 1rem;
+}
+.mega-menu-pane.active {
+  display: block;
+  animation: fadeInMegaMenu 0.3s ease-out;
+  z-index: 99999999999;
+}
+@keyframes fadeInMegaMenu {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.mega-menu-sub-column h6 {
+  margin-bottom: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+.mega-menu-sub-column h6 a {
+  color: var(--base-text-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mega-menu-sub-column h6 a i { /* Chevron icon */
+  font-size: 0.7em;
+  color: var(--secondary-text-color);
+  transition: transform 0.2s ease;
+}
+.mega-menu-sub-column h6 a:hover {
+  color: #ff4f29 !important;
+}
+.mega-menu-sub-column h6 a svg{
+  transition: 0.3s;
+}
+.mega-menu-sub-column h6 a:hover svg {
+  transform: translateX(-3px); /* RTL: moves left */
+  color: var(--accent-color-hover);
+}
+.mega-menu-sub-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.mega-menu-sub-column ul li a {
+  display: block;
+  padding: 0.3rem 1rem;
+  font-size: 0.8rem;
+  color: var(--secondary-text-color);
+  transition: color 0.2s ease, padding-right 0.2s ease;
+  margin: 5px auto ;
+  white-space: nowrap;
+}
+.mega-menu-sub-column ul li a:hover {
+  color: #ff4f29 !important;
+  padding-right: 2px; /* RTL: indent on hover */
+}
+.mega-menu-banner img {
+  border-radius: calc(var(--border-radius-base) / 2);
+  max-width: 100%;
+  height: auto;
+}
+/* --- Brand Logo Slider --- */
+.brand-sl-container {
+  width: 100%; /* یا هر عرضی که برای کانتینر اصلی در نظر دارید */
+  overflow: hidden; /* این خیلی مهمه! */
+  padding: 20px 0;
+  position: relative; /* برای کنترل بهتر */
+  box-sizing: border-box;
+}
+
+.brand-sl-wrapper {
+  display: flex; /* برای چیدن افقی آیتم‌ها */
+  /* عرض wrapper توسط جاوااسکریپت تنظیم می‌شود */
+  /* transition برای انیمیشن نرم */
+  transition: transform 0.5s ease-in-out; /* سرعت انیمیشن حرکت اسلاید */
+}
+
+.brand-sl-item {
+  /* هر آیتم 20% عرض کانتینر رو می‌گیره تا 5 تا نمایش داده بشه */
+  flex: 0 0 20%;
+  box-sizing: border-box;
+  padding: 0 15px; /* فاصله بین لوگوها */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ow-container { /* تغییر نام کلاس */
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+}
+h1 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 30px;
+}
+.ow-item { /* تغییر نام کلاس */
+  padding: 20px 60px;
+  margin: 10px;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+.ow-item h4 {
+  margin: 0;
+}
+
+.owl-nav button.owl-prev,
+.owl-nav button.owl-next {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.owl-dots .owl-dot span {
+  display: none !important;
+  visibility: hidden !important;
+}
+.owl-dots .owl-dot.active span,
+.owl-dots .owl-dot:hover span {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.modal {
+  display: none; /* به صورت پیش‌فرض مخفی */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* اسکرول در صورت نیاز */
+  background-color: rgba(0,0,0,0.6); /* پس‌زمینه نیمه‌شفاف */
+  -webkit-overflow-scrolling: touch;
+  direction: rtl;
+}
+
+.modal-content {
+  background-color: #fff;
+  z-index: 999999999999;
+  margin: 5% auto;
+  padding: 25px;
+  border: 1px solid #ccc;
+  width: 90%;
+  max-width: 750px;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  /*
+  animation-name: fadeInModal;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+  */
+  text-align: right;
+}
+
+/*
+@keyframes fadeInModal {
+    from { opacity: 0; transform: translateY(-20px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+*/
+
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+
+.modal-image-container {
+  flex: 1;
+  max-width: 40%;
+}
+
+.modal-image-container img#modalProductImage {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  object-fit: contain;
+  max-height: 400px;
+}
+
+.modal-details-container {
+  flex: 1.5;
+}
+
+#modalProductName {
+  margin-top: 0;
+  font-size: 1.6em;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+#modalProductPriceContainer .price { /* استایل برای span.price داخل مودال */
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #28a745;
+  margin: 10px 0 20px 0;
+  display: block;
+}
+#modalProductPriceContainer .price svg { /* استایل برای SVG داخل span.price در مودال */
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+
+#modalProductColors h4 {
+  font-size: 1.1em;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  color: #555;
+}
+#modalProductColors p {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 20px;
+}
+.color-swatch {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-left: 8px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.color-swatch:hover {
+  transform: scale(1.1);
+}
+
+.view-details-button { /* کلاس bg-danger از بوت استرپ رنگ را تعیین می کند */
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  color: white !important; /* برای اطمینان از سفید بودن متن روی bg-danger */
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: background-color 0.2s ease, border-color 0.2s ease; /* برای هاور بوت استرپ */
+}
+/* اگر از کلاس bg-danger بوت استرپ استفاده می‌کنید، نیازی به هاور جدا نیست */
+
+
+.close-button {
+  color: #888;
+  position: absolute;
+  top: 10px;
+  left: 20px; /* برای زبان فارسی، دکمه بستن سمت چپ */
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1;
+  padding: 0 5px; /* کمی فضا برای کلیک راحت تر */
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button.view:disabled { /* استایل برای دکمه view وقتی غیرفعاله (اگر ازش استفاده کردید) */
+  cursor: wait;
+  opacity: 0.7;
+}
+
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 10% auto; /* فاصله بیشتر از بالا در موبایل */
+    padding: 15px;
+  }
+  .modal-body {
+    flex-direction: column; /* چیدمان عمودی */
+  }
+  .modal-image-container {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  .modal-image-container img#modalProductImage {
+    max-height: 300px; /* ارتفاع تصویر در موبایل */
+  }
+  .modal-details-container {
+    text-align: center; /* وسط‌چین کردن متن در موبایل */
+  }
+  #modalProductName {
+    font-size: 1.3em;
+  }
+  .close-button {
+    top: 8px;
+    left: 15px;
+    font-size: 24px;
+  }
+}
+
+.cs-he{
+  height: 150px !important;
+  font-size: 18px !important;
+}
+
+
+.cus-wid{
+  width: 20% !important;
+}
+@media (max-width: 768px) {
+  .cus-wid{
+    width: 14% !important;
+  }
+  .ad-icon{
+    top: 80% !important;
+  }
+}
+

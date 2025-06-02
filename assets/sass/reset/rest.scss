@@ -209,4 +209,24 @@ main{
 }
 
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+  html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+
 

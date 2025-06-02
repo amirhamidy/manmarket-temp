@@ -92,3 +92,24 @@
   font-size: 15px !important;
   color: black ;
 }
+
+.my-inp{
+  width: 99% !important;
+  &:focus{
+    background-color: #fbfbfb !important;
+    border: 1px ridge #EEEEEE !important;
+  }
+}
+.bg-cs-2{
+  background-color: #fbfbfb !important;
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .search-mb{
+     display: none !important;
+   }
+}
+
+
+

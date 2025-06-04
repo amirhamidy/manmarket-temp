@@ -27,6 +27,11 @@
   overflow: hidden;
   border: 1px solid var(--border-color);
 }
+@media only screen and (max-width: 600px) {
+  .gallery-top{
+    height: 32vh !important;
+  }
+}
 
 .gallery-top .swiper-slide {
   display: flex;
@@ -156,7 +161,7 @@ transition: 0.6s !important;
 .product-price {
   color: var(--primary-color);
   font-weight: bold;
-  margin-bottom: 1.25rem;
+  margin: .65rem  0;
 }
 
 .product-price .currency-symbol {
@@ -336,6 +341,7 @@ transition: 0.6s !important;
 
 .product-tabs-section .nav-tabs {
   margin-bottom: 0;
+  margin-left: 0 !important;
 
 }
 
@@ -345,7 +351,6 @@ transition: 0.6s !important;
   padding: 0.8rem 1.4rem;
   border: 1px solid transparent;
   border-bottom: none;
-  margin-left: 3px;
   font-weight: 500;
   transition: color 0.2s ease, background-color 0.2s ease;
 }
@@ -892,6 +897,11 @@ white-space: normal !important;
   font-size: 14px !important;
   .form-control{
     font-size: 14px !important;
+  }
+  .svg{
+    width: 1.5em !important;
+    height: 1.5em !important;
+    margin:  auto 5px !important;
   }
 }
 

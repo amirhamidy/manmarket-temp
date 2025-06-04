@@ -78,7 +78,7 @@ html, body {
 
 .fill-filters-sidebar-container {
   background-color: var(--bg-secondary) !important; padding: calc(var(--spacing-unit) * 2) !important;
-  border-radius: var(--border-radius-md) !important; box-shadow: var(--shadow-md) !important;
+  border-radius: 7px !important; box-shadow: var(--shadow-md) !important;
   align-self: flex-start !important; position: sticky !important; top: calc(var(--spacing-unit) * 2) !important;
   max-height: calc(100vh - (var(--spacing-unit) * 4)) !important; overflow-y: auto !important;
   scrollbar-width: thin !important; scrollbar-color: var(--border-color) var(--bg-secondary) !important;
@@ -281,7 +281,7 @@ html, body {
   display: none; /* در ابتدا مخفی، توسط JS در موبایل نمایش داده می‌شود */
   position: sticky;
   top: 0;
-  z-index: 1030;
+  z-index: 99;
   background-color: var(--bg-secondary);
   box-shadow: var(--shadow-sm);
   padding: 0 var(--spacing-unit); /* پدینگ افقی برای کل نوار */
@@ -596,24 +596,44 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
   position: absolute;
   align-items: center !important;
   top: 3%;
-  left: 5%;
+  right: 5%;
 }
 .card{
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px !important;
+  padding-top: 10px !important;
+  border-radius: 4px !important;
+
+  border: 0.5px ridge #d5d5d5;
 }
 
+.colors-search{
+  left: 3%;
+  top: 1%;
+}
 
+.for-color , .three-color , .two-color , .one-color{
 
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.one-color{
+  background-color: orangered;
+}
+.two-color {
+  background-color: indianred;
+}
+.three-color{
+  background-color: gray;
+}
 
+.cs-color{
+  color: #adacac;
+}
 
-
-
-
-
-
-
-
-
+.have-dont-have{
+  color: gray;
+  font-size: 13px !important;
+}
 
 
 

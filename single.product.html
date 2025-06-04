@@ -18,8 +18,13 @@
 </head>
 <body>
 
+<!--Shadow Overly start-->
+<div class="overlay" data-overlay></div>
+<!--Shadow Overly start-->
+
+
 <!--Header Start-->
-<header class="mb-2">
+<header class="mb-3">
     <nav class="desktop-navigation-menu d-flex justify-content-center mt-3 px-5 text-center align-items-center">
         <!--logo in header -- : start-->
         <div class="mx-1"><img class="cs-w" alt="من مارکت" src="assets/img/main.logo.jpg"></div>
@@ -33,8 +38,6 @@
                         <a id="mega-menu-trigger-btn-desktop" class="nav-link-mega-trigger" href="#">
                             <i class="fas fa-bars mx-2"></i>دسته‌بندی کالاها
                         </a>
-
-                        <!-- Mega Tab Menu -->
                         <div class="mega-menu-panel mega-tab-menu" id="mega-menu-panel-content-desktop">
                             <div class="row g-0"> <!-- g-0 removes gutters -->
                                 <div class="col-lg-3 mega-menu-categories">
@@ -147,6 +150,28 @@
                                                 کنسول بازی
                                             </a>
                                         </li>
+                                        <li class="mega-category-item" data-target="#pc-all">
+                                            <a href="#">
+                                                <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 14 14"
+                                                        width="1.2em"
+                                                        height="1.2em"
+                                                >
+                                                    <g
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                    >
+                                                        <path d="M.5 6.5v4a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1m2.5 7h3m-1.5 0v-2"></path>
+                                                        <path d="M7.5 3.5V3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v10a.5.5 0 0 1-.5.5H9"></path>
+                                                        <path d="M11.375 4.875a.125.125 0 1 1 0-.25m0 .25a.125.125 0 1 0 0-.25M10.5 7h3"></path>
+                                                    </g>
+                                                </svg>
+                                                کامپیوتر همه کاره
+                                            </a>
+                                        </li>
                                         <li class="mega-category-item" data-target="#pane-books-desktop">
                                             <a href="#">
                                                 <svg
@@ -168,8 +193,8 @@
                                                 <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         viewBox="0 0 16 16"
-                                                        width="1em"
-                                                        height="1em"
+                                                        width="2em"
+                                                        height="2em"
                                                 >
                                                     <path
                                                             fill="currentColor"
@@ -179,21 +204,147 @@
                                                 هدست و هدفون
                                             </a>
                                         </li>
-                                        <li class="mega-category-item" data-target="#pane-tools-desktop">
+                                        <li class="mega-category-item" data-target="#apple-watch">
+                                            <a href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em">
+                                                    <path fill="currentColor" d="M14.5 2a2 2 0 0 1 1.79 1.105c-.187.427-.29.9-.29 1.395c0 .66.183 1.277.5 1.804V6.4l.102.062c.25.368.567.686.935.935C17.83 7.862 18 8.411 18 9v1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v2a3 3 0 0 1-1.5 2.599V20a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-2.401A3 3 0 0 1 6 15V9a3 3 0 0 1 1.5-2.599V4a2 2 0 0 1 2-2zm-5 1.5A.5.5 0 0 0 9 4v2h6V4a.5.5 0 0 0-.5-.5zm7 11.5V9A1.5 1.5 0 0 0 15 7.5H9A1.5 1.5 0 0 0 7.5 9v6A1.5 1.5 0 0 0 9 16.5h6a1.5 1.5 0 0 0 1.5-1.5M9 20a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-2H9zM22 4.5a2.5 2.5 0 1 0-5 0a2.5 2.5 0 0 0 5 0">
+                                                    </path>
+                                                </svg>
+                                                ساعت هوشمند
+                                            </a>
+                                        </li>
+                                        <li class="mega-category-item" data-target="#gadget">
+                                            <a href="#">
+                                                <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 24 24"
+                                                        width="1.3em"
+                                                        height="1.3em"
+                                                >
+                                                    <path
+                                                            fill="currentColor"
+                                                            d="M5.5 4q-.213 0-.356-.144T5 3.499t.144-.356T5.5 3h13.885q.69 0 1.153.463T21 4.615V6.64q0 .244-.155.36t-.341.115t-.345-.12T20 6.621V4.615q0-.23-.192-.423T19.385 4zM3.779 17q-.338 0-.559-.221Q3 16.558 3 16.23V8.384q0-.326.22-.547t.559-.221h3.98q.339 0 .56.22q.22.222.22.549v7.846q0 .327-.22.548q-.221.221-.56.221zm12.779 2.327v-4.5q-.225-.123-.363-.347t-.137-.48q0-.396.281-.669t.657-.273q.395 0 .67.273q.276.273.276.669q0 .256-.122.473q-.122.218-.378.354v4.5q0 .191-.125.317q-.125.125-.316.125t-.317-.125t-.126-.317M17 11.192q-1.165 0-1.986.815q-.822.814-.822 1.993q0 .492.194.937t.497.834q.111.16.128.338q.016.177-.132.325t-.326.136t-.314-.166q-.447-.52-.689-1.133T13.308 14q0-1.546 1.083-2.62q1.084-1.072 2.605-1.072q1.545 0 2.62 1.073T20.692 14q0 .671-.239 1.294q-.24.623-.686 1.123q-.136.154-.315.167q-.18.012-.314-.136q-.134-.123-.13-.301t.115-.337q.323-.371.504-.835t.18-.975q0-1.18-.813-1.993T17 11.192m-.005-2.5q-2.205 0-3.754 1.54Q11.692 11.77 11.692 14q0 .994.369 1.926q.368.932 1.035 1.659q.123.16.137.337q.013.178-.116.307q-.14.148-.329.123q-.188-.025-.33-.179q-.785-.856-1.217-1.93q-.433-1.075-.433-2.243q0-2.596 1.809-4.394t4.379-1.798q2.595 0 4.395 1.798q1.801 1.798 1.801 4.394q0 1.175-.417 2.256t-1.246 1.917q-.142.135-.32.144q-.178.01-.307-.128q-.129-.139-.11-.304q.02-.166.143-.325q.667-.708 1.02-1.638T22.308 14q0-2.23-1.541-3.768q-1.54-1.54-3.772-1.54M4 16h3.539V8.616H4zm0 0h3.539z"
+                                                    ></path>
+                                                </svg>
+                                                گجت خانگی
+                                            </a>
+                                        </li>
+                                        <li class="mega-category-item" data-target="#power">
+                                            <a href="#">
+                                                <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 14 14"
+                                                        width="1em"
+                                                        height="1em"
+                                                >
+                                                    <g
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                    >
+                                                        <path d="M10.5 13.5a3 3 0 0 0 0-6h-7a3 3 0 0 0 0 6Z"></path>
+                                                        <path d="M.58 9.79L2.17 2.1a2 2 0 0 1 2-1.6h5.7a2 2 0 0 1 2 1.6l1.59 7.69m-9.96.71h3"></path>
+                                                        <circle cx="10.5" cy="10.5" r=".5"></circle>
+                                                    </g>
+                                                </svg>
+                                                پاور بانک
+                                            </a>
+                                        </li>
+                                        <li class="mega-category-item" data-target="#memory">
                                             <a href="#">
                                                 <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         viewBox="0 0 24 24"
                                                         width="1em"
                                                         height="1em"
-
+                                                >
+                                                    <g
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width="1.5"
+                                                            color="currentColor"
+                                                    >
+                                                        <path d="m4.038 12.539l5.938-5.94c1.4-1.4 2.1-2.099 2.97-2.099s1.57.7 2.97 2.1L17.4 8.085c1.4 1.4 2.1 2.1 2.1 2.969c0 .87-.7 1.57-2.1 2.97l-5.939 5.938a5.25 5.25 0 0 1-7.423-7.423"></path>
+                                                        <path d="M8.5 17a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0m6-11.65l1.383-1.383C16.861 2.99 17.35 2.5 17.958 2.5s1.097.489 2.075 1.467S21.5 5.434 21.5 6.042s-.489 1.097-1.467 2.075L18.65 9.5"></path>
+                                                    </g>
+                                                </svg>
+                                                ذخیره ساز اطلاعات
+                                            </a>
+                                        </li>
+                                        <li class="mega-category-item" data-target="#mouse">
+                                            <a href="#">
+                                                <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 24 24"
+                                                        width="1em"
+                                                        height="1em"
+                                                >
+                                                    <g
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width="1.5"
+                                                            color="currentColor"
+                                                    >
+                                                        <path d="M13.5 5.5V2m0 10V9m0 13c6 0 7.5-4.51 7.5-10S19.5 2 13.5 2S6 6.51 6 12s1.5 10 7.5 10"></path>
+                                                        <path d="M15 7c0-.466 0-.699-.076-.883a1 1 0 0 0-.541-.54c-.184-.077-.417-.077-.883-.077s-.699 0-.883.076a1 1 0 0 0-.54.541C12 6.301 12 6.534 12 7v.5c0 .466 0 .699.076.883a1 1 0 0 0 .541.54c.184.077.417.077.883.077s.699 0 .883-.076a1 1 0 0 0 .54-.541C15 8.199 15 7.966 15 7.5zm-9 5h15M5 3.167L4.619 2m-.59 3.567L3 6"></path>
+                                                    </g>
+                                                </svg>
+                                                موس و کیبورد
+                                            </a>
+                                        </li>
+                                        <li class="mega-category-item" data-target="#charger">
+                                            <a href="#">
+                                                <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 24 24"
+                                                        width="1.3em"
+                                                        height="1.3em"
                                                 >
                                                     <path
                                                             fill="currentColor"
-                                                            d="M14.5 2a2 2 0 0 1 1.79 1.105c-.187.427-.29.9-.29 1.395c0 .66.183 1.277.5 1.804V6.4l.102.062c.25.368.567.686.935.935C17.83 7.862 18 8.411 18 9v1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1v2a3 3 0 0 1-1.5 2.599V20a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2v-2.401A3 3 0 0 1 6 15V9a3 3 0 0 1 1.5-2.599V4a2 2 0 0 1 2-2zm-5 1.5A.5.5 0 0 0 9 4v2h6V4a.5.5 0 0 0-.5-.5zm7 11.5V9A1.5 1.5 0 0 0 15 7.5H9A1.5 1.5 0 0 0 7.5 9v6A1.5 1.5 0 0 0 9 16.5h6a1.5 1.5 0 0 0 1.5-1.5M9 20a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-2H9zM22 4.5a2.5 2.5 0 1 0-5 0a2.5 2.5 0 0 0 5 0"
+                                                            d="m12.195 18.083l2.436-6.84q.073-.21-.042-.371q-.115-.16-.325-.16H12.3V5.876q0-.185-.168-.204t-.227.13L9.47 12.679q-.074.212.041.373q.115.16.326.16H11.8v4.8q0 .183.168.202t.227-.13M12.003 21q-1.866 0-3.51-.708q-1.643-.709-2.859-1.924t-1.925-2.856T3 12.003t.709-3.51Q4.417 6.85 5.63 5.634t2.857-1.925T11.997 3t3.51.709q1.643.708 2.859 1.922t1.925 2.857t.709 3.509t-.708 3.51t-1.924 2.859t-2.856 1.925t-3.509.709M12 20q3.325 0 5.663-2.337T20 12t-2.337-5.663T12 4T6.337 6.338T4 12t2.338 5.663T12 20"
                                                     ></path>
                                                 </svg>
-                                                ساعت هوشمند
+                                                شارژر و مبدل موبایل
+                                            </a>
+                                        </li>
+                                        <li class="mega-category-item" data-target="#frame">
+                                            <a href="#">
+                                                <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 512 512"
+                                                        width="1em"
+                                                        height="1em"
+                                                >
+                                                    <rect
+                                                            width="256"
+                                                            height="480"
+                                                            x="128"
+                                                            y="16"
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width="32"
+                                                            rx="48"
+                                                            ry="48"
+                                                            transform="rotate(-90 256 256)"
+                                                    ></rect>
+                                                    <path
+                                                            fill="none"
+                                                            stroke="currentColor"
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width="32"
+                                                            d="M16 336v-24a8 8 0 0 1 8-8h0a16 16 0 0 0 16-16v-64a16 16 0 0 0-16-16h0a8 8 0 0 1-8-8v-24"
+                                                    ></path>
+                                                </svg>
+                                                قاب و گلس
                                             </a>
                                         </li>
                                     </ul>
@@ -544,7 +695,7 @@
                                         </div>
                                     </div>
                                     <!-- AplleWatch in mega-menu -->
-                                    <div class="mega-menu-pane" id="pane-tools-desktop">
+                                    <div class="mega-menu-pane" id="apple-watch">
                                         <div class="d-flex justify-content-end flex-column">
                                             <div class="mega-menu-sub-column">
                                                 <h6 class="px-2">
@@ -591,40 +742,126 @@
                                         </div>
                                     </div>
                                     <!-- Accessory in mega-menu -->
-                                    <div class="mega-menu-pane" id="pane-supermarket-desktop">
+                                    <div class="mega-menu-pane" id="gadget">
                                         <div class="d-flex justify-content-end flex-column">
                                             <div class="mega-menu-sub-column">
                                                 <h6 class="px-2">
                                                     <a class=" d-flex justify-content-start" href="#">
-                                                        پاور بانک
+                                                        نمونه ی گجت برای عطفارکس
                                                     </a>
                                                 </h6>
                                             </div>
                                             <div class="mega-menu-sub-column">
+                                                <h6 class="px-2 w-right justify-content-end">
+                                                    <a href="" class="w-right a-cl">
+                                                        دیدن همه ی برند های تبلت ...
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Accessory in mega-menu -->
+                                    <div class="mega-menu-pane" id="power">
+                                        <div class="d-flex justify-content-end flex-column">
+                                            <div class="mega-menu-sub-column">
                                                 <h6 class="px-2">
                                                     <a class=" d-flex justify-content-start" href="#">
-                                                        فلش
+                                                        نمونه ی پاور بانک برای عطفارکس
                                                     </a>
                                                 </h6>
                                             </div>
                                             <div class="mega-menu-sub-column">
+                                                <h6 class="px-2 w-right justify-content-end">
+                                                    <a href="" class="w-right a-cl">
+                                                        دیدن همه ی برند های تبلت ...
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Accessory in mega-menu -->
+                                    <div class="mega-menu-pane" id="memory">
+                                        <div class="d-flex justify-content-end flex-column">
+                                            <div class="mega-menu-sub-column">
                                                 <h6 class="px-2">
                                                     <a class=" d-flex justify-content-start" href="#">
-                                                        هارد اکسترنال
+                                                        نمونه ی فلش و اینا برای عطفارکس
                                                     </a>
                                                 </h6>
                                             </div>
                                             <div class="mega-menu-sub-column">
+                                                <h6 class="px-2 w-right justify-content-end">
+                                                    <a href="" class="w-right a-cl">
+                                                        دیدن همه ی برند های تبلت ...
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Accessory in mega-menu -->
+                                    <div class="mega-menu-pane" id="mouse">
+                                        <div class="d-flex justify-content-end flex-column">
+                                            <div class="mega-menu-sub-column">
                                                 <h6 class="px-2">
                                                     <a class=" d-flex justify-content-start" href="#">
-                                                        گجت
+                                                        نمونه ی موس برای عطفارکس
                                                     </a>
                                                 </h6>
                                             </div>
                                             <div class="mega-menu-sub-column">
+                                                <h6 class="px-2 w-right justify-content-end">
+                                                    <a href="" class="w-right a-cl">
+                                                        دیدن همه ی برند های تبلت ...
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Accessory in mega-menu -->
+                                    <div class="mega-menu-pane" id="charger">
+                                        <div class="d-flex justify-content-end flex-column">
+                                            <div class="mega-menu-sub-column">
                                                 <h6 class="px-2">
                                                     <a class=" d-flex justify-content-start" href="#">
-                                                        متفرقه
+                                                        نمونه ی چارجر برای عطفارکس
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                            <div class="mega-menu-sub-column">
+                                                <h6 class="px-2 w-right justify-content-end">
+                                                    <a href="" class="w-right a-cl">
+                                                        دیدن همه ی برند های تبلت ...
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Accessory in mega-menu -->
+                                    <div class="mega-menu-pane" id="frame">
+                                        <div class="d-flex justify-content-end flex-column">
+                                            <div class="mega-menu-sub-column">
+                                                <h6 class="px-2">
+                                                    <a class=" d-flex justify-content-start" href="#">
+                                                        نمونه ی غاغ برای عطفارکس
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                            <div class="mega-menu-sub-column">
+                                                <h6 class="px-2 w-right justify-content-end">
+                                                    <a href="" class="w-right a-cl">
+                                                        دیدن همه ی برند های تبلت ...
+                                                    </a>
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Accessory in mega-menu -->
+                                    <div class="mega-menu-pane" id="pc-all">
+                                        <div class="d-flex justify-content-end flex-column">
+                                            <div class="mega-menu-sub-column">
+                                                <h6 class="px-2">
+                                                    <a class=" d-flex justify-content-start" href="#">
+                                                        نمونه ی کامپیوتر همه کاره برای عطفارکس
                                                     </a>
                                                 </h6>
                                             </div>
@@ -728,22 +965,6 @@
     </nav>
 
     <div class="mobile-bottom-navigation align-items-center">
-        <button class="action-btn" data-mobile-menu-open-btn>
-            <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    width="0.8em"
-                    height="0.8em"
-            >
-                <path
-                        fill="none"
-                        stroke="currentColor"
-                        d="M2 12.5h12M2 8h12M2 3.5h12"
-                ></path>
-            </svg>
-        </button>
-
-
         <button class="action-btn">
             <a class="text-dark" href="index.html"><svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -757,7 +978,6 @@
                 ></path>
             </svg></a>
         </button>
-
         <button class="action-btn">
             <a class="text-dark" href="collection.html"><svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -771,7 +991,6 @@
                 ></path>
             </svg></a>
         </button>
-
         <button class="action-btn">
             <svg class="shop-icon"
                  xmlns="http://www.w3.org/2000/svg"
@@ -788,6 +1007,20 @@
                 ></path>
             </svg>
         </button>
+        <button class="action-btn" data-mobile-menu-open-btn>
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    width="0.8em"
+                    height="0.8em"
+            >
+                <path
+                        fill="none"
+                        stroke="currentColor"
+                        d="M2 12.5h12M2 8h12M2 3.5h12"
+                ></path>
+            </svg>
+        </button>
     </div>
 
     <nav class="mobile-navigation-menu has-scrollbar " data-mobile-menu>
@@ -798,141 +1031,73 @@
                 <ion-icon name="close-outline"></ion-icon>
             </button>
         </div>
-
         <ul class="mobile-menu-category-list">
-            <li class="menu-category"><a href="index.html" class="menu-title">خانه</a></li>
-
             <li class="menu-category">
                 <button class="accordion-menu" data-accordion-btn>
-                    <p class="menu-title">فروشگاه</p>
+                    <p class="menu-title">دسته بندی</p>
                     <div>
-                        <ion-icon name="add-outline" class="add-icon">
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    width="1.5em"
-                                    height="1.5em"
-                            >
-                                <path
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="1.5"
-                                        d="M6 12h6m6 0h-6m0 0V6m0 6v6"
-                                ></path>
-                            </svg>
-                        </ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width="1.5em"
+                                height="1.5em"
+                        >
+                            <path
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M6 12h6m6 0h-6m0 0V6m0 6v6"
+                            ></path>
+                        </svg>
                     </div>
                 </button>
-
-                <ul class="submenu-category-list " data-accordion>
-                    <li class="submenu-category"><a href="#" class="submenu-title">من پلاس </a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">خرید اکانت</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">انرژی مثبت</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">خرید بین الملل</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">خرید کالا به سفارش شما</a></li>
-                </ul>
-            </li>
-            <li class="menu-category">
-                <button class="accordion-menu" data-accordion-btn>
-                    <p class="menu-title">کالای دیجیتال</p>
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon">
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    width="1.5em"
-                                    height="1.5em"
-                            >
-                                <path
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="1.5"
-                                        d="M6 12h6m6 0h-6m0 0V6m0 6v6"
-                                ></path>
-                            </svg>
-                        </ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
                 <ul class="submenu-category-list " data-accordion>
                     <li class="submenu-category"><a href="#" class="submenu-title">موبایل</a></li>
                     <li class="submenu-category"><a href="#" class="submenu-title">تبلت</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">دایرکت</a></li>
                     <li class="submenu-category"><a href="#" class="submenu-title">لپ تاپ</a></li>
                     <li class="submenu-category"><a href="#" class="submenu-title">مانیتور</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">لوازم جانبی</a></li>
                     <li class="submenu-category"><a href="#" class="submenu-title">کنسول بازی</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">دوربین عکاسی</a></li>
                     <li class="submenu-category"><a href="#" class="submenu-title">کامپیوتر همه کاره</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">دوربین مدار بسته</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">ماشین های اداری</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">بیمه تجهیزات دیجیتال</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">اسپیکر</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">هدست و هدفون</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">ساعت و مچ بند هوشمند</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">گجت خانگی</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">پاور بانک</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">ذخیره ساز اطلاعات</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">موس و کیبورد</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">شارژر و مبدل موبایل</a></li>
+                    <li class="submenu-category"><a href="#" class="submenu-title">قاب و گلس</a></li>
                 </ul>
             </li>
-            <li class="menu-category">
-                <button class="accordion-menu" data-accordion-btn>
-                    <p class="menu-title">خانه و آشپز خانه </p>
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon">
-                            <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    width="1.5em"
-                                    height="1.5em"
-                            >
-                                <path
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="1.5"
-                                        d="M6 12h6m6 0h-6m0 0V6m0 6v6"
-                                ></path>
-                            </svg>
-                        </ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
-                <ul class="submenu-category-list " data-accordion>
-                    <li class="submenu-category"><a href="#" class="submenu-title">مبلمان</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">تلویزیون</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">لوازم برقی</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">دزدگیر اماکن</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">اندروید باکس</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">یخچال و فریزر</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">سرمایش و گرمایش</a></li>
-                </ul>
-            </li>
-            <li class="menu-category"><a href="index.html" class="menu-title">من تریپ</a></li>
-
-
-
-            <li class="menu-category"><a href="blog.html" class="menu-title">وبلاگ</a></li>
-
+            <li class="menu-category"><a href="contact.html" class="menu-title">تماس با ما</a></li>
+            <li class="menu-category"><a href="about.html" class="menu-title">درباره ما</a></li>
+            <li class="menu-category"><a href="blog.html" class="menu-title">بلاگ</a></li>
         </ul>
-
         <div class="menu-bottom">
             <ul class="menu-social-container">
-                <li><a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
-                <li><a href="#" class="social-link"><ion-icon name="logo-twitter"></ion-icon></a></li>
-                <li><a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
-                <li><a href="#" class="social-link"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+                <li>
+
+                </li>
+                <li>
+
+                </li>
+                <li>
+
+                </li>
+                <li>
+
+                </li>
             </ul>
         </div>
     </nav>
 
-
-    <nav class="d-flex flex-column justify-content-center w-center search-mb">
-        <div class="bg-cs-2 py-2">
-            <form class="text-center position-relative container">
-                <input class="form-control my-inp bg-cs-2" type="search" placeholder="دنبال چی میگردی">
+    <nav class="d-flex flex-column justify-content-center w-center search-mb position-fixed">
+        <div class="bg-cs-2 py-2 row align-items-center">
+            <form class="text-center position-relative container col-10">
+                <label class="position-absolute cs-text-inp text-nowrap flex-nowrap d-flex " id="searchTriggerLabel" ><p class="custom-text px-2">  جست و جو در   </p> من مارکت   </label>
+                <input class="form-control my-inp bg-cs-2 cs-inp" type="search" id="mainSearchField">
                 <div>
                     <button class="sub-btn bg-cs-2" type="submit">
                         <svg class="bg-cs-2"
@@ -949,18 +1114,39 @@
                                     stroke-width="2"
                                     d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
                             ></path>
-                        </svg></button>
+                        </svg>
+                    </button>
                 </div>
             </form>
+            <div class="col-2 w-center">
+                <a class="text-dark" href="">
+                    <svg class="profile-in-head bg-custom p-2"
+                         xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 16 16"
+                         width="2.5em"
+                         height="2.5em"
+                    >
+                        <g fill="none" stroke="currentColor">
+                            <circle cx="8" cy="8" r="7.5"></circle>
+                            <circle cx="8" cy="5.5" r="2"></circle>
+                            <path
+                                    stroke-linecap="round"
+                                    d="M11.5 12c-.6-1.5-1.8-2.5-3.5-2.5s-2.9 1-3.5 2.5"
+                            ></path>
+                        </g>
+                    </svg>
+                </a>
+            </div>
         </div>
     </nav>
 
 </header>
 <!--Header End---->
 
+
 <main class="product-page-container container fs-cs-s-2">
-    <div class="row">
-        <div class="col-lg-6 mb-lg-0">
+    <div class="row pt-3">
+        <div class="col-lg-6 mb-lg-0 change-h">
             <div class="product-gallery-area" style="overflow-x: scroll; overflow-y: hidden !important;  scrollbar-width: none; -ms-overflow-style: none;" >
                 <div class="swiper-container gallery-top position-relative" id="galleryTopSwiper">
                     <div class="swiper-wrapper"></div>
@@ -970,14 +1156,12 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-6 product-info-area py-3">
-            <h6>گوشی سامسونگ مدل Samsung A15</h6>
+        <div class="col-lg-6 product-info-area">
+            <h6>گوشی سامسونگ مدل Samsung A15گوشی سامسونگ مدل Samsung A15گوشی سامسونگ مدل Samsung A15</h6>
 
             <div class="product-price">120,000 <span class="currency-symbol">تومان</span></div>
 
             <div class="mb-4">
-                <label class="product-options-label" id="colorOptionsLabel">انتخاب رنگ:</label>
                 <div class="color-selection-buttons" role="group" aria-labelledby="colorOptionsLabel">
                     <button type="button" class="btn-color active-cs" data-color-value="blue" aria-label="انتخاب رنگ آبی">
                         <span class="color-button-label">آبی</span>
@@ -1027,7 +1211,84 @@
                     <span class="fs-cs-s-2" id="productSku">SAM-A15-NAVY-256</span>
                 </p>
                 <div class="share-links">
-                    <strong class="fs-cs-s-2">اشتراک گذاری:</strong>
+                    <strong class="fs-cs-s-2">اشتراک گذاری در :</strong>
+                    <a class="instagram-logo" target="_blank" href="https://www.instagram.com/">
+                        <svg class="svg"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 256 256"
+                                width="1.8em"
+                                height="1.8em"
+                        >
+                            <g fill="none">
+                                <rect
+                                        width="256"
+                                        height="256"
+                                        fill="url(#skillIconsInstagram0)"
+                                        rx="60"
+                                ></rect>
+                                <rect
+                                        width="256"
+                                        height="256"
+                                        fill="url(#skillIconsInstagram1)"
+                                        rx="60"
+                                ></rect>
+                                <path
+                                        fill="#fff"
+                                        d="M128.009 28c-27.158 0-30.567.119-41.233.604c-10.646.488-17.913 2.173-24.271 4.646c-6.578 2.554-12.157 5.971-17.715 11.531c-5.563 5.559-8.98 11.138-11.542 17.713c-2.48 6.36-4.167 13.63-4.646 24.271c-.477 10.667-.602 14.077-.602 41.236s.12 30.557.604 41.223c.49 10.646 2.175 17.913 4.646 24.271c2.556 6.578 5.973 12.157 11.533 17.715c5.557 5.563 11.136 8.988 17.709 11.542c6.363 2.473 13.631 4.158 24.275 4.646c10.667.485 14.073.604 41.23.604c27.161 0 30.559-.119 41.225-.604c10.646-.488 17.921-2.173 24.284-4.646c6.575-2.554 12.146-5.979 17.702-11.542c5.563-5.558 8.979-11.137 11.542-17.712c2.458-6.361 4.146-13.63 4.646-24.272c.479-10.666.604-14.066.604-41.225s-.125-30.567-.604-41.234c-.5-10.646-2.188-17.912-4.646-24.27c-2.563-6.578-5.979-12.157-11.542-17.716c-5.562-5.562-11.125-8.979-17.708-11.53c-6.375-2.474-13.646-4.16-24.292-4.647c-10.667-.485-14.063-.604-41.23-.604zm-8.971 18.021c2.663-.004 5.634 0 8.971 0c26.701 0 29.865.096 40.409.575c9.75.446 15.042 2.075 18.567 3.444c4.667 1.812 7.994 3.979 11.492 7.48c3.5 3.5 5.666 6.833 7.483 11.5c1.369 3.52 3 8.812 3.444 18.562c.479 10.542.583 13.708.583 40.396s-.104 29.855-.583 40.396c-.446 9.75-2.075 15.042-3.444 18.563c-1.812 4.667-3.983 7.99-7.483 11.488c-3.5 3.5-6.823 5.666-11.492 7.479c-3.521 1.375-8.817 3-18.567 3.446c-10.542.479-13.708.583-40.409.583c-26.702 0-29.867-.104-40.408-.583c-9.75-.45-15.042-2.079-18.57-3.448c-4.666-1.813-8-3.979-11.5-7.479s-5.666-6.825-7.483-11.494c-1.369-3.521-3-8.813-3.444-18.563c-.479-10.542-.575-13.708-.575-40.413s.096-29.854.575-40.396c.446-9.75 2.075-15.042 3.444-18.567c1.813-4.667 3.983-8 7.484-11.5s6.833-5.667 11.5-7.483c3.525-1.375 8.819-3 18.569-3.448c9.225-.417 12.8-.542 31.437-.563zm62.351 16.604c-6.625 0-12 5.37-12 11.996c0 6.625 5.375 12 12 12s12-5.375 12-12s-5.375-12-12-12zm-53.38 14.021c-28.36 0-51.354 22.994-51.354 51.355s22.994 51.344 51.354 51.344c28.361 0 51.347-22.983 51.347-51.344c0-28.36-22.988-51.355-51.349-51.355zm0 18.021c18.409 0 33.334 14.923 33.334 33.334c0 18.409-14.925 33.334-33.334 33.334s-33.333-14.925-33.333-33.334c0-18.411 14.923-33.334 33.333-33.334"
+                                ></path>
+                                <defs>
+                                    <radialGradient
+                                            id="skillIconsInstagram0"
+                                            cx="0"
+                                            cy="0"
+                                            r="1"
+                                            gradientTransform="matrix(0 -253.715 235.975 0 68 275.717)"
+                                            gradientUnits="userSpaceOnUse"
+                                    >
+                                        <stop stop-color="#FD5"></stop>
+                                        <stop offset=".1" stop-color="#FD5"></stop>
+                                        <stop offset=".5" stop-color="#FF543E"></stop>
+                                        <stop offset="1" stop-color="#C837AB"></stop>
+                                    </radialGradient>
+                                    <radialGradient
+                                            id="skillIconsInstagram1"
+                                            cx="0"
+                                            cy="0"
+                                            r="1"
+                                            gradientTransform="matrix(22.25952 111.2061 -458.39518 91.75449 -42.881 18.441)"
+                                            gradientUnits="userSpaceOnUse"
+                                    >
+                                        <stop stop-color="#3771C8"></stop>
+                                        <stop offset=".128" stop-color="#3771C8"></stop>
+                                        <stop offset="1" stop-color="#60F" stop-opacity="0"></stop>
+                                    </radialGradient>
+                                </defs>
+                            </g>
+                        </svg>
+                    </a>
+                    <a class="telegram-logo" target="_blank" href="">
+                         <svg  class="svg"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 256 256"
+                            width="1em"
+                            height="1em"
+                    >
+                        <defs>
+                            <linearGradient id="logosTelegram0" x1="50%" x2="50%" y1="0%" y2="100%">
+                                <stop offset="0%" stop-color="#2AABEE"></stop>
+                                <stop offset="100%" stop-color="#229ED9"></stop>
+                            </linearGradient>
+                        </defs>
+                        <path
+                                fill="url(#logosTelegram0)"
+                                d="M128 0C94.06 0 61.48 13.494 37.5 37.49A128.04 128.04 0 0 0 0 128c0 33.934 13.5 66.514 37.5 90.51C61.48 242.506 94.06 256 128 256s66.52-13.494 90.5-37.49c24-23.996 37.5-56.576 37.5-90.51s-13.5-66.514-37.5-90.51C194.52 13.494 161.94 0 128 0"
+                        ></path>
+                        <path
+                                fill="#FFF"
+                                d="M57.94 126.648q55.98-24.384 74.64-32.152c35.56-14.786 42.94-17.354 47.76-17.441c1.06-.017 3.42.245 4.96 1.49c1.28 1.05 1.64 2.47 1.82 3.467c.16.996.38 3.266.2 5.038c-1.92 20.24-10.26 69.356-14.5 92.026c-1.78 9.592-5.32 12.808-8.74 13.122c-7.44.684-13.08-4.912-20.28-9.63c-11.26-7.386-17.62-11.982-28.56-19.188c-12.64-8.328-4.44-12.906 2.76-20.386c1.88-1.958 34.64-31.748 35.26-34.45c.08-.338.16-1.598-.6-2.262c-.74-.666-1.84-.438-2.64-.258c-1.14.256-19.12 12.152-54 35.686c-5.1 3.508-9.72 5.218-13.88 5.128c-4.56-.098-13.36-2.584-19.9-4.708c-8-2.606-14.38-3.984-13.82-8.41c.28-2.304 3.46-4.662 9.52-7.072"
+                        ></path>
+                    </svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1392,9 +1653,12 @@
 
 
 
-<!--این همه جا باشه -->
-<script src="script.js"></script>
-<!--این همه جا باشه -->
+<!--این همه جا هست -->
+<script src="assets/js/jquery-3.7.1.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script  src="script.js"></script>
+<!--این همه جا هست -->
+
 
 <!--این اونیه که مال سینگل پروداکته -->
 <script>

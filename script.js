@@ -1,5 +1,42 @@
 'use strict';
 
+document.addEventListener('DOMContentLoaded', function() {
+    const labelElement = document.getElementById('searchTriggerLabel');
+    const inputElement = document.getElementById('mainSearchField');
+
+    if (labelElement && inputElement) {
+        function updateLabelVisibility() {
+            if (inputElement.value.trim() !== '') {
+                labelElement.classList.add('hidden');
+            } else {
+                labelElement.classList.remove('hidden');
+            }
+        }
+
+        labelElement.addEventListener('click', function() {
+            inputElement.focus();
+        });
+
+        inputElement.addEventListener('input', function() {
+            updateLabelVisibility();
+        });
+
+        inputElement.addEventListener('focus', function() {
+            updateLabelVisibility();
+        });
+
+        inputElement.addEventListener('blur', function() {
+            updateLabelVisibility();
+        });
+
+        updateLabelVisibility();
+
+    } else {
+        console.warn('عنصر لیبل یا اینپوت برای فوکوس/نمایش پیدا نشد. ID ها را بررسی کنید.');
+    }
+});
+
+
 function showElement(element, displayType = 'block') {
     if (element) {
         element.style.display = displayType;
@@ -22,9 +59,50 @@ function activateOverlay(overlayElement) {
 function deactivateOverlay(overlayElement) {
     if (overlayElement) {
         overlayElement.classList.remove('active');
-        // Restore body scroll
         document.body.style.overflow = '';
     }
+}
+
+
+const mobileMenuOpenBtn = document.querySelectorAll('[data-mobile-menu-open-btn]');
+const mobileMenu = document.querySelectorAll('[data-mobile-menu]');
+const mobileMenuCloseBtn = document.querySelectorAll('[data-mobile-menu-close-btn]');
+const overlay = document.querySelector('[data-overlay]');
+
+for (let i = 0; i < mobileMenuOpenBtn.length; i++) {
+
+    const mobileMenuCloseFunc = function () {
+        mobileMenu[i].classList.remove('active');
+        overlay.classList.remove('active');
+    }
+
+    mobileMenuOpenBtn[i].addEventListener('click', function () {
+        mobileMenu[i].classList.add('active');
+        overlay.classList.add('active');
+    })
+
+    mobileMenuCloseBtn[i].addEventListener('click', mobileMenuCloseFunc);
+    overlay.addEventListener('click', mobileMenuCloseFunc);
+}
+
+const accordionBtn = document.querySelectorAll('[data-accordion-btn]');
+const accordion = document.querySelectorAll('[data-accordion]');
+
+for (let i = 0; i < accordion.length; i++) {
+    accordionBtn[i].addEventListener('click', function () {
+        const clickedBtn = this.nextElementSibling.classList.contains('active');
+
+        for (let i = 0; i < accordion.length; i++) {
+            if (clickedBtn) break;
+            if (accordion[i].classList.contains('active')) {
+                accordion[i].classList.remove('active');
+                accordionBtn[i].classList.remove('active');
+            }
+        }
+
+        this.nextElementSibling.classList.toggle('active');
+        this.classList.toggle('active');
+    })
 }
 
 
@@ -36,31 +114,24 @@ let quickViewModalInstance, modalProductImage, modalProductName, modalProductPri
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Initialize Global Elements
     mainOverlay = document.querySelector('.overlay');
     searchBoxInstance = $('.search-box'); // jQuery
     cartDashboardInstance = document.getElementById('cart-dashboard');
 
-    // Bootstrap Tooltip Initialization
     const tooltipTriggerList = Array.from(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
     tooltipTriggerList.map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
-    // --- Centralized Overlay Click Handler ---
     if (mainOverlay) {
         mainOverlay.addEventListener('click', () => {
-            // Close search box
             if (searchBoxInstance && searchBoxInstance.hasClass('show-modal-style')) {
                 searchBoxInstance.removeClass('show-modal-style').addClass('search-box');
             }
-            // Close cart dashboard
             if (cartDashboardInstance && cartDashboardInstance.classList.contains('show-dashboard')) {
                 cartDashboardInstance.classList.remove('show-dashboard');
                 cartDashboardInstance.classList.add('hidden-dashboard');
             }
-            // Close mobile menus
             document.querySelectorAll('[data-mobile-menu].active').forEach(menu => menu.classList.remove('active'));
 
-            // Close Quick View Modal
             if (quickViewModalInstance && quickViewModalInstance.style.display !== 'none') {
                 hideElement(quickViewModalInstance);
             }
@@ -68,7 +139,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Mobile Menu Logic ---
     const mobileMenuOpenBtns = document.querySelectorAll('[data-mobile-menu-open-btn]');
     const mobileMenus = document.querySelectorAll('[data-mobile-menu]');
     const mobileMenuCloseBtns = document.querySelectorAll('[data-mobile-menu-close-btn]');
@@ -85,14 +155,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (mobileMenuCloseBtns[index]) {
             mobileMenuCloseBtns[index].addEventListener('click', () => {
                 currentMobileMenu.classList.remove('active');
-                if (mainOverlay) deactivateOverlay(mainOverlay); // Only if no other overlay-dependent item is active
+                if (mainOverlay) deactivateOverlay(mainOverlay);
             });
         }
     });
 
 
-    // --- Accordion Logic (Optimized) ---
-    const accordionContainer = document.querySelector('.accordion-container'); // فرض کنیم یک والد مشترک برای آکاردئون‌ها وجود دارد
+    const accordionContainer = document.querySelector('.accordion-container');
     if (accordionContainer) {
         accordionContainer.addEventListener('click', function(event) {
             const accordionButton = event.target.closest('[data-accordion-btn]');
@@ -117,17 +186,15 @@ document.addEventListener('DOMContentLoaded', function() {
             currentPanel.classList.toggle('active', !isAlreadyActive);
             accordionButton.classList.toggle('active', !isAlreadyActive);
         });
-    } else { // Fallback to original if no container
+    } else {
         const allAccordionBtns = document.querySelectorAll('[data-accordion-btn]');
         allAccordionBtns.forEach(button => {
             button.addEventListener('click', function() {
-                // ... (original accordion logic can be placed here if needed as fallback)
             });
         });
     }
 
 
-    // --- Search Box Modal (jQuery part) ---
     const showSearchBoxBtn = $('.show-search-modal');
     const closeModalSearchBtn = $('.close-modal'); // Assuming this is for search modal
 
@@ -141,7 +208,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-    // --- Swiper Initialization ---
     if (typeof Swiper !== 'undefined' && document.querySelector(".mySwiper")) {
         new Swiper(".mySwiper", {
             spaceBetween: 30,
@@ -153,13 +219,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Cart Logic (Minimal changes, focus on overlay interaction) ---
-    let cartItemsData = JSON.parse(localStorage.getItem('cartItems')) || []; // Renamed to avoid conflict
+    let cartItemsData = JSON.parse(localStorage.getItem('cartItems')) || [];
 
     function updateCartDisplay() {
         const cartList = document.getElementById('cart-items');
         if (!cartList) return;
-        cartList.innerHTML = ''; // Inefficient for large carts, but kept for now
+        cartList.innerHTML = '';
         let totalPrice = 0;
         const itemCounts = {};
         cartItemsData.forEach(item => {
@@ -224,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const index = cartItemsData.findIndex(item => item.name === productName);
         if (index > -1) cartItemsData.splice(index, 1);
         updateCartDisplay();
-        if (cartItemsData.length === 0 && cartDashboardInstance && mainOverlay) { // Close if cart becomes empty
+        if (cartItemsData.length === 0 && cartDashboardInstance && mainOverlay) {
             cartDashboardInstance.classList.remove('show-dashboard');
             cartDashboardInstance.classList.add('hidden-dashboard');
             deactivateOverlay(mainOverlay);
@@ -234,18 +299,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function removeFullProductFromCart(productName) {
         cartItemsData = cartItemsData.filter(item => item.name !== productName);
         updateCartDisplay();
-        if (cartItemsData.length === 0 && cartDashboardInstance && mainOverlay) { // Close if cart becomes empty
+        if (cartItemsData.length === 0 && cartDashboardInstance && mainOverlay) {
             cartDashboardInstance.classList.remove('show-dashboard');
             cartDashboardInstance.classList.add('hidden-dashboard');
             deactivateOverlay(mainOverlay);
         }
     }
 
-    // Event Delegation for "Add to Cart"
     document.body.addEventListener('click', function(event){
         const addToCartButton = event.target.closest('.add-to-cart');
         if(addToCartButton){
-            const productCard = addToCartButton.closest('article'); // Assuming price is within article
+            const productCard = addToCartButton.closest('article');
             if(!productCard) { console.error("Add to cart: Product card (article) not found."); return; }
 
             const productName = productCard.querySelector('.product img.one-img')?.alt;
@@ -262,7 +326,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Initial cart display
     updateCartDisplay();
 
     const closeCartButton = document.getElementById('close-cart');
@@ -274,11 +337,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- LIKE LOGIC (Optimized with Event Delegation) ---
     let totalLikesCount = 0;
     const totalLikesDisplayElement = document.getElementById('total-likes');
 
-    // Initial calculation
     document.querySelectorAll('.like[data-likes]').forEach(btn => {
         totalLikesCount += parseInt(btn.getAttribute('data-likes')) || 0;
     });
@@ -293,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (!isLiked) {
                 numLikes++; totalLikesCount++;
-                if(colorLikeElement) colorLikeElement.setAttribute('fill', 'currentColor'); // Or a specific liked color
+                if(colorLikeElement) colorLikeElement.setAttribute('fill', 'currentColor');
                 likeButton.setAttribute('data-liked', 'true');
             } else {
                 numLikes--; totalLikesCount--;
@@ -314,8 +375,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- '.cs-space' buttons active state (Event Delegation) ---
-    const csSpaceContainer = document.querySelector('.cs-space-container'); // **فرض: یک والد برای این دکمه‌ها با این کلاس دارید**
+    const csSpaceContainer = document.querySelector('.cs-space-container');
     if (csSpaceContainer) {
         csSpaceContainer.addEventListener('click', function(event) {
             const button = event.target.closest('.cs-space');
@@ -335,8 +395,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const hideDelay = 250;
         const categoryItems = megaMenuPanelDesktop.querySelectorAll('.mega-category-item');
         const contentPanes = megaMenuPanelDesktop.querySelectorAll('.mega-menu-pane');
-        const showMenu = () => { /* ... */ isMouseInsidePanelOrTriggerDesktop = true; clearTimeout(megaMenuTimeoutIdDesktop); megaMenuPanelDesktop.classList.add('show'); const firstCategory = categoryItems[0]; if (firstCategory && !megaMenuPanelDesktop.querySelector('.mega-category-item.active')) { activateTab(firstCategory); } };
-        const hideMenu = () => { /* ... */ isMouseInsidePanelOrTriggerDesktop = false; megaMenuTimeoutIdDesktop = setTimeout(() => { if (!isMouseInsidePanelOrTriggerDesktop) { megaMenuPanelDesktop.classList.remove('show'); categoryItems.forEach(item => item.classList.remove('active')); contentPanes.forEach(pane => pane.classList.remove('active')); } }, hideDelay); };
+        const showMenu = () => { isMouseInsidePanelOrTriggerDesktop = true; clearTimeout(megaMenuTimeoutIdDesktop); megaMenuPanelDesktop.classList.add('show'); const firstCategory = categoryItems[0]; if (firstCategory && !megaMenuPanelDesktop.querySelector('.mega-category-item.active')) { activateTab(firstCategory); } };
+        const hideMenu = () => { isMouseInsidePanelOrTriggerDesktop = false; megaMenuTimeoutIdDesktop = setTimeout(() => { if (!isMouseInsidePanelOrTriggerDesktop) { megaMenuPanelDesktop.classList.remove('show'); categoryItems.forEach(item => item.classList.remove('active')); contentPanes.forEach(pane => pane.classList.remove('active')); } }, hideDelay); };
         const activateTab = (categoryElement) => { /* ... */ const targetPaneId = categoryElement.dataset.target; if (!targetPaneId) return; const targetPane = megaMenuPanelDesktop.querySelector(targetPaneId); if (!targetPane) return; categoryItems.forEach(item => item.classList.remove('active')); contentPanes.forEach(pane => pane.classList.remove('active')); categoryElement.classList.add('active'); targetPane.classList.add('active'); };
         megaMenuTriggerDesktop.addEventListener('mouseenter', showMenu);
         megaMenuTriggerDesktop.addEventListener('mouseleave', hideMenu);
@@ -354,7 +414,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (themeToggleButtonTest) { themeToggleButtonTest.addEventListener('click', () => { const currentTheme = htmlElement.hasAttribute('data-theme') ? 'dark' : 'light'; const newTheme = currentTheme === 'dark' ? 'light' : 'dark'; applyTheme(newTheme); }); }
 
 
-    // --- PRODUCT QUICK VIEW MODAL (Optimized for performance and structure) ---
     const quickViewModalHTML = `
         <div id="productQuickViewModal" class="modal" style="display: none; opacity: 0; transition: opacity 0.3s ease-in-out;">
             <div class="modal-content" style="transform: scale(0.95); transition: transform 0.3s ease-in-out;">
@@ -384,11 +443,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const quickViewCloseButton = quickViewModalInstance.querySelector('.close-button');
     modalProductImage = document.getElementById('modalProductImage');
     modalProductName = document.getElementById('modalProductName');
-    const modalPriceContainer = document.getElementById('modalProductPriceContainer'); // Container for price
+    const modalPriceContainer = document.getElementById('modalProductPriceContainer');
     modalViewDetailsLink = document.getElementById('modalViewDetailsLink');
     modalColorInfoP = document.getElementById('modalColorInfo');
 
-    // Pre-create the span that will hold the price to avoid innerHTML='' on the container
     modalProductPriceDisplay = document.createElement('span');
     modalPriceContainer.appendChild(modalProductPriceDisplay);
 
@@ -412,7 +470,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function openQuickViewModal() {
         if (mainOverlay) activateOverlay(mainOverlay);
         showElement(quickViewModalInstance);
-        // Force reflow to ensure transition plays
         quickViewModalInstance.getBoundingClientRect();
         quickViewModalInstance.style.opacity = '1';
         quickViewModalInstance.querySelector('.modal-content').style.transform = 'scale(1)';
@@ -422,21 +479,18 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!quickViewModalInstance || quickViewModalInstance.style.display === 'none') return;
         quickViewModalInstance.style.opacity = '0';
         quickViewModalInstance.querySelector('.modal-content').style.transform = 'scale(0.95)';
-        // Wait for transition to finish before hiding
         setTimeout(() => {
             hideElement(quickViewModalInstance);
-            // Deactivate overlay only if no other overlay-dependent modal is active
+
             if (mainOverlay) deactivateOverlay(mainOverlay);
-        }, 300); // Match CSS transition time
+        }, 300);
     }
 
     if (quickViewCloseButton) {
         quickViewCloseButton.addEventListener('click', closeQuickViewModal);
     }
-    // Closing by overlay click is handled by centralized overlay handler
 
-    // Event Delegation for ".view" buttons
-    const productListContainer = document.getElementById('slider') || document.body; // Or a more specific parent
+    const productListContainer = document.getElementById('slider') || document.body;
     productListContainer.addEventListener('click', function(event) {
         const viewButton = event.target.closest('button.view');
         if (!viewButton) return;
@@ -444,8 +498,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const productArticle = viewButton.closest('article');
         if (!productArticle) { console.error("Quick View: Product article not found."); return; }
 
-        // --- Performance: Read data from DOM (Keep this part as fast as possible) ---
-        // Consider using data-attributes on productArticle for faster access if querySelector is slow
+
         const productImageEl = productArticle.querySelector('.product img.one-img');
         const productNameEl = productArticle.querySelector('h3.Specifications');
         const productPriceEl = productArticle.querySelector('span.price');
@@ -454,20 +507,18 @@ document.addEventListener('DOMContentLoaded', function() {
             imageSrc: productImageEl ? productImageEl.src : '',
             imageAlt: productImageEl ? productImageEl.alt : '',
             name: productNameEl ? productNameEl.textContent.trim() : '',
-            priceHTML: productPriceEl ? productPriceEl.innerHTML : '', // Gets inner HTML (text + SVG)
+            priceHTML: productPriceEl ? productPriceEl.innerHTML : '',
             priceClass: productPriceEl ? productPriceEl.className : '',
-            // colors: productArticle.dataset.colors, // Example: <article data-colors="قرمز, آبی">
+
             detailsLink: productArticle.dataset.detailUrl || "single.product.html"
         };
 
-        // Populate and then show
         populateQuickViewModal(productData);
         openQuickViewModal();
     });
 
-}); // End of DOMContentLoaded
+});
 
-// jQuery $(document).ready() for jQuery plugins (OwlCarousel)
 $(document).ready(function(){
     if (typeof $.fn.owlCarousel !== 'undefined' && $(".owl-carousel").length) {
         $(".owl-carousel").owlCarousel({
@@ -478,3 +529,6 @@ $(document).ready(function(){
         });
     }
 });
+
+
+

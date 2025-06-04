@@ -292,7 +292,7 @@ html {
   padding: 2px !important;
   position: absolute;
   top: 0;
-  left: 25px;
+  left: 7%;
   background-color: white;
   color: gray;
 }
@@ -319,6 +319,10 @@ html {
   .mobile-bottom-navigation {
     display: flex !important;
   }
+  main, .main-slider {
+    margin-top: 60px !important;
+    margin-bottom: 50px !important;
+  }
 }
 .cus-fs-1 {
   font-size: 15px !important;
@@ -337,11 +341,33 @@ html {
   background-color: #fbfbfb !important;
 }
 
-@media only screen and (min-width: 1024px) {
+.search-mb {
+  z-index: 999 !important;
+  top: -0.2% !important;
+  right: 0 !important;
+  left: 0 !important;
+}
+
+@media only screen and (min-width: 1025px) {
   .search-mb {
     display: none !important;
   }
 }
+@media only screen and (min-width: 1025px) {
+  .copen-cs {
+    padding: 50px 0 !important;
+  }
+}
+.cs-text-inp {
+  top: 19%;
+  right: 6%;
+  font-size: 15px;
+}
+
+.profile-in-head {
+  border-radius: 7.5em;
+}
+
 .product {
   position: relative;
   border-radius: 8px;
@@ -985,8 +1011,8 @@ button {
 }
 
 .category-circle {
-  width: 85px !important;
-  height: 85px !important;
+  width: 95px !important;
+  height: 95px !important;
   background-color: #e0e0e0;
   border-radius: 50%;
   margin: 0 auto;
@@ -998,7 +1024,7 @@ button {
   width: 140px;
   height: auto;
   position: absolute;
-  top: 7.5px;
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
@@ -1015,8 +1041,8 @@ button {
 
 @media only screen and (max-width: 1024px) {
   .category-circle {
-    width: 65px !important;
-    height: 65px !important;
+    width: 85px !important;
+    height: 85px !important;
     background-color: #e0e0e0;
     border-radius: 50%;
     margin: 0 auto;
@@ -1026,13 +1052,17 @@ button {
 }
 @media only screen and (max-width: 600px) {
   .category-circle {
-    width: 55px !important;
-    height: 55px !important;
+    width: 70px !important;
+    height: 70px !important;
     background-color: #e0e0e0;
     border-radius: 50%;
     margin: 0 auto;
     position: relative;
     z-index: 1;
+  }
+  .slide-item img {
+    width: 60px !important;
+    top: 2% !important;
   }
 }
 * {
@@ -4308,6 +4338,20 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
     top: 80% !important;
   }
 }
+@media only screen and (max-width: 600px) {
+  .np-wr {
+    white-space: nowrap !important;
+    font-size: 11.5px !important;
+  }
+  .min-mr {
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+  }
+}
+.w-left {
+  text-align: -webkit-left !important;
+}
+
 :root {
   --primary-color: #f96747;
   --text-color: #333;
@@ -4339,6 +4383,11 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   border: 1px solid var(--border-color);
 }
 
+@media only screen and (max-width: 600px) {
+  .gallery-top {
+    height: 32vh !important;
+  }
+}
 .gallery-top .swiper-slide {
   display: flex;
   padding: 30px 10px;
@@ -4467,7 +4516,7 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
 .product-price {
   color: var(--primary-color);
   font-weight: bold;
-  margin-bottom: 1.25rem;
+  margin: 0.65rem 0;
 }
 
 .product-price .currency-symbol {
@@ -4677,6 +4726,7 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
 
 .product-tabs-section .nav-tabs {
   margin-bottom: 0;
+  margin-left: 0 !important;
 }
 
 .product-tabs-section .nav-tabs .nav-link {
@@ -4685,7 +4735,6 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   padding: 0.8rem 1.4rem;
   border: 1px solid transparent;
   border-bottom: none;
-  margin-left: 3px;
   font-weight: 500;
   transition: color 0.2s ease, background-color 0.2s ease;
 }
@@ -5262,6 +5311,11 @@ div#minus:hover span::after {
 .fs-cs-s-2 .form-control {
   font-size: 14px !important;
 }
+.fs-cs-s-2 .svg {
+  width: 1.5em !important;
+  height: 1.5em !important;
+  margin: auto 5px !important;
+}
 
 .user-panel-content, .user-panel-aside {
   border: 1px solid #c7c7c7;
@@ -5342,6 +5396,10 @@ aside {
   font-size: 14px;
 }
 
+.nav-item button {
+  white-space: nowrap !important;
+  font-size: 15px !important;
+}
 .nav-item .active {
   color: #e26e6e !important;
   border-bottom: 1px ridge #e26e6e;
@@ -5505,7 +5563,7 @@ html, body {
 .fill-filters-sidebar-container {
   background-color: var(--bg-secondary) !important;
   padding: calc(var(--spacing-unit) * 2) !important;
-  border-radius: var(--border-radius-md) !important;
+  border-radius: 7px !important;
   box-shadow: var(--shadow-md) !important;
   align-self: flex-start !important;
   position: sticky !important;
@@ -5895,7 +5953,7 @@ html, body {
   display: none; /* در ابتدا مخفی، توسط JS در موبایل نمایش داده می‌شود */
   position: sticky;
   top: 0;
-  z-index: 1030;
+  z-index: 99;
   background-color: var(--bg-secondary);
   box-shadow: var(--shadow-sm);
   padding: 0 var(--spacing-unit); /* پدینگ افقی برای کل نوار */
@@ -6358,11 +6416,45 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay {
   position: absolute;
   align-items: center !important;
   top: 3%;
-  left: 5%;
+  right: 5%;
 }
 
 .card {
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px !important;
+  padding-top: 10px !important;
+  border-radius: 4px !important;
+  border: 0.5px ridge #d5d5d5;
+}
+
+.colors-search {
+  left: 3%;
+  top: 1%;
+}
+
+.for-color, .three-color, .two-color, .one-color {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.one-color {
+  background-color: orangered;
+}
+
+.two-color {
+  background-color: indianred;
+}
+
+.three-color {
+  background-color: gray;
+}
+
+.cs-color {
+  color: #adacac;
+}
+
+.have-dont-have {
+  color: gray;
+  font-size: 13px !important;
 }
 
 /* --- Base Variables (Mostly unchanged, maybe slight adjustments) --- */
@@ -9173,7 +9265,7 @@ textarea.dj-sh-form-control {
   align-items: center;
   padding: 5px 0;
   box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.25);
-  z-index: 1000000000000000000;
+  z-index: 99;
 }
 
 .mobile-bottom-navigation .action-btn {
@@ -9309,7 +9401,7 @@ textarea.dj-sh-form-control {
 }
 
 .submenu-category-list.active {
-  max-height: 440px;
+  max-height: 580px;
   visibility: visible;
 }
 

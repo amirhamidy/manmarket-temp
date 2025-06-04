@@ -58,7 +58,7 @@
   padding: 2px !important;
   position: absolute;
   top: 0;
-  left: 25px;
+  left: 7%;
   background-color: white;
   color: gray;
 }
@@ -86,6 +86,11 @@
   .mobile-bottom-navigation{
     display: flex !important;
   }
+  main , .main-slider {
+    margin-top: 60px !important;
+    margin-bottom: 50px !important;
+
+  }
 }
 
 .cus-fs-1{
@@ -104,12 +109,31 @@
   background-color: #fbfbfb !important;
 }
 
-
-@media only screen and (min-width: 1024px) {
+.search-mb{
+  z-index:999!important;
+  top: -0.2% !important;
+  right: 0 !important;
+  left: 0 !important;
+}
+@media only screen and (min-width: 1025px) {
   .search-mb{
      display: none !important;
    }
 }
 
+@media only screen and (min-width: 1025px){
+  .copen-cs{
+    padding: 50px  0 !important;
+  }
+}
 
 
+.cs-text-inp{
+  top: 19%;
+  right: 6%;
+  font-size: 15px;
+}
+
+.profile-in-head{
+  border-radius: 7.5em;
+}

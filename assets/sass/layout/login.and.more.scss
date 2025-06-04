@@ -524,3 +524,17 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   }
 }
 
+
+@media only screen and (max-width: 600px) {
+  .np-wr{
+    white-space: nowrap !important;
+    font-size: 11.5px !important;
+  }
+  .min-mr{
+    margin-right: 0.5rem !important;
+    margin-left:  0.5rem !important;
+  }
+}
+.w-left{
+  text-align: -webkit-left !important;
+}

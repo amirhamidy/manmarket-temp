@@ -1,42 +1,5 @@
 'use strict';
 
-document.addEventListener('DOMContentLoaded', function() {
-    const labelElement = document.getElementById('searchTriggerLabel');
-    const inputElement = document.getElementById('mainSearchField');
-
-    if (labelElement && inputElement) {
-        function updateLabelVisibility() {
-            if (inputElement.value.trim() !== '') {
-                labelElement.classList.add('hidden');
-            } else {
-                labelElement.classList.remove('hidden');
-            }
-        }
-
-        labelElement.addEventListener('click', function() {
-            inputElement.focus();
-        });
-
-        inputElement.addEventListener('input', function() {
-            updateLabelVisibility();
-        });
-
-        inputElement.addEventListener('focus', function() {
-            updateLabelVisibility();
-        });
-
-        inputElement.addEventListener('blur', function() {
-            updateLabelVisibility();
-        });
-
-        updateLabelVisibility();
-
-    } else {
-        console.warn('عنصر لیبل یا اینپوت برای فوکوس/نمایش پیدا نشد. ID ها را بررسی کنید.');
-    }
-});
-
-
 function showElement(element, displayType = 'block') {
     if (element) {
         element.style.display = displayType;

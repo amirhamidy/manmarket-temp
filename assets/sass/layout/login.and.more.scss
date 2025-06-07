@@ -86,9 +86,10 @@
   color: var(--secondary-text-color);
   position: relative;
   border-radius: var(--border-radius-base);
-  font-size: 0.9rem;
+  font-size:0.9rem;
   display: inline-block;
   background-color: var(--background-light);
+  font-weight: bold !important;
 }
 
 
@@ -290,8 +291,6 @@
 
 .ow-container { /* تغییر نام کلاس */
   max-width: 1200px;
-  margin: 30px auto;
-  padding: 20px;
 }
 h1 {
   text-align: center;
@@ -299,8 +298,7 @@ h1 {
   margin-bottom: 30px;
 }
 .ow-item { /* تغییر نام کلاس */
-  padding: 20px 60px;
-  margin: 10px;
+  padding: 0 60px;
   color: white;
   border-radius: 5px;
   text-align: center;
@@ -389,6 +387,10 @@ h1 {
   border: 1px solid #eee;
   object-fit: contain;
   max-height: 400px;
+}
+
+.owl-dots{
+  display: none !important;
 }
 
 .modal-details-container {
@@ -537,4 +539,18 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
 }
 .w-left{
   text-align: -webkit-left !important;
+}
+
+@media only screen and (max-width: 1024px){
+  .center-max-24{
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  footer{
+    ul{
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  }
 }

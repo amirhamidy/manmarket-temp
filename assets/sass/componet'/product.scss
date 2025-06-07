@@ -10,11 +10,21 @@
   padding: 3px 10px;
   margin: auto 5px;
   &:hover{
-    .one-img{
+    .href-slide{
+     visibility: visible !important;
+      z-index: 99;
+    }
+      .one-img{
       opacity: 0;
       transition: 0.7s;
       pointer-events: none !important;
     }
+  }
+}
+
+article{
+  cursor: pointer;
+  &:hover{
     .two-img{
       opacity: 1;
       transition: 0.7s;
@@ -31,6 +41,8 @@
     }
   }
 }
+
+
 .product img {
   width: 100%;
   height: auto;
@@ -391,5 +403,11 @@ button {
   align-items: center;
 }
 
+.href-slide{
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 

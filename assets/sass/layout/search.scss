@@ -361,6 +361,10 @@ html, body {
   border-color: var(--primary-accent);
 }
 
+.pc-s{
+  padding-left: 0 !important;
+}
+
 
 .mobile-filter-bar .btn-filter-chip > svg:first-child { /* آیکون اصلی فیلترها */
   width: 16px; height: 16px;
@@ -636,7 +640,13 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
 }
 
 
-
+.bt-sin{
+  border-bottom: 1px ridge #cecece;
+  width: 100%;
+}
+.en-brand{
+  color: #cecece;
+}
 
 
 

@@ -37,11 +37,24 @@
 }
 
 .mr-cs{
-  margin-right: 30px !important;
+  margin-right: 100px !important;
+}
+.mr-cs-2{
+  margin-right: 20px !important;
+}
+@media only screen and (max-width: 1000px){
+  .mr-cs-2{
+    margin-right: 0 !important;
+  }
 }
 
 .cs-w{
   width: 80px;
+  margin-top: 0 !important;
+}
+.cs-w-2{
+  width: 50px;
+  margin-top: 0 !important;
 }
 
 .search-box{
@@ -88,7 +101,7 @@
   }
   main , .main-slider {
     margin-top: 60px !important;
-    margin-bottom: 50px !important;
+    margin-bottom: 20px !important;
 
   }
 }
@@ -136,4 +149,11 @@
 
 .profile-in-head{
   border-radius: 7.5em;
+}
+
+
+
+.tol-mb{
+  color: gray;
+  font-size: 10px;
 }

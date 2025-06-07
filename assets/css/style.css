@@ -23,13 +23,6 @@ input {
   outline: none;
 }
 
-* {
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-}
-
 :root {
   --spanish-gray: hsl(0, 0%, 60%);
   --sonic-silver: hsl(0, 0%, 47%);
@@ -271,11 +264,26 @@ html {
 }
 
 .mr-cs {
-  margin-right: 30px !important;
+  margin-right: 100px !important;
 }
 
+.mr-cs-2 {
+  margin-right: 20px !important;
+}
+
+@media only screen and (max-width: 1000px) {
+  .mr-cs-2 {
+    margin-right: 0 !important;
+  }
+}
 .cs-w {
   width: 80px;
+  margin-top: 0 !important;
+}
+
+.cs-w-2 {
+  width: 50px;
+  margin-top: 0 !important;
 }
 
 .search-box {
@@ -321,7 +329,7 @@ html {
   }
   main, .main-slider {
     margin-top: 60px !important;
-    margin-bottom: 50px !important;
+    margin-bottom: 20px !important;
   }
 }
 .cus-fs-1 {
@@ -368,6 +376,11 @@ html {
   border-radius: 7.5em;
 }
 
+.tol-mb {
+  color: gray;
+  font-size: 10px;
+}
+
 .product {
   position: relative;
   border-radius: 8px;
@@ -380,23 +393,31 @@ html {
   padding: 3px 10px;
   margin: auto 5px;
 }
+.product:hover .href-slide {
+  visibility: visible !important;
+  z-index: 99;
+}
 .product:hover .one-img {
   opacity: 0;
   transition: 0.7s;
   pointer-events: none !important;
 }
-.product:hover .two-img {
+
+article {
+  cursor: pointer;
+}
+article:hover .two-img {
   opacity: 1;
   transition: 0.7s;
   pointer-events: none !important;
 }
-.product:hover .icons {
+article:hover .icons {
   visibility: visible;
   opacity: 1;
   margin-top: 0;
   z-index: 9999;
 }
-.product:hover .icons .like, .product:hover .icons .add-to-cart, .product:hover .icons .view {
+article:hover .icons .like, article:hover .icons .add-to-cart, article:hover .icons .view {
   top: 77%;
 }
 
@@ -743,6 +764,13 @@ button {
   justify-content: center;
   display: flex;
   align-items: center;
+}
+
+.href-slide {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .swiper {
@@ -3879,6 +3907,7 @@ section,
   font-size: 0.9rem;
   display: inline-block;
   background-color: var(--background-light);
+  font-weight: bold !important;
 }
 
 /* --- DESKTOP MEGA TAB MENU STYLES --- */
@@ -4102,8 +4131,6 @@ section,
 
 .ow-container { /* تغییر نام کلاس */
   max-width: 1200px;
-  margin: 30px auto;
-  padding: 20px;
 }
 
 h1 {
@@ -4113,8 +4140,7 @@ h1 {
 }
 
 .ow-item { /* تغییر نام کلاس */
-  padding: 20px 60px;
-  margin: 10px;
+  padding: 0 60px;
   color: white;
   border-radius: 5px;
   text-align: center;
@@ -4204,6 +4230,10 @@ h1 {
   border: 1px solid #eee;
   object-fit: contain;
   max-height: 400px;
+}
+
+.owl-dots {
+  display: none !important;
 }
 
 .modal-details-container {
@@ -4352,6 +4382,17 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   text-align: -webkit-left !important;
 }
 
+@media only screen and (max-width: 1024px) {
+  .center-max-24 {
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  footer ul {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
 :root {
   --primary-color: #f96747;
   --text-color: #333;
@@ -6038,6 +6079,10 @@ html, body {
   border-color: var(--primary-accent);
 }
 
+.pc-s {
+  padding-left: 0 !important;
+}
+
 .mobile-filter-bar .btn-filter-chip > svg:first-child { /* آیکون اصلی فیلترها */
   width: 16px;
   height: 16px;
@@ -6455,6 +6500,15 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay {
 .have-dont-have {
   color: gray;
   font-size: 13px !important;
+}
+
+.bt-sin {
+  border-bottom: 1px ridge #cecece;
+  width: 100%;
+}
+
+.en-brand {
+  color: #cecece;
 }
 
 /* --- Base Variables (Mostly unchanged, maybe slight adjustments) --- */
@@ -9263,7 +9317,6 @@ textarea.dj-sh-form-control {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 5px 0;
   box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.25);
   z-index: 99;
 }
@@ -9599,10 +9652,6 @@ textarea.dj-sh-form-control {
 }
 
 /*BLOG*/
-.blog {
-  margin-bottom: 30px;
-}
-
 .blog-container {
   display: flex;
   align-items: flex-start;
@@ -9655,7 +9704,7 @@ textarea.dj-sh-form-control {
 /*FOOTER*/
 footer {
   background: #f4f2f0;
-  padding: 2px 0;
+  padding: 10px 0;
 }
 
 .footer-category {
@@ -10345,7 +10394,7 @@ footer {
 }
 @media only screen and (max-width: 1024px) {
   .coppy {
-    margin-bottom: 100px !important;
+    margin-bottom: 80px !important;
   }
 }
 @media (min-width: 1200px) {
@@ -10422,6 +10471,9 @@ footer {
 }
 .menu-category {
   margin: 0 !important;
+}
+.menu-category a {
+  font-weight: bold !important;
 }
 .menu-category button {
   padding: 0 !important;

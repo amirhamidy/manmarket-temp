@@ -493,5 +493,66 @@ $(document).ready(function(){
     }
 });
 
+function showToast(type, title, message, duration = 4000) {
+    const container = document.getElementById('notificationToastContainer');
+    if (!container) {
+        console.error('Notification container #notificationToastContainer not found!');
+        return;
+    }
+    const iconMap = {
+        success: '#icon-check-circle-fill',
+        error: '#icon-alert-triangle-fill',
+        info: '#icon-info-circle-fill'
+    };
+    const toastDiv = document.createElement('div');
+    toastDiv.className = `wow-notification-new ${type}`;
+    toastDiv.innerHTML = `
+        <div class="wow-notification-icon-new">
+            <svg><use xlink:href="${iconMap[type] || '#icon-info-circle-fill'}"></use></svg>
+        </div>
+        <div class="wow-notification-content-new">
+            <div class="wow-notification-title-new">${title}</div>
+            <div class="wow-notification-message-new">${message}</div>
+        </div>
+        <button class="wow-notification-close-new">×</button>`;
 
+    container.appendChild(toastDiv);
+
+    requestAnimationFrame(() => {
+        toastDiv.classList.add('show');
+    });
+
+    const removeToast = () => {
+        toastDiv.classList.remove('show');
+        setTimeout(() => {
+            toastDiv.remove();
+        }, 400);
+    };
+
+    toastDiv.querySelector('.wow-notification-close-new').onclick = removeToast;
+
+    if (duration > 0) {
+        setTimeout(removeToast, duration);
+    }
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const searchModalTriggers = document.querySelectorAll('.show-search-modal');
+    const searchBox = document.querySelector('.search-box');
+    const closeSearchModal = document.querySelector('.search-box .close-modal');
+
+    if (searchBox) {
+        searchModalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                searchBox.classList.add('active');
+            });
+        });
+
+        closeSearchModal.addEventListener('click', () => {
+            searchBox.classList.remove('active');
+        });
+    }
+});
 

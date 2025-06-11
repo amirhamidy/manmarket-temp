@@ -14,7 +14,19 @@
     }
   }
 }
+header{
+  z-index: 9;
+  background-color: white;
+  transform: translateX(50);
+  right: 0;
+  left: 0;
+  border: 0.5px ridge #eaeaea;
+  top: -3%;
+}
 
+.main-slider{
+  margin-top: 100px !important;
+}
 
 .icons-in-header{
   svg{
@@ -37,7 +49,7 @@
 }
 
 .mr-cs{
-  margin-right: 100px !important;
+  margin-right: 120px !important;
 }
 .mr-cs-2{
   margin-right: 20px !important;

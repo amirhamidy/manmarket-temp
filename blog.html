@@ -8,6 +8,116 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        :root {
+            --primary-accent: #ff4f29;
+            --text-primary: #2c3a47;
+            --text-secondary: #57606f;
+            --bg-body: #f8f9fa;
+            --bg-content: #ffffff;
+            --border-color: #e9ecef;
+            --border-radius-md: 12px;
+            --spacing-unit: 8px;
+            --transition-ease: all 0.3s ease-in-out;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-family-base); background-color: var(--bg-body); color: var(--text-primary); line-height: 1.7; direction: rtl; }
+        a { text-decoration: none; color: inherit; }
+        .blog-l-container { max-width: 1280px; margin: 0 auto; padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 2); }
+
+        /* --- ساختار اصلی دسکتاپ --- */
+        .blog-l-main-layout { display: grid; grid-template-columns: 1fr 340px; gap: calc(var(--spacing-unit) * 5); align-items: flex-start; }
+        .blog-l-page-title { font-size: 2.5em; font-weight: 700; margin-bottom: calc(var(--spacing-unit) * 4); border-bottom: 2px solid var(--border-color); padding-bottom: calc(var(--spacing-unit) * 2); }
+        .blog-l-post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: calc(var(--spacing-unit) * 4); }
+        .blog-l-post-card { background-color: var(--bg-content); border-radius: var(--border-radius-md); box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; display: flex; flex-direction: column; }
+        .blog-l-post-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+
+        /* --- استایل سفارشی شما برای تصاویر --- */
+        .blog-l-card-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            text-align: center; /* نسخه استاندارد -webkit-center */
+        }
+        .blog-l-card-image img {
+            display: inline-block; /* برای کار کردن text-align */
+            width: 80%;
+            height: 100%;
+            max-width: 80%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .blog-l-post-card:hover .blog-l-card-image img { transform: scale(1.05); }
+
+        .blog-l-card-category { position: absolute; top: var(--spacing-unit) * 2; right:0; background-color: var(--primary-accent); color: white; padding: calc(var(--spacing-unit) / 2) calc(var(--spacing-unit) * 1.5); border-radius: 10px; font-size: 0.75em; font-weight: bold; white-space: nowrap }
+        .blog-l-card-content { padding: calc(var(--spacing-unit) * 3); flex-grow: 1; display: flex; flex-direction: column; }
+        .blog-l-card-title { font-size: 1.25em; font-weight: 700; margin-bottom: var(--spacing-unit); line-height: 1.4; }
+        .blog-l-card-meta { font-size: 0.8em; color: var(--text-secondary); }
+
+        /* سایدبار دسکتاپ */
+        .blog-l-sidebar { position: sticky; top: 30px; }
+        .blog-l-widget { background-color: var(--bg-content); border-radius: var(--border-radius-md); padding: calc(var(--spacing-unit) * 3); margin-bottom: calc(var(--spacing-unit) * 4); box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
+        .blog-l-widget-title { font-size: 1.3em; font-weight: 700; margin-bottom: calc(var(--spacing-unit) * 3); border-bottom: 2px solid var(--primary-accent); padding-bottom: var(--spacing-unit); }
+        .blog-l-search-box { display: flex; }
+        .blog-l-search-box input { flex-grow: 1; border: 1px solid var(--border-color); padding: 12px; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; border-left: 0; outline: none; }
+        .blog-l-search-box button { background-color: var(--primary-accent); color: white; border: 0; padding: 0 16px; border-radius: var(--border-radius-md) 0 0 var(--border-radius-md); cursor: pointer; }
+        .blog-l-category-list { display: flex; flex-direction: column; gap: calc(var(--spacing-unit) * 1.5); padding: 0; list-style: none; }
+        .blog-l-category-link { display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-unit); border-radius: var(--border-radius-md); transition: var(--transition-ease); }
+        .blog-l-category-link:hover { background-color: var(--bg-body); }
+        .blog-l-category-count { font-size: 0.8em; background-color: var(--border-color); padding: 2px 8px; border-radius: 99px; }
+        .blog-l-tags-cloud { display: flex; flex-wrap: wrap; gap: var(--spacing-unit); }
+        .blog-l-tags-cloud a { background-color: var(--bg-body); padding: 6px 12px; border-radius: 99px; font-size: 0.85em; transition: var(--transition-ease); }
+        .blog-l-tags-cloud a:hover { background-color: var(--primary-accent); color: white; }
+        .blog-l-pagination { display: flex; justify-content: center; align-items: center; margin-top: calc(var(--spacing-unit) * 8); gap: var(--spacing-unit); }
+        .blog-l-pagination a, .blog-l-pagination span { display: inline-flex; justify-content: center; align-items: center; padding: 0; border: 1px solid var(--border-color); background-color: white; border-radius: var(--border-radius-md); min-width: 44px; height: 44px; text-align: center; }
+        .blog-l-pagination a.active { background-color: var(--primary-accent); color: white; border-color: var(--primary-accent); }
+
+        /* استایل‌های اختصاصی برای حالت موبایل */
+        .mobile-filter-bar, .filters-bottom-sheet, .filters-bottom-sheet-overlay { display: none; }
+
+        @media (max-width: 992px) {
+            .blog-l-main-layout { grid-template-columns: 1fr; }
+            .blog-l-sidebar { display: none; }
+            .blog-l-container { padding-top: calc(var(--spacing-unit) * 2 + 60px); }
+
+            .mobile-filter-bar {
+                display: flex; align-items: center; position: fixed; top: 0; left: 0; right: 0;
+                height: 60px; background-color: var(--bg-content); box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                padding: 0 calc(var(--spacing-unit) * 2); z-index: 999;
+            }
+            .btn-open-filters {
+                background-color: transparent; border: 1px solid var(--border-color); border-radius: 99px; padding: 8px 16px;
+                font-family: inherit; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;
+            }
+            .btn-open-filters svg { width: 18px; height: 18px; fill: var(--text-secondary); }
+
+            .filters-bottom-sheet {
+                display: flex; flex-direction: column; position: fixed; bottom: 0; left: 0; right: 0;
+                max-height: 85vh; background-color: var(--bg-body);
+                border-top-left-radius: var(--border-radius-md); border-top-right-radius: var(--border-radius-md);
+                box-shadow: 0 -5px 25px rgba(0,0,0,0.15); transform: translateY(105%);
+                transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1001;
+            }
+            .filters-bottom-sheet.show { transform: translateY(0); }
+
+            .filters-bottom-sheet-header { display: flex; justify-content: space-between; align-items: center; padding: 16px; border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
+            .filters-bottom-sheet-header .title { font-weight: 700; font-size: 1.1rem; }
+            .filters-bottom-sheet-header .btn-close-sheet { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--text-secondary); }
+
+            .filters-bottom-sheet-content { overflow-y: auto; padding: var(--spacing-unit); }
+            .filters-bottom-sheet-content .blog-l-widget { box-shadow: none; border: none; background: none; }
+
+            .filters-bottom-sheet-overlay {
+                display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background-color: rgba(0,0,0,0.4); opacity: 0; visibility: hidden;
+                transition: opacity 0.35s ease, visibility 0.35s ease; z-index: 1000;
+            }
+            .filters-bottom-sheet-overlay.show { opacity: 1; visibility: visible; }
+        }
+    </style>
+
 </head>
 <body>
 <!--Shadow Overly start-->
@@ -590,6 +700,57 @@
 </div>
 
 
+    <div class="mobile-filter-bar">
+        <button class="btn-open-filters" id="open-filters-btn">
+            <svg viewBox="0 0 24 24"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"></path></svg>
+            <span>فیلترها و دسته‌بندی‌ها</span>
+        </button>
+    </div>
+
+    <div class="blog-l-container">
+        <div class="blog-l-main-layout">
+            <main class="blog-l-content-column">
+                <h1 class="blog-l-page-title">آخرین مقالات</h1>
+                <div class="blog-l-post-grid">
+                    <article class="blog-l-post-card"><a href="#" class="blog-l-card-image"><img src="https://placehold.co/400x250/ff7c7c/ffffff?text=." alt=""><span class="blog-l-card-category">سلامت</span></a><div class="blog-l-card-content"><h3 class="blog-l-card-title">آیا خواب کافی دارید؟</h3><p class="blog-l-card-meta">۲۰ شهریور</p></div></article>
+                    <article class="blog-l-post-card"><a href="#" class="blog-l-card-image"><img src="https://placehold.co/400x250/4ECDC4/ffffff?text=." alt=""><span class="blog-l-card-category">سبک زندگی</span></a><div class="blog-l-card-content"><h3 class="blog-l-card-title">۱۰ نکته برای افزایش تمرکز</h3><p class="blog-l-card-meta">۱۸ شهریور</p></div></article>
+                    <article class="blog-l-post-card"><a href="#" class="blog-l-card-image"><img src="https://placehold.co/400x250/54a0ff/ffffff?text=." alt=""><span class="blog-l-card-category">تکنولوژی</span></a><div class="blog-l-card-content"><h3 class="blog-l-card-title">نقد گجت پوشیدنی سال</h3><p class="blog-l-card-meta">۱۷ شهریور</p></div></article>
+                    <article class="blog-l-post-card"><a href="#" class="blog-l-card-image"><img src="https://placehold.co/400x250/feca57/ffffff?text=." alt=""><span class="blog-l-card-category">بررسی محصول</span></a><div class="blog-l-card-content"><h3 class="blog-l-card-title">مقایسه دو هدفون بی‌سیم</h3><p class="blog-l-card-meta">۱۶ شهریور</p></div></article>
+                </div>
+                <nav class="blog-l-pagination"><a href="#" class="active">۱</a><a href="#">۲</a><a href="#">۳</a></nav>
+            </main>
+            <aside class="blog-l-sidebar"><div id="desktop-sidebar-content"></div></aside>
+        </div>
+    </div>
+
+    <div class="filters-bottom-sheet-overlay" id="filters-overlay"></div>
+    <div class="filters-bottom-sheet" id="filters-bottom-sheet">
+        <div class="filters-bottom-sheet-header">
+            <span class="title">فیلترها</span><button class="btn-close-sheet" id="close-filters-btn">×</button>
+        </div>
+        <div class="filters-bottom-sheet-content" id="mobile-sidebar-content"></div>
+    </div>
+
+    <template id="sidebar-widgets-template">
+        <div class="blog-l-widget">
+            <form class="blog-l-search-box"><input type="search" placeholder="جستجو..."><button type="submit">جستجو</button></form>
+        </div>
+        <div class="blog-l-widget">
+            <h3 class="blog-l-widget-title">دسته‌بندی‌ها</h3>
+            <ul class="blog-l-category-list">
+                <li><a href="#" class="blog-l-category-link"><span>سلامت</span> <span class="blog-l-category-count">۱۵</span></a></li>
+                <li><a href="#" class="blog-l-category-link"><span>تکنولوژی</span> <span class="blog-l-category-count">۹</span></a></li>
+                <li><a href="#" class="blog-l-category-link"><span>سبک زندگی</span> <span class="blog-l-category-count">۲۱</span></a></li>
+            </ul>
+        </div>
+        <div class="blog-l-widget">
+            <h3 class="blog-l-widget-title">هشتگ‌های داغ</h3>
+            <div class="blog-l-tags-cloud">
+                <a href="#">#تقویت_ایمنی</a><a href="#">#گوشی_موبایل</a><a href="#">#ورزش</a><a href="#">#دورکاری</a><a href="#">#ویتامینC</a>
+            </div>
+        </div>
+    </template>
+
 <!--search modal __ :: start-->
 <section class="search-box">
     <span class="close-modal mx-5">
@@ -633,276 +794,6 @@
 </section>
 <!--search modal __ :: end---->
 
-
-
-<!--main collection start------->
-
-<main class="main">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 sidebar">
-
-                <div class="widgets-container">
-
-                    <!-- Search Widget -->
-                    <div class="search-widget widget-item">
-
-                        <h3 class="widget-title">جست و جو</h3>
-                        <form action="">
-                            <input type="text">
-                            <button type="submit" title="Search"><i>
-                                <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 32 32"
-                                        width="1em"
-                                        height="1em"
-                                >
-                                    <path
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
-                                    ></path>
-                                </svg>
-                            </i></button>
-                        </form>
-
-                    </div><!--/Search Widget -->
-
-                    <!-- Categories Widget -->
-                    <div class="categories-widget widget-item">
-
-                        <h3 class="widget-title">دسته بندی</h3>
-                        <ul class="mt-3">
-                            <li><a href="#">General <span>(25)</span></a></li>
-                            <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                            <li><a href="#">Travel <span>(5)</span></a></li>
-                            <li><a href="#">Design <span>(22)</span></a></li>
-                            <li><a href="#">Creative <span>(8)</span></a></li>
-                            <li><a href="#">Educaion <span>(14)</span></a></li>
-                        </ul>
-
-                    </div><!--/Categories Widget -->
-
-
-                    <!-- Tags Widget -->
-                    <div class="tags-widget widget-item">
-
-                        <h3 class="widget-title">تگ ها</h3>
-                        <ul>
-                            <li><a href="#">App</a></li>
-                            <li><a href="#">IT</a></li>
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Mac</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Office</a></li>
-                            <li><a href="#">Creative</a></li>
-                            <li><a href="#">Studio</a></li>
-                            <li><a href="#">Smart</a></li>
-                            <li><a href="#">Tips</a></li>
-                            <li><a href="#">Marketing</a></li>
-                        </ul>
-
-                    </div><!--/Tags Widget -->
-
-                </div>
-
-            </div>
-            <div class="col-lg-8">
-
-                <!-- Blog Posts Section -->
-                <section id="blog-posts" class="blog-posts section">
-
-                    <div class="container">
-                        <div class="row gy-4">
-
-                            <div class="col-lg-6">
-                                <article>
-
-                                    <div class="post-img">
-                                        <img src="assets/img/blog.one" alt="" class="img-fluid">
-                                    </div>
-                                    <h2 class="title py-2">
-                                        <a href="blog.details.html">معرفی گوشی جدید سامسونگ, انقلاب در دنیای تکنولوژی جهان</a>
-                                    </h2>
-
-                                    <div class="d-flex align-items-center">
-                                        <div class="post-meta">
-                                            <p class="post-date">
-                                                <time datetime="2022-01-01">سامسونگ با معرفی گوشی پرچم‌دار جدید خود، دوباره تکنولوژی را به سطح جدیدی رسانده و تحسین همگان را برانگیخته است.</time>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                </article>
-                            </div><!-- End post list item -->
-
-                            <div class="col-lg-6">
-                                <article>
-
-                                    <div class="post-img">
-                                        <img src="assets/img/blog.two.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <h2 class="title py-2">
-                                        <a href="blog.details.html">سامسونگ در تلاش برای ساخت تاشدنی‌هایی به باریکی گوشی‌های عادی</a>
-                                    </h2>
-
-                                    <div class="d-flex align-items-center">
-                                        <div class="post-meta">
-                                            <p class="post-date">
-                                                <time datetime="2022-01-01">
-                                                    سامسونگ در حالی که در رویداد تابستانی خود، گلکسی زد فولد ۶ را با طراحی باریک‌تر از نسل قبل رونمایی کرد، هنوز نتوانسته به باریکی رقبای چینی خود برسد.
-                                                </time>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                </article>
-                            </div><!-- End post list item -->
-
-                            <div class="col-lg-6">
-                                <article>
-
-                                    <div class="post-img">
-                                        <img src="assets/img/blog.three.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <h2 class="title py-2">
-                                        <a href="blog.details.html">علت انتخاب نام Gemini برای هوش مصنوعی گوگل چه بود؟</a>
-                                    </h2>
-
-                                    <div class="d-flex align-items-center">
-                                        <div class="post-meta">
-                                            <p class="post-date">
-                                                <time datetime="2022-01-01">در کنفرانس توسعه‌دهندگان گوگل در سال ۲۰۲۳، چت‌باتی به نام جمینای معرفی شد. این هوش مصنوعی که حاصل ادغام دو بخش deepmind و google brain در سال ۲۰۲۳ بود، نامی متفاوت از آنچه در ابتدا در نظر گرفته شده بود، داشت.</time>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                </article>
-                            </div><!-- End post list item -->
-
-                            <div class="col-lg-6">
-                                <article>
-
-                                    <div class="post-img">
-                                        <img src="assets/img/blog.for.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <h2 class="title py-2">
-                                        <a href="blog.details.html">اولین خریداران گوشی ‌های جدید سامسونگ در ایران چه کسانی هستند؟</a>
-                                    </h2>
-
-                                    <div class="d-flex align-items-center">
-                                        <div class="post-meta">
-                                            <p class="post-date">
-                                                <time datetime="2022-01-01">دو گوشی جدید سامسونگ، z fold 6 و z flip 6، برای اولین بار توسط دیجی‌کالا در ایران پیش‌فروش شدند و با استقبال زیادی از سوی خریداران مواجه شدند. در این مقاله، به صحبت با سه تن از اولین خریداران این گوشی‌ها می‌پردازیم و انگیزه‌ها و نظرات آنها را در مورد این محصولات جدید جویا می‌شویم.</time>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                </article>
-                            </div><!-- End post list item -->
-
-                            <div class="col-lg-6">
-                                <article>
-
-                                    <div class="post-img">
-                                        <img src="assets/img/blog.5.jpg" alt="" class="img-fluid">
-                                    </div>
-
-                                    <h2 class="title py-2">
-                                        <a href="blog.details.html">این لپ تاپ از آینده آمده است؛ رونمایی لنوو تینک‌بوک با نمایشگر شفاف</a>
-                                    </h2>
-
-                                    <div class="d-flex align-items-center">
-                                        <div class="post-meta">
-                                            <p class="post-date">
-                                                <time datetime="2022-01-01">لنوو لپ‌تاپ هیجان‌انگیزی رونمایی کرده است که نمایشگر شفاف دارد و از کیبورد آینده‌نگرانه استفاده می‌کند. لنوو اوایل سال ۲۰۲۴ در نمایشگاه بزرگ ces محصولات هیجان‌انگیز بسیار زیادی به‌نمایش گذاشت تا توان مهندسانش را به رخ رقبا بکشد. یکی از جذاب‌ترین محصولات لنوو، لپ‌تاپی با نمایشگر e ink روی بخش خارجی بود. این شرکت همچنین لپ‌تاپی تبدیل‌پذیر معرفی کرد که در نقش تبلت اندرویدی نیز ظاهر می‌شد.</time>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                </article>
-                            </div><!-- End post list item -->
-
-                            <div class="col-lg-6">
-                                <article>
-
-                                    <div class="post-img">
-                                        <img src="assets/img/blog.6.jpg" alt="" class="img-fluid">
-                                    </div>
-                                    <h2 class="title py-2">
-                                        <a href="blog.details.html">شیائومی, گوشی اقتصادی اما پیشرفته در سری جدید</a>
-                                    </h2>
-
-                                    <div class="d-flex align-items-center">
-                                        <div class="post-meta">
-                                            <p class="post-date">
-                                                <time datetime="2022-01-01">شیائومی با گوشی‌های سری جدید خود بار دیگر نشان داده که کیفیت بالا لزوماً به قیمت‌های بالا مرتبط نیست.</time>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                </article>
-                            </div><!-- End post list item -->
-
-                        </div>
-                    </div>
-
-                </section><!-- /Blog Posts Section -->
-
-                <!-- Blog Pagination Section -->
-                <section id="blog-pagination" class="blog-pagination section">
-
-                    <div class="container">
-                        <div class="d-flex justify-content-center">
-                            <ul>
-                                <li><a href="#"><i>
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            width="1em"
-                                            height="1em"
-                                    >
-                                        <path
-                                                fill="currentColor"
-                                                d="M10 6L8.59 7.41L13.17 12l-4.58 4.59L10 18l6-6z"
-                                        ></path>
-                                    </svg>
-                                </i></a></li>
-                                <li><a class="" href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li>...</li>
-                                <li><a href="#">10</a></li>
-                                <li><a href="#"><i>
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            width="1em"
-                                            height="1em"
-                                    >
-                                        <path
-                                                fill="currentColor"
-                                                d="M15.41 7.41L14 6l-6 6l6 6l1.41-1.41L10.83 12z"
-                                        ></path>
-                                    </svg>
-                                </i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </section><!-- /Blog Pagination Section -->
-
-            </div>
-        </div>
-    </div>
-
-</main>
-
-<!--main collection end--------->
 
 
 
@@ -1024,10 +915,43 @@
 <div class="custom-overlay"></div>
 <script src="assets/js/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const openBtn = document.getElementById('open-filters-btn');
+        const closeBtn = document.getElementById('close-filters-btn');
+        const bottomSheet = document.getElementById('filters-bottom-sheet');
+        const overlay = document.getElementById('filters-overlay');
+        const desktopSidebarContainer = document.getElementById('desktop-sidebar-content');
+        const mobileSidebarContainer = document.getElementById('mobile-sidebar-content');
+        const widgetsTemplate = document.getElementById('sidebar-widgets-template');
+
+        if (widgetsTemplate && desktopSidebarContainer && mobileSidebarContainer) {
+            const widgetsContent = widgetsTemplate.content.cloneNode(true);
+            desktopSidebarContainer.appendChild(widgetsContent);
+            const widgetsContentMobile = widgetsTemplate.content.cloneNode(true);
+            mobileSidebarContainer.appendChild(widgetsContentMobile);
+        }
+
+        function toggleBottomSheet(show) {
+            if (show) {
+                overlay.classList.add('show');
+                bottomSheet.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            } else {
+                overlay.classList.remove('show');
+                bottomSheet.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+        }
+
+        if (openBtn) openBtn.addEventListener('click', () => toggleBottomSheet(true));
+        if (closeBtn) closeBtn.addEventListener('click', () => toggleBottomSheet(false));
+        if (overlay) overlay.addEventListener('click', () => toggleBottomSheet(false));
+    });
+</script>
 <script  src="script.js"></script>
+
 </body>
 <!-- partial -->
 </html>

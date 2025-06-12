@@ -1258,7 +1258,7 @@
             </div>
             <nav class="sidebar-nav-new">
                 <ul>
-                    <li><a href="#" data-page="account"><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
+                    <li><a href="#" data-page="account"  class="active"><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
                     <li><a href="#" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
                     <li><a href="#" data-page="addresses"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
                     <li><a href="#" data-page="wishlist"><svg><use xlink:href="#icon-heart-solid"></use></svg> علاقه‌مندی‌ها</a></li>
@@ -1501,82 +1501,9 @@
 <script  src="script.js"></script>
 <!--این همه جا هست -->
 
-<script>
-    // --- JAVASCRIPT FOR DEMONSTRATION & VISUAL INTERACTIVITY ONLY ---
 
-    // Function to show toast notifications
-    function showToast(type, title, message, duration = 4500) {
-        const container = document.getElementById('notificationToastContainer');
-        if (!container) return;
-        const iconMap = { success: '#icon-check-circle-fill', error: '#icon-alert-triangle-fill', info: '#icon-info-circle-fill' };
-        const toastDiv = document.createElement('div');
-        toastDiv.className = `wow-notification-new ${type}`;
-        toastDiv.innerHTML = `<div class="wow-notification-icon-new"><svg><use xlink:href="${iconMap[type]}"></use></svg></div> <div class="wow-notification-content-new"><div class="wow-notification-title-new">${title}</div><div class="wow-notification-message-new">${message}</div></div><button class="wow-notification-close-new">×</button>`;
-        container.appendChild(toastDiv);
-        requestAnimationFrame(() => toastDiv.classList.add('show'));
-        const removeToast = () => { toastDiv.classList.remove('show'); setTimeout(() => toastDiv.remove(), 400); };
-        toastDiv.querySelector('.wow-notification-close-new').onclick = removeToast;
-        if (duration > 0) setTimeout(removeToast, duration);
-    }
+<script src="assets/js/profile.js"></script>
 
-    document.addEventListener('DOMContentLoaded', () => {
-
-        // 1. Set the active navigation link for the current page
-        document.querySelectorAll('[data-page="account"]').forEach(link => link.classList.add('active'));
-
-        // 2. Handle the visual "edit/save/cancel" toggle for editable rows
-        document.querySelectorAll('.account-detail-row.is-editable').forEach(row => {
-            const editBtn = row.querySelector('.edit-trigger-btn');
-            const saveBtn = row.querySelector('.save-btn');
-            const cancelBtn = row.querySelector('.cancel-btn');
-            const valueSpan = row.querySelector('.account-detail-value');
-            const inputEl = row.querySelector('input, textarea');
-
-            editBtn.addEventListener('click', () => {
-                row.classList.add('editing');
-                inputEl.focus();
-            });
-
-            cancelBtn.addEventListener('click', () => {
-                row.classList.remove('editing');
-                // Reset input to original value for a realistic cancel effect
-                inputEl.value = valueSpan.textContent;
-            });
-
-            saveBtn.addEventListener('click', () => {
-                // Update the display value with the input's content
-                valueSpan.textContent = inputEl.value;
-                row.classList.remove('editing');
-                showToast('success', 'نمایشی', 'تغییرات شما (به صورت نمایشی) ذخیره شد.');
-            });
-        });
-
-        // 3. Handle avatar preview on file selection
-        const avatarUploadInput = document.getElementById('avatarUploadInput');
-        if (avatarUploadInput) {
-            avatarUploadInput.onchange = (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (event) => {
-                        document.getElementById('profileAvatarPreview').src = event.target.result;
-                        showToast('success', 'پیش‌نمایش آواتار', 'عکس پروفایل شما برای پیش‌نمایش تغییر کرد.');
-                    }
-                    reader.readAsDataURL(file);
-                }
-            };
-        }
-
-        // 4. Handle logout button click for demonstration
-        const logoutButton = document.getElementById('logoutButton');
-        if (logoutButton) {
-            logoutButton.onclick = (e) => {
-                e.preventDefault();
-                showToast('info', 'خروج از حساب', 'این یک دکمه نمایشی برای خروج از حساب است.');
-            };
-        }
-    });
-</script>
 
 </body>
 </html>

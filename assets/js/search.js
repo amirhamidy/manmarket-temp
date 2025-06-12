@@ -10,14 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let actualMaxProductPrice = 100000000; // مثلا ۱۰۰ میلیون
     const totalPagesStatic = parseInt(document.getElementById('paginationUl')?.dataset?.totalPages || '3');
 
-    // --- متغیرهای مربوط به UI و DOM ---
     let categoryFilterContainer, brandFilterContainer, sortOptionsContainer;
     let mainClearFiltersButton, applyFiltersButton;
     let sidebarHeaderElement;
     let currentPageFromURL = 1;
     let filterIdCounter = 0;
 
-    // --- کد مربوط به افکت های SVG (بدون تغییر) ---
     const tickSVGPath = "M4.5 8.5l2.5 2.5 5-5";
     const tempTickSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     const tempTickPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
@@ -460,7 +458,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- اجرای اولیه ---
     manageFilterLayout();
     if (initializeFilterElements()) {
         addRemoveIconsToFilterChips();

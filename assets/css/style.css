@@ -400,6 +400,19 @@ header {
   font-size: 10px;
 }
 
+.footer-icons {
+  border-radius: 50%;
+  transition: all ease 0.3s;
+}
+.footer-icons:hover {
+  background-color: #f96747;
+}
+.footer-icons:hover svg {
+  transition: 0.3s;
+  color: white !important;
+  fill: white !important;
+}
+
 .product {
   position: relative;
   border-radius: 8px;
@@ -838,6 +851,10 @@ button {
 
 .three-bg {
   background-color: rgb(225, 220, 213);
+}
+.three-bg img {
+  top: 30% !important;
+  height: 50% !important;
 }
 
 .swiper-slide img {
@@ -3889,7 +3906,7 @@ section,
 }
 
 .ad-icon {
-  top: 75%;
+  top: 85%;
   right: 2%;
   z-index: 9999999;
 }
@@ -9054,7 +9071,7 @@ textarea.dj-sh-form-control {
 }
 
 :root {
-  --primary-accent: #ff4f29;
+  --primary-accent: #ff7151;
   --primary-accent-darker: #EE5253;
   --primary-accent-lighter: #ff7c7c;
   --secondary-accent: #4ECDC4;
@@ -9125,7 +9142,6 @@ a:hover {
 .btn-custom {
   padding: calc(var(--spacing-unit) * 1.2) calc(var(--spacing-unit) * 2.5);
   border-radius: var(--border-radius-md);
-  font-weight: 500;
   font-size: 0.9rem;
   transition: var(--transition-cubic);
   border: none;
@@ -9167,7 +9183,6 @@ a:hover {
 
 .form-label-custom {
   font-size: 0.85rem;
-  font-weight: 500;
   color: var(--text-secondary);
   margin-bottom: calc(var(--spacing-unit) * 0.75);
   display: block;
@@ -9233,7 +9248,6 @@ a:hover {
 
 .sidebar-user-name {
   font-size: 1.25rem;
-  font-weight: 600;
 }
 
 .sidebar-user-handle {
@@ -9272,7 +9286,6 @@ a:hover {
 .sidebar-nav-new li a.active {
   background-color: var(--primary-accent);
   color: white;
-  font-weight: 500;
   box-shadow: 0 4px 12px rgba(var(--primary-accent-rgb, 255, 107, 107), 0.3);
 }
 
@@ -9301,7 +9314,6 @@ a:hover {
 
 .section-header-new h2 {
   font-size: 1.5rem;
-  font-weight: 600;
   display: flex;
   align-items: center;
 }
@@ -9358,10 +9370,6 @@ html[dir=rtl] .wow-notification-new.show {
 
 .wow-notification-content-new {
   flex-grow: 1;
-}
-
-.wow-notification-title-new {
-  font-weight: 600;
 }
 
 .wow-notification-message-new {
@@ -9436,7 +9444,6 @@ html[dir=rtl] .wow-notification-close-new {
 
 .mobile-nav-item.active {
   color: var(--primary-accent);
-  font-weight: 500;
 }
 
 .mobile-nav-item svg {
@@ -9526,7 +9533,6 @@ html[dir=rtl] .wow-notification-close-new {
 .btn-custom {
   padding: calc(var(--spacing-unit) * 1.2) calc(var(--spacing-unit) * 2.5);
   border-radius: var(--border-radius-md);
-  font-weight: 500;
   font-size: 0.9rem;
   transition: var(--transition-cubic);
   border: none;
@@ -9607,7 +9613,6 @@ html[dir=rtl] .wow-notification-close-new {
 
 .sidebar-user-name {
   font-size: 1.25rem;
-  font-weight: 600;
 }
 
 .sidebar-user-handle {
@@ -9646,7 +9651,6 @@ html[dir=rtl] .wow-notification-close-new {
 .sidebar-nav-new li a.active {
   background-color: var(--primary-accent);
   color: white;
-  font-weight: 500;
   box-shadow: 0 4px 12px rgba(var(--primary-accent-rgb, 255, 107, 107), 0.3);
 }
 
@@ -9680,7 +9684,6 @@ html[dir=rtl] .wow-notification-close-new {
 
 .section-header-new h2 {
   font-size: 1.5rem;
-  font-weight: 600;
   display: flex;
   align-items: center;
 }
@@ -9706,7 +9709,6 @@ html[dir=rtl] .wow-notification-close-new {
 
 .mobile-nav-item.active {
   color: var(--primary-accent);
-  font-weight: 500;
 }
 
 .mobile-nav-item svg {
@@ -9738,13 +9740,13 @@ html[dir=rtl] .wow-notification-close-new {
 }
 
 .order-id-new {
-  font-weight: 600;
   font-size: 14px;
 }
 
 .order-date-new {
   color: var(--text-muted);
   margin-right: var(--spacing-unit);
+  font-size: 14px;
 }
 
 .order-status-badge-new {
@@ -9753,7 +9755,6 @@ html[dir=rtl] .wow-notification-close-new {
   white-space: nowrap;
   border-radius: 20px;
   color: white;
-  font-weight: 500;
 }
 
 .order-status-badge-new.pending {
@@ -9789,7 +9790,7 @@ html[dir=rtl] .wow-notification-close-new {
 
 .order-total-new {
   font-size: 1.05rem;
-  font-weight: 600;
+  white-space: nowrap;
 }
 
 .modal-backdrop-new {
@@ -9837,7 +9838,6 @@ html[dir=rtl] .wow-notification-close-new {
 
 .modal-title-new {
   font-size: 1.2rem;
-  font-weight: 600;
 }
 
 .modal-close-btn-new {
@@ -9888,7 +9888,6 @@ html[dir=rtl] .wow-notification-close-new {
 .btn-custom {
   padding: calc(var(--spacing-unit) * 1.2) calc(var(--spacing-unit) * 2.5);
   border-radius: var(--border-radius-md);
-  font-weight: 500;
   font-size: 0.9rem;
   transition: var(--transition-cubic);
   border: none;
@@ -9951,7 +9950,6 @@ html[dir=rtl] .wow-notification-close-new {
 
 .form-label-custom {
   font-size: 0.85rem;
-  font-weight: 500;
   color: var(--text-secondary);
   margin-bottom: calc(var(--spacing-unit) * 0.75);
   display: block;
@@ -10001,7 +9999,6 @@ html[dir=rtl] .wow-notification-close-new {
 
 .sidebar-user-name {
   font-size: 1.25rem;
-  font-weight: 600;
 }
 
 .sidebar-user-handle {
@@ -10040,7 +10037,6 @@ html[dir=rtl] .wow-notification-close-new {
 .sidebar-nav-new li a.active {
   background-color: var(--primary-accent);
   color: white;
-  font-weight: 500;
   box-shadow: 0 4px 12px rgba(var(--primary-accent-rgb, 255, 107, 107), 0.3);
 }
 
@@ -10072,7 +10068,6 @@ html[dir=rtl] .wow-notification-close-new {
 
 .section-header-new h2 {
   font-size: 1.5rem;
-  font-weight: 600;
   display: flex;
   align-items: center;
 }
@@ -10121,10 +10116,6 @@ html[dir=rtl] .wow-notification-new.show {
   flex-grow: 1;
 }
 
-.wow-notification-title-new {
-  font-weight: 600;
-}
-
 .wow-notification-message-new {
   font-size: 0.875rem;
 }
@@ -10170,7 +10161,6 @@ html[dir=rtl] .wow-notification-close-new {
 
 .mobile-nav-item.active {
   color: var(--primary-accent);
-  font-weight: 500;
 }
 
 .mobile-nav-item svg {
@@ -10215,7 +10205,6 @@ html[dir=rtl] .wow-notification-close-new {
 
 .address-card-title {
   font-size: 1.1rem;
-  font-weight: 600;
   display: flex;
   align-items: center;
   gap: var(--spacing-unit);
@@ -10272,7 +10261,7 @@ html[dir=rtl] .wow-notification-close-new {
 
 .address-card-details p {
   margin-bottom: calc(var(--spacing-unit) * 0.5);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
 }
 
@@ -10322,7 +10311,6 @@ html[dir=rtl] .wow-notification-close-new {
 
 .modal-title-new {
   font-size: 1.2rem;
-  font-weight: 600;
 }
 
 .modal-close-btn-new {
@@ -10352,7 +10340,6 @@ html[dir=rtl] .wow-notification-close-new {
 .btn-custom {
   padding: calc(var(--spacing-unit) * 1.2) calc(var(--spacing-unit) * 2.5);
   border-radius: var(--border-radius-md);
-  font-weight: 500;
   font-size: 0.7rem;
   transition: var(--transition-cubic);
   border: none;
@@ -10764,7 +10751,7 @@ html[dir=rtl] .wow-notification-close-new {
 .status-badge {
   position: absolute;
   top: 1rem;
-  left: 1rem;
+  left: 4px;
   font-size: 0.7rem;
   padding: 2px 8px;
   border-radius: 10px;
@@ -11142,6 +11129,399 @@ html[dir=rtl] .wow-notification-close-new {
   gap: var(--spacing-unit);
 }
 
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 calc(var(--spacing-unit) * 2);
+  padding-top: 140px;
+  padding-bottom: 40px;
+}
+
+.profile-layout-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: calc(var(--spacing-unit) * 4);
+  align-items: start;
+}
+
+/* Sidebar Styles */
+.profile-sidebar-new {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: calc(var(--spacing-unit) * 3);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 140px;
+}
+
+.sidebar-user-info {
+  text-align: center;
+  margin-bottom: calc(var(--spacing-unit) * 3);
+}
+
+.sidebar-avatar-wrapper {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto calc(var(--spacing-unit) * 1.5);
+}
+
+.sidebar-user-name {
+  margin-top: 20px;
+  font-size: 1.1rem;
+}
+
+.sidebar-user-handle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.sidebar-nav-new ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-nav-new li a {
+  position: relative;
+  display: flex;
+  font-size: 0.85rem;
+  align-items: center;
+  padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2);
+  margin: var(--spacing-unit) 0;
+  border-radius: var(--border-radius-md);
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: var(--transition-fast);
+  text-decoration: none;
+}
+
+.sidebar-nav-new li a svg {
+  width: 22px;
+  height: 22px;
+  margin-left: calc(var(--spacing-unit) * 1.5);
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+
+.sidebar-nav-new li a:hover {
+  background-color: rgba(var(--primary-accent-rgb), 0.07);
+  color: var(--primary-accent);
+}
+
+.sidebar-nav-new li a:hover svg {
+  color: var(--primary-accent);
+}
+
+.sidebar-nav-new li a.active {
+  font-size: 0.85rem;
+  background-color: var(--primary-accent);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 4px 12px var(--primary-accent-glow);
+}
+
+.sidebar-nav-new li a.active svg {
+  color: white;
+}
+
+.sidebar-nav-new .nav-separator {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: calc(var(--spacing-unit) * 2) 0;
+}
+
+/* Main Content Styles */
+.profile-section-new {
+  background-color: var(--bg-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: calc(var(--spacing-unit) * 4);
+  box-shadow: var(--shadow-md);
+}
+
+.section-header-new {
+  margin-bottom: calc(var(--spacing-unit) * 3);
+  padding-bottom: calc(var(--spacing-unit) * 2);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.section-header-new h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+}
+
+.section-header-new h2 svg {
+  width: 30px;
+  height: 30px;
+  margin-left: calc(var(--spacing-unit) * 1.5);
+  color: var(--primary-accent);
+  filter: drop-shadow(0 2px 4px var(--primary-accent-glow));
+}
+
+.btn-custom {
+  padding: calc(var(--spacing-unit) * 1.25) calc(var(--spacing-unit) * 3);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-unit);
+}
+
+.btn-custom.btn-primary {
+  background-color: var(--primary-accent);
+  color: white;
+  box-shadow: 0 4px 12px var(--primary-accent-glow);
+}
+
+.btn-custom.btn-primary:hover {
+  background-color: var(--primary-accent-darker);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 16px var(--primary-accent-glow);
+}
+
+.btn-custom:active {
+  transform: translateY(-1px);
+}
+
+/* Wallet Page Specific Styles */
+.wallet-balance-card {
+  background: linear-gradient(135deg, #ff3939, #ff8769);
+  color: white;
+  border-radius: var(--border-radius-lg);
+  padding: calc(var(--spacing-unit) * 2);
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: calc(var(--spacing-unit));
+  position: relative;
+  overflow: hidden;
+}
+
+.wallet-balance-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 150%;
+  height: 150%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+  opacity: 0.5;
+}
+
+.wallet-balance-label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.wallet-balance-amount {
+  font-size: 1.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.wallet-balance-amount .currency {
+  font-size: 1.2rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.wallet-balance-card .btn-custom {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+}
+
+.wallet-balance-card .btn-custom:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.transaction-list-header {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: calc(var(--spacing-unit) * 2);
+  padding-bottom: var(--spacing-unit);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.transaction-list {
+  animation: fadeInList 0.5s ease-out forwards;
+}
+
+.transaction-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--spacing-unit) * 2);
+  padding: calc(var(--spacing-unit) * 2.5) calc(var(--spacing-unit) * 1);
+  border-bottom: 1px solid #f1f3f5;
+  transition: background-color 0.2s;
+  border-radius: var(--border-radius-md);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInItem 0.5s ease-out forwards;
+}
+
+.transaction-item:hover {
+  background-color: #f8f9fa;
+}
+
+.transaction-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.transaction-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.transaction-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.transaction-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.z-x {
+  z-index: 99999999;
+}
+
+@keyframes fadeInList {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeInItem {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.transaction-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.transaction-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.transaction-details {
+  flex-grow: 1;
+}
+
+.transaction-title {
+  font-weight: 600;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  margin: 0 0 4px 0;
+}
+
+.transaction-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.transaction-amount {
+  font-weight: 700;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  margin-right: auto;
+}
+
+.transaction-item.deposit .transaction-icon {
+  background-color: rgba(25, 135, 84, 0.1);
+  color: var(--success);
+}
+
+.transaction-amount.deposit {
+  color: var(--success);
+  font-size: 0.85rem;
+  padding: 0 15px;
+}
+
+.transaction-item.withdrawal .transaction-icon {
+  background-color: rgba(220, 53, 69, 0.08);
+  color: var(--error);
+  font-size: 0.85rem;
+}
+
+.transaction-amount.withdrawal {
+  color: var(--error);
+  font-size: 0.85rem;
+  padding: 0 15px;
+}
+
+@media (max-width: 991.98px) {
+  .profile-layout-grid {
+    grid-template-columns: 1fr;
+  }
+  .profile-sidebar-new {
+    display: none;
+  }
+  .main-container {
+    padding-top: 100px;
+  }
+}
+.brand-card {
+  left: 0;
+  top: 0;
+  transform: rotate(135deg);
+  opacity: 0.35;
+}
+
+.brand-card-2 {
+  left: 10%;
+  top: 20%;
+  transform: rotate(135deg);
+  opacity: 0.35;
+}
+
+.brand-card-3 {
+  left: 20%;
+  top: 40%;
+  transform: rotate(135deg);
+  opacity: 0.35;
+}
+
+.brand-card-4 {
+  left: 5%;
+  top: 30%;
+  transform: rotate(135deg);
+  opacity: 0.35;
+}
+
+.brand-card-5 {
+  left: 0;
+  top: 50%;
+  transform: rotate(135deg);
+  opacity: 0.35;
+}
+
 .mobile-bottom-nav {
   display: none;
   position: fixed;
@@ -11368,6 +11748,11 @@ html[dir=rtl] .wow-notification-close-new {
   color: var(--info, #54a0ff);
 }
 
+@media (max-width: 600px) {
+  .wallet-balance-card {
+    width: 100% !important;
+  }
+}
 .modal {
   position: fixed;
   top: 0;

@@ -1154,6 +1154,8 @@
 <div class="overlay" data-overlay></div>
 <!--Shadow Overly start-->
 
+
+
 <div id="cart-dashboard" class="hidden-dashboard">
     <button id="close-cart">
         <svg
@@ -1223,8 +1225,6 @@
 </section>
 <!--search modal __ :: end---->
 
-
-
 <!-- SVG Icons Definition (Unchanged) -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="icon-user-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></symbol>
@@ -1251,13 +1251,14 @@
             <nav class="sidebar-nav-new">
                 <ul>
                     <li><a href="profile.html" data-page="account"><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
-                    <li><a href="profile.sefaresh.html" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
+                    <li><a href="profile.sefaresh.html" data-page="orders" class="active"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
+                    <li><a href="profile.Kifpol.html" data-page="wallet"><svg><use xlink:href="#icon-wallet"></use></svg> کیف پول</a></li>
                     <li><a href="profile.adress.html" data-page="addresses"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
                     <li><a href="profile.whilist.html" data-page="wishlist"><svg><use xlink:href="#icon-heart-solid"></use></svg> علاقه‌مندی‌ها</a></li>
                     <li><a href="profile.comments.html" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg> نظرات من</a></li>
                     <li><a href="profile.password.html" data-page="password"><svg><use xlink:href="#icon-lock-password"></use></svg> تغییر رمز</a></li>
                     <li class="nav-separator"></li>
-                    <li><a href="#" id="logoutButton"><svg><use xlink:href="#icon-logout-door"></use></svg> خروج از حساب</a></li>
+                    <li><a href="" id="logoutButton"><svg><use xlink:href="#icon-logout-door"></use></svg> خروج از حساب</a></li>
                 </ul>
             </nav>
         </aside>
@@ -1286,7 +1287,7 @@
                         <p class="order-items-preview">شامل: هدفون گیمینگ حرفه‌ای, موس بی‌سیم...</p>
                         <div class="order-footer-new">
                             <span class="order-total-new">۳۸۰,۰۰۰ <small>تومان</small></span>
-                            <div>
+                            <div class="mx-3">
                                 <button class="btn-custom btn-secondary btn-sm view-order-details-btn">
                                     <svg><use xlink:href="#icon-eye-open"></use></svg> مشاهده جزئیات
                                 </button>
@@ -1319,7 +1320,7 @@
                         <p class="order-items-preview">شامل: پاوربانک ۲۰۰۰۰ میلی‌آمپر شیائومی</p>
                         <div class="order-footer-new">
                             <span class="order-total-new">۱۵۰,۰۰۰ <small>تومان</small></span>
-                            <div>
+                            <div class="mx-3">
                                 <button class="btn-custom btn-secondary btn-sm view-order-details-btn">
                                     <svg><use xlink:href="#icon-eye-open"></use></svg> مشاهده جزئیات
                                 </button>
@@ -1352,7 +1353,7 @@
                         <p class="order-items-preview">شامل: کیبورد مکانیکال, کابل HDMI نسخه 2.1</p>
                         <div class="order-footer-new">
                             <span class="order-total-new">۷۲۰,۰۰۰ <small>تومان</small></span>
-                            <div>
+                            <div class="mx-3">
                                 <button class="btn-custom btn-secondary btn-sm view-order-details-btn">
                                     <svg><use xlink:href="#icon-eye-open"></use></svg> مشاهده جزئیات
                                 </button>
@@ -1385,7 +1386,7 @@
                         <p class="order-items-preview">شامل: هارد اکسترنال ۱ ترابایت</p>
                         <div class="order-footer-new">
                             <span class="order-total-new">۴۵۰,۰۰۰ <small>تومان</small></span>
-                            <div>
+                            <div class="mx-3">
                                 <button class="btn-custom btn-secondary btn-sm view-order-details-btn">
                                     <svg><use xlink:href="#icon-eye-open"></use></svg> مشاهده جزئیات
                                 </button>
@@ -1516,70 +1517,16 @@
     <h6 class="text-center my-4 coppy">زیرمجموعه‌ای از اکوسیستم راه ابریشم نو</h6>
 </footer>
 <!--footer :: end-------->
+
 <!--این همه جا هست -->
 <script src="assets/js/jquery-3.7.1.min.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script  src="script.js"></script>
 <!--این همه جا هست -->
 
-<script>
-    // --- JAVASCRIPT FOR DEMONSTRATION & VISUAL INTERACTIVITY ONLY ---
-    document.addEventListener('DOMContentLoaded', () => {
 
-        // 1. Set the active navigation link for the current page
-        document.querySelectorAll('[data-page="orders"]').forEach(link => link.classList.add('active'));
+<script src="assets/js/profile.js"></script>
 
-        // 2. Handle the visual filtering of orders
-        const orderFilter = document.getElementById('orderFilterStatus');
-        const orderCards = document.querySelectorAll('.order-card-new');
-        const noOrdersMessage = document.getElementById('noOrdersMessage');
-
-        orderFilter.addEventListener('change', () => {
-            const selectedStatus = orderFilter.value;
-            let visibleCount = 0;
-
-            orderCards.forEach(card => {
-                const cardStatus = card.dataset.status;
-                const shouldShow = (selectedStatus === 'all' || selectedStatus === cardStatus);
-                card.style.display = shouldShow ? 'block' : 'none';
-                if (shouldShow) {
-                    visibleCount++;
-                }
-            });
-
-            noOrdersMessage.style.display = (visibleCount === 0) ? 'block' : 'none';
-        });
-
-        // 3. Handle opening and closing the order details modal
-        const modal = document.getElementById('orderDetailsModal');
-        const backdrop = document.getElementById('orderModalBackdrop');
-        const openModalButtons = document.querySelectorAll('.view-order-details-btn');
-        const closeModalButtons = document.querySelectorAll('.modal-close-btn-new, .modal-backdrop-new');
-
-        const openModal = () => {
-            modal.classList.add('open');
-            backdrop.classList.add('open');
-        };
-
-        const closeModal = () => {
-            modal.classList.remove('open');
-            backdrop.classList.remove('open');
-        };
-
-        openModalButtons.forEach(button => button.addEventListener('click', openModal));
-        closeModalButtons.forEach(button => button.addEventListener('click', closeModal));
-
-        // 4. Handle logout button click for demonstration
-        const logoutButton = document.getElementById('logoutButton');
-        if (logoutButton) {
-            logoutButton.onclick = (e) => {
-                e.preventDefault();
-                // We can use a simple alert or the custom toast function if available
-                alert('این یک دکمه نمایشی برای خروج از حساب است.');
-            };
-        }
-    });
-</script>
 
 
 </body>

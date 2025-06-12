@@ -1256,14 +1256,15 @@
             </div>
             <nav class="sidebar-nav-new">
                 <ul>
-                    <li><a href="account.html" data-page="account"><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
-                    <li><a href="orders.html" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
-                    <li><a href="addresses.html" data-page="addresses"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
-                    <li><a href="wishlist.html" data-page="wishlist"><svg><use xlink:href="#icon-heart-solid"></use></svg> علاقه‌مندی‌ها</a></li>
-                    <li><a href="reviews.html" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg> نظرات من</a></li>
-                    <li><a href="password.html" data-page="password"><svg><use xlink:href="#icon-lock-password"></use></svg> تغییر رمز</a></li>
+                    <li><a href="profile.html" data-page="account"><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
+                    <li><a href="profile.sefaresh.html" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
+                    <li><a href="profile.Kifpol.html" data-page="wallet"><svg><use xlink:href="#icon-wallet"></use></svg> کیف پول</a></li>
+                    <li><a href="profile.adress.html" data-page="addresses" class="active"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
+                    <li><a href="profile.whilist.html" data-page="wishlist"><svg><use xlink:href="#icon-heart-solid"></use></svg> علاقه‌مندی‌ها</a></li>
+                    <li><a href="profile.comments.html" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg> نظرات من</a></li>
+                    <li><a href="profile.password.html" data-page="password"><svg><use xlink:href="#icon-lock-password"></use></svg> تغییر رمز</a></li>
                     <li class="nav-separator"></li>
-                    <li><a href="#" id="logoutButton"><svg><use xlink:href="#icon-logout-door"></use></svg> خروج از حساب</a></li>
+                    <li><a href="" id="logoutButton"><svg><use xlink:href="#icon-logout-door"></use></svg> خروج از حساب</a></li>
                 </ul>
             </nav>
         </aside>
@@ -1271,7 +1272,7 @@
         <!-- Main Content Area -->
         <main class="profile-content-area-new">
             <section class="profile-section-new">
-                <header class="section-header-new">
+                <header class="section-header-new border-0">
                     <h2><svg><use xlink:href="#icon-map-pin"></use></svg>آدرس‌های من</h2>
                     <button class="btn-custom btn-primary btn-sm" id="addNewAddressBtn">
                         <svg><use xlink:href="#icon-plus-circle-fill"></use></svg>افزودن آدرس
@@ -1420,104 +1421,15 @@
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script  src="script.js"></script>
 <!--این همه جا هست -->
+<!--این همه جا هست -->
+<script src="assets/js/jquery-3.7.1.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script  src="script.js"></script>
+<!--این همه جا هست -->
 
-<!-- این کد را جایگزین تگ اسکریپت فعلی در addresses.html کنید -->
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. شناسایی المان‌ها
-        const addressListContainer = document.getElementById('addressesListContainer');
-        const modal = document.getElementById('addressModal');
-        const backdrop = document.getElementById('addressModalBackdrop');
-        const modalTitle = document.getElementById('addressModalTitle');
-        const addressForm = document.getElementById('addressForm');
-        const addNewAddressBtn = document.getElementById('addNewAddressBtn');
-        const closeModalBtn = modal.querySelector('.modal-close-btn-new');
-        const cancelFormBtn = modal.querySelector('.cancel-form-btn');
-        const logoutButton = document.getElementById('logoutButton');
 
-        // 2. فعال کردن لینک منوی کناری و پایینی
-        document.querySelectorAll('[data-page="addresses"]').forEach(link => {
-            link.classList.add('active');
-        });
+<script src="assets/js/profile.js"></script>
 
-        // 3. توابع مربوط به مودال (پاپ‌آپ)
-        const openAddressModal = (mode = 'add') => {
-            addressForm.reset();
-            modalTitle.textContent = (mode === 'add') ? 'افزودن آدرس جدید' : 'ویرایش آدرس';
-            modal.classList.add('open');
-            backdrop.classList.add('open');
-        };
 
-        const closeAddressModal = () => {
-            modal.classList.remove('open');
-            backdrop.classList.remove('open');
-        };
-
-        // 4. تابع برای انتخاب آدرس پیش‌فرض
-        const setDefaultAddress = (cardToMakeDefault) => {
-            if (cardToMakeDefault.classList.contains('is-default')) return;
-
-            const currentDefault = addressListContainer.querySelector('.address-card-new.is-default');
-            if (currentDefault) {
-                currentDefault.classList.remove('is-default');
-            }
-            cardToMakeDefault.classList.add('is-default');
-            // حالا showToast به درستی کار می‌کند
-            showToast('success', 'انجام شد', 'آدرس پیش‌فرض با موفقیت تغییر کرد.');
-        };
-
-        // 5. مدیریت رویدادها (کلیک‌ها)
-        if (addressListContainer) {
-            addressListContainer.addEventListener('click', (e) => {
-                const card = e.target.closest('.address-card-new');
-                if (!card) return;
-
-                const button = e.target.closest('button');
-
-                if (button) { // اگر روی یکی از دکمه‌های داخل کارت کلیک شد
-                    e.stopPropagation(); // جلوگیری از اجرای کلیک روی خود کارت
-                    if (button.classList.contains('edit-address-btn')) {
-                        openAddressModal('edit');
-                    } else if (button.classList.contains('delete-address-btn')) {
-                        if (card.classList.contains('is-default')) {
-                            showToast('error', 'خطا', 'شما نمی‌توانید آدرس پیش‌فرض را حذف کنید.');
-                            return;
-                        }
-                        // انیمیشن حذف
-                        card.style.transition = 'all 0.3s ease';
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateX(50px)';
-                        setTimeout(() => card.remove(), 300);
-                        showToast('info', 'حذف شد', 'آدرس مورد نظر حذف گردید.');
-                    }
-                } else { // اگر روی خود کارت کلیک شد
-                    setDefaultAddress(card);
-                }
-            });
-        }
-
-        // رویدادهای مربوط به باز و بسته کردن مودال
-        if (addNewAddressBtn) addNewAddressBtn.addEventListener('click', () => openAddressModal('add'));
-        if (closeModalBtn) closeModalBtn.addEventListener('click', closeAddressModal);
-        if (cancelFormBtn) cancelFormBtn.addEventListener('click', closeAddressModal);
-        if (backdrop) backdrop.addEventListener('click', closeAddressModal);
-
-        if (addressForm) {
-            addressForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                closeAddressModal();
-                showToast('success', 'ذخیره شد', 'آدرس شما (به صورت نمایشی) ذخیره شد.');
-            });
-        }
-
-        // دکمه خروج نمایشی
-        if (logoutButton) {
-            logoutButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                showToast('info', 'خروج', 'این یک دکمه نمایشی برای خروج از حساب است.');
-            });
-        }
-    });
-</script>
 </body>
 </html>

@@ -1252,14 +1252,15 @@
             </div>
             <nav class="sidebar-nav-new">
                 <ul>
-                    <li><a href="account.html" data-page="account"><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
-                    <li><a href="orders.html" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
-                    <li><a href="addresses.html" data-page="addresses"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
-                    <li><a href="wishlist.html" data-page="wishlist"><svg><use xlink:href="#icon-heart-solid"></use></svg> علاقه‌مندی‌ها</a></li>
-                    <li><a href="reviews.html" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg> نظرات من</a></li>
-                    <li><a href="password.html" data-page="password"><svg><use xlink:href="#icon-lock-password"></use></svg> تغییر رمز</a></li>
+                    <li><a href="profile.html" data-page="account"><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
+                    <li><a href="profile.sefaresh.html" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
+                    <li><a href="profile.Kifpol.html" data-page="wallet"><svg><use xlink:href="#icon-wallet"></use></svg> کیف پول</a></li>
+                    <li><a href="profile.adress.html" data-page="addresses"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
+                    <li><a href="profile.whilist.html" data-page="wishlist" class="active"><svg><use xlink:href="#icon-heart-solid"></use></svg> علاقه‌مندی‌ها</a></li>
+                    <li><a href="profile.comments.html" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg> نظرات من</a></li>
+                    <li><a href="profile.password.html" data-page="password"><svg><use xlink:href="#icon-lock-password"></use></svg> تغییر رمز</a></li>
                     <li class="nav-separator"></li>
-                    <li><a href="#" id="logoutButton"><svg><use xlink:href="#icon-logout-door"></use></svg> خروج از حساب</a></li>
+                    <li><a href="" id="logoutButton"><svg><use xlink:href="#icon-logout-door"></use></svg> خروج از حساب</a></li>
                 </ul>
             </nav>
         </aside>
@@ -1349,139 +1350,10 @@
 <script  src="script.js"></script>
 <!--این همه جا هست -->
 
-<script>
-    // --- UTILITY & SHARED FUNCTIONS ---
-    function showToast({
-                           type = 'info',
-                           title,
-                           message,
-                           duration = 4000,
-                           isConfirm = false,
-                           onConfirm = () => {},
-                           onCancel = () => {}
-                       }) {
-        const container = document.getElementById('notificationToastContainer');
-        if (!container) return;
-        const iconMap = { success: '#icon-check-circle-fill', error: '#icon-alert-triangle-fill', info: '#icon-info-circle-fill', warning: '#icon-alert-triangle-fill' };
 
-        const toastId = `toast-${Date.now()}`;
-        const toastDiv = document.createElement('div');
-        toastDiv.className = `wow-notification-new ${type} ${isConfirm ? 'confirm' : ''}`;
-        toastDiv.id = toastId;
+<script src="assets/js/profile.js"></script>
 
-        toastDiv.innerHTML = `
-            <div class="wow-notification-header">
-                <div class="wow-notification-icon-new"><svg><use xlink:href="${iconMap[type] || '#icon-info-circle-fill'}"></use></svg></div>
-                <div class="wow-notification-content-new">
-                    <div class="wow-notification-title-new">${title}</div>
-                    <div class="wow-notification-message-new">${message}</div>
-                </div>
-                <button class="wow-notification-close-new">×</button>
-            </div>
-            <div class="wow-notification-actions">
-                <button class="btn-custom btn-secondary btn-sm cancel-btn">انصراف</button>
-                <button class="btn-custom btn-primary btn-sm confirm-btn" style="background-color: var(--error);">حذف</button>
-            </div>`;
 
-        container.prepend(toastDiv);
-        requestAnimationFrame(() => toastDiv.classList.add('show'));
-
-        const removeToast = () => {
-            toastDiv.classList.remove('show');
-            setTimeout(() => toastDiv.remove(), 400);
-        };
-
-        toastDiv.querySelector('.wow-notification-close-new').onclick = removeToast;
-
-        if (isConfirm) {
-            const confirmBtn = toastDiv.querySelector('.confirm-btn');
-            const cancelBtn = toastDiv.querySelector('.cancel-btn');
-
-            confirmBtn.onclick = () => {
-                onConfirm();
-                removeToast();
-            };
-            cancelBtn.onclick = () => {
-                onCancel();
-                removeToast();
-            };
-        } else {
-            if (duration > 0) setTimeout(removeToast, duration);
-        }
-    }
-
-    // --- PAGE-SPECIFIC LOGIC ---
-    document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('[data-page="wishlist"]').forEach(link => link.classList.add('active'));
-
-        const wishlistContainer = document.getElementById('wishlistContainer');
-        let wishlistItems = [ // Static data for demo
-            { id: 'prod1', name: 'ساعت هوشمند گلکسی واچ ۶', price: 1200000, image: 'https://via.placeholder.com/100/FF6B6B/FFF?text=Watch', category: 'گجت پوشیدنی' },
-            { id: 'prod2', name: 'کتاب روانشناسی پول', price: 180000, image: 'https://via.placeholder.com/100/4ECDC4/FFF?text=Book', category: 'کتاب' },
-            { id: 'prod3', name: 'هدفون بی‌سیم سونی', price: 850000, image: 'https://via.placeholder.com/100/3498DB/FFF?text=Headphone', category: 'لوازم جانبی' }
-        ];
-
-        function renderWishlist() {
-            wishlistContainer.innerHTML = '';
-            if (wishlistItems.length === 0) {
-                wishlistContainer.innerHTML = '<p class="text-muted text-center py-5">لیست علاقه‌مندی شما خالی است.</p>';
-                return;
-            }
-            const grid = document.createElement('div');
-            grid.className = 'row g-3';
-            wishlistItems.forEach(item => {
-                const col = document.createElement('div');
-                col.className = 'col-md-6';
-                col.id = `item-${item.id}`;
-                col.innerHTML = `
-                    <div class="product-card-minimal">
-                        <img src="${item.image}" alt="${item.name}" class="product-card-minimal-img">
-                        <div class="product-card-minimal-info">
-                            <h6>${item.name}</h6>
-                            <p class="category-text">${item.category}</p>
-                            <p class="price-text">${item.price.toLocaleString('fa-IR')} <small>تومان</small></p>
-                            <div class="product-card-minimal-actions d-flex gap-2">
-                                <button class="btn-custom btn-secondary btn-sm remove-wishlist-btn" data-id="${item.id}">
-                                    <svg><use xlink:href="#icon-trash-can"></use></svg>حذف
-                                </button>
-                                <button class="btn-custom btn-primary btn-sm">افزودن به سبد</button>
-                            </div>
-                        </div>
-                    </div>`;
-                grid.appendChild(col);
-            });
-            wishlistContainer.appendChild(grid);
-        }
-
-        wishlistContainer.addEventListener('click', function(e) {
-            const button = e.target.closest('.remove-wishlist-btn');
-            if (button) {
-                const productId = button.dataset.id;
-
-                showToast({
-                    type: 'warning',
-                    title: 'تایید حذف',
-                    message: 'آیا از حذف این محصول مطمئن هستید؟',
-                    isConfirm: true,
-                    onConfirm: () => {
-                        const productCardWrapper = document.getElementById(`item-${productId}`);
-                        if (productCardWrapper) {
-                            productCardWrapper.style.transition = 'all 0.3s ease';
-                            productCardWrapper.style.opacity = '0';
-                            productCardWrapper.style.transform = 'scale(0.95)';
-                            setTimeout(() => {
-                                wishlistItems = wishlistItems.filter(item => item.id !== productId);
-                                renderWishlist();
-                            }, 300);
-                        }
-                    }
-                });
-            }
-        });
-
-        renderWishlist();
-    });
-</script>
 
 </body>
 </html>

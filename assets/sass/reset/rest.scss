@@ -148,14 +148,23 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
   background: hsla(0, 0%, 0%, .5);
   opacity: 0;
   pointer-events: none;
-  z-index: 15;
+  z-index: 9;
   transition: 0.7s ease;
+  visibility: hidden;
+}
+
+
+.mobile-bottom-navigation.delete{
+  visibility: hidden !important;
+  display: none !important;
+  opacity: 0 !important;
+  z-index: 0 !important;
 }
 
 .overlay.active{
-  opacity: 1;
+  visibility: visible !important;
   pointer-events: all;
-  z-index: 9999;
+  opacity: 1;
 }
 
 

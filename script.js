@@ -1,5 +1,7 @@
 'use strict';
 
+let offnav = document.getElementsByClassName('mobile-bottom-navigation')
+
 function showElement(element, displayType = 'block') {
     if (element) {
         element.style.display = displayType;
@@ -37,11 +39,14 @@ for (let i = 0; i < mobileMenuOpenBtn.length; i++) {
     const mobileMenuCloseFunc = function () {
         mobileMenu[i].classList.remove('active');
         overlay.classList.remove('active');
+        offnav.classList.remove('delete')
     }
 
     mobileMenuOpenBtn[i].addEventListener('click', function () {
         mobileMenu[i].classList.add('active');
         overlay.classList.add('active');
+        offnav.classList.add('delete')
+
     })
 
     mobileMenuCloseBtn[i].addEventListener('click', mobileMenuCloseFunc);

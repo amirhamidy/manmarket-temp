@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل ادمین - مدیریت چت‌ها</title>
+    <style>
+        :root {
+            --brand-primary: #007bff;
+            --brand-primary-rgb: 0, 123, 255;
+            --active-chat-bg: rgba(var(--brand-primary-rgb), 0.07);
+            --sent-bubble-bg: #dcf8c6;
+            --received-bubble-bg: #ffffff;
+            --main-bg: #f4f6f9;
+            --chat-bg: #ffffff;
+            --sidebar-bg: #fdfdff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #6b7785;
+            --time-color: #a0a0a0;
+            --sent-time-color: #5d9a44;
+            --icon-color: #8696a0;
+            --input-bg: #f1f2f6;
+            --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --border-color: #e9eef3;
+        }
+        @keyframes x-chat-fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto; background-color: var(--main-bg); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+
+        .x-chat-layout {
+            display: grid; grid-template-columns: 360px 1fr; width: 100%; max-width: 1400px;
+            height: 95vh; max-height: 900px; background-color: var(--chat-bg); border-radius: 24px;
+            box-shadow: var(--shadow-soft); overflow: hidden;
+        }
+        .x-chat-product-sidebar { display: flex; flex-direction: column; border-left: 1px solid var(--border-color); background-color: var(--sidebar-bg); }
+        .x-chat-product-sidebar-header { padding: 16px 16px 4px; border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
+        .x-chat-sidebar-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 12px; }
+        .x-chat-sidebar-search input {
+            width: 100%; padding: 10px 16px; border: 1px solid var(--border-color);
+            border-radius: 18px; background-color: var(--input-bg); font-size: 0.9rem; outline: none;
+        }
+        .x-chat-sidebar-search input:focus { border-color: var(--brand-primary); }
+        .x-chat-product-sidebar-list { overflow-y: auto; flex-grow: 1; }
+        .x-chat-product-item {
+            display: flex; gap: 14px; padding: 14px 16px; cursor: pointer;
+            transition: background-color 0.2s; position: relative; border-right: 3px solid transparent;
+            color: inherit; text-decoration: none;
+        }
+        .x-chat-product-item:hover { background-color: #f1f5f8; }
+        .x-chat-product-item.x-chat-active { background-color: var(--active-chat-bg); border-right-color: var(--brand-primary); }
+        .x-chat-product-item.x-chat-active .x-chat-product-item-name { color: var(--brand-primary); }
+        .x-chat-product-item-image img { width: 60px; height: 60px; border-radius: 12px; object-fit: cover; }
+        .x-chat-product-item-info { flex-grow: 1; overflow: hidden; }
+        .x-chat-product-item-name { font-weight: 600; color: var(--text-primary); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .x-chat-product-item-last-message { font-size: 0.9rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .x-chat-unread-badge {
+            position: absolute; top: 50%; left: 16px; transform: translateY(-50%);
+            background-color: var(--brand-primary); color: white; font-size: 0.75rem; font-weight: 600;
+            width: 22px; height: 22px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; transition: transform 0.2s;
+        }
+        .x-chat-product-item.x-chat-active .x-chat-unread-badge { display: none; }
+
+        .x-chat-main { display: flex; flex-direction: column; overflow: hidden; }
+        .x-chat-header { padding: 12px 20px; border-bottom: 1px solid var(--border-color); flex-shrink: 0; display: flex; align-items: center; }
+        .x-chat-header-info { flex-grow: 1; }
+        .x-chat-header-title { font-size: 1.1rem; font-weight: 600; }
+        .x-chat-header-subtitle { font-size: 0.85rem; color: var(--brand-primary); }
+        .x-chat-back-button { display: none; margin-left: 10px; }
+        .x-chat-header-product-image { display: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-left: 12px; }
+        .x-chat-body { flex-grow: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; scrollbar-width: none; -ms-overflow-style: none; }
+        .x-chat-body::-webkit-scrollbar { display: none; }
+        .x-chat-messages-container { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
+        .x-chat-message-group { display: flex; flex-direction: column; }
+        .x-chat-message-group.x-chat-fadeIn { animation: x-chat-fadeIn 0.3s ease; }
+        .x-chat-message-bubble { max-width: 70%; width: fit-content; padding: 8px 14px; border-radius: 18px; position: relative; min-width: 90px; }
+        .x-chat-message-group.x-chat-received { align-items: flex-start; }
+        .x-chat-message-bubble.x-chat-received { background-color: #ffffff; border: 1px solid #eee; border-bottom-left-radius: 6px; }
+        .x-chat-message-group.x-chat-sent { align-items: flex-end; }
+        .x-chat-message-bubble.x-chat-sent { background-color: var(--sent-bubble-bg); border-bottom-right-radius: 6px; }
+        .x-chat-message-text { padding-bottom: 20px; line-height: 1.6; word-wrap: break-word; }
+        .x-chat-message-image img { display: block; max-width: 100%; height: auto; border-radius: 12px; cursor: pointer; }
+        .x-chat-message-meta { position: absolute; bottom: 6px; left: 12px; font-size: 0.75rem; color: var(--time-color); }
+        .x-chat-message-bubble.x-chat-sent .x-chat-message-meta { color: var(--sent-time-color); }
+        .x-chat-footer { padding: 10px 16px; background-color: #fff; border-top: 1px solid #f0f0f0; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+        .x-chat-footer-input-wrapper { flex-grow: 1; background-color: #f1f2f6; border-radius: 22px; display: flex; align-items: center; padding: 0 8px; }
+        .x-chat-message-input { flex-grow: 1; border: none; background: none; padding: 12px; font-size: 1rem; outline: none; resize: none; max-height: 100px; scrollbar-width: none; -ms-overflow-style: none; }
+        .x-chat-message-input::-webkit-scrollbar { display: none; }
+        .x-chat-icon-button { background: none; border: none; cursor: pointer; color: var(--icon-color); padding: 8px; display: flex; align-items: center; justify-content: center; }
+        .x-chat-send-button {
+            background-color: var(--brand-primary); color: white; border-radius: 50%;
+            width: 44px; height: 44px; transition: transform 0.2s, opacity 0.2s;
+            opacity: 0.4; transform: scale(0.9); cursor: not-allowed;
+            border: none; outline: none;
+        }
+        .x-chat-send-button.x-chat-active { opacity: 1; transform: scale(1); cursor: pointer; }
+        .x-chat-lightbox-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s 0.3s; }
+        .x-chat-lightbox-overlay.x-chat-active { opacity: 1; visibility: visible; transition: opacity 0.3s ease; }
+        .x-chat-lightbox-content { max-width: 90%; max-height: 90%; transform: scale(0.8); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .x-chat-lightbox-overlay.x-chat-active .x-chat-lightbox-content { transform: scale(1); }
+        .x-chat-lightbox-content img { width: 100%; height: 100%; object-fit: contain; }
+
+        @media (max-width: 800px) {
+            body { padding: 0; }
+            .x-chat-layout { grid-template-columns: 1fr; height: 100vh; max-height: 100vh; border-radius: 0; }
+            .x-chat-product-sidebar { border-left: none; }
+            .x-chat-main { display: none; }
+            .x-chat-back-button { display: flex; }
+            .x-chat-header-product-image { display: block; }
+            .x-chat-header-title { font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+            .x-chat-header-subtitle { font-size: 0.75rem; }
+            .x-chat-layout.x-chat-mobile-view-chat .x-chat-product-sidebar { display: none; }
+            .x-chat-layout.x-chat-mobile-view-chat .x-chat-main { display: flex; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="x-chat-layout">
+    <aside class="x-chat-product-sidebar">
+        <header class="x-chat-product-sidebar-header">
+            <!-- لیبل‌ها تغییر کردند -->
+            <h2 class="x-chat-sidebar-title">چت‌های مشتریان</h2>
+            <div class="x-chat-sidebar-search">
+                <input type="text" id="x-chat-search-input" placeholder="جستجوی مشتری...">
+            </div>
+        </header>
+        <div class="x-chat-product-sidebar-list">
+            <a href="?chat_id=1" class="x-chat-product-item" data-chat-id="1">
+                <div class="x-chat-product-item-image"><img src="https://placehold.co/80x80/28a745/ffffff?text=A" alt="User Avatar"></div>
+                <div class="x-chat-product-item-info">
+                    <div class="x-chat-product-item-name">مشتری: علی رضایی</div>
+                    <p class="x-chat-product-item-last-message">سلام، ممنون از پاسخ شما.</p>
+                </div>
+            </a>
+            <a href="?chat_id=2" class="x-chat-product-item" data-chat-id="2">
+                <div class="x-chat-product-item-image"><img src="https://placehold.co/80x80/dc3545/ffffff?text=Z" alt="User Avatar"></div>
+                <div class="x-chat-product-item-info">
+                    <div class="x-chat-product-item-name">مشتری: زهرا احمدی</div>
+                    <p class="x-chat-product-item-last-message">این کالا تخفیف هم داره؟</p>
+                </div>
+                <span class="x-chat-unread-badge">1</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="x-chat-main">
+        <header class="x-chat-header">
+            <button class="x-chat-icon-button x-chat-back-button" id="x-chat-back-to-list-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </button>
+            <img src="" alt="Product" class="x-chat-header-product-image" id="x-chat-header-image">
+            <div class="x-chat-header-info">
+                <div class="x-chat-header-title" id="x-chat-header-title"></div>
+                <div class="x-chat-header-subtitle" id="x-chat-header-subtitle"></div>
+            </div>
+        </header>
+        <div class="x-chat-body" id="x-chat-body">
+            <div class="x-chat-messages-container" id="x-chat-messages-container"></div>
+        </div>
+        <footer class="x-chat-footer">
+            <div class="x-chat-footer-input-wrapper">
+                <button class="x-chat-icon-button" id="x-chat-attachment-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="transform: rotate(45deg);"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                </button>
+                <textarea class="x-chat-message-input" id="x-chat-message-input" placeholder="پیام ..." rows="1"></textarea>
+            </div>
+            <button class="x-chat-send-button x-chat-icon-button" id="x-chat-send-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+            </button>
+        </footer>
+    </main>
+</div>
+
+<div class="x-chat-lightbox-overlay" id="x-chat-lightbox-overlay">
+    <div class="x-chat-lightbox-content"><img src="" alt="بزرگنمایی تصویر" id="x-chat-lightbox-image"></div>
+</div>
+<input type="file" id="x-chat-image-upload-input" accept="image/*" style="display: none;">
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const xChatLayout = document.querySelector('.x-chat-layout');
+        const xChatProductItems = document.querySelectorAll('.x-chat-product-item');
+        const xChatBackBtn = document.getElementById('x-chat-back-to-list-btn');
+        const xChatSearchInput = document.getElementById('x-chat-search-input');
+        const xChatHeaderImage = document.getElementById('x-chat-header-image');
+        const xChatHeaderTitle = document.getElementById('x-chat-header-title');
+        const xChatHeaderSubtitle = document.getElementById('x-chat-header-subtitle');
+        const xChatMessagesContainer = document.getElementById('x-chat-messages-container');
+        const xChatMessageInput = document.getElementById('x-chat-message-input');
+        const xChatSendButton = document.getElementById('x-chat-send-button');
+        const xChatAttachmentBtn = document.getElementById('x-chat-attachment-btn');
+        const xChatImageUploadInput = document.getElementById('x-chat-image-upload-input');
+        const xChatLightboxOverlay = document.getElementById('x-chat-lightbox-overlay');
+        const xChatLightboxImage = document.getElementById('x-chat-lightbox-image');
+        const xChatBody = document.getElementById('x-chat-body');
+
+        const getCurrentTime = () => `${new Date().getHours().toString().padStart(2, '0')}:${new Date().getMinutes().toString().padStart(2, '0')}`;
+
+        const addMessage = (content, type, sender, animate = true) => {
+            const group = document.createElement('div');
+            group.className = `x-chat-message-group x-chat-${sender}`;
+            if (animate) group.classList.add('x-chat-fadeIn');
+
+            const bubble = document.createElement('div');
+            bubble.className = `x-chat-message-bubble x-chat-${sender}`;
+            const time = getCurrentTime();
+            let bubbleContent = '';
+            if (type === 'text') {
+                bubbleContent = `<p class="x-chat-message-text">${content}</p><div class="x-chat-message-meta">${time}</div>`;
+            } else if (type === 'image') {
+                bubbleContent = `<div class="x-chat-message-image"><img src="${content}" alt="عکس ارسالی"></div><div class="x-chat-message-meta">${time}</div>`;
+            }
+            bubble.innerHTML = bubbleContent;
+            group.appendChild(bubble);
+            xChatMessagesContainer.appendChild(group);
+            xChatBody.scrollTop = xChatBody.scrollHeight;
+            if (type === 'image') bubble.querySelector('img').addEventListener('click', () => openLightbox(content));
+        };
+
+        const openLightbox = (src) => {
+            xChatLightboxImage.src = src;
+            xChatLightboxOverlay.classList.add('x-chat-active');
+        };
+
+        const adjustInputHeight = () => {
+            xChatMessageInput.style.height = 'auto';
+            xChatMessageInput.style.height = `${xChatMessageInput.scrollHeight}px`;
+        };
+
+        const sendMessage = () => {
+            const text = xChatMessageInput.value.trim();
+            if (text) {
+                addMessage(text, 'text', 'sent');
+                xChatMessageInput.value = '';
+                xChatSendButton.classList.remove('x-chat-active');
+                adjustInputHeight();
+
+                // شبیه‌سازی پاسخ از طرف مشتری
+                setTimeout(() => {
+                    addMessage('ممنون از پاسخ شما.', 'text', 'received');
+                }, 1500);
+            }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const activeChatId = urlParams.get('chat_id');
+
+        if (activeChatId) {
+            const activeItem = document.querySelector(`.x-chat-product-item[data-chat-id="${activeChatId}"]`);
+            if (activeItem) {
+                xChatProductItems.forEach(item => item.classList.remove('x-chat-active'));
+                activeItem.classList.add('x-chat-active');
+                const imageSrc = activeItem.querySelector('.x-chat-product-item-image img').src;
+                const title = activeItem.querySelector('.x-chat-product-item-name').textContent;
+                xChatHeaderImage.src = imageSrc;
+                xChatHeaderTitle.textContent = title;
+                xChatHeaderSubtitle.textContent = "در حال تایپ...";
+                xChatLayout.classList.add('x-chat-mobile-view-chat');
+
+                // شبیه‌سازی: حالا مشتری اول پیام میده
+                addMessage('سلام، وقت بخیر. در مورد سفارش سوال داشتم.', 'text', 'received', false);
+                addMessage('سلام، در خدمتم. بفرمایید.', 'text', 'sent', false);
+            }
+        } else {
+            if(xChatProductItems.length > 0) {
+                xChatHeaderTitle.textContent = "یک چت را برای پاسخگویی انتخاب کنید";
+                xChatHeaderSubtitle.textContent = " ";
+                xChatMessagesContainer.innerHTML = '';
+            }
+        }
+
+        xChatBackBtn.addEventListener('click', () => { window.location.href = window.location.pathname; });
+        xChatSearchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            xChatProductItems.forEach(item => {
+                item.style.display = item.querySelector('.x-chat-product-item-name').textContent.toLowerCase().includes(searchTerm) ? 'flex' : 'none';
+            });
+        });
+        xChatLightboxOverlay.addEventListener('click', () => xChatLightboxOverlay.classList.remove('x-chat-active'));
+        xChatMessageInput.addEventListener('input', () => {
+            xChatSendButton.classList.toggle('x-chat-active', xChatMessageInput.value.trim().length > 0);
+            adjustInputHeight();
+        });
+        xChatSendButton.addEventListener('click', sendMessage);
+        xChatMessageInput.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+        xChatAttachmentBtn.addEventListener('click', () => xChatImageUploadInput.click());
+        xChatImageUploadInput.addEventListener('change', (e) => {
+            if (e.target.files && e.target.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (event) => addMessage(event.target.result, 'image', 'sent');
+                reader.readAsDataURL(e.target.files[0]);
+                e.target.value = null;
+            }
+        });
+    });
+</script>
+</body>
+</html>

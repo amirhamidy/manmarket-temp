@@ -148,7 +148,7 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
   background: hsla(0, 0%, 0%, .5);
   opacity: 0;
   pointer-events: none;
-  z-index: 9;
+  z-index: 2;
   transition: 0.7s ease;
   visibility: hidden;
 }

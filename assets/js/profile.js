@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const avatarUploadInput = document.getElementById('avatarUploadInput');
+    const avatarUploadInput2 = document.getElementById('avatarUploadInput-2');
     if (avatarUploadInput) {
         avatarUploadInput.onchange = (e) => {
             const file = e.target.files[0];
@@ -78,6 +79,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     document.getElementById('profileAvatarPreview').src = event.target.result;
+                    showToast({type: 'success', title: 'پیش‌نمایش آواتار', message: 'عکس پروفایل شما برای پیش‌نمایش تغییر کرد.'});
+                }
+                reader.readAsDataURL(file);
+            }
+        };
+    }
+    if (avatarUploadInput2) {
+        avatarUploadInput2.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    document.getElementById('profileAvatarPreview-2').src = event.target.result;
                     showToast({type: 'success', title: 'پیش‌نمایش آواتار', message: 'عکس پروفایل شما برای پیش‌نمایش تغییر کرد.'});
                 }
                 reader.readAsDataURL(file);

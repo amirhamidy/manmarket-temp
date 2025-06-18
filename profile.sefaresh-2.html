@@ -1268,13 +1268,6 @@
             <section class="profile-section-new">
                 <header class="section-header-new border-0">
                     <h2><svg><use xlink:href="#icon-receipt-list"></use></svg>سفارشات من</h2>
-                    <select id="orderFilterStatus" class="form-control-custom w-auto" style="min-width: 150px;">
-                        <option value="all">همه وضعیت‌ها</option>
-                        <option value="pending">در حال پردازش</option>
-                        <option value="shipped">ارسال شده</option>
-                        <option value="delivered">تحویل شده</option>
-                        <option value="cancelled">لغو شده</option>
-                    </select>
                 </header>
                 <div id="ordersListContainer">
                     <!-- STATIC: Orders are hardcoded below. JS will only show/hide them. -->
@@ -1285,134 +1278,6 @@
                             <span class="order-status-badge-new delivered">تحویل شده</span>
                         </div>
                         <p class="order-items-preview">شامل: هدفون گیمینگ حرفه‌ای, موس بی‌سیم...</p>
-                        <div class="order-footer-new">
-                            <span class="order-total-new">۳۸۰,۰۰۰ <small>تومان</small></span>
-                            <div class="mx-3">
-                                <a href="" class="btn-custom btn-secondary btn-sm">
-                                    <svg><use xlink:href="#icon-eye-open"></use></svg> مشاهده جزئیات
-                                </a>
-                                <a href="" class="btn-custom btn-secondary btn-sm mx-1">
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            width="22px"
-                                            height="22px"
-                                    >
-                                        <g fill="currentColor">
-                                            <path d="M6 6a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1m0 4a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1m1 3a1 1 0 1 0 0 2h10a1 1 0 1 0 0-2zm-1 5a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1"></path>
-                                            <path
-                                                    fill-rule="evenodd"
-                                                    d="M2 4a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v16a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3zm3-1h14a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"
-                                                    clip-rule="evenodd"
-                                            ></path>
-                                        </g>
-                                    </svg>مشاهده فاکتور
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="order-card-new " data-status="shipped">
-                        <div class="order-card-header-new">
-                            <div><span class="order-id-new">سفارش #DKC-1021</span> - <span class="order-date-new">۱۴۰۳/۰۳/۰۱</span></div>
-                            <span class="order-status-badge-new shipped">ارسال شده</span>
-                        </div>
-                        <p class="order-items-preview">شامل: پاوربانک ۲۰۰۰۰ میلی‌آمپر شیائومی</p>
-                        <div class="order-footer-new">
-                            <span class="order-total-new">۱۵۰,۰۰۰ <small>تومان</small></span>
-                            <div class="mx-3">
-                                <a href="" class="btn-custom btn-secondary btn-sm">
-                                    <svg><use xlink:href="#icon-eye-open"></use></svg> مشاهده جزئیات
-                                </a>
-                                <a href="" class="btn-custom btn-secondary btn-sm mx-1">
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            width="22px"
-                                            height="22px"
-                                    >
-                                        <g fill="currentColor">
-                                            <path d="M6 6a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1m0 4a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1m1 3a1 1 0 1 0 0 2h10a1 1 0 1 0 0-2zm-1 5a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1"></path>
-                                            <path
-                                                    fill-rule="evenodd"
-                                                    d="M2 4a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v16a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3zm3-1h14a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"
-                                                    clip-rule="evenodd"
-                                            ></path>
-                                        </g>
-                                    </svg>مشاهده فاکتور
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="order-card-new" data-status="pending">
-                        <div class="order-card-header-new">
-                            <div><span class="order-id-new">سفارش #DKC-1055</span> - <span class="order-date-new">۱۴۰۳/۰۴/۰۵</span></div>
-                            <span class="order-status-badge-new pending">در حال پردازش</span>
-                        </div>
-                        <p class="order-items-preview">شامل: کیبورد مکانیکال, کابل HDMI نسخه 2.1</p>
-                        <div class="order-footer-new">
-                            <span class="order-total-new">۷۲۰,۰۰۰ <small>تومان</small></span>
-                            <div class="mx-3">
-                                <a href="" class="btn-custom btn-secondary btn-sm">
-                                    <svg><use xlink:href="#icon-eye-open"></use></svg> مشاهده جزئیات
-                                </a>
-                                <a href="" class="btn-custom btn-secondary btn-sm mx-1">
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            width="22px"
-                                            height="22px"
-                                    >
-                                        <g fill="currentColor">
-                                            <path d="M6 6a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1m0 4a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1m1 3a1 1 0 1 0 0 2h10a1 1 0 1 0 0-2zm-1 5a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1"></path>
-                                            <path
-                                                    fill-rule="evenodd"
-                                                    d="M2 4a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v16a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3zm3-1h14a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"
-                                                    clip-rule="evenodd"
-                                            ></path>
-                                        </g>
-                                    </svg>مشاهده فاکتور
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="order-card-new" data-status="cancelled">
-                        <div class="order-card-header-new">
-                            <div><span class="order-id-new">سفارش #DKC-0998</span> - <span class="order-date-new">۱۴۰۳/۰۲/۱۵</span></div>
-                            <span class="order-status-badge-new cancelled">لغو شده</span>
-                        </div>
-                        <p class="order-items-preview">شامل: هارد اکسترنال ۱ ترابایت</p>
-                        <div class="order-footer-new">
-                            <span class="order-total-new">۴۵۰,۰۰۰ <small>تومان</small></span>
-                            <div class="mx-3">
-                                <a href="" class="btn-custom btn-secondary btn-sm">
-                                    <svg><use xlink:href="#icon-eye-open"></use></svg> مشاهده جزئیات
-                                </a>
-                                <a href="" class="btn-custom btn-secondary btn-sm mx-1">
-                                    <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            width="22px"
-                                            height="22px"
-                                    >
-                                        <g fill="currentColor">
-                                            <path d="M6 6a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1m0 4a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1m1 3a1 1 0 1 0 0 2h10a1 1 0 1 0 0-2zm-1 5a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1"></path>
-                                            <path
-                                                    fill-rule="evenodd"
-                                                    d="M2 4a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v16a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3zm3-1h14a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"
-                                                    clip-rule="evenodd"
-                                            ></path>
-                                        </g>
-                                    </svg>مشاهده فاکتور
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="noOrdersMessage" class="text-muted text-center py-5" style="display: none;">
-                        سفارشی با این وضعیت یافت نشد.
                     </div>
                 </div>
             </section>
@@ -1429,39 +1294,6 @@
     <a href="#" class="mobile-nav-item" data-page="password"><svg><use xlink:href="#icon-lock-password"></use></svg><span>تغییر رمز</span></a>
     <a href="#" class="mobile-nav-item" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg><span>نظرات</span></a>
 </nav>
-
-<!-- Order Details Modal with Static Content -->
-<div class="modal-backdrop-new" id="orderModalBackdrop"></div>
-<div class="modal-dialog-new" id="orderDetailsModal">
-    <header class="modal-header-new">
-        <h3 class="modal-title-new">جزئیات سفارش #DKC-1045</h3>
-        <button class="modal-close-btn-new">×</button>
-    </header>
-    <div class="modal-body-new">
-        <p><strong>آدرس تحویل:</strong> تهران، خیابان آزادی، پلاک ۱۲۳، واحد ۴</p>
-        <p><strong>روش پرداخت:</strong> پرداخت آنلاین (موفق)</p>
-        <h5 class="mt-4 mb-2">اقلام سفارش</h5>
-        <ul class="list-unstyled">
-            <li class="order-detail-list-item">
-                <div class="d-flex align-items-center">
-                    <img src="https://via.placeholder.com/80/FF6347/FFFFFF?text=Product1" alt="" class="order-detail-product-info">
-                    <span>هدفون گیمینگ حرفه‌ای (×۱)</span>
-                </div>
-                <strong>۲۵۰,۰۰۰ <small>تومان</small></strong>
-            </li>
-            <li class="order-detail-list-item">
-                <div class="d-flex align-items-center">
-                    <img src="https://via.placeholder.com/80/4682B4/FFFFFF?text=Product2" alt="" class="order-detail-product-info">
-                    <span>موس بی‌سیم (×۱)</span>
-                </div>
-                <strong>۱۳۰,۰۰۰ <small>تومان</small></strong>
-            </li>
-        </ul>
-        <hr>
-        <div class="d-flex justify-content-between"><span>هزینه ارسال:</span> <span>رایگان</span></div>
-        <div class="d-flex justify-content-between mt-2 fs-5 fw-bold"><span>مبلغ کل:</span> <span>۳۸۰,۰۰۰ <small>تومان</small></span></div>
-    </div>
-</div>
 
 
 <!--footer :: start------>

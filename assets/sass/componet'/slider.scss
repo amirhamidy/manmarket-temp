@@ -199,6 +199,10 @@
     left: -41% !important;
     top: 61% !important;
   }
+}@media only screen and (max-width: 450px){
+  .main-slider{
+    margin-top: 80px !important;
+  }
 }
 @media only screen and (max-width: 450px){
   .swiper{

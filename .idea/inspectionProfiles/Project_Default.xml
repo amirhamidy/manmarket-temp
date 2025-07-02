@@ -6,10 +6,11 @@
       <option name="myIgnoreVendorSpecificProperties" value="false" />
       <option name="myCustomPropertiesList">
         <value>
-          <list size="3">
+          <list size="4">
             <item index="0" class="java.lang.String" itemvalue="overscroll-behavior-inline" />
             <item index="1" class="java.lang.String" itemvalue="line-clamp" />
             <item index="2" class="java.lang.String" itemvalue="scrollbar-width" />
+            <item index="3" class="java.lang.String" itemvalue="scrollbar-color" />
           </list>
         </value>
       </option>
@@ -17,13 +18,15 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="6">
+          <list size="8">
             <item index="0" class="java.lang.String" itemvalue="class" />
             <item index="1" class="java.lang.String" itemvalue="title" />
             <item index="2" class="java.lang.String" itemvalue="my-5" />
             <item index="3" class="java.lang.String" itemvalue="slide" />
             <item index="4" class="java.lang.String" itemvalue="code" />
             <item index="5" class="java.lang.String" itemvalue="\e602" />
+            <item index="6" class="java.lang.String" itemvalue="classname" />
+            <item index="7" class="java.lang.String" itemvalue="{...props}" />
           </list>
         </value>
       </option>

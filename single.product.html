@@ -8,39 +8,71 @@
 
 
 <!--    فقط سینگل پروداکت -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/swiper.lib.css"/>
+    <link rel="stylesheet" href="assets/css/sweet.alert.lib.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/splide.lib.css"/>
 <!--    فقط سینگل پروداکت -->
+
+
 
 <!--    اینا مال همه جاس-->
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 <!--    اینا مال همه جاس-->
+
 </head>
 <body>
+
 
 <!--Shadow Overly start-->
 <div class="overlay" data-overlay></div>
 <!--Shadow Overly start-->
 
+<div id="cart-dashboard" class="hidden-dashboard">
+    <button id="close-cart">
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="1.4em"
+                height="1.4em"
+        >
+            <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="square"
+                    stroke-linejoin="round"
+                    d="M18 6L6 18M6 6l12 12"
+            ></path>
+        </svg>
+    </button>
+    <h6 class="header-in-shop">سبد خرید</h6>
+    <div id="cart-items-container">
+        <ul id="cart-items"></ul>
+    </div>
+    <div id="total-price">جمع کل: 0 تومان</div>
+</div>
+
+
 
 <!--Header Start-->
-<header class="mb-3">
+<header class="mb-3 position-fixed py-2">
     <nav class="desktop-navigation-menu d-flex justify-content-center mt-3 px-5 text-center align-items-center">
         <!--logo in header -- : start-->
-        <div class="mx-1"><img class="cs-w" alt="من مارکت" src="assets/img/main.logo.jpg"></div>
+        <div class="mx-1 w-25"><img class="cs-w" alt="من مارکت" src="assets/img/main.logo.jpg"></div>
         <!--logo in header -- : end---->
 
         <!--menu -- : start-->
-        <div class="container w-center mr-cs">
+        <div class="container w-center mr-cs mt-2 w-75">
             <ul class="desktop-menu-category-list mb-2 w-center">
                 <li class="menu-category">
                     <div class="mega-menu-trigger-wrapper">
-                        <a id="mega-menu-trigger-btn-desktop" class="nav-link-mega-trigger" href="#">
-                            <i class="fas fa-bars mx-2"></i>دسته‌بندی کالاها
+                        <a id="mega-menu-trigger-btn-desktop" class="nav-link-mega-trigger mt-1" href="#">
+                            دسته‌بندی کالاها
                         </a>
                         <div class="mega-menu-panel mega-tab-menu" id="mega-menu-panel-content-desktop">
                             <div class="row g-0"> <!-- g-0 removes gutters -->
-                                <div class="col-lg-3 mega-menu-categories">
+                                <div class="col-lg-4 mega-menu-categories">
                                     <ul class="list-unstyled mega-category-list">
                                         <li class="mega-category-item active" data-target="#pane-digital-desktop">
                                             <a href="#">
@@ -349,7 +381,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="col-lg-9 mega-menu-content-area">
+                                <div class="col-lg-8 mega-menu-content-area">
                                     <!-- Phone in mega-menu -->
                                     <div class="mega-menu-pane active" id="pane-digital-desktop">
                                         <div class="d-flex justify-content-end flex-column">
@@ -896,26 +928,22 @@
         <!--menu -- : end---->
 
         <!--icons in header -- :: start-->
-        <div class="d-flex justify-content-between icons-in-header">
-            <div class="cs-mx show-search-modal btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="جست و جو ">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.3em" height="1.3em"><path fill="currentColor" d="M10.77 18.3a7.53 7.53 0 1 1 7.53-7.53a7.53 7.53 0 0 1-7.53 7.53m0-13.55a6 6 0 1 0 6 6a6 6 0 0 0-6-6"></path><path fill="currentColor" d="M20 20.75a.74.74 0 0 1-.53-.22l-4.13-4.13a.75.75 0 0 1 1.06-1.06l4.13 4.13a.75.75 0 0 1 0 1.06a.74.74 0 0 1-.53.22"></path></svg>
+        <div class="d-flex justify-content-end icons-in-header mb-1 w-25">
+            <div class="cs-mx show-search-modal mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="جست و جو ">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.4em" height="1.4em"><path fill="currentColor" d="M10.77 18.3a7.53 7.53 0 1 1 7.53-7.53a7.53 7.53 0 0 1-7.53 7.53m0-13.55a6 6 0 1 0 6 6a6 6 0 0 0-6-6"></path><path fill="currentColor" d="M20 20.75a.74.74 0 0 1-.53-.22l-4.13-4.13a.75.75 0 0 1 1.06-1.06l4.13 4.13a.75.75 0 0 1 0 1.06a.74.74 0 0 1-.53.22"></path></svg>
             </div>
             <div class="cs-mx btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="حساب کاربری">
                 <a class="login-a text-dark" href="sing.up.html">
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 16 16"
-                            width="1.1em"
-                            height="1.1em"
+                            width="1.2em"
+                            height="1.2em"
                     >
-                        <g fill="none" stroke="currentColor">
-                            <circle cx="8" cy="8" r="7.5"></circle>
-                            <circle cx="8" cy="5.5" r="2"></circle>
-                            <path
-                                    stroke-linecap="round"
-                                    d="M11.5 12c-.6-1.5-1.8-2.5-3.5-2.5s-2.9 1-3.5 2.5"
-                            ></path>
-                        </g>
+                        <path
+                                fill="currentColor"
+                                d="M8 7.83c-3.08 0-5.59 2.17-5.59 4.84V16h1.27v-3.33c0-2 1.94-3.57 4.32-3.57s4.32 1.6 4.32 3.57V16h1.27v-3.33c0-2.67-2.51-4.84-5.59-4.84m.1-1.22a3.22 3.22 0 0 0 3.1-3.31A3.21 3.21 0 0 0 8.1 0A3.21 3.21 0 0 0 5 3.3a3.22 3.22 0 0 0 3.1 3.31m0-5.32a1.92 1.92 0 0 1 1.81 2a1.93 1.93 0 0 1-1.81 2a1.93 1.93 0 0 1-1.8-2a1.92 1.92 0 0 1 1.8-2"
+                        ></path>
                     </svg>
                 </a>
             </div>
@@ -924,8 +952,8 @@
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 256 256"
-                            width="1.2em"
-                            height="1.2em"
+                            width="1.3em"
+                            height="1.3em"
                     >
                         <path
                                 fill="currentColor"
@@ -939,12 +967,12 @@
                 </span>
                 <!--like and shop number end---->
             </div>
-            <div class="cs-mx btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="سبد خرید">
+            <div class="cs-mx position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="سبد خرید">
                 <svg class="shop-icon"
                      xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 14 14"
-                     width="1em"
-                     height="1em"
+                     width="1.1em"
+                     height="1.1em"
                 >
                     <path
                             fill="none"
@@ -966,69 +994,103 @@
 
     <div class="mobile-bottom-navigation align-items-center">
         <button class="action-btn">
-            <a class="text-dark" href="index.html"><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    width="0.8em"
-                    height="0.8em"
-            >
-                <path
-                        fill="currentColor"
-                        d="M469.666 216.45L271.078 33.749a34 34 0 0 0-47.062.98L41.373 217.373L32 226.745V496h176V328h96v168h176V225.958ZM248.038 56.771c.282 0 .108.061-.013.18c-.125-.119-.269-.18.013-.18M448 464H336V328a32 32 0 0 0-32-32h-96a32 32 0 0 0-32 32v136H64V240L248.038 57.356c.013-.012.014-.023.024-.035L448 240Z"
-                ></path>
-            </svg></a>
+            <a class="login-a text-dark" href="sing.up.html">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 16"
+                        width="0.9em"
+                        height="0.9em"
+                >
+                    <path
+                            fill="currentColor"
+                            d="M8 7.83c-3.08 0-5.59 2.17-5.59 4.84V16h1.27v-3.33c0-2 1.94-3.57 4.32-3.57s4.32 1.6 4.32 3.57V16h1.27v-3.33c0-2.67-2.51-4.84-5.59-4.84m.1-1.22a3.22 3.22 0 0 0 3.1-3.31A3.21 3.21 0 0 0 8.1 0A3.21 3.21 0 0 0 5 3.3a3.22 3.22 0 0 0 3.1 3.31m0-5.32a1.92 1.92 0 0 1 1.81 2a1.93 1.93 0 0 1-1.81 2a1.93 1.93 0 0 1-1.8-2a1.92 1.92 0 0 1 1.8-2"
+                    ></path>
+                </svg>
+            </a>
+            <p class="tol-mb">
+                حساب کاربری
+            </p>
         </button>
         <button class="action-btn">
-            <a class="text-dark" href="collection.html"><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="1em"
-                    height="1em"
-            >
-                <path
-                        fill="currentColor"
-                        d="M3.5 3.5h7v7h-7zm1 1v5zm9-1h7v7h-7zm1 1v5zm-11 9h7v7h-7zm1 1v5zm12-1h1v3h3v1h-3v3h-1v-3h-3v-1h3zm-2-9v5h5v-5zm-10 0v5h5v-5zm0 10v5h5v-5z"
-                ></path>
-            </svg></a>
+            <a class="text-dark" href="search.html">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="currentColor"
+                            d="M3.5 3.5h7v7h-7zm1 1v5zm9-1h7v7h-7zm1 1v5zm-11 9h7v7h-7zm1 1v5zm12-1h1v3h3v1h-3v3h-1v-3h-3v-1h3zm-2-9v5h5v-5zm-10 0v5h5v-5zm0 10v5h5v-5z"
+                    ></path>
+                </svg>
+            </a>
+            <p class="tol-mb">
+                فروشگاه
+            </p>
         </button>
         <button class="action-btn">
-            <svg class="shop-icon"
-                 xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 14 14"
-                 width="0.8em"
-                 height="0.8em"
-            >
-                <path
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M12.182 7.5h-8.18l-1-5h10a.5.5 0 0 1 .49.59l-.82 4a.49.49 0 0 1-.49.41m-9.18-5L2.582.9a.5.5 0 0 0-.49-.4H.502m3.5 7l.42 2.1a.5.5 0 0 0 .49.4h6.09m-.5 3.5a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1m-5 0a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1"
-                ></path>
-            </svg>
+            <a class="text-dark" href="whilist.html">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 256 256"
+                        width="0.9em"
+                        height="0.9em"
+                >
+                    <path
+                            fill="currentColor"
+                            d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82m-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"
+                    ></path>
+                </svg>
+            </a>
+            <p class="tol-mb">
+                مورد علاقه
+            </p>
         </button>
-        <button class="action-btn" data-mobile-menu-open-btn>
-            <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    width="0.8em"
-                    height="0.8em"
-            >
-                <path
-                        fill="none"
-                        stroke="currentColor"
-                        d="M2 12.5h12M2 8h12M2 3.5h12"
-                ></path>
-            </svg>
+        <button class="action-btn show-search-modal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="0.9em" height="0.9em"><path fill="currentColor" d="M10.77 18.3a7.53 7.53 0 1 1 7.53-7.53a7.53 7.53 0 0 1-7.53 7.53m0-13.55a6 6 0 1 0 6 6a6 6 0 0 0-6-6"></path><path fill="currentColor" d="M20 20.75a.74.74 0 0 1-.53-.22l-4.13-4.13a.75.75 0 0 1 1.06-1.06l4.13 4.13a.75.75 0 0 1 0 1.06a.74.74 0 0 1-.53.22"></path></svg>
+            <p class="tol-mb">
+                جست و جو
+            </p>
+        </button>
+        <button class="action-btn">
+            <a class="text-dark" href="index.html">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                        width="0.8em"
+                        height="0.8em"
+                >
+                    <path
+                            fill="currentColor"
+                            d="M469.666 216.45L271.078 33.749a34 34 0 0 0-47.062.98L41.373 217.373L32 226.745V496h176V328h96v168h176V225.958ZM248.038 56.771c.282 0 .108.061-.013.18c-.125-.119-.269-.18.013-.18M448 464H336V328a32 32 0 0 0-32-32h-96a32 32 0 0 0-32 32v136H64V240L248.038 57.356c.013-.012.014-.023.024-.035L448 240Z"
+                    ></path>
+                </svg>
+            </a>
+            <p class="tol-mb">
+                خانه
+            </p>
         </button>
     </div>
 
     <nav class="mobile-navigation-menu has-scrollbar " data-mobile-menu>
         <div class="menu-top">
             <h2 class="menu-title">منو</h2>
-
             <button class="menu-close-btn" data-mobile-menu-close-btn>
-                <ion-icon name="close-outline"></ion-icon>
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="square"
+                            stroke-linejoin="round"
+                            d="M18 6L6 18M6 6l12 12"
+                    ></path>
+                </svg>
             </button>
         </div>
         <ul class="mobile-menu-category-list">
@@ -1093,50 +1155,47 @@
         </div>
     </nav>
 
-    <nav class="d-flex flex-column justify-content-center w-center search-mb position-fixed">
-        <div class="bg-cs-2 py-2 row align-items-center">
-            <form class="text-center position-relative container col-10">
-                <label class="position-absolute cs-text-inp text-nowrap flex-nowrap d-flex " id="searchTriggerLabel" ><p class="custom-text px-2">  جست و جو در   </p> من مارکت   </label>
-                <input class="form-control my-inp bg-cs-2 cs-inp" type="search" id="mainSearchField">
-                <div>
-                    <button class="sub-btn bg-cs-2" type="submit">
-                        <svg class="bg-cs-2"
+    <nav class="d-flex flex-column justify-content-center w-center search-mb position-fixed bg-cs-2 py-2 px-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <div class="cs-mx btn position-relative">
+                    <a href="shop.cart.html">
+                        <svg class="shop-icon text-dark"
                              xmlns="http://www.w3.org/2000/svg"
-                             viewBox="0 0 32 32"
-                             width="1em"
-                             height="1em"
+                             viewBox="0 0 14 14"
+                             width="1.4em"
+                             height="1.4em"
                         >
                             <path
                                     fill="none"
                                     stroke="currentColor"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
+                                    d="M12.182 7.5h-8.18l-1-5h10a.5.5 0 0 1 .49.59l-.82 4a.49.49 0 0 1-.49.41m-9.18-5L2.582.9a.5.5 0 0 0-.49-.4H.502m3.5 7l.42 2.1a.5.5 0 0 0 .49.4h6.09m-.5 3.5a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1m-5 0a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1"
                             ></path>
                         </svg>
-                    </button>
+                    </a>
                 </div>
-            </form>
-            <div class="col-2 w-center">
-                <a class="text-dark" href="">
-                    <svg class="profile-in-head bg-custom p-2"
-                         xmlns="http://www.w3.org/2000/svg"
-                         viewBox="0 0 16 16"
-                         width="2.5em"
-                         height="2.5em"
-                    >
-                        <g fill="none" stroke="currentColor">
-                            <circle cx="8" cy="8" r="7.5"></circle>
-                            <circle cx="8" cy="5.5" r="2"></circle>
-                            <path
-                                    stroke-linecap="round"
-                                    d="M11.5 12c-.6-1.5-1.8-2.5-3.5-2.5s-2.9 1-3.5 2.5"
-                            ></path>
-                        </g>
-                    </svg>
-                </a>
             </div>
+            <div>
+                <div class="mx-1"><img class="cs-w-2" alt="من مارکت" src="assets/img/main.logo.jpg"></div>
+            </div>
+
+            <button class="action-btn" data-mobile-menu-open-btn>
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 16 16"
+                        width="1.5em"
+                        height="1.5em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            d="M2 12.5h12M2 8h12M2 3.5h12"
+                    ></path>
+                </svg>
+            </button>
+
         </div>
     </nav>
 
@@ -1144,519 +1203,563 @@
 <!--Header End---->
 
 
-<main class="product-page-container container fs-cs-s-2">
-    <div class="row pt-3">
-        <div class="col-lg-6 mb-lg-0 change-h">
-            <div class="product-gallery-area" style="overflow-x: scroll; overflow-y: hidden !important;  scrollbar-width: none; -ms-overflow-style: none;" >
-                <div class="swiper-container gallery-top position-relative" id="galleryTopSwiper">
-                    <div class="swiper-wrapper"></div>
-                </div>
-                <div class="swiper-container gallery-thumbs position-relative" id="galleryThumbsSwiper">
-                    <div class="swiper-wrapper"></div>
-                </div>
-            </div>
+<!--search modal __ :: start-->
+<section class="search-box">
+    <span class="close-modal mx-5">
+         <svg
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24"
+                 width="1em"
+                 height="1em"
+         >
+             <path
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-linecap="square"
+                     stroke-linejoin="round"
+                     d="M18 6L6 18M6 6l12 12"
+             ></path>
+         </svg>
+    </span>
+    <h5 class="py-3 text-center">دنبال چی میگردی ؟</h5>
+    <form class="text-center position-relative container">
+        <input class="form-control my-inp" type="search" placeholder="مثلا آیفون 16 ">
+        <div>
+            <button class="sub-btn" type="submit">
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
+                    ></path>
+                </svg></button>
         </div>
-        <div class="col-lg-6 product-info-area">
-            <h6>گوشی سامسونگ مدل Samsung A15گوشی سامسونگ مدل Samsung A15گوشی سامسونگ مدل Samsung A15</h6>
-
-            <div class="d-flex justify-content-between align-items-center my-3">
-                <p class="en-brand text-nowrap">Samsung A15 </p>
-                <p class="bt-sin en-brand"></p>
-            </div>
-
-            <div class="product-price">120,000 <span class="currency-symbol">تومان</span></div>
-
-            <div class="mb-4">
-                <div class="color-selection-buttons" role="group" aria-labelledby="colorOptionsLabel">
-                    <button type="button" class="btn-color active-cs" data-color-value="آبی" aria-label="انتخاب رنگ آبی">
-                        <span class="color-button-label">آبی</span>
-                        <span class="custom-tick-container">
-                            <svg class="tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5" /></svg>
-                        </span>
-                    </button>
-                    <button type="button" class="btn-color" data-color-value="سبز" aria-label="انتخاب رنگ سبز">
-                        <span class="color-button-label">سبز</span>
-                        <span class="custom-tick-container">
-                            <svg class="tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5" /></svg>
-                        </span>
-                    </button>
-                    <button type="button" class="btn-color" data-color-value="سفید" aria-label="انتخاب رنگ سفید">
-                        <span class="color-button-label">سفید</span>
-                        <span class="custom-tick-container">
-                            <svg class="tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5" /></svg>
-                        </span>
-                    </button>
-
-                </div>
-            </div>
+    </form>
+</section>
+<!--search modal __ :: end---->
 
 
 
-            <div class="action-buttons mb-4">
-                <button type="button" class="rounded-3 fs-cs-s btn-add-to-cart">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="1em" height="1em"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12.182 7.5h-8.18l-1-5h10a.5.5 0 0 1 .49.59l-.82 4a.49.49 0 0 1-.49.41m-9.18-5L2.582.9a.5.5 0 0 0-.49-.4H.502m3.5 7l.42 2.1a.5.5 0 0 0 .49.4h6.09m-.5 3.5a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1m-5 0a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1"></path></svg>
-                    افزودن به سبد خرید
-                </button>
-                <button type="button" class="rounded-3 fs-cs-s btn-add-to-wishlist">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="1em" height="1em"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="m7 12.45l-5.52-5c-3-3 1.41-8.76 5.52-4.1c4.11-4.66 8.5 1.12 5.52 4.1Z"></path></svg>
-                    افزودن به علاقه‌مندی
-                </button>
-            </div>
 
-            <div class="product-meta">
-                <p class="d-flex justify-content-start">
-                    <strong class="fs-cs-s-2">دسته بندی:</strong>
-                <div class="w-right d-flex justify-content-start">
-                    <a class="fs-cs-s-2 mt-1" href="#">موبایل</a>
-                    <a class="mx-3 fs-cs-s-2 mt-1" href="#">سامسونگ</a>
-                </div>
-                </p>
-                <p class="my-2">
-                    <strong class="fs-cs-s-2">شناسه محصول (SKU):</strong>
-                    <span class="fs-cs-s-2" id="productSku">SAM-A15-NAVY-256</span>
-                </p>
-                <div class="share-links">
-                    <strong class="fs-cs-s-2">اشتراک گذاری در :</strong>
-                    <a class="instagram-logo" target="_blank" href="https://www.instagram.com/">
-                        <svg class="svg"
+<div class="product-page-wrapper">
+    <div class="container-fluid">
+        <div class="row mt-cs">
+
+            <div class="col-lg-5 col-md-6 col-12">
+                <div class="product-gallery-area">
+                    <div id="galleryTopSwiper" class="gallery-top swiper-container" style="cursor: pointer;">
+                        <div class="swiper-wrapper">
+                        </div>
+                    </div>
+                    <div id="galleryThumbsSwiper" class="gallery-thumbs swiper-container" style="cursor: pointer;">
+                        <div class="swiper-wrapper">
+                        </div>
+                    </div>
+
+                    <div class="share-x" title="اشتراک‌گذاری">
+                        <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width="1em"
+                                height="1em"
+                        >
+                            <path
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186a2.25 2.25 0 0 0-3.935-2.186m0-12.814a2.25 2.25 0 1 0 3.933-2.185a2.25 2.25 0 0 0-3.933 2.185"
+                            ></path>
+                        </svg>
+                    </div>
+                    <div class="heart-x" title="افزودن به علاقه‌مندی‌ها"><svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 256 256"
-                                width="1.8em"
-                                height="1.8em"
+                                width="1.3em"
+                                height="1.3em"
                         >
-                            <g fill="none">
-                                <rect
-                                        width="256"
-                                        height="256"
-                                        fill="url(#skillIconsInstagram0)"
-                                        rx="60"
-                                ></rect>
-                                <rect
-                                        width="256"
-                                        height="256"
-                                        fill="url(#skillIconsInstagram1)"
-                                        rx="60"
-                                ></rect>
-                                <path
-                                        fill="#fff"
-                                        d="M128.009 28c-27.158 0-30.567.119-41.233.604c-10.646.488-17.913 2.173-24.271 4.646c-6.578 2.554-12.157 5.971-17.715 11.531c-5.563 5.559-8.98 11.138-11.542 17.713c-2.48 6.36-4.167 13.63-4.646 24.271c-.477 10.667-.602 14.077-.602 41.236s.12 30.557.604 41.223c.49 10.646 2.175 17.913 4.646 24.271c2.556 6.578 5.973 12.157 11.533 17.715c5.557 5.563 11.136 8.988 17.709 11.542c6.363 2.473 13.631 4.158 24.275 4.646c10.667.485 14.073.604 41.23.604c27.161 0 30.559-.119 41.225-.604c10.646-.488 17.921-2.173 24.284-4.646c6.575-2.554 12.146-5.979 17.702-11.542c5.563-5.558 8.979-11.137 11.542-17.712c2.458-6.361 4.146-13.63 4.646-24.272c.479-10.666.604-14.066.604-41.225s-.125-30.567-.604-41.234c-.5-10.646-2.188-17.912-4.646-24.27c-2.563-6.578-5.979-12.157-11.542-17.716c-5.562-5.562-11.125-8.979-17.708-11.53c-6.375-2.474-13.646-4.16-24.292-4.647c-10.667-.485-14.063-.604-41.23-.604zm-8.971 18.021c2.663-.004 5.634 0 8.971 0c26.701 0 29.865.096 40.409.575c9.75.446 15.042 2.075 18.567 3.444c4.667 1.812 7.994 3.979 11.492 7.48c3.5 3.5 5.666 6.833 7.483 11.5c1.369 3.52 3 8.812 3.444 18.562c.479 10.542.583 13.708.583 40.396s-.104 29.855-.583 40.396c-.446 9.75-2.075 15.042-3.444 18.563c-1.812 4.667-3.983 7.99-7.483 11.488c-3.5 3.5-6.823 5.666-11.492 7.479c-3.521 1.375-8.817 3-18.567 3.446c-10.542.479-13.708.583-40.409.583c-26.702 0-29.867-.104-40.408-.583c-9.75-.45-15.042-2.079-18.57-3.448c-4.666-1.813-8-3.979-11.5-7.479s-5.666-6.825-7.483-11.494c-1.369-3.521-3-8.813-3.444-18.563c-.479-10.542-.575-13.708-.575-40.413s.096-29.854.575-40.396c.446-9.75 2.075-15.042 3.444-18.567c1.813-4.667 3.983-8 7.484-11.5s6.833-5.667 11.5-7.483c3.525-1.375 8.819-3 18.569-3.448c9.225-.417 12.8-.542 31.437-.563zm62.351 16.604c-6.625 0-12 5.37-12 11.996c0 6.625 5.375 12 12 12s12-5.375 12-12s-5.375-12-12-12zm-53.38 14.021c-28.36 0-51.354 22.994-51.354 51.355s22.994 51.344 51.354 51.344c28.361 0 51.347-22.983 51.347-51.344c0-28.36-22.988-51.355-51.349-51.355zm0 18.021c18.409 0 33.334 14.923 33.334 33.334c0 18.409-14.925 33.334-33.334 33.334s-33.333-14.925-33.333-33.334c0-18.411 14.923-33.334 33.333-33.334"
-                                ></path>
-                                <defs>
-                                    <radialGradient
-                                            id="skillIconsInstagram0"
-                                            cx="0"
-                                            cy="0"
-                                            r="1"
-                                            gradientTransform="matrix(0 -253.715 235.975 0 68 275.717)"
-                                            gradientUnits="userSpaceOnUse"
-                                    >
-                                        <stop stop-color="#FD5"></stop>
-                                        <stop offset=".1" stop-color="#FD5"></stop>
-                                        <stop offset=".5" stop-color="#FF543E"></stop>
-                                        <stop offset="1" stop-color="#C837AB"></stop>
-                                    </radialGradient>
-                                    <radialGradient
-                                            id="skillIconsInstagram1"
-                                            cx="0"
-                                            cy="0"
-                                            r="1"
-                                            gradientTransform="matrix(22.25952 111.2061 -458.39518 91.75449 -42.881 18.441)"
-                                            gradientUnits="userSpaceOnUse"
-                                    >
-                                        <stop stop-color="#3771C8"></stop>
-                                        <stop offset=".128" stop-color="#3771C8"></stop>
-                                        <stop offset="1" stop-color="#60F" stop-opacity="0"></stop>
-                                    </radialGradient>
-                                </defs>
-                            </g>
-                        </svg>
-                    </a>
-                    <a class="telegram-logo" target="_blank" href="">
-                         <svg  class="svg"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 256 256"
-                            width="1em"
-                            height="1em"
-                    >
-                        <defs>
-                            <linearGradient id="logosTelegram0" x1="50%" x2="50%" y1="0%" y2="100%">
-                                <stop offset="0%" stop-color="#2AABEE"></stop>
-                                <stop offset="100%" stop-color="#229ED9"></stop>
-                            </linearGradient>
-                        </defs>
-                        <path
-                                fill="url(#logosTelegram0)"
-                                d="M128 0C94.06 0 61.48 13.494 37.5 37.49A128.04 128.04 0 0 0 0 128c0 33.934 13.5 66.514 37.5 90.51C61.48 242.506 94.06 256 128 256s66.52-13.494 90.5-37.49c24-23.996 37.5-56.576 37.5-90.51s-13.5-66.514-37.5-90.51C194.52 13.494 161.94 0 128 0"
-                        ></path>
-                        <path
-                                fill="#FFF"
-                                d="M57.94 126.648q55.98-24.384 74.64-32.152c35.56-14.786 42.94-17.354 47.76-17.441c1.06-.017 3.42.245 4.96 1.49c1.28 1.05 1.64 2.47 1.82 3.467c.16.996.38 3.266.2 5.038c-1.92 20.24-10.26 69.356-14.5 92.026c-1.78 9.592-5.32 12.808-8.74 13.122c-7.44.684-13.08-4.912-20.28-9.63c-11.26-7.386-17.62-11.982-28.56-19.188c-12.64-8.328-4.44-12.906 2.76-20.386c1.88-1.958 34.64-31.748 35.26-34.45c.08-.338.16-1.598-.6-2.262c-.74-.666-1.84-.438-2.64-.258c-1.14.256-19.12 12.152-54 35.686c-5.1 3.508-9.72 5.218-13.88 5.128c-4.56-.098-13.36-2.584-19.9-4.708c-8-2.606-14.38-3.984-13.82-8.41c.28-2.304 3.46-4.662 9.52-7.072"
-                        ></path>
-                    </svg>
-                    </a>
+                            <path
+                                    fill="currentColor"
+                                    d="M223 57a58.07 58.07 0 0 0-81.92-.1L128 69.05l-13.09-12.19A58 58 0 0 0 33 139l89.35 90.66a8 8 0 0 0 11.4 0L223 139a58 58 0 0 0 0-82m-11.35 70.76L128 212.6l-83.7-84.92a42 42 0 0 1 59.4-59.4l.2.2l18.65 17.35a8 8 0 0 0 10.9 0l18.65-17.35l.2-.2a42 42 0 1 1 59.36 59.44Z"
+                            ></path>
+                        </svg></div>
                 </div>
             </div>
+
+            <div class="col-lg-4 col-md-6 col-12">
+                <div class="product-info-area">
+                    <span class="product-category" style="font-size: 12px;">گوشی موبایل</span>
+                    <h1 class="product-title" style="font-size: 18px;">گوشی موبایل سامسونگ Galaxy A15 128GB رم 4</h1>
+
+                    <div class="product-rating align-items-center">
+                        <span class="rating-value mx-1" style="font-size: 16px;">4.4</span>
+                        <i class="far fa-star text-warning"></i>
+                    </div>
+                    <p class="product-price d-di d-none my-1 mb-1">
+                       <span class="text-dark">
+                           قیمت :
+                       </span>
+                         12,000,000
+                          <svg class="ms-3" width="20" height="20" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                               <path class="text-gray-880 dark:text-white" d="M1.14878 6.91843C1.44428 6.91843 1.70285 6.87142 1.92447 6.77739C2.15282 6.68337 2.34422 6.55577 2.49869 6.39458C2.65316 6.2334 2.77069 6.04535 2.85128 5.83044C2.93187 5.62224 2.97888 5.40062 2.99231 5.16556H1.98492C1.6424 5.16556 1.36033 5.12862 1.1387 5.05474C0.917077 4.98087 0.742461 4.87341 0.614858 4.73238C0.487254 4.59134 0.396588 4.42344 0.34286 4.22868C0.295849 4.0272 0.272343 3.80221 0.272343 3.55372C0.272343 3.29852 0.309281 3.05674 0.383156 2.8284C0.457032 2.60005 0.564488 2.39857 0.705523 2.22396C0.846559 2.04934 1.02117 1.91167 1.22937 1.81093C1.44428 1.70347 1.68941 1.64974 1.96477 1.64974C2.1864 1.64974 2.39795 1.68668 2.59943 1.76056C2.80091 1.83443 2.97888 1.95196 3.13335 2.11315C3.28782 2.26761 3.40871 2.47245 3.49601 2.72766C3.59004 2.97615 3.63705 3.27837 3.63705 3.63431V4.47045H4.60415C4.68474 4.47045 4.73847 4.50068 4.76533 4.56112C4.79891 4.61485 4.8157 4.6988 4.8157 4.81297C4.8157 4.93386 4.79891 5.02452 4.76533 5.08497C4.73847 5.13869 4.68474 5.16556 4.60415 5.16556H3.6169C3.60347 5.49464 3.53631 5.80693 3.41542 6.10244C3.30125 6.39794 3.14007 6.65651 2.93187 6.87813C2.72368 7.09976 2.47518 7.27438 2.1864 7.40198C1.89761 7.5363 1.57188 7.60346 1.20922 7.60346H0.141381L0.0809373 6.91843H1.14878ZM0.896929 3.51343C0.896929 3.68133 0.913719 3.82572 0.947299 3.94661C0.987594 4.0675 1.0514 4.16823 1.1387 4.24883C1.23273 4.3227 1.35697 4.37979 1.51144 4.42008C1.66591 4.45366 1.86067 4.47045 2.09573 4.47045H3.00239V3.71491C3.00239 3.21792 2.90501 2.86198 2.71024 2.64707C2.51548 2.43215 2.24684 2.3247 1.90433 2.3247C1.58196 2.3247 1.33347 2.43215 1.15885 2.64707C0.984237 2.86198 0.896929 3.15076 0.896929 3.51343ZM6.26895 4.47045C6.35626 4.47045 6.41335 4.50068 6.44021 4.56112C6.47379 4.61485 6.49058 4.6988 6.49058 4.81297C6.49058 4.93386 6.47379 5.02452 6.44021 5.08497C6.41335 5.13869 6.35626 5.16556 6.26895 5.16556H4.60675C4.51944 5.16556 4.46235 5.13869 4.43549 5.08497C4.40191 5.03124 4.38512 4.94729 4.38512 4.83312C4.38512 4.71223 4.40191 4.62156 4.43549 4.56112C4.46235 4.50068 4.51944 4.47045 4.60675 4.47045H6.26895ZM7.93155 4.47045C8.01886 4.47045 8.07594 4.50068 8.10281 4.56112C8.13639 4.61485 8.15318 4.6988 8.15318 4.81297C8.15318 4.93386 8.13639 5.02452 8.10281 5.08497C8.07594 5.13869 8.01886 5.16556 7.93155 5.16556H6.26935C6.18204 5.16556 6.12495 5.13869 6.09809 5.08497C6.06451 5.03124 6.04772 4.94729 6.04772 4.83312C6.04772 4.71223 6.06451 4.62156 6.09809 4.56112C6.12495 4.50068 6.18204 4.47045 6.26935 4.47045H7.93155ZM9.59415 4.47045C9.68146 4.47045 9.73854 4.50068 9.76541 4.56112C9.79899 4.61485 9.81578 4.6988 9.81578 4.81297C9.81578 4.93386 9.79899 5.02452 9.76541 5.08497C9.73854 5.13869 9.68146 5.16556 9.59415 5.16556H7.93194C7.84464 5.16556 7.78755 5.13869 7.76069 5.08497C7.72711 5.03124 7.71032 4.94729 7.71032 4.83312C7.71032 4.71223 7.72711 4.62156 7.76069 4.56112C7.78755 4.50068 7.84464 4.47045 7.93194 4.47045H9.59415ZM11.2567 4.47045C11.3441 4.47045 11.4011 4.50068 11.428 4.56112C11.4616 4.61485 11.4784 4.6988 11.4784 4.81297C11.4784 4.93386 11.4616 5.02452 11.428 5.08497C11.4011 5.13869 11.3441 5.16556 11.2567 5.16556H9.59454C9.50723 5.16556 9.45015 5.13869 9.42328 5.08497C9.3897 5.03124 9.37291 4.94729 9.37291 4.83312C9.37291 4.71223 9.3897 4.62156 9.42328 4.56112C9.45015 4.50068 9.50723 4.47045 9.59454 4.47045H11.2567ZM12.1638 4.47045C12.4257 4.47045 12.6339 4.39994 12.7884 4.2589C12.9496 4.11787 13.0302 3.9231 13.0302 3.67461V2.2844H13.685V3.67461C13.685 4.15144 13.5506 4.52082 13.282 4.78275C13.0201 5.03795 12.6608 5.16556 12.2041 5.16556H11.2571C11.1698 5.16556 11.1127 5.13869 11.0859 5.08497C11.0523 5.03124 11.0355 4.94729 11.0355 4.83312C11.0355 4.71223 11.0523 4.62156 11.0859 4.56112C11.1127 4.50068 11.1698 4.47045 11.2571 4.47045H12.1638ZM13.7857 0.994934H12.9798V0.279683H13.7857V0.994934ZM12.5063 0.994934H11.7004V0.279683H12.5063V0.994934ZM5.64177 12.9641C5.64177 13.3267 5.58468 13.6659 5.47051 13.9815C5.35634 14.3039 5.1918 14.5826 4.97689 14.8177C4.76198 15.0595 4.50005 15.2509 4.19112 15.3919C3.8889 15.5329 3.54638 15.6035 3.16357 15.6035H2.56921C1.81702 15.6035 1.23273 15.3718 0.816337 14.9084C0.399946 14.445 0.191751 13.8103 0.191751 13.0044V11.2414H0.836485V12.9842C0.836485 13.273 0.870065 13.5349 0.937225 13.77C1.0111 14.0051 1.12191 14.2065 1.26967 14.3744C1.42413 14.549 1.61554 14.6834 1.84388 14.7774C2.07223 14.8714 2.34758 14.9184 2.66995 14.9184H3.1132C3.42885 14.9184 3.70421 14.8647 3.93927 14.7572C4.17433 14.6565 4.36909 14.5188 4.52356 14.3442C4.68474 14.1696 4.80227 13.9648 4.87615 13.7297C4.95674 13.4946 4.99703 13.2495 4.99703 12.9943V10.2844H5.64177V12.9641ZM3.21394 10.0628H2.36773V9.32738H3.21394V10.0628ZM8.24526 13.1656C8.07064 13.1656 7.90274 13.1421 7.74156 13.095C7.58038 13.0413 7.43598 12.954 7.30838 12.8331C7.18749 12.7122 7.09011 12.5544 7.01624 12.3596C6.94236 12.1582 6.90542 11.9097 6.90542 11.6142V6.9197H7.56023V11.4933C7.56023 11.7754 7.62067 12.0104 7.74156 12.1985C7.86916 12.3798 8.074 12.4705 8.35607 12.4705H8.52733C8.67508 12.4705 8.74896 12.5846 8.74896 12.813C8.74896 13.048 8.67508 13.1656 8.52733 13.1656H8.24526ZM8.69324 12.4705C8.95516 12.4705 9.15328 12.4067 9.2876 12.279C9.42192 12.1514 9.48908 11.9802 9.48908 11.7653V11.3825C9.48908 10.7982 9.63683 10.3415 9.93233 10.0124C10.2346 9.68332 10.6509 9.51878 11.1815 9.51878C11.4569 9.51878 11.6986 9.56243 11.9068 9.64974C12.115 9.73705 12.2863 9.8613 12.4206 10.0225C12.5616 10.1837 12.6657 10.3751 12.7329 10.5967C12.8001 10.8183 12.8336 11.0635 12.8336 11.3321C12.8336 11.9097 12.6825 12.3596 12.3803 12.682C12.0781 13.0044 11.6651 13.1656 11.1412 13.1656C10.8726 13.1656 10.614 13.1152 10.3655 13.0144C10.117 12.907 9.92226 12.7189 9.78123 12.4503C9.72078 12.6048 9.64691 12.729 9.5596 12.823C9.47229 12.9171 9.38162 12.9909 9.2876 13.0447C9.19358 13.0917 9.09284 13.1253 8.98538 13.1454C8.88464 13.1588 8.78726 13.1656 8.69324 13.1656H8.53205C8.44475 13.1656 8.38766 13.1387 8.3608 13.085C8.32722 13.0312 8.31043 12.9473 8.31043 12.8331C8.31043 12.7122 8.32722 12.6216 8.3608 12.5611C8.38766 12.5007 8.44475 12.4705 8.53205 12.4705H8.69324ZM12.1889 11.3925C12.1889 11.0433 12.1117 10.7612 11.9572 10.5463C11.8027 10.3247 11.5375 10.2139 11.1614 10.2139C10.4629 10.2139 10.1137 10.6202 10.1137 11.4328C10.1137 11.7754 10.2077 12.0339 10.3957 12.2085C10.5905 12.3831 10.839 12.4705 11.1412 12.4705C11.4837 12.4705 11.7423 12.3764 11.9169 12.1884C12.0982 12.0003 12.1889 11.7351 12.1889 11.3925Z" fill="currentColor"></path>
+                         </svg>
+                    </p>
+
+
+                    <div class="product-options-label" style="font-size: 14px;">رنگ:</div>
+                    <div class="color-selection-buttons">
+                        <button class="btn-color active-cs" data-color-value="navy" style="font-size: 15px;">سرمه‌ای</button>
+                        <button class="btn-color" data-color-value="white" style="font-size: 15px;">سفید</button>
+                        <button class="btn-color" data-color-value="green" style="font-size: 15px;">سبز</button>
+                        <button class="btn-color" data-color-value="none" style="font-size: 15px;">قرمز</button>
+                    </div>
+
+
+                    <h2 class="product-key-features-cards my-1" style="font-size: 17px;">ویژگی‌ها</h2>
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <span class="feature-label" style="font-size: 14px;">جنس بدنه</span>
+                            <span class="feature-value" style="font-size: 14px;">پلاستیک</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label" style="font-size: 14px;">ظرفیت باتری</span>
+                            <span class="feature-value" style="font-size: 14px;">1200 وات</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label" style="font-size: 14px;">حجم مخزن آب</span>
+                            <span class="feature-value" style="font-size: 14px;">2.5 لیتر</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label" style="font-size: 14px;">رنگ</span>
+                            <span class="feature-value" style="font-size: 14px;">قرمز / مشکی</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label" style="font-size: 14px;">ویژگی خاص</span>
+                            <span class="feature-value" style="font-size: 14px;">هوای گرم (بدون روغن)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-label" style="font-size: 14px;">نوع استفاده</span>
+                            <span class="feature-value" style="font-size: 14px;">قطعات جداشدنی</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-12" id="a-s">
+                <div id="product-summary-panel">
+                    <div class="panel-card">
+                        <div class="panel-section price-section">
+                            <span>
+                                قیمت : 12,000,000
+                            </span>
+                            <span>
+                                <svg class="mx-2" width="20" height="20" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path class="text-gray-880 dark:text-white" d="M1.14878 6.91843C1.44428 6.91843 1.70285 6.87142 1.92447 6.77739C2.15282 6.68337 2.34422 6.55577 2.49869 6.39458C2.65316 6.2334 2.77069 6.04535 2.85128 5.83044C2.93187 5.62224 2.97888 5.40062 2.99231 5.16556H1.98492C1.6424 5.16556 1.36033 5.12862 1.1387 5.05474C0.917077 4.98087 0.742461 4.87341 0.614858 4.73238C0.487254 4.59134 0.396588 4.42344 0.34286 4.22868C0.295849 4.0272 0.272343 3.80221 0.272343 3.55372C0.272343 3.29852 0.309281 3.05674 0.383156 2.8284C0.457032 2.60005 0.564488 2.39857 0.705523 2.22396C0.846559 2.04934 1.02117 1.91167 1.22937 1.81093C1.44428 1.70347 1.68941 1.64974 1.96477 1.64974C2.1864 1.64974 2.39795 1.68668 2.59943 1.76056C2.80091 1.83443 2.97888 1.95196 3.13335 2.11315C3.28782 2.26761 3.40871 2.47245 3.49601 2.72766C3.59004 2.97615 3.63705 3.27837 3.63705 3.63431V4.47045H4.60415C4.68474 4.47045 4.73847 4.50068 4.76533 4.56112C4.79891 4.61485 4.8157 4.6988 4.8157 4.81297C4.8157 4.93386 4.79891 5.02452 4.76533 5.08497C4.73847 5.13869 4.68474 5.16556 4.60415 5.16556H3.6169C3.60347 5.49464 3.53631 5.80693 3.41542 6.10244C3.30125 6.39794 3.14007 6.65651 2.93187 6.87813C2.72368 7.09976 2.47518 7.27438 2.1864 7.40198C1.89761 7.5363 1.57188 7.60346 1.20922 7.60346H0.141381L0.0809373 6.91843H1.14878ZM0.896929 3.51343C0.896929 3.68133 0.913719 3.82572 0.947299 3.94661C0.987594 4.0675 1.0514 4.16823 1.1387 4.24883C1.23273 4.3227 1.35697 4.37979 1.51144 4.42008C1.66591 4.45366 1.86067 4.47045 2.09573 4.47045H3.00239V3.71491C3.00239 3.21792 2.90501 2.86198 2.71024 2.64707C2.51548 2.43215 2.24684 2.3247 1.90433 2.3247C1.58196 2.3247 1.33347 2.43215 1.15885 2.64707C0.984237 2.86198 0.896929 3.15076 0.896929 3.51343ZM6.26895 4.47045C6.35626 4.47045 6.41335 4.50068 6.44021 4.56112C6.47379 4.61485 6.49058 4.6988 6.49058 4.81297C6.49058 4.93386 6.47379 5.02452 6.44021 5.08497C6.41335 5.13869 6.35626 5.16556 6.26895 5.16556H4.60675C4.51944 5.16556 4.46235 5.13869 4.43549 5.08497C4.40191 5.03124 4.38512 4.94729 4.38512 4.83312C4.38512 4.71223 4.40191 4.62156 4.43549 4.56112C4.46235 4.50068 4.51944 4.47045 4.60675 4.47045H6.26895ZM7.93155 4.47045C8.01886 4.47045 8.07594 4.50068 8.10281 4.56112C8.13639 4.61485 8.15318 4.6988 8.15318 4.81297C8.15318 4.93386 8.13639 5.02452 8.10281 5.08497C8.07594 5.13869 8.01886 5.16556 7.93155 5.16556H6.26935C6.18204 5.16556 6.12495 5.13869 6.09809 5.08497C6.06451 5.03124 6.04772 4.94729 6.04772 4.83312C6.04772 4.71223 6.06451 4.62156 6.09809 4.56112C6.12495 4.50068 6.18204 4.47045 6.26935 4.47045H7.93155ZM9.59415 4.47045C9.68146 4.47045 9.73854 4.50068 9.76541 4.56112C9.79899 4.61485 9.81578 4.6988 9.81578 4.81297C9.81578 4.93386 9.79899 5.02452 9.76541 5.08497C9.73854 5.13869 9.68146 5.16556 9.59415 5.16556H7.93194C7.84464 5.16556 7.78755 5.13869 7.76069 5.08497C7.72711 5.03124 7.71032 4.94729 7.71032 4.83312C7.71032 4.71223 7.72711 4.62156 7.76069 4.56112C7.78755 4.50068 7.84464 4.47045 7.93194 4.47045H9.59415ZM11.2567 4.47045C11.3441 4.47045 11.4011 4.50068 11.428 4.56112C11.4616 4.61485 11.4784 4.6988 11.4784 4.81297C11.4784 4.93386 11.4616 5.02452 11.428 5.08497C11.4011 5.13869 11.3441 5.16556 11.2567 5.16556H9.59454C9.50723 5.16556 9.45015 5.13869 9.42328 5.08497C9.3897 5.03124 9.37291 4.94729 9.37291 4.83312C9.37291 4.71223 9.3897 4.62156 9.42328 4.56112C9.45015 4.50068 9.50723 4.47045 9.59454 4.47045H11.2567ZM12.1638 4.47045C12.4257 4.47045 12.6339 4.39994 12.7884 4.2589C12.9496 4.11787 13.0302 3.9231 13.0302 3.67461V2.2844H13.685V3.67461C13.685 4.15144 13.5506 4.52082 13.282 4.78275C13.0201 5.03795 12.6608 5.16556 12.2041 5.16556H11.2571C11.1698 5.16556 11.1127 5.13869 11.0859 5.08497C11.0523 5.03124 11.0355 4.94729 11.0355 4.83312C11.0355 4.71223 11.0523 4.62156 11.0859 4.56112C11.1127 4.50068 11.1698 4.47045 11.2571 4.47045H12.1638ZM13.7857 0.994934H12.9798V0.279683H13.7857V0.994934ZM12.5063 0.994934H11.7004V0.279683H12.5063V0.994934ZM5.64177 12.9641C5.64177 13.3267 5.58468 13.6659 5.47051 13.9815C5.35634 14.3039 5.1918 14.5826 4.97689 14.8177C4.76198 15.0595 4.50005 15.2509 4.19112 15.3919C3.8889 15.5329 3.54638 15.6035 3.16357 15.6035H2.56921C1.81702 15.6035 1.23273 15.3718 0.816337 14.9084C0.399946 14.445 0.191751 13.8103 0.191751 13.0044V11.2414H0.836485V12.9842C0.836485 13.273 0.870065 13.5349 0.937225 13.77C1.0111 14.0051 1.12191 14.2065 1.26967 14.3744C1.42413 14.549 1.61554 14.6834 1.84388 14.7774C2.07223 14.8714 2.34758 14.9184 2.66995 14.9184H3.1132C3.42885 14.9184 3.70421 14.8647 3.93927 14.7572C4.17433 14.6565 4.36909 14.5188 4.52356 14.3442C4.68474 14.1696 4.80227 13.9648 4.87615 13.7297C4.95674 13.4946 4.99703 13.2495 4.99703 12.9943V10.2844H5.64177V12.9641ZM3.21394 10.0628H2.36773V9.32738H3.21394V10.0628ZM8.24526 13.1656C8.07064 13.1656 7.90274 13.1421 7.74156 13.095C7.58038 13.0413 7.43598 12.954 7.30838 12.8331C7.18749 12.7122 7.09011 12.5544 7.01624 12.3596C6.94236 12.1582 6.90542 11.9097 6.90542 11.6142V6.9197H7.56023V11.4933C7.56023 11.7754 7.62067 12.0104 7.74156 12.1985C7.86916 12.3798 8.074 12.4705 8.35607 12.4705H8.52733C8.67508 12.4705 8.74896 12.5846 8.74896 12.813C8.74896 13.048 8.67508 13.1656 8.52733 13.1656H8.24526ZM8.69324 12.4705C8.95516 12.4705 9.15328 12.4067 9.2876 12.279C9.42192 12.1514 9.48908 11.9802 9.48908 11.7653V11.3825C9.48908 10.7982 9.63683 10.3415 9.93233 10.0124C10.2346 9.68332 10.6509 9.51878 11.1815 9.51878C11.4569 9.51878 11.6986 9.56243 11.9068 9.64974C12.115 9.73705 12.2863 9.8613 12.4206 10.0225C12.5616 10.1837 12.6657 10.3751 12.7329 10.5967C12.8001 10.8183 12.8336 11.0635 12.8336 11.3321C12.8336 11.9097 12.6825 12.3596 12.3803 12.682C12.0781 13.0044 11.6651 13.1656 11.1412 13.1656C10.8726 13.1656 10.614 13.1152 10.3655 13.0144C10.117 12.907 9.92226 12.7189 9.78123 12.4503C9.72078 12.6048 9.64691 12.729 9.5596 12.823C9.47229 12.9171 9.38162 12.9909 9.2876 13.0447C9.19358 13.0917 9.09284 13.1253 8.98538 13.1454C8.88464 13.1588 8.78726 13.1656 8.69324 13.1656H8.53205C8.44475 13.1656 8.38766 13.1387 8.3608 13.085C8.32722 13.0312 8.31043 12.9473 8.31043 12.8331C8.31043 12.7122 8.32722 12.6216 8.3608 12.5611C8.38766 12.5007 8.44475 12.4705 8.53205 12.4705H8.69324ZM12.1889 11.3925C12.1889 11.0433 12.1117 10.7612 11.9572 10.5463C11.8027 10.3247 11.5375 10.2139 11.1614 10.2139C10.4629 10.2139 10.1137 10.6202 10.1137 11.4328C10.1137 11.7754 10.2077 12.0339 10.3957 12.2085C10.5905 12.3831 10.839 12.4705 11.1412 12.4705C11.4837 12.4705 11.7423 12.3764 11.9169 12.1884C12.0982 12.0003 12.1889 11.7351 12.1889 11.3925Z" fill="currentColor"></path>
+                            </svg>
+                            </span>
+                        </div>
+                        <div class="panel-section ">
+
+                            <div class="w-100 d-flex justify-content-between align-items-baseline">
+                                <span class="w-50">
+                                    <span>
+                                        <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 24 24"
+                                                width="2em"
+                                                height="2em"
+                                        >
+                                          <path
+                                                  fill="gray"
+                                                  d="M1 16v-.575q0-1.475 1.425-1.95T5 13t2.575.475T9 15.425V16zm4-4q-.825 0-1.412-.587T3 10t.588-1.412T5 8t1.413.588T7 10t-.587 1.413T5 12m4.675 1.425q-.3 0-.525-.225t-.225-.525q0-.15.225-.525q.2-.25.275-.55T9.5 11t-.075-.587t-.275-.538q-.1-.125-.162-.262t-.063-.288q0-.325.213-.537t.537-.213q.2 0 .363.113t.287.262q.325.45.5.975T11 11t-.175 1.063t-.5.987q-.125.15-.287.263t-.363.112m2.125 2.15q-.325 0-.55-.212t-.225-.538q0-.15.063-.287t.162-.263q.625-.7.938-1.55T12.5 11t-.312-1.713t-.938-1.537q-.1-.125-.162-.25t-.063-.275q0-.325.213-.55t.537-.225q.175 0 .325.075t.275.2Q13.2 7.65 13.6 8.75T14 11t-.413 2.263t-1.212 2.037q-.125.125-.262.2t-.313.075M15 16v-.575q0-1.475 1.425-1.95T19 13t2.575.475T23 15.425V16zm4-4q-.825 0-1.412-.587T17 10t.588-1.412T19 8t1.413.588T21 10t-.587 1.413T19 12"
+                                          ></path>
+                                        </svg>
+                                    </span>
+                                    ارتباط با فروشنده
+                                </span>
+                                <span class="w-50 d-flex justify-content-center align-items-baseline">
+                                    <a href="" class="icon-x p-1 mx-1 ">
+                                        <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 16 16"
+                                                width="1.4em"
+                                                height="1.4em"
+                                        >
+                                          <path
+                                                  fill="currentColor"
+                                                  d="M8 2.19c3.13 0 5.68 2.25 5.68 5s-2.55 5-5.68 5a5.7 5.7 0 0 1-1.89-.29l-.75-.26l-.56.56a14 14 0 0 1-2 1.55a.13.13 0 0 1-.07 0v-.06a6.58 6.58 0 0 0 .15-4.29a5.25 5.25 0 0 1-.55-2.16c0-2.77 2.55-5 5.68-5M8 .94c-3.83 0-6.93 2.81-6.93 6.27a6.4 6.4 0 0 0 .64 2.64a5.53 5.53 0 0 1-.18 3.48a1.32 1.32 0 0 0 2 1.5a15 15 0 0 0 2.16-1.71a6.8 6.8 0 0 0 2.31.36c3.83 0 6.93-2.81 6.93-6.27S11.83.94 8 .94"
+                                          ></path>
+                                          <ellipse cx="5.2" cy="7.7" fill="currentColor" rx=".8" ry=".75"></ellipse>
+                                          <ellipse cx="8" cy="7.7" fill="currentColor" rx=".8" ry=".75"></ellipse>
+                                          <ellipse
+                                                  cx="10.8"
+                                                  cy="7.7"
+                                                  fill="currentColor"
+                                                  rx=".8"
+                                                  ry=".75"
+                                          ></ellipse>
+                                        </svg>
+                                    </a>
+                                    <a href="09120983422" class="icon-x p-1 mx-1 call-btn">
+                                        <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    width="1.4em"
+                                                    height="1.4em"
+                                            >
+                                              <path
+                                                      fill="currentColor"
+                                                      d="m16.052 1.787l.966.261a7 7 0 0 1 4.93 4.934l.26.965l-1.93.521l-.261-.965a5 5 0 0 0-3.522-3.524l-.965-.262zM1 2h8.58l1.487 6.69l-1.86 1.86a14.1 14.1 0 0 0 4.243 4.242l1.86-1.859L22 14.42V23h-1a19.9 19.9 0 0 1-10.85-3.196a20.1 20.1 0 0 1-5.954-5.954A19.9 19.9 0 0 1 1 3zm2.027 2a17.9 17.9 0 0 0 2.849 8.764a18.1 18.1 0 0 0 5.36 5.36A17.9 17.9 0 0 0 20 20.973v-4.949l-4.053-.9l-2.174 2.175l-.663-.377a16.07 16.07 0 0 1-6.032-6.032l-.377-.663l2.175-2.174L7.976 4zm12.111 1.165l.966.261a3.5 3.5 0 0 1 2.465 2.467l.26.965l-1.93.521l-.261-.965a1.5 1.5 0 0 0-1.057-1.057l-.965-.261z"
+                                              ></path>
+                                            </svg>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="panel-section">
+                            <div class="section-icon">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        width="1.6em"
+                                        height="1.6em"
+                                >
+                                    <g fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M11.146 7.023C11.526 6.34 11.716 6 12 6s.474.34.854 1.023l.098.176c.108.194.162.29.246.354c.085.064.19.088.4.135l.19.044c.738.167 1.107.25 1.195.532s-.164.577-.667 1.165l-.13.152c-.143.167-.215.25-.247.354s-.021.215 0 .438l.02.203c.076.785.114 1.178-.115 1.352c-.23.174-.576.015-1.267-.303l-.178-.082c-.197-.09-.295-.135-.399-.135s-.202.045-.399.135l-.178.082c-.691.319-1.037.477-1.267.303s-.191-.567-.115-1.352l.02-.203c.021-.223.032-.334 0-.438s-.104-.187-.247-.354l-.13-.152c-.503-.588-.755-.882-.667-1.165c.088-.282.457-.365 1.195-.532l.19-.044c.21-.047.315-.07.4-.135c.084-.064.138-.16.246-.354z"></path>
+                                        <path d="M19 9A7 7 0 1 1 5 9a7 7 0 0 1 14 0Z"></path>
+                                        <path d="m12 16.068l-3.771 3.905c-.54.56-.81.839-1.04.935c-.52.22-1.099.032-1.373-.448c-.12-.21-.158-.59-.232-1.35c-.043-.43-.064-.644-.128-.824a1.43 1.43 0 0 0-.835-.864c-.173-.067-.38-.088-.795-.132c-.734-.078-1.101-.117-1.305-.241c-.463-.284-.646-.883-.433-1.422c.094-.237.364-.517.904-1.076L5.456 12M12 16.068l3.771 3.905c.54.56.81.839 1.04.935c.52.22 1.099.032 1.373-.448c.12-.21.157-.59.232-1.35c.043-.43.064-.644.128-.824c.144-.402.446-.715.835-.864c.173-.067.38-.088.795-.132c.734-.078 1.101-.117 1.305-.241c.463-.284.646-.883.433-1.422c-.094-.237-.364-.517-.904-1.076L18.544 12"></path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <span class="section-text">گارانتی 18 ماهه همراه  شرکتی  به همراه کد ریجستری</span>
+                        </div>
+                        <div class="panel-section">
+                            <div class="not-rot-product-notification-box mt-0">
+                                <div class="not-rot-notification-icon" id="notRotEmoji">
+                                </div>
+                                <div class="not-rot-notification-messages-wrapper">
+                                    <div class="not-rot-notification-messages-inner">
+                                        <div class="not-rot-message-item"></div>
+                                        <div class="not-rot-message-item stst"></div>
+                                        <div class="not-rot-message-item"></div>
+                                        <div class="not-rot-message-item"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-section">
+                            <div class="section-icon">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        width="1.6em"
+                                        height="1.6em"
+                                >
+                                    <g fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M11.146 7.023C11.526 6.34 11.716 6 12 6s.474.34.854 1.023l.098.176c.108.194.162.29.246.354c.085.064.19.088.4.135l.19.044c.738.167 1.107.25 1.195.532s-.164.577-.667 1.165l-.13.152c-.143.167-.215.25-.247.354s-.021.215 0 .438l.02.203c.076.785.114 1.178-.115 1.352c-.23.174-.576.015-1.267-.303l-.178-.082c-.197-.09-.295-.135-.399-.135s-.202.045-.399.135l-.178.082c-.691.319-1.037.477-1.267.303s-.191-.567-.115-1.352l.02-.203c.021-.223.032-.334 0-.438s-.104-.187-.247-.354l-.13-.152c-.503-.588-.755-.882-.667-1.165c.088-.282.457-.365 1.195-.532l.19-.044c.21-.047.315-.07.4-.135c.084-.064.138-.16.246-.354z"></path>
+                                        <path d="M19 9A7 7 0 1 1 5 9a7 7 0 0 1 14 0Z"></path>
+                                        <path d="m12 16.068l-3.771 3.905c-.54.56-.81.839-1.04.935c-.52.22-1.099.032-1.373-.448c-.12-.21-.158-.59-.232-1.35c-.043-.43-.064-.644-.128-.824a1.43 1.43 0 0 0-.835-.864c-.173-.067-.38-.088-.795-.132c-.734-.078-1.101-.117-1.305-.241c-.463-.284-.646-.883-.433-1.422c.094-.237.364-.517.904-1.076L5.456 12M12 16.068l3.771 3.905c.54.56.81.839 1.04.935c.52.22 1.099.032 1.373-.448c.12-.21.157-.59.232-1.35c.043-.43.064-.644.128-.824c.144-.402.446-.715.835-.864c.173-.067.38-.088.795-.132c.734-.078 1.101-.117 1.305-.241c.463-.284.646-.883.433-1.422c-.094-.237-.364-.517-.904-1.076L18.544 12"></path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <span class="section-text">گارانتی 18 ماهه همراه  شرکتی  به همراه کد ریجستری</span>
+                        </div>
+                        <div class="panel-section">
+                            <div class="section-icon">
+                                <svg class="mx-1"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        width="1em"
+                                        height="1em"
+                                >
+                                    <path
+                                            fill="gray"
+                                            d="M22 5.5H9c-1.1 0-2 .9-2 2v9a2 2 0 0 0 2 2h13c1.11 0 2-.89 2-2v-9a2 2 0 0 0-2-2m0 11H9V9.17l6.5 3.33L22 9.17zm-6.5-5.69L9 7.5h13zM5 16.5c0 .17.03.33.05.5H1c-.552 0-1-.45-1-1s.448-1 1-1h4zM3 7h2.05c-.02.17-.05.33-.05.5V9H3c-.55 0-1-.45-1-1s.45-1 1-1m-2 5c0-.55.45-1 1-1h3v2H2c-.55 0-1-.45-1-1"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <span class="section-text mx-1" style="font-size: 14px;">ارسال امروز </span>
+                        </div>
+                        <div class="panel-section">
+                            <div class="section-icon">
+                                <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 1024 1024"
+                                        width="1.4em"
+                                        height="1.4em"
+                                >
+                                    <path
+                                            fill="currentColor"
+                                            d="M497.408 898.56c-.08-.193-.272-.323-.385-.483l-91.92-143.664c-6.528-10.72-20.688-14.527-31.728-8.512l-8.193 5.04c-11.007 6-10.767 21.537-4.255 32.256l58.927 91.409c-5.024-1.104-10.096-2-15.056-3.296c-103.184-26.993-190.495-96.832-239.535-191.6c-46.336-89.52-55.04-191.695-24.512-287.743c30.512-96.048 99.775-174.464 189.295-220.784c15.248-7.888 21.2-26.64 13.312-41.856c-7.872-15.264-26.64-21.231-41.855-13.327c-104.272 53.952-184.4 145.28-219.969 257.152C45.982 485.008 56.11 604.033 110.078 708.29c57.136 110.336 158.832 191.664 279.024 223.136c1.36.352 2.784.56 4.16.911l-81.311 41.233c-11.008 6.032-14.657 19.631-8.128 30.351l3.152 8.176c6.56 10.72 17.84 14.527 28.815 8.512L484.622 944.4c.193-.128.385-.096.578-.224l9.984-5.456c5.52-3.024 9.168-7.969 10.624-13.505c1.52-5.52.815-11.663-2.448-16.991zm416.496-577.747c-57.056-110.304-155.586-191.63-275.762-223.118c-8.56-2.24-17.311-3.984-26.048-5.712l79.824-40.48c11.008-6.033 17.568-19.632 11.04-30.369l-3.153-8.16c-6.56-10.736-20.752-14.528-31.727-8.528L519.262 80.654c-.176.112-.384.08-.577.208l-9.967 5.472c-5.537 3.04-9.168 7.967-10.624 13.503c-1.52 5.52-.816 11.648 2.464 16.976l5.92 9.712c.096.192.272.305.384.497l91.92 143.648c6.512 10.736 20.688 14.528 31.712 8.513l7.216-5.025c11.008-6 11.727-21.536 5.231-32.24l-59.2-91.856c13.008 2 25.968 4.416 38.624 7.76c103.232 27.04 187.393 96.864 236.4 191.568c46.32 89.519 55.024 191.695 24.48 287.728c-30.511 96.047-96.655 174.448-186.174 220.816c-15.233 7.887-21.168 26.607-13.28 41.87c5.519 10.64 16.335 16.768 27.599 16.768c4.8 0 9.664-1.12 14.272-3.488c104.272-53.936 181.248-145.279 216.816-257.119c35.536-111.904 25.393-230.929-28.574-335.152"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <span class="section-text" style="font-size: 14px;">آخرین بروز رسانی قیمت : ساعت 10:45 امروز </span>
+                        </div>
+                        <div class="panel-action">
+                            <button class="add-to-cart-btn" style="font-size: 16px;">افزودن به سبد خرید</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <div id="fullscreenGalleryModal" class="fullscreen-modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <button id="modalCloseButton" class="close-btn" aria-label="بستن">&times;</button>
+        <div id="verticalGalleryContainer" class="vertical-scroll-gallery">
         </div>
     </div>
 
-    <div class="row product-tabs-section">
-        <div class="col-12">
-            <ul class="nav nav-tabs" id="productTab" role="tablist">
-                <li class="nav-item" role="presentation"><button class="nav-link active" id="description-tab"
-                                                                 data-bs-toggle="tab" data-bs-target="#descriptionPane" type="button" role="tab"
-                                                                 aria-controls="descriptionPane" aria-selected="true">توضیحات</button></li>
-                <li class="nav-item" role="presentation"><button class="nav-link" id="specifications-tab"
-                                                                 data-bs-toggle="tab" data-bs-target="#specificationsPane" type="button" role="tab"
-                                                                 aria-controls="specificationsPane" aria-selected="false">مشخصات فنی</button></li>
-                <li class="nav-item" role="presentation"><button class="nav-link" id="reviews-tab"
-                                                                 data-bs-toggle="tab" data-bs-target="#reviewsPane" type="button" role="tab"
-                                                                 aria-controls="reviewsPane" aria-selected="false">نظرات کاربران</button></li>
-            </ul>
-            <div class="tab-content" id="productTabContent">
-                <div class="tab-pane fade show active" id="descriptionPane" role="tabpanel"
-                     aria-labelledby="description-tab">
-                    <h6>توضیحات جامع محصول</h6>
-                    <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                        چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                        تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در
-                        شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها
-                        شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی
-                        ایجاد کرد.</p>
-                    <p>در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به
-                        پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای
-                        موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+    </div>
+</div>
+
+<div class="SH-HS-container-fluid SH-HS-product-details-section">
+    <div class="row mt-5 mb-5">
+
+        <div class="col-12 col-lg-6 mb-4">
+            <div id="product-specifications-card" class="SH-HS-detail-card">
+                <h3 class="SH-HS-detail-card-title">مشخصات فنی</h3>
+                <ul class="SH-HS-spec-list">
+                        <li>
+                            <span class="SH-HS-spec-label">ابعاد و طراحی ارگونومیک:</span>
+                            <span class="SH-HS-spec-value">آیفون ۱۳، با ابعادی بهینه و متوازن معادله است.</span>
+                        </li>
+                        <li>
+                            <span class="SH-HS-spec-label">قدرت پردازش بی‌نظیر:</span>
+                            <span class="SH-HS-spec-value">قلب تپنده این گوشی هوشمند، **تراشه قدرتمند A15 Bionic** است که با بهره‌گیری از معماری پیشرفته و هسته‌های پردازشی بهینه‌سازی شده، نه تنها عملکردی خیره‌کننده در اجرای سنگین‌ترین برنامه‌ها و بازی‌های گرافیکی ارائه می‌دهد، بلکه با مدیریت هوشمندانه مصرف انرژی، تجربه کاربری روان و پایداری را در طول روز تضمین می‌نماید؛ این تراشه، آیفون ۱۳ را به یکی از سریع‌ترین گوشی‌های موجود در بازار تبدیل کرده است.</span>
+                        </li>
+                        <li>
+                            <span class="SH-HS-spec-label">ظرفیت‌های ذخیره‌سازی متنوع:</span>
+                            <span class="SH-HS-spec-value">برای پاسخگویی به نیازهای متفاوت کاربران، آیفون ۱۳ در سه **ظرفیت حافظه داخلی 128، 256 و 512 گیگابایت** عرضه شده است، که این تنوع به شما امکان می‌دهد تا بر اساس حجم اطلاعات، عکس‌ها، ویدئوها و برنامه‌هایی که قصد ذخیره آن‌ها را دارید، مناسب‌ترین گزینه را انتخاب کنید و دیگر نگران کمبود فضا نباشید.</span>
+                        </li>
+                        <li>
+                            <span class="SH-HS-spec-label">طیف رنگ‌های جذاب و چشم‌نواز:</span>
+                            <span class="SH-HS-spec-value">این دستگاه در مجموعه‌ای از رنگ‌های خیره‌کننده و مدرن شامل **مشکی نیمه‌شب، سفید ستاره‌ای، آبی، صورتی، قرمز (Product)RED و سبز** به بازار عرضه شده است، که هر یک از این رنگ‌ها، با بازتاب نور و جلوه خاص خود، سلیقه‌های متفاوت را پوشش می‌دهند و به آیفون ۱۳ ظاهری منحصربه‌فرد و چشمگیر می‌بخشند.</span>
+                        </li>
+                        <li>
+                            <span class="SH-HS-spec-label">پورت شارژ کلاسیک و کارآمد:</span>
+                            <span class="SH-HS-spec-value">همچنان برای شارژ و انتقال داده، از **پورت لایتنینگ** که نمادی از ثبات و سازگاری در اکوسیستم اپل است، استفاده شده است؛ این پورت، امکان اتصال سریع و مطمئن به انواع لوازم جانبی و شارژرها را فراهم می‌آورد و تجربه‌ای بدون دردسر را برای کاربران به ارمغان می‌آورد.</span>
+                        </li>
+                        <li>
+                            <span class="SH-HS-spec-label">نمایشگر Super Retina XDR خیره‌کننده:</span>
+                            <span class="SH-HS-spec-value">آیفون ۱۳ مجهز به یک **نمایشگر 6.1 اینچی Super Retina XDR OLED** است که با ارائه رنگ‌های فوق‌العاده زنده، کنتراست بی‌نظیر و حداکثر روشنایی بالا، تجربه‌ای بی‌مانند از تماشای محتوا، مرور وب و اجرای بازی‌ها را فراهم می‌آورد؛ این نمایشگر با **رزولوشن 2532 در 1170 پیکسل**، جزئیات را با وضوحی استثنایی به نمایش می‌گذارد و هر تصویر را به اثری هنری تبدیل می‌کند.</span>
+                        </li>
+                        <li>
+                            <span class="SH-HS-spec-label">سیستم دوربین پیشرفته برای ثبت لحظات:</span>
+                            <span class="SH-HS-spec-value">سیستم دوربین این گوشی شامل یک **دوربین اصلی دوگانه 12 مگاپیکسلی** (لنز واید و لنز اولترا واید) است که با قابلیت‌های بی‌نظیری نظیر حالت سینمایی برای فیلم‌برداری با عمق میدان متغیر، استایل‌های عکاسی و بهبود عملکرد در نور کم، به شما امکان می‌دهد تا عکس‌ها و ویدئوهایی با کیفیت حرفه‌ای و جزئیات فوق‌العاده ثبت کنید؛ همچنین، **دوربین سلفی 12 مگاپیکسلی** آن نیز برای ثبت سلفی‌های خیره‌کننده و مکالمات ویدیویی با کیفیت بالا، ایده‌آل است.</span>
+                        </li>
+                        <li>
+                            <span class="SH-HS-spec-label">عمر باتری قابل اعتماد:</span>
+                            <span class="SH-HS-spec-value">با یک **باتری 3240 میلی‌آمپر ساعتی**، آیفون ۱۳ قادر است شما را در طول یک روز کامل استفاده سنگین همراهی کند، که این موضوع به معنای آزادی بیشتر از پریز برق و امکان لذت بردن از تمامی قابلیت‌های گوشی بدون نگرانی از اتمام شارژ است؛ این بهینه‌سازی در مصرف انرژی، در کنار تراشه A15 Bionic، عمر باتری چشمگیری را به ارمغان آورده است.</span>
+                        </li>
+                        <li>
+                            <span class="SH-HS-spec-label">سیستم عامل هوشمند و همیشه به روز:</span>
+                            <span class="SH-HS-spec-value">این دستگاه به صورت پیش‌فرض با **سیستم عامل iOS 15** عرضه شده است که با ارائه رابط کاربری بصری، امکانات حریم خصوصی پیشرفته، و دسترسی به اکوسیستم گسترده اپلیکیشن‌ها و خدمات اپل، تجربه‌ای بی‌نظیر از یک گوشی هوشمند را ارائه می‌دهد؛ همچنین، این سیستم عامل به طور مداوم قابل ارتقا به آخرین نسخه‌های iOS است که تضمین‌کننده دسترسی به جدیدترین ویژگی‌ها و به‌روزرسانی‌های امنیتی خواهد بود.</span>
+                        </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6 mb-4">
+            <div id="product-introduction-card" class="SH-HS-detail-card">
+                <h3 class="SH-HS-detail-card-title">معرفی محصول</h3>
+                <div class="SH-HS-product-description-content">
+                    <p>آیفون 13 پرو مکس، یکی از پرچمداران اپل، با نمایشگر Super Retina XDR و پشتیبانی از ProMotion تجربه‌ای بی‌نظیر را ارائه می‌دهد. این گوشی با بهره‌گیری از تراشه قدرتمند A15 Bionic، عملکردی فوق‌العاده در پردازش داده‌ها و اجرای بازی‌های سنگین دارد.</p>
+                    <p>سیستم دوربین پیشرفته شامل سه لنز 12 مگاپیکسلی با قابلیت‌های عکاسی در شب و حالت سینماتیک، امکان ثبت تصاویر و ویدئوهای حرفه‌ای را فراهم می‌کند. باتری با دوام بالا، این امکان را به شما می‌دهد تا تمام طول روز از گوشی خود استفاده کنید.</p>
+                    <p>بدنه مقاوم از جنس سرامیک شیلد و فولاد ضد زنگ, در برابر خط و خش و ضربه مقاومت بالایی از خود نشان می‌دهد. طراحی زیبا و ارگونومیک، حس کاربری دلپذیری را به ارمغان می‌آورد.</p>
+                     <p>آیفون 13 پرو مکس، یکی از پرچمداران اپل، با نمایشگر Super Retina XDR و پشتیبانی از ProMotion تجربه‌ای بی‌نظیر را ارائه می‌دهد. این گوشی با بهره‌گیری از تراشه قدرتمند A15 Bionic، عملکردی فوق‌العاده در پردازش داده‌ها و اجرای بازی‌های سنگین دارد.</p>
+                    <p>سیستم دوربین پیشرفته شامل سه لنز 12 مگاپیکسلی با قابلیت‌های عکاسی در شب و حالت سینماتیک، امکان ثبت تصاویر و ویدئوهای حرفه‌ای را فراهم می‌کند. باتری با دوام بالا، این امکان را به شما می‌دهد تا تمام طول روز از گوشی خود استفاده کنید.</p>
+                    <p>بدنه مقاوم از جنس سرامیک شیلد و فولاد ضد زنگ, در برابر خط و خش و ضربه مقاومت بالایی از خود نشان می‌دهد. طراحی زیبا و ارگونومیک، حس کاربری دلپذیری را به ارمغان می‌آورد.</p>
+                    <p>با آیفون 13 پرو مکس، هر لحظه را به یک تجربه بصری و کاربری فراموش‌نشدنی تبدیل کنید. این دستگاه نه تنها یک گوشی هوشمند، بلکه یک ابزار قدرتمند برای زندگی مدرن است.</p>
                 </div>
-                <div class="tab-pane fade" id="specificationsPane" role="tabpanel"
-                     aria-labelledby="specifications-tab">
-                    <h6>مشخصات فنی دقیق گوشی موبایل اپل مدل iPhone 13 Pro ZAA تک سیم‌ کارت ظرفیت 256 گیگابایت و رم 6 گیگابایت - نات اکتیو ریفربیش پارت نامبر F</h6>
-                    <table class="table table-specifications">
-                        <tbody>
+            </div>
+        </div>
 
-                        <tr>
-                            <th>ریجن</th>
-                            <td>....</td>
-                        </tr>
+        <div class="col-12 mb-4 px-3">
+            <div class="px-3">
+                <div id="SH-HS-related-products-card" class="SH-HS-detail-card">
+                    <h3 class="SH-HS-detail-card-title">محصولات مرتبط</h3>
 
-                        <tr>
-                            <th>نوع گوشی موبایل</th>
-                            <td>سیستم عامل iOS</td>
-                        </tr>
-
-                        <tr>
-                            <th>دسته ‌بندی</th>
-                            <td>پرچم‌دار</td>
-                        </tr>
-
-                        <tr>
-                            <th>مدل</th>
-                            <td>iPhone ۱۳ Pro CH</td>
-                        </tr>
-
-                        <tr>
-                            <th>زمان معرفی</th>
-                            <td>۱۴ سپتامبر ۲۰۲۱</td>
-                        </tr>
-
-                        <tr>
-                            <th>ابعاد</th>
-                            <td>۱۴۶.۷x۷۱.۵x۷.۷ میلی‌متر</td>
-                        </tr>
-
-                        <tr>
-                            <th>وزن</th>
-                            <td>۲۰۴ گرم</td>
-                        </tr>
-
-                        <tr>
-                            <th>توضیحات بدنه</th>
-                            <td>فلز و شیشه (قاب جلو و پشت شیشه‌ای با فریمی از جنس فولاد ضدزنگ) دارای استاندارد IP۶۸ برای مقاومت در برابر آب (به مدت ۳۰ دقیقه در عمق ۶ متر) صفحه نمایش با شیشه مقاوم در برابر خط و خش به همراه محافظ ceramic glass دارای پوشش Oleophobic برای صفحه‌نمایش</td>
-                        </tr>
-
-                        <tr>
-                            <th>تعداد سیم کارت</th>
-                            <td>دو عدد</td>
-                        </tr>
-
-                        <tr>
-                            <th>نوع سیم کارت</th>
-                            <td>سایز نانو (۸.۸ × ۱۲.۳ میلی‌متر)</td>
-                        </tr>
-
-                        <tr>
-                            <th>ویژگی‌های کلیدی</th>
-                            <td>صفحه‌نمایش با نرخ بروزرسانی ۱۲۰ هرتز / صفحه‌نمایش با حداکثر روشنایی ۱۲۰۰ نیت /</td>
-                        </tr>
-
-                        <tr>
-                            <th>فناوری صفحه‌ نمایش</th>
-                            <td>Super Retina XDR OLED</td>
-                        </tr>
-
-                        <tr>
-                            <th>نرخ بروزرسانی تصویر</th>
-                            <td>۱۲۰ هرتز</td>
-                        </tr>
-
-                        <tr>
-                            <th>اندازه</th>
-                            <td>6.1 اینچ</td>
-                        </tr>
-
-                        <tr>
-                            <th>نسبت صفحه‌ نمایش به بدنه</th>
-                            <td>۸۶</td>
-                        </tr>
-
-                        <tr>
-                            <th>نسبت تصویر</th>
-                            <td>۱۹.۵:۹</td>
-                        </tr>
-
-                        <tr>
-                            <th>رزولوشن صفحه نمایش</th>
-                            <td>۲۵۳۲x۱۱۷۰ پیکسل</td>
-                        </tr>
-
-                        <tr>
-                            <th>تراکم پیکسلی</th>
-                            <td>۴۶۰ پیکسل بر اینچ</td>
-                        </tr>
-
-                        <tr>
-                            <th>نوع محافظ صفحه نمایش گوشی</th>
-                            <td>Scratch-Resistant Ceramic Glass</td>
-                        </tr>
-
-                        <tr>
-                            <th>سایر قابلیت‌ها</th>
-                            <td>Siri natural language commands and dictation</td>
-                        </tr>
-
-                        <tr>
-                            <th>تراشه</th>
-                            <td>Apple A۱۵ Bionic (۵ nm) Chipset</td>
-                        </tr>
-
-                        <tr>
-                            <th>پردازنده‌</th>
-                            <td>(۲x Avalanche + ۴x Blizzard</td>
-                        </tr>
-
-                        <tr>
-                            <th>فرکانس پردازنده‌ مرکزی</th>
-                            <td>۱.۸۲ - ۳.۲۳ گیگاهرتز</td>
-                        </tr>
-
-                        <tr>
-                            <th>پردازنده‌ گرافیکی</th>
-                            <td>Apple GPU (۵-core graphics) GPU</td>
-                        </tr>
-
-                        <tr>
-                            <th>حافظه داخلی</th>
-                            <td>۲۵۶ گیگابایت</td>
-                        </tr>
-
-                        <tr>
-                            <th>مقدار RAM</th>
-                            <td>۶ گیگابایت</td>
-                        </tr>
-
-                        <tr>
-                            <th>پشتیبانی از کارت حافظه</th>
-                            <td>فاقد پشتیبانی از کارت حافظه</td>
-                        </tr>
-
-                        <tr>
-                            <th>شبکه‌های مخابراتی</th>
-                            <td>۵G ,۴G , ۳G , ۲G</td>
-                        </tr>
-
-                        <tr>
-                            <th>نسخه بلوتوث</th>
-                            <td>5</td>
-                        </tr>
-
-                        <tr>
-                            <th>مشخصات بلوتوث</th>
-                            <td>A۲DP LE</td>
-                        </tr>
-
-                        <tr>
-                            <th>رادیو</th>
-                            <td>ندارد</td>
-                        </tr>
-
-                        <tr>
-                            <th>درگاه‌های ارتباطی</th>
-                            <td>Lightning</td>
-                        </tr>
-
-                        <tr>
-                            <th>شبکه‌های ارتباطی قابل پشتیبانی</th>
-                            <td>BDS , GALILEO , Quasi-Zenith|QZSS , GLONASS , GPS</td>
-                        </tr>
-
-                        <tr>
-                            <th>تکنولوژی‌های مکان‌یابی (GPS)</th>
-                            <td>NFC , بلوتوث , Wi-Fi , QZSS</td>
-                        </tr>
-
-                        <tr>
-                            <th>تعداد دوربین‌های پشت گوشی</th>
-                            <td>۴ ماژول دوربین</td>
-                        </tr>
-
-                        <tr>
-                            <th>رزولوشن دوربین اصلی</th>
-                            <td>12 مگاپیکسل</td>
-                        </tr>
-
-                        <tr>
-                            <th>مشخصات دوربین اصلی</th>
-                            <td>دارای چهار دوربین در پشت گوشی | سه دوربین ۱۲ + ۱۲ + ۱۲ مگاپیکسل (Triple Camera) + یک دروبین TOF ۳D LiDAR scanner (depth) / دوربین اول از نوع عریض (Wide) با دریچه‌ی دیافراگم f/۱.۵، فاصله کانونی لنز ۲۶ میلی‌متر (Focus Length ۲۶ mm)، ثبت تصاویر با پیکسل‎‌های</td>
-                        </tr>
-
-                        <tr>
-                            <th>فناوری فوکوس</th>
-                            <td>Dual Pixel</td>
-                        </tr>
-
-                        <tr>
-                            <th>سایر مشخصات فیلمبرداری</th>
-                            <td>رزولوشن ۲۱۶۰ × ۳۸۴۰ و سرعت ۲۴/۳۰/۶۰ فریم بر ثانیه (۴K@۲۴/۳۰/۶۰fps) / رزولوشن ۱۰۸۰ × ۱۹۲۰ و سرعت ۳۰/۶۰/۱۲۰/۲۴۰ فریم بر ثانیه (۱۰۸۰p@۳۰/۶۰/۱۲۰/۲۴۰fps) / Dolby Vision HDR (up to ۶۰fps) / stereo sound rec / قابلیت فیلم‌برداری HDR / ضبط صدای استریو / Cinematic</td>
-                        </tr>
-
-                        <tr>
-                            <th>فلش</th>
-                            <td>Dual LED Dual Tone</td>
-                        </tr>
-
-                        <tr>
-                            <th>مشخصات دوربین سلفی</th>
-                            <td>از نوع عریض (Wide) با سنسور با رزولوشن ۱۲ مگاپیکسل و دریچه‌ی دیافراگم f/۲.۲، فاصله کانونی لنز ۲۳ میلی‌متر (Focus Length ۲۳ mm) و سایز سنسور ۱/۳.۶ اینچ (Sensor Size ۱/۳.۶ Inch) / سنسور (depth/biometrics sensor) SL ۳D / SL ۳D / depth/biometrics sensor / قاب</td>
-                        </tr>
-
-                        <tr>
-                            <th>اسپیکر</th>
-                            <td>استریو</td>
-                        </tr>
-
-                        <tr>
-                            <th>خروجی صدا</th>
-                            <td>Lightning</td>
-                        </tr>
-
-                        <tr>
-                            <th>توضیحات تکمیلی صدا</th>
-                            <td>Stereo Speakers</td>
-                        </tr>
-
-                        <tr>
-                            <th>سیستم عامل</th>
-                            <td>ios</td>
-                        </tr>
-
-                        <tr>
-                            <th>نسخه سیستم عامل</th>
-                            <td>ios 15</td>
-                        </tr>
-
-                        <tr>
-                            <th>حس‌گرها</th>
-                            <td>قطب‌نما (Compass) , شتاب‌سنج (Accelerometer) , مجاورت (Proximity) , فشارسنج (Barometer) ,  ژیروسکوپ (Gyro)  ,  تشخیص چهره بیومتریک (Face ID)</td>
-                        </tr>
-
-                        <tr>
-                            <th>ظرفیت باتری</th>
-                            <td>۳۰۹۵ میلی آمپر ساعت</td>
-                        </tr>
-
-                        <tr>
-                            <th>قابلیت‌های شارژ</th>
-                            <td>شارژ با سیم ,  شارژ بی سیم</td>
-                        </tr>
-
-                        <tr>
-                            <th>مشخصات باتری</th>
-                            <td>باتری لیتیو-یون با میزان ظرفیت ۳۰۹۵ میلی‌آمپر‌ساعت</td>
-                        </tr>
-
-                        <tr>
-                            <th>میزان شارژ مکالمه</th>
-                            <td>۱۷ ساعت و ۲۳ دقیقه</td>
-                        </tr>
-
-                        <tr>
-                            <th>اقلام همراه</th>
-                            <td>دفترچه‌ راهنما , کابل Lightning</td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane fade" id="reviewsPane" role="tabpanel" aria-labelledby="reviews-tab">
-                    <div class="row">
-                        <div class="col-lg-7 mb-4 mb-lg-0">
-                            <h6>دیدگاه‌های کاربران (0 دیدگاه)</h6>
-                            <div class="comments-list">
-
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <form class="review-form" method="post" action="/review/submit-review/">
-                                <input type="hidden" name="csrfmiddlewaretoken" value="7GYlstt0ytvO2VoX1dlbxOfhp2EGTHkuFXv69AormJwrp58SL3k3EzGE680nL3sO">
-                                <h6>دیدگاه خود را بنویسید</h6>
-                                <input hidden name="product" value="28">
-                                <div class="mb-3">
-                                    <label class="form-label" for="rateModalInput">امتیاز</label>
-                                    <select class="form-select form-select-sm" name="rate" required>
-                                        <option value="1">1 ستاره</option>
-                                        <option value="2">2 ستاره</option>
-                                        <option value="3">3 ستاره</option>
-                                        <option value="4">4 ستاره</option>
-                                        <option value="5" selected>5 ستاره</option>
-
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="reviewText" class="form-label">متن دیدگاه شما:</label>
-                                    <textarea id="reviewText" name="description" class="form-control" rows="5"
-                                              placeholder="تجربه خود را از این محصول بنویسید..." required></textarea>
-                                </div>
-                                <button type="submit" class=" btn-submit-review">ارسال دیدگاه</button>
-                            </form>
+                    <div class="splide SH-HS-related-splide ">
+                        <div class="splide__track py-5">
+                            <ul class="splide__list ">
+                                <li class="splide__slide SH-HS-related-product-item w-center ">
+                                    <a href="[لینک-محصول-مرتبط-1]" class="SH-HS-product-link w-center">
+                                        <img src="assets/img/main.logo.jpg" alt="نام محصول 1" class="SH-HS-product-thumbnail">
+                                        <h4 class="SH-HS-product-title my-2">نام محصول مرتبط 1</h4>
+                                        <span class="SH-HS-product-price my-2">1,250,000 تومان</span>
+                                    </a>
+                                    <button class="SH-HS-btn-add-to-cart">افزودن به سبد خرید</button>
+                                </li>
+                                <li class="splide__slide SH-HS-related-product-item w-center ">
+                                    <a href="[لینک-محصول-مرتبط-1]" class="SH-HS-product-link w-center">
+                                        <img src="assets/img/main.logo.jpg" alt="نام محصول 1" class="SH-HS-product-thumbnail">
+                                        <h4 class="SH-HS-product-title my-2">نام محصول مرتبط 1</h4>
+                                        <span class="SH-HS-product-price my-2">1,250,000 تومان</span>
+                                    </a>
+                                    <button class="SH-HS-btn-add-to-cart">افزودن به سبد خرید</button>
+                                </li>
+                                <li class="splide__slide SH-HS-related-product-item w-center ">
+                                    <a href="[لینک-محصول-مرتبط-1]" class="SH-HS-product-link w-center">
+                                        <img src="assets/img/main.logo.jpg" alt="نام محصول 1" class="SH-HS-product-thumbnail">
+                                        <h4 class="SH-HS-product-title my-2">نام محصول مرتبط 1</h4>
+                                        <span class="SH-HS-product-price my-2">1,250,000 تومان</span>
+                                    </a>
+                                    <button class="SH-HS-btn-add-to-cart">افزودن به سبد خرید</button>
+                                </li>
+                                <li class="splide__slide SH-HS-related-product-item w-center ">
+                                    <a href="[لینک-محصول-مرتبط-1]" class="SH-HS-product-link w-center">
+                                        <img src="assets/img/main.logo.jpg" alt="نام محصول 1" class="SH-HS-product-thumbnail">
+                                        <h4 class="SH-HS-product-title my-2">نام محصول مرتبط 1</h4>
+                                        <span class="SH-HS-product-price my-2">1,250,000 تومان</span>
+                                    </a>
+                                    <button class="SH-HS-btn-add-to-cart">افزودن به سبد خرید</button>
+                                </li>
+                                <li class="splide__slide SH-HS-related-product-item w-center ">
+                                    <a href="[لینک-محصول-مرتبط-1]" class="SH-HS-product-link w-center">
+                                        <img src="assets/img/main.logo.jpg" alt="نام محصول 1" class="SH-HS-product-thumbnail">
+                                        <h4 class="SH-HS-product-title my-2">نام محصول مرتبط 1</h4>
+                                        <span class="SH-HS-product-price my-2">1,250,000 تومان</span>
+                                    </a>
+                                    <button class="SH-HS-btn-add-to-cart">افزودن به سبد خرید</button>
+                                </li>
+                                <li class="splide__slide SH-HS-related-product-item w-center ">
+                                    <a href="[لینک-محصول-مرتبط-1]" class="SH-HS-product-link w-center">
+                                        <img src="assets/img/main.logo.jpg" alt="نام محصول 1" class="SH-HS-product-thumbnail">
+                                        <h4 class="SH-HS-product-title my-2">نام محصول مرتبط 1</h4>
+                                        <span class="SH-HS-product-price my-2">1,250,000 تومان</span>
+                                    </a>
+                                    <button class="SH-HS-btn-add-to-cart">افزودن به سبد خرید</button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
 
-<footer>
-    <div class="container">
-        <p>© <span id="currentYear"></span> من مارکت - تمامی حقوق محفوظ است.</p>
-    </div>
-</footer>
 
-<div class="fullscreen-modal" id="fullscreenModalContainer" aria-hidden="true">
-    <button type="button" class="close-btn" id="modalCloseButton" aria-label="بستن گالری تمام صفحه">×</button>
-    <div class="vertical-scroll-gallery" id="verticalGalleryContainer"></div>
+        <div class="col-12 mb-4 px-3 mb-5">
+            <div class="px-3">
+                <div id="comments-section-card" class="SH-HS-detail-card row">
+                    <h3 class="SH-HS-detail-card-title">دیدگاه کاربران </h3>
+
+                    <div class="SH-HS-comments-list mb-4 col-md-6 col-12">
+                        <div class="h-400">
+                            <div class="SH-HS-comment-item">
+                                <div class="SH-HS-comment-header">
+                                    <span class="SH-HS-comment-author">علی رضایی</span>
+                                    <span class="SH-HS-comment-date mx-1">۱۴۰۲/۰۵/۲۳</span>
+                                    <div class="SH-HS-comment-rating SH-HS-static-rating mx-1" data-rating="4">
+                                    </div>
+                                </div>
+                                <p class="SH-HS-comment-text">واقعا گوشی خوبیه. سرعتش عالیه و دوربینش که دیگه حرف نداره. از خریدم راضیم.</p>
+                            </div>
+                            <div class="SH-HS-comment-item">
+                                <div class="SH-HS-comment-header">
+                                    <span class="SH-HS-comment-author">فاطمه کریمی</span>
+                                    <span class="SH-HS-comment-date mx-1">۱۴۰۲/۰۶/۰۱</span>
+                                    <div class="SH-HS-comment-rating SH-HS-static-rating mx-1" data-rating="5">
+                                    </div>
+                                </div>
+                                <p class="SH-HS-comment-text">باتریش معرکه است. تا حالا انقدر از یه گوشی راضی نبودم.</p>
+                            </div>
+                            <div class="SH-HS-comment-item">
+                                <div class="SH-HS-comment-header">
+                                    <span class="SH-HS-comment-author">علی رضایی</span>
+                                    <span class="SH-HS-comment-date mx-1">۱۴۰۲/۰۵/۲۳</span>
+                                    <div class="SH-HS-comment-rating SH-HS-static-rating mx-1" data-rating="4">
+                                    </div>
+                                </div>
+                                <p class="SH-HS-comment-text">واقعا گوشی خوبیه. سرعتش عالیه و دوربینش که دیگه حرف نداره. از خریدم راضیم.</p>
+                            </div>
+                            <div class="SH-HS-comment-item">
+                                <div class="SH-HS-comment-header">
+                                    <span class="SH-HS-comment-author">فاطمه کریمی</span>
+                                    <span class="SH-HS-comment-date mx-1">۱۴۰۲/۰۶/۰۱</span>
+                                    <div class="SH-HS-comment-rating SH-HS-static-rating mx-1" data-rating="5">
+                                    </div>
+                                </div>
+                                <p class="SH-HS-comment-text">باتریش معرکه است. تا حالا انقدر از یه گوشی راضی نبودم.</p>
+                            </div>
+                            <div class="SH-HS-comment-item">
+                                <div class="SH-HS-comment-header">
+                                    <span class="SH-HS-comment-author">علی رضایی</span>
+                                    <span class="SH-HS-comment-date mx-1">۱۴۰۲/۰۵/۲۳</span>
+                                    <div class="SH-HS-comment-rating SH-HS-static-rating mx-1" data-rating="4">
+                                    </div>
+                                </div>
+                                <p class="SH-HS-comment-text">واقعا گوشی خوبیه. سرعتش عالیه و دوربینش که دیگه حرف نداره. از خریدم راضیم.</p>
+                            </div>
+                            <div class="SH-HS-comment-item">
+                                <div class="SH-HS-comment-header">
+                                    <span class="SH-HS-comment-author">فاطمه کریمی</span>
+                                    <span class="SH-HS-comment-date mx-1">۱۴۰۲/۰۶/۰۱</span>
+                                    <div class="SH-HS-comment-rating SH-HS-static-rating mx-1" data-rating="5">
+                                    </div>
+                                </div>
+                                <p class="SH-HS-comment-text">باتریش معرکه است. تا حالا انقدر از یه گوشی راضی نبودم.</p>
+                            </div>
+                            <div class="SH-HS-comment-item">
+                                <div class="SH-HS-comment-header">
+                                    <span class="SH-HS-comment-author">علی رضایی</span>
+                                    <span class="SH-HS-comment-date mx-1">۱۴۰۲/۰۵/۲۳</span>
+                                    <div class="SH-HS-comment-rating SH-HS-static-rating mx-1" data-rating="4">
+                                    </div>
+                                </div>
+                                <p class="SH-HS-comment-text">واقعا گوشی خوبیه. سرعتش عالیه و دوربینش که دیگه حرف نداره. از خریدم راضیم.</p>
+                            </div>
+                            <div class="SH-HS-comment-item">
+                                <div class="SH-HS-comment-header">
+                                    <span class="SH-HS-comment-author">فاطمه کریمی</span>
+                                    <span class="SH-HS-comment-date mx-1">۱۴۰۲/۰۶/۰۱</span>
+                                    <div class="SH-HS-comment-rating SH-HS-static-rating mx-1" data-rating="5">
+                                    </div>
+                                </div>
+                                <p class="SH-HS-comment-text">باتریش معرکه است. تا حالا انقدر از یه گوشی راضی نبودم.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="SH-HS-comment-form-section p-3 rounded bg-light-gray col-md-6 col-12 mb-5">
+                        <h4 class="mb-3 SH-HS-comment-form-title">نظر خود را ثبت کنید</h4>
+                        <form method="post">
+                            <div class="mb-3">
+                                <label class="form-label d-block mb-2">امتیاز شما:</label>
+                                <div class="SH-HS-star-rating-input" data-current-rating="0">
+                                    <i class="far fa-star" data-value="1"></i>
+                                    <i class="far fa-star" data-value="2"></i>
+                                    <i class="far fa-star" data-value="3"></i>
+                                    <i class="far fa-star" data-value="4"></i>
+                                    <i class="far fa-star" data-value="5"></i>
+                                    <input type="hidden" name="rating" id="userRating" value="0">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="commentName" class="form-label">نام شما:</label>
+                                <input type="text" class="form-control" id="commentName" placeholder="نام خود را وارد کنید">
+                            </div>
+                            <div class="mb-3">
+                                <label for="commentText" class="form-label">دیدگاه شما:</label>
+                                <textarea class="form-control" id="commentText" rows="4" placeholder="دیدگاه خود را اینجا بنویسید..."></textarea>
+                            </div>
+                            <button type="submit" class="btn SH-HS-btn-primary-outline">ارسال دیدگاه</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
-
-
-
-
-<!--اینا همه مال سینگل پروداکته -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<!--اینا همه مال سینگل پروداکته -->
-
-
-
-
 
 <!--این همه جا هست -->
 <script src="assets/js/jquery-3.7.1.min.js"></script>
@@ -1664,245 +1767,79 @@
 <script  src="script.js"></script>
 <!--این همه جا هست -->
 
+<!--اینا همه مال سینگل پروداکته -->
+<script src="assets/js/swiper.lib.js"></script>
+<script src="assets/js/sweet.alert.lib.js"></script>
+<script src="assets/js/splide.lib.js"></script>
+<!--اینا همه مال سینگل پروداکته -->
 
 <!--این اونیه که مال سینگل پروداکته -->
+<script src="assets/js/single.product.js"></script>
+<!--این اونیه که مال سینگل پروداکته -->
+
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const messagesInner = document.querySelector('.not-rot-notification-messages-inner');
+        const emojiElement = document.getElementById('notRotEmoji');
+        const messageItems = document.querySelectorAll('.not-rot-message-item');
+        let currentIndex = 0;
+        const intervalTime = 3000;
+        const messageHeight = 24;
 
-    document.addEventListener('DOMContentLoaded', function () {
-        const galleryTopSwiperEl = document.getElementById('galleryTopSwiper');
-        const galleryThumbsSwiperEl = document.getElementById('galleryThumbsSwiper');
-        const verticalGalleryContentEl = document.getElementById('verticalGalleryContainer');
-        const fullscreenModalEl = document.getElementById('fullscreenModalContainer');
-        const closeModalButton = document.getElementById('modalCloseButton');
-        const colorButtonContainer = document.querySelector('.color-selection-buttons');
-        const currentYearEl = document.getElementById('currentYear');
-        const productSkuEl = document.getElementById('productSku');
-
-        function calculateAndSetTickPathLength() {
-            const tickSVGPath = "M4.5 8.5l2.5 2.5 5-5";
-            const tempTickSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-            tempTickSVG.style.visibility = 'hidden';
-            tempTickSVG.style.position = 'absolute';
-            const tempTickPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            tempTickPath.setAttribute("d", tickSVGPath);
-            tempTickPath.style.strokeWidth = "2.5";
-            tempTickPath.style.fill = "none";
-            tempTickSVG.appendChild(tempTickPath);
-            document.body.appendChild(tempTickSVG);
-            const pathLength = tempTickPath.getTotalLength();
-            document.body.removeChild(tempTickSVG);
-            document.documentElement.style.setProperty('--tick-path-length', pathLength.toFixed(2));
-        }
-        calculateAndSetTickPathLength();
-
-        const productImages = [
-
-
-            // Two slider theme
-            { main: 'assets/img/iphone/green/1.webp', thumb: 'assets/img/iphone/green/1.webp', alt: 'گوشی A15 آبی روشن - نما ۱', color: 'سبز' },
-            { main: 'assets/img/iphone/green/2.webp', thumb: 'assets/img/iphone/green/2.webp', alt: 'گوشی A15 آبی روشن - نما ۲', color: 'سبز' },
-            { main: 'assets/img/iphone/green/3.webp', thumb: 'assets/img/iphone/green/3.webp', alt: 'گوشی A15 آبی روشن - نما ۲', color: 'سبز' },
-
-            // One slider theme
-            { main: 'assets/img/iphone/blue/1.webp', thumb: 'assets/img/iphone/blue/1.webp', alt: 'گوشی A15 سرمه‌ای - نما ۱', color: 'آبی' },
-            { main: 'assets/img/iphone/blue/2.webp', thumb: 'assets/img/iphone/blue/2.webp', alt: 'گوشی A15 سرمه‌ای - نما ۲', color: 'آبی' },
-            { main: 'assets/img/iphone/blue/3.webp', thumb: 'assets/img/iphone/blue/3.webp', alt: 'گوشی A15 سرمه‌ای - نما ۳', color: 'آبی' },
-
-            // Three slider theme
-            { main: 'assets/img/iphone/white/1.webp', thumb: 'assets/img/iphone/white/1.webp', alt: 'گوشی A15 سفید - نما ۱', color: 'سفید' },
-            { main: 'assets/img/iphone/white/2.webp', thumb: 'assets/img/iphone/white/2.webp', alt: 'گوشی A15 سفید - نما ۱', color: 'سفید' },
-            { main: 'assets/img/iphone/white/3.webp', thumb: 'assets/img/iphone/white/3.webp', alt: 'گوشی A15 سفید - نما ۲', color: 'سفید' },
+        const contents = [
+            { text: 'تعداد بازدید در 24 ساعت اخیر 1000  +', icon: 'assets/img/seenz.png' },
+            { text: 'موجود در سبد خرید 56 نفر دیگر', icon: 'assets/img/money.soney.png' },
         ];
-        // ==============================================================================
 
-        let galleryTop, galleryThumbs;
-        const BASE_SKU = "SAM-A15";
-        const DEFAULT_STORAGE = "256G";
-
-        function initSwiper(imagesToShow = null) {
-            if (!galleryTopSwiperEl || !galleryThumbsSwiperEl) {
-                return;
-            }
-            const galleryTopWrapper = galleryTopSwiperEl.querySelector('.swiper-wrapper');
-            const galleryThumbsWrapper = galleryThumbsSwiperEl.querySelector('.swiper-wrapper');
-
-            if (!galleryTopWrapper || !galleryThumbsWrapper) return;
-
-            galleryTopWrapper.innerHTML = '';
-            galleryThumbsWrapper.innerHTML = '';
-
-            let effectiveImages = imagesToShow;
-            if (!effectiveImages || effectiveImages.length === 0) {
-                galleryTopWrapper.innerHTML = '<div class="swiper-slide" style="display:flex; align-items:center; justify-content:center; height:100%;"><p style="text-align:center; padding: 20px;">تصویری برای این رنگ موجود نیست.</p></div>';
-                if (galleryThumbs && typeof galleryThumbs.destroy === 'function') galleryThumbs.destroy(true, true);
-                if (galleryTop && typeof galleryTop.destroy === 'function') galleryTop.destroy(true, true);
-                galleryThumbs = null;
-                galleryTop = null;
-                return;
-            }
-
-            effectiveImages.forEach(imgData => {
-                galleryTopWrapper.innerHTML += `<div class="swiper-slide"><img class="position-static" src="${imgData.main}" alt="${imgData.alt || 'تصویر محصول'}"></div>`;
-                galleryThumbsWrapper.innerHTML += `<div class="swiper-slide"><img class="position-static" src="${imgData.thumb}" alt="${imgData.alt || 'تصویر بندانگشتی محصول'}"></div>`;
-            });
-
-            if (galleryThumbs && typeof galleryThumbs.destroy === 'function') galleryThumbs.destroy(true, true);
-            galleryThumbs = new Swiper(galleryThumbsSwiperEl, {
-                spaceBetween: 10,
-                slidesPerView: Math.min(4, effectiveImages.length > 0 ? effectiveImages.length : 1),
-                freeMode: true,
-                watchSlidesProgress: true,
-            });
-
-            if (galleryTop && typeof galleryTop.destroy === 'function') galleryTop.destroy(true, true);
-            galleryTop = new Swiper(galleryTopSwiperEl, {
-                spaceBetween: 10,
-                slidesPerView: 1,
-                thumbs: {
-                    swiper: (galleryThumbs && galleryThumbs.slides && galleryThumbs.slides.length > 0) ? galleryThumbs : null
-                },
-            });
-
-            if (!galleryThumbs || !galleryThumbs.slides || galleryThumbs.slides.length === 0) {
-                if (galleryTop && galleryTop.params.thumbs) {
-                    galleryTop.params.thumbs.swiper = null;
-                }
-                if (galleryTop && galleryTop.slides && galleryTop.slides.length > 0) {
-                    galleryTop.update();
-                }
-            }
-        }
-
-        function openFullscreenModal(initialIndex = 0) {
-            if (!fullscreenModalEl || !verticalGalleryContentEl) return;
-            const currentActiveColor = colorButtonContainer?.querySelector('.btn-color.active-cs')?.dataset.colorValue;
-            const imagesForModal = currentActiveColor
-                ? productImages.filter(img => img.color === currentActiveColor)
-                : productImages;
-
-            verticalGalleryContentEl.innerHTML = '';
-            if (imagesForModal.length > 0) {
-                imagesForModal.forEach(imgData => {
-                    const itemDiv = document.createElement('div');
-                    itemDiv.classList.add('gallery-item');
-                    itemDiv.innerHTML = `<img src="${imgData.main}" alt="${imgData.alt || 'تصویر محصول در حالت تمام صفحه'}">`;
-                    verticalGalleryContentEl.appendChild(itemDiv);
-                });
-
-                fullscreenModalEl.style.display = 'block';
-                fullscreenModalEl.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
-
-                const actualInitialIndex = Math.min(initialIndex, imagesForModal.length - 1);
-                if (verticalGalleryContentEl.children[actualInitialIndex]) {
-                    setTimeout(() => {
-                        if (verticalGalleryContentEl.children[actualInitialIndex]) { // Double check
-                            verticalGalleryContentEl.children[actualInitialIndex].scrollIntoView({ behavior: 'auto', block: 'start' });
-                        }
-                    }, 50);
-                }
-                if(closeModalButton) closeModalButton.focus();
-            } else {
-                alert("تصویری برای نمایش در حالت تمام صفحه برای این رنگ موجود نیست.");
-            }
-        }
-
-        function closeFullscreenModal() {
-            if (!fullscreenModalEl) return;
-            fullscreenModalEl.style.display = 'none';
-            fullscreenModalEl.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
-            if(galleryTopSwiperEl) galleryTopSwiperEl.focus();
-        }
-
-        function updateSku(selectedColor) {
-            if (productSkuEl && selectedColor) {
-                productSkuEl.textContent = `${BASE_SKU}-${selectedColor.toUpperCase()}-${DEFAULT_STORAGE}`;
-            }
-        }
-
-        if (colorButtonContainer) {
-            const colorButtons = colorButtonContainer.querySelectorAll('.btn-color');
-            colorButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    if (this.classList.contains('active-cs')) return;
-
-                    colorButtons.forEach(btn => btn.classList.remove('active-cs'));
-                    this.classList.add('active-cs');
-                    const selectedColor = this.dataset.colorValue;
-                    updateSku(selectedColor);
-
-                    const filteredImages = productImages.filter(img => img.color === selectedColor);
-                    initSwiper(filteredImages);
-                });
-            });
-
-            const activeColorButton = colorButtonContainer.querySelector('.btn-color.active-cs');
-            if (activeColorButton) {
-                const initialColor = activeColorButton.dataset.colorValue;
-                updateSku(initialColor);
-                const initialFilteredImages = productImages.filter(img => img.color === initialColor);
-                initSwiper(initialFilteredImages);
-            } else {
-                const firstColorButton = colorButtonContainer.querySelector('.btn-color');
-                if(firstColorButton){
-                    firstColorButton.classList.add('active-cs');
-                    const initialColor = firstColorButton.dataset.colorValue;
-                    updateSku(initialColor);
-                    const initialFilteredImages = productImages.filter(img => img.color === initialColor);
-                    initSwiper(initialFilteredImages);
-                } else {
-                    initSwiper([]);
-                }
-            }
-        } else {
-            const firstColorAvailable = productImages.length > 0 ? productImages[0].color : null;
-            if (firstColorAvailable) {
-                const firstImages = productImages.filter(img => img.color === firstColorAvailable);
-                initSwiper(firstImages);
-            } else {
-                initSwiper([]);
-            }
-        }
-
-        if (galleryTopSwiperEl) {
-            galleryTopSwiperEl.addEventListener('click', () => {
-                if (galleryTop && typeof galleryTop.realIndex !== 'undefined' && galleryTop.slides.length > 0) {
-                    openFullscreenModal(galleryTop.realIndex);
-                }
-            });
-        }
-        if (closeModalButton) {
-            closeModalButton.addEventListener('click', closeFullscreenModal);
-        }
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && fullscreenModalEl && fullscreenModalEl.style.display !== 'none') {
-                closeFullscreenModal();
+        messageItems.forEach((item, index) => {
+            if (contents[index]) {
+                item.innerHTML = contents[index].text;
             }
         });
-        if (fullscreenModalEl) {
-            fullscreenModalEl.addEventListener('click', (event) => {
-                if (event.target === fullscreenModalEl) {
-                    closeFullscreenModal();
-                }
-            });
+
+        function showMessage(index) {
+            messagesInner.style.top = `-${index * messageHeight}px`;
+
+            if (contents[index] && contents[index].icon) {
+                emojiElement.style.transform = 'scale(0.5)';
+                emojiElement.style.opacity = '0';
+
+                setTimeout(() => {
+                    const iconContent = contents[index].icon;
+
+                    while (emojiElement.firstChild) {
+                        emojiElement.removeChild(emojiElement.firstChild);
+                    }
+
+                    if (typeof iconContent === 'string' && (iconContent.endsWith('.png') || iconContent.endsWith('.jpg') || iconContent.endsWith('.jpeg') || iconContent.endsWith('.gif'))) {
+                        const imgElement = document.createElement('img');
+                        imgElement.src = iconContent;
+                        imgElement.alt = "Notification Icon"; // متن جایگزین برای دسترسی‌پذیری
+                        emojiElement.appendChild(imgElement);
+                    } else {
+                        // Fallback for emojis or other text-based icons
+                        const spanElement = document.createElement('span');
+                        spanElement.textContent = iconContent;
+                        emojiElement.appendChild(spanElement);
+                    }
+
+                    emojiElement.style.transform = 'scale(1)';
+                    emojiElement.style.opacity = '1';
+                }, 200);
+            }
         }
 
-        if (currentYearEl) {
-            currentYearEl.textContent = new Date().getFullYear();
+        function nextMessage() {
+            currentIndex = (currentIndex + 1) % contents.length;
+            showMessage(currentIndex);
         }
 
-        const reviewForm = document.getElementById('productReviewForm');
-        if (reviewForm) {
-            reviewForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                this.reset();
-            });
-        }
+        showMessage(currentIndex);
+
+        setInterval(nextMessage, intervalTime);
     });
-
 </script>
-<!--این اونیه که مال سینگل پروداکته -->
+
 
 
 </body>

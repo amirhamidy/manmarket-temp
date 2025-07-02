@@ -554,3 +554,926 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
     }
   }
 }
+
+
+
+.d-s-bs{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.card-d-s {
+  background: #fff;
+  max-width: 420px;
+  width: 90%;
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  text-align: center;
+  animation: fadeSlideIn 0.8s ease forwards;
+  position: relative;
+  overflow: visible;
+}
+
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.icon-fail-d-s {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 25px;
+  stroke: #ff4f29;
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icon-fail-d-s circle {
+  stroke-dasharray: 188.4;
+  stroke-dashoffset: 188.4;
+  animation: drawCircle 1s ease forwards;
+}
+
+
+.icon-fail-d-s line {
+  stroke-dasharray: 42.4;
+  stroke-dashoffset: 42.4;
+  animation: drawCross 0.6s ease forwards;
+  animation-delay: 1s;
+}
+
+
+@keyframes drawCircle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawCross {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.body-su {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #333;
+  direction: rtl;
+}
+
+.card-su {
+  background: #fff;
+  max-width: 420px;
+  width: 90%;
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  text-align: center;
+  animation: fadeSlideIn 0.8s ease forwards;
+  position: relative;
+  overflow: visible;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.icon-success-su {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 25px;
+  stroke: #3bf670;
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.icon-success-su circle {
+  stroke-dasharray: 188.4;
+  stroke-dashoffset: 188.4;
+  animation: drawCircle 1s ease forwards;
+}
+
+.icon-success-su path {
+  stroke-dasharray: 52;
+  stroke-dashoffset: 52;
+  animation: drawCheck 0.6s ease forwards;
+  animation-delay: 1s;
+}
+
+@keyframes drawCircle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+.color-su{
+  background-color: #3bf670;
+}
+
+
+
+ :root {
+   --forgetx-primary-color: #f96747;
+   --forgetx-primary-rgb: 249, 103, 71;
+   --forgetx-secondary-color: #ff7d5f;
+   --forgetx-dark-text: #333333;
+   --forgetx-light-text: #666666;
+   --forgetx-neutral-bg: #fdfdfd;
+   --forgetx-card-bg: #ffffff;
+   --forgetx-border-subtle: #eee;
+ }
+
+.forgetx-auth-card {
+  background: linear-gradient(145deg, var(--forgetx-card-bg) 0%, #ffffff 100%);
+  border-radius: 1.2rem;
+  box-shadow:
+          0 12px 25px rgba(0, 0, 0, 0.07),
+          0 4px 12px rgba(var(--forgetx-primary-rgb), 0.07);
+  padding: 2rem;
+  max-width: 380px;
+  width: 100%;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translateY(10px);
+  opacity: 0;
+  animation: forgetxFadeInTop 0.5s forwards ease-out;
+  border: 1px solid var(--forgetx-border-subtle);
+}
+
+@keyframes forgetxFadeInTop {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.forgetx-auth-card:hover {
+  box-shadow:
+          0 15px 30px rgba(0, 0, 0, 0.1),
+          0 6px 15px rgba(var(--forgetx-primary-rgb), 0.1);
+  transform: translateY(-3px);
+}
+
+.forgetx-auth-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.forgetx-auth-header h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--forgetx-dark-text);
+  margin-bottom: 0;
+}
+
+.forgetx-auth-header .forgetx-logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.forgetx-intro-text {
+  color: var(--forgetx-light-text);
+  font-size: 13px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--forgetx-dark-text);
+  margin-bottom: 0.4rem;
+  display: block;
+  font-size: 13px;
+}
+
+.form-control {
+  height: 2.8rem;
+  border-radius: 0.7rem;
+  border: 1px solid #e0e0e0;
+  padding: 0.6rem 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  font-size: 13px;
+  color: var(--forgetx-dark-text);
+  width: 100%;
+}
+
+.form-control::placeholder {
+  color: #c0c0c0;
+  font-size: 13px;
+}
+
+/* override Bootstrap's default focus styles for inputs within .forgetx-auth-card */
+.forgetx-auth-card .form-control:focus {
+  border-color: #e0e0e0; /* رنگ بوردر به رنگ پیش‌فرض اینپوت برمی‌گردد */
+  box-shadow: none;      /* سایه حذف می‌شود */
+  background-color: #ffffff; /* بک‌گراند به سفید خالص برمی‌گردد */
+}
+
+
+/* مدیریت مارجین پایین برای div ها */
+.mb-3 {
+  margin-bottom: 0.9rem !important;
+}
+
+.btn-primary {
+  background-color: var(--forgetx-primary-color);
+  border-color: var(--forgetx-primary-color);
+  height: 3.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 0.7rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 5px 12px rgba(var(--forgetx-primary-rgb), 0.3);
+  letter-spacing: 0.02em;
+}
+
+.btn-primary:hover {
+  background-color: var(--forgetx-secondary-color);
+  border-color: var(--forgetx-secondary-color);
+  transform: translateY(-1px);
+  box-shadow: 0 7px 15px rgba(var(--forgetx-primary-rgb), 0.4);
+}
+
+.form-text {
+  font-size: 13px;
+  color: var(--forgetx-light-text);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.text-link {
+  color: var(--forgetx-primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.text-link:hover {
+  color: var(--forgetx-secondary-color);
+  text-decoration: underline;
+}
+
+/* استایل‌های ریسپانسیو برای موبایل */
+@media (max-width: 576px) {
+  .forgetx-auth-card {
+    padding: 1.2rem;
+    border-radius: 1rem;
+  }
+  .forgetx-auth-header {
+    margin-bottom: 1rem;
+  }
+  .forgetx-auth-header h2 {
+    font-size: 16px;
+  }
+  .forgetx-auth-header .forgetx-logo {
+    width: 40px;
+    height: 40px;
+  }
+  .forgetx-intro-text {
+    font-size: 12px;
+    margin-bottom: 1rem;
+  }
+  .form-control {
+    height: 2.6rem;
+    font-size: 12px;
+  }
+  .form-label {
+    font-size: 12px;
+  }
+  .btn-primary {
+    height: 3rem;
+    font-size: 0.95rem;
+  }
+  .form-text.mt-3 {
+    margin-top: 0.8rem !important;
+  }
+}
+
+
+/* تعریف متغیرهای CSS برای رنگ‌ها */
+:root {
+  --logix-primary-color: #f96747; /* رنگ اصلی شما: نارنجی-قرمز جذاب */
+  --logix-primary-rgb: 249, 103, 71; /* معادل RGB */
+  --logix-secondary-color: #ff7d5f; /* یک سایه روشن‌تر و جذاب‌تر از رنگ اصلی برای هاور */
+  --logix-dark-text: #333333; /* رنگ متن تیره */
+  --logix-light-text: #666666; /* رنگ متن روشن‌تر برای توضیحات */
+  --logix-neutral-bg: #fdfdfd; /* بک‌گراند خنثی و بسیار روشن برای body */
+  --logix-card-bg: #ffffff; /* بک‌گراند سفید خالص برای کارت */
+  --logix-border-subtle: #eee; /* یک بردر بسیار ظریف */
+}
+
+.body-f {
+  background-color: var(--logix-neutral-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+  text-align: right;
+  overflow: hidden;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 13px; /* نوشته‌های عادی 13 پیکسل */
+}
+
+.logix-auth-card {
+  background: linear-gradient(145deg, var(--logix-card-bg) 0%, #ffffff 100%);
+  border-radius: 1.2rem;
+  box-shadow:
+          0 12px 25px rgba(0, 0, 0, 0.07),
+          0 4px 12px rgba(var(--logix-primary-rgb), 0.07);
+  padding: 2rem;
+  max-width: 380px;
+  width: 100%;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translateY(10px);
+  opacity: 0;
+  animation: logixFadeInTop 0.5s forwards ease-out;
+  border: 1px solid var(--logix-border-subtle);
+}
+
+@keyframes logixFadeInTop {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.logix-auth-card:hover {
+  box-shadow:
+          0 15px 30px rgba(0, 0, 0, 0.1),
+          0 6px 15px rgba(var(--logix-primary-rgb), 0.1);
+  transform: translateY(-3px);
+}
+
+.logix-auth-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.logix-auth-header h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--logix-dark-text);
+  margin-bottom: 0;
+}
+
+.logix-auth-header .logix-logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--logix-dark-text);
+  margin-bottom: 0.4rem;
+  display: block;
+  font-size: 13px;
+}
+
+/* Container برای فیلد رمز عبور و آیکون */
+.logix-password-input-group {
+  position: relative;
+  margin-bottom: 0.9rem;
+}
+
+.form-control {
+  height: 2.8rem;
+  border-radius: 0.7rem;
+  border: 1px solid #e0e0e0;
+  padding: 0.6rem 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  font-size: 13px;
+  color: var(--logix-dark-text);
+  width: 100%;
+}
+
+/* پدینگ اضافی برای فیلد رمز عبور برای جا دادن آیکون */
+.form-control.logix-password-field {
+  padding-left: 2.2rem;
+  padding-right: 0.9rem;
+}
+
+.form-control::placeholder {
+  color: #c0c0c0;
+  font-size: 13px;
+}
+
+/* override Bootstrap's default focus styles for inputs within .logix-auth-card */
+.logix-auth-card .form-control:focus {
+  border-color: #e0e0e0; /* رنگ بوردر به رنگ پیش‌فرض اینپوت برمی‌گردد */
+  box-shadow: none;      /* سایه حذف می‌شود */
+  background-color: #ffffff; /* بک‌گراند به سفید خالص برمی‌گردد */
+}
+
+
+/* آیکون چشم */
+.logix-toggle-password {
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--logix-light-text);
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: color 0.2s ease;
+}
+
+.logix-toggle-password:hover {
+  color: var(--logix-dark-text);
+}
+
+.logix-toggle-password svg {
+  width: 100%;
+  height: 100%;
+}
+.logix-toggle-password svg[fill="currentColor"] {
+  fill: currentColor;
+}
+.logix-toggle-password svg[stroke="currentColor"] {
+  stroke: currentColor;
+  fill: none;
+}
+
+
+/* مدیریت مارجین پایین برای div ها */
+.mb-3 {
+  margin-bottom: 0.9rem !important;
+}
+
+.mb-4 { /* برای فرم لاگین، فیلد رمز عبور آخرین فیلد هست، پس ممکنه mb-3 کافی باشه */
+  margin-bottom: 1.2rem !important;
+}
+
+.btn-primary {
+  background-color: var(--logix-primary-color);
+  border-color: var(--logix-primary-color);
+  height: 3.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 0.7rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 5px 12px rgba(var(--logix-primary-rgb), 0.3);
+  letter-spacing: 0.02em;
+}
+
+.btn-primary:hover {
+  background-color: var(--logix-secondary-color);
+  border-color: var(--logix-secondary-color);
+  transform: translateY(-1px);
+  box-shadow: 0 7px 15px rgba(var(--logix-primary-rgb), 0.4);
+}
+
+.btn-outline-secondary {
+  border-radius: 0.7rem;
+  font-size: 13px;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--logix-light-text);
+  border: 1px solid #e5e5e5;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.btn-outline-secondary:hover {
+  color: var(--logix-primary-color);
+  border-color: var(--logix-primary-color);
+  background-color: rgba(var(--logix-primary-rgb), 0.04);
+  transform: translateY(-1px);
+}
+
+.btn-outline-secondary svg {
+  width: 1.2em;
+  height: 1.2em;
+  fill: currentColor;
+  transition: fill 0.2s ease;
+}
+
+.logix-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.2rem 0;
+  color: #b0b0b0;
+  font-weight: 500;
+  font-size: 13px;
+}
+.logix-divider::before,
+.logix-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e8e8e8;
+}
+.logix-divider:not(:empty)::before {
+  margin-inline-end: 0.7em;
+}
+.logix-divider:not(:empty)::after {
+  margin-inline-start: 0.7em;
+}
+
+.form-text {
+  font-size: 13px;
+  color: var(--logix-light-text);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.text-link {
+  color: var(--logix-primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.text-link:hover {
+  color: var(--logix-secondary-color);
+  text-decoration: underline;
+}
+
+
+@media (max-width: 576px) {
+  .logix-auth-card {
+    padding: 1.2rem;
+    border-radius: 1rem;
+  }
+  .logix-auth-header {
+    margin-bottom: 1rem;
+  }
+  .logix-auth-header h2 {
+    font-size: 16px;
+  }
+  .logix-auth-header .logix-logo {
+    width: 40px;
+    height: 40px;
+  }
+  .form-control {
+    height: 2.6rem;
+    font-size: 12px;
+  }
+
+  .form-control.logix-password-field {
+    padding-left: 2rem;
+  }
+
+  .logix-toggle-password {
+    left: 0.6rem;
+    width: 14px;
+    height: 14px;
+  }
+  .form-label {
+    font-size: 12px;
+  }
+  .btn-primary {
+    height: 3rem;
+    font-size: 0.95rem;
+  }
+  .btn-outline-secondary {
+    height: 2.8rem;
+    font-size: 12px;
+  }
+  .logix-divider {
+    margin: 0.8rem 0;
+    font-size: 12px;
+  }
+  .form-text.mt-3 {
+    margin-top: 0.8rem !important;
+  }
+}
+ :root {
+   --sing-primary-color: #f96747;
+   --sing-primary-rgb: 249, 103, 71;
+   --sing-secondary-color: #ff7d5f;
+   --sing-dark-text: #333333;
+   --sing-light-text: #666666;
+   --sing-neutral-bg: #fdfdfd;
+   --sing-card-bg: #ffffff;
+   --sing-border-subtle: #eee;
+ }
+
+.sing-auth-card {
+  background: linear-gradient(145deg, var(--sing-card-bg) 0%, #ffffff 100%);
+  border-radius: 1.2rem;
+  box-shadow:
+          0 12px 25px rgba(0, 0, 0, 0.07),
+          0 4px 12px rgba(var(--sing-primary-rgb), 0.07);
+  padding: 2rem;
+  max-width: 380px;
+  width: 100%;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translateY(10px);
+  opacity: 0;
+  animation: singFadeInTop 0.5s forwards ease-out;
+  border: 1px solid var(--sing-border-subtle);
+}
+
+@keyframes singFadeInTop {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.sing-auth-card:hover {
+  box-shadow:
+          0 15px 30px rgba(0, 0, 0, 0.1),
+          0 6px 15px rgba(var(--sing-primary-rgb), 0.1);
+  transform: translateY(-3px);
+}
+
+.sing-auth-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sing-auth-header h2 {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--sing-dark-text);
+  margin-bottom: 0;
+}
+
+.sing-auth-header .sing-logo {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.form-label {
+  font-weight: 600;
+  color: var(--sing-dark-text);
+  margin-bottom: 0.4rem;
+  font-size: 13px;
+}
+
+.sing-password-field-container {
+  position: relative;
+}
+
+.sing-toggle-password {
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--sing-light-text);
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: color 0.2s ease;
+}
+
+.form-control {
+  height: 2.8rem;
+  border-radius: 0.7rem;
+  border: 1px solid #e0e0e0;
+  padding: 0.6rem 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  font-size: 13px;
+  color: var(--sing-dark-text);
+  width: 100%;
+  background-image: none !important;
+  padding-right: 0.9rem !important;
+}
+
+
+.form-control.sing-password-field {
+  padding-left: 2.2rem !important;
+}
+
+
+.form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+.form-control.is-invalid {
+  background-image: none !important;
+}
+
+
+.form-control::placeholder {
+  color: #c0c0c0;
+  font-size: 13px;
+}
+
+.sing-auth-card .form-control:focus {
+  border-color: #e0e0e0;
+  box-shadow: none;
+  background-color: #ffffff;
+}
+
+.sing-auth-card .form-control.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+}
+
+
+.sing-toggle-password:hover {
+  color: var(--sing-dark-text);
+}
+
+.sing-toggle-password svg {
+  width: 100%;
+  height: 100%;
+}
+.sing-toggle-password svg[fill="currentColor"] {
+  fill: currentColor;
+}
+.sing-toggle-password svg[stroke="currentColor"] {
+  stroke: currentColor;
+  fill: none;
+}
+
+.invalid-feedback {
+  font-size: 0.8em;
+  color: #dc3545;
+  margin-top: 0.25rem;
+  text-align: right;
+  padding-right: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.9rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 1.2rem !important;
+}
+
+.btn-primary {
+  background-color: var(--sing-primary-color);
+  border-color: var(--sing-primary-color);
+  height: 3.2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 0.7rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 5px 12px rgba(var(--sing-primary-rgb), 0.3);
+  letter-spacing: 0.02em;
+}
+
+.btn-primary:hover {
+  background-color: var(--sing-secondary-color);
+  border-color: var(--sing-secondary-color);
+  transform: translateY(-1px);
+  box-shadow: 0 7px 15px rgba(var(--sing-primary-rgb), 0.4);
+}
+
+.btn-outline-secondary {
+  border-radius: 0.7rem;
+  font-size: 13px;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--sing-light-text);
+  border: 1px solid #e5e5e5;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.btn-outline-secondary:hover {
+  color: var(--sing-primary-color);
+  border-color: var(--sing-primary-color);
+  background-color: rgba(var(--sing-primary-rgb), 0.04);
+  transform: translateY(-1px);
+}
+
+.btn-outline-secondary svg {
+  width: 1.2em;
+  height: 1.2em;
+  fill: currentColor;
+  transition: fill 0.2s ease;
+}
+
+.sing-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.2rem 0;
+  color: #b0b0b0;
+  font-weight: 500;
+  font-size: 13px;
+}
+.sing-divider::before,
+.sing-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #e8e8e8;
+}
+.sing-divider:not(:empty)::before {
+  margin-inline-end: 0.7em;
+}
+.sing-divider:not(:empty)::after {
+  margin-inline-start: 0.7em;
+}
+
+.form-text {
+  font-size: 13px;
+  color: var(--sing-light-text);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+@media (max-width: 576px) {
+  .sing-auth-card {
+    padding: 1.2rem;
+    border-radius: 1rem;
+  }
+  .sing-auth-header {
+    margin-bottom: 1rem;
+  }
+  .sing-auth-header h2 {
+    font-size: 16px;
+  }
+  .sing-auth-header .sing-logo {
+    width: 40px;
+    height: 40px;
+  }
+  .form-control {
+    height: 2.6rem;
+    font-size: 12px;
+  }
+  .form-control.sing-password-field {
+    padding-left: 2rem !important;
+    padding-right: 0.9rem !important;
+  }
+  .sing-toggle-password {
+    left: 0.6rem;
+    width: 14px;
+    height: 14px;
+  }
+  .form-label {
+    font-size: 12px;
+  }
+  .btn-primary {
+    height: 3rem;
+    font-size: 0.95rem;
+  }
+  .btn-outline-secondary {
+    height: 2.8rem;
+    font-size: 12px;
+  }
+  .sing-divider {
+    margin: 0.8rem 0;
+    font-size: 12px;
+  }
+  .form-text.mt-3 {
+    margin-top: 0.8rem !important;
+  }
+}

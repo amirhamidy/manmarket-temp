@@ -1,0 +1,98 @@
+@font-face {
+  font-family: peyda;
+  src: url("../Peyda.font/Peyda/02-Farsi_Namerals/WebFonts/fonts/woff2/PeydaWebFaNum-Medium.woff2") format("woff2");
+  src: url("../Peyda.font/Peyda/02-Farsi_Namerals/WebFonts/fonts/woff/PeydaWebFaNum-Medium.woff") format("woff");
+  src: url("../Peyda.font/Peyda/02-Farsi_Namerals/TTF/PeydaFaNum-Medium.ttf") format("truetype");
+  src: url("../Peyda.font/Peyda/02-Farsi_Namerals/TTF/PeydaFaNum-Medium.ttf") format("truetype");
+  src: url("../Peyda.font/Peyda/02-Farsi_Namerals/TTF/PeydaFaNum-Medium.ttf") format("truetype");
+  src: url("../Peyda.font/Peyda/02-Farsi_Namerals/TTF/PeydaFaNum-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+body *{
+  font-family: peyda, sans-serif ;
+  font-weight: normal !important;
+}
+body{
+  overflow-x: hidden !important;
+}
+
+.theme-color-x{
+  color: #ff7c7c;
+}
+.theme-bg-x-btn{
+  background-color: #eaeaea;
+}
+.sub-and-ns{
+  background-color: #ff7c7c;;
+  color: white;
+  transition: 0.3s all ease;
+}
+.sub-and-ns:hover{
+  background-color: #ff7c7c;
+  color: white;
+}
+.theme-bg-x{
+  background-color: #ff7c7c;
+}
+.w-center{
+  text-align: -webkit-center !important;
+}
+.profile-box img{
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+}
+.admin-name{
+  color: gray;
+}
+aside{
+  border: 1px ridge #eeeeee;
+  border-radius: 12px;
+}
+
+.right-text{
+  text-align: -webkit-right;
+}
+.up-text{
+  border: 1px ridge #eeeeee;
+  border-radius: 12px;
+}
+.fs-14{
+  font-size: 14px !important;
+}
+
+.aside-menu{
+  border-top: 1px ridge #eeeeee;
+}
+
+.a-text-in-menu{
+  border-bottom: 1px ridge #eeeeee;
+
+
+}
+.a-text-in-menu a{
+  color: gray;
+  transition: 0.3s all ease;
+}
+.a-text-in-menu a:hover{
+  color: black;
+}
+
+a{
+  text-decoration: none;
+
+}
+a:hover{
+  text-decoration: none;
+}
+.active-pr-ad{
+  background-color: #ff7c7c;
+  color: white;
+  border: none !important;
+  border-radius: 5px;
+}
+.active-pr-ad a{
+  color: white;
+}
+

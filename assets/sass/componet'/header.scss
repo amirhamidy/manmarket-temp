@@ -47,18 +47,58 @@ header{
     border-radius: 50%;
   }
 }
-
-.mr-cs{
-  margin-right: 120px !important;
-}
-.mr-cs-2{
-  margin-right: 20px !important;
-}
-@media only screen and (max-width: 1000px){
-  .mr-cs-2{
-    margin-right: 0 !important;
-  }
-}
+//
+//.mr-cs{
+//  margin-right: 145px !important;
+//}
+//.mr-cs-2{
+//  margin-right: 20px !important;
+//}
+//@media only screen and (max-width: 1000px){
+//  .mr-cs-2{
+//    margin-right: 0 !important;
+//  }
+//}
+//@media only screen and (min-width: 1900px){
+//  .mr-cs{
+//    margin-right: 170px !important;
+//  }
+//  header{
+//    margin-top: 30px !important;
+//  }
+//}
+//@media only screen and (min-width: 2100px){
+//  .mr-cs{
+//    margin-right: 220px !important;
+//  }
+//  header{
+//    margin-top: 30px !important;
+//  }
+//}
+//@media only screen and (min-width: 2300px){
+//  .mr-cs{
+//    margin-right: 300px !important;
+//  }
+//  header{
+//    margin-top: 30px !important;
+//  }
+//}
+//@media only screen and (min-width: 2500px){
+//  .mr-cs{
+//    margin-right: 500px !important;
+//  }
+//  header{
+//    margin-top: 30px !important;
+//  }
+//}
+//@media only screen and (min-width: 2900px){
+//  .mr-cs{
+//    margin-right: 650px !important;
+//  }
+//  header{
+//    margin-top: 30px !important;
+//  }
+//}
 
 .cs-w{
   width: 80px;

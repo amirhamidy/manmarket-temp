@@ -1,132 +1,20 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>من مارکت</title>
+    <title>من مارکت - بلاگ</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        :root {
-            --primary-accent: #ff4f29;
-            --text-primary: #2c3a47;
-            --text-secondary: #57606f;
-            --bg-body: #f8f9fa;
-            --bg-content: #ffffff;
-            --border-color: #e9ecef;
-            --border-radius-md: 12px;
-            --spacing-unit: 8px;
-            --transition-ease: all 0.3s ease-in-out;
-        }
+    <link rel="stylesheet" href="assets/css/blogs.css">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: var(--font-family-base); background-color: var(--bg-body); color: var(--text-primary); line-height: 1.7; direction: rtl; }
-        a { text-decoration: none; color: inherit; }
-        .blog-l-container { max-width: 1280px; margin: 0 auto; padding: calc(var(--spacing-unit) * 5) calc(var(--spacing-unit) * 2); }
 
-        /* --- ساختار اصلی دسکتاپ --- */
-        .blog-l-main-layout { display: grid; grid-template-columns: 1fr 340px; gap: calc(var(--spacing-unit) * 5); align-items: flex-start; }
-        .blog-l-page-title { font-size: 2.5em; font-weight: 700; margin-bottom: calc(var(--spacing-unit) * 4); border-bottom: 2px solid var(--border-color); padding-bottom: calc(var(--spacing-unit) * 2); }
-        .blog-l-post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: calc(var(--spacing-unit) * 4); }
-        .blog-l-post-card { background-color: var(--bg-content); border-radius: var(--border-radius-md); box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s ease, box-shadow 0.3s ease; overflow: hidden; display: flex; flex-direction: column; }
-        .blog-l-post-card:hover { transform: translateY(-8px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
-
-        /* --- استایل سفارشی شما برای تصاویر --- */
-        .blog-l-card-image {
-            position: relative;
-            height: 200px;
-            overflow: hidden;
-            background-color: #f0f0f0;
-            text-align: center; /* نسخه استاندارد -webkit-center */
-        }
-        .blog-l-card-image img {
-            display: inline-block; /* برای کار کردن text-align */
-            width: 80%;
-            height: 100%;
-            max-width: 80%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-        .blog-l-post-card:hover .blog-l-card-image img { transform: scale(1.05); }
-
-        .blog-l-card-category { position: absolute; top: var(--spacing-unit) * 2; right:0; background-color: var(--primary-accent); color: white; padding: calc(var(--spacing-unit) / 2) calc(var(--spacing-unit) * 1.5); border-radius: 10px; font-size: 0.75em; font-weight: bold; white-space: nowrap }
-        .blog-l-card-content { padding: calc(var(--spacing-unit) * 3); flex-grow: 1; display: flex; flex-direction: column; }
-        .blog-l-card-title { font-size: 1.25em; font-weight: 700; margin-bottom: var(--spacing-unit); line-height: 1.4; }
-        .blog-l-card-meta { font-size: 0.8em; color: var(--text-secondary); }
-
-        /* سایدبار دسکتاپ */
-        .blog-l-sidebar { position: sticky; top: 30px; }
-        .blog-l-widget { background-color: var(--bg-content); border-radius: var(--border-radius-md); padding: calc(var(--spacing-unit) * 3); margin-bottom: calc(var(--spacing-unit) * 4); box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
-        .blog-l-widget-title { font-size: 1.3em; font-weight: 700; margin-bottom: calc(var(--spacing-unit) * 3); border-bottom: 2px solid var(--primary-accent); padding-bottom: var(--spacing-unit); }
-        .blog-l-search-box { display: flex; }
-        .blog-l-search-box input { flex-grow: 1; border: 1px solid var(--border-color); padding: 12px; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; border-left: 0; outline: none; }
-        .blog-l-search-box button { background-color: var(--primary-accent); color: white; border: 0; padding: 0 16px; border-radius: var(--border-radius-md) 0 0 var(--border-radius-md); cursor: pointer; }
-        .blog-l-category-list { display: flex; flex-direction: column; gap: calc(var(--spacing-unit) * 1.5); padding: 0; list-style: none; }
-        .blog-l-category-link { display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-unit); border-radius: var(--border-radius-md); transition: var(--transition-ease); }
-        .blog-l-category-link:hover { background-color: var(--bg-body); }
-        .blog-l-category-count { font-size: 0.8em; background-color: var(--border-color); padding: 2px 8px; border-radius: 99px; }
-        .blog-l-tags-cloud { display: flex; flex-wrap: wrap; gap: var(--spacing-unit); }
-        .blog-l-tags-cloud a { background-color: var(--bg-body); padding: 6px 12px; border-radius: 99px; font-size: 0.85em; transition: var(--transition-ease); }
-        .blog-l-tags-cloud a:hover { background-color: var(--primary-accent); color: white; }
-        .blog-l-pagination { display: flex; justify-content: center; align-items: center; margin-top: calc(var(--spacing-unit) * 8); gap: var(--spacing-unit); }
-        .blog-l-pagination a, .blog-l-pagination span { display: inline-flex; justify-content: center; align-items: center; padding: 0; border: 1px solid var(--border-color); background-color: white; border-radius: var(--border-radius-md); min-width: 44px; height: 44px; text-align: center; }
-        .blog-l-pagination a.active { background-color: var(--primary-accent); color: white; border-color: var(--primary-accent); }
-
-        /* استایل‌های اختصاصی برای حالت موبایل */
-        .mobile-filter-bar, .filters-bottom-sheet, .filters-bottom-sheet-overlay { display: none; }
-
-        @media (max-width: 992px) {
-            .blog-l-main-layout { grid-template-columns: 1fr; }
-            .blog-l-sidebar { display: none; }
-            .blog-l-container { padding-top: calc(var(--spacing-unit) * 2 + 60px); }
-
-            .mobile-filter-bar {
-                display: flex; align-items: center; position: fixed; top: 0; left: 0; right: 0;
-                height: 60px; background-color: var(--bg-content); box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-                padding: 0 calc(var(--spacing-unit) * 2); z-index: 999;
-            }
-            .btn-open-filters {
-                background-color: transparent; border: 1px solid var(--border-color); border-radius: 99px; padding: 8px 16px;
-                font-family: inherit; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;
-            }
-            .btn-open-filters svg { width: 18px; height: 18px; fill: var(--text-secondary); }
-
-            .filters-bottom-sheet {
-                display: flex; flex-direction: column; position: fixed; bottom: 0; left: 0; right: 0;
-                max-height: 85vh; background-color: var(--bg-body);
-                border-top-left-radius: var(--border-radius-md); border-top-right-radius: var(--border-radius-md);
-                box-shadow: 0 -5px 25px rgba(0,0,0,0.15); transform: translateY(105%);
-                transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1001;
-            }
-            .filters-bottom-sheet.show { transform: translateY(0); }
-
-            .filters-bottom-sheet-header { display: flex; justify-content: space-between; align-items: center; padding: 16px; border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
-            .filters-bottom-sheet-header .title { font-weight: 700; font-size: 1.1rem; }
-            .filters-bottom-sheet-header .btn-close-sheet { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--text-secondary); }
-
-            .filters-bottom-sheet-content { overflow-y: auto; padding: var(--spacing-unit); }
-            .filters-bottom-sheet-content .blog-l-widget { box-shadow: none; border: none; background: none; }
-
-            .filters-bottom-sheet-overlay {
-                display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                background-color: rgba(0,0,0,0.4); opacity: 0; visibility: hidden;
-                transition: opacity 0.35s ease, visibility 0.35s ease; z-index: 1000;
-            }
-            .filters-bottom-sheet-overlay.show { opacity: 1; visibility: visible; }
-        }
-    </style>
 
 </head>
 <body>
-<!--Shadow Overly start-->
-    <div class="overlay" data-overlay></div>
-<!--Shadow Overly start-->
-
-
-
-<div id="cart-dashboard" class="hidden-dashboard">
+<div class="app-overlay" data-overlay></div>
+<div id="cart-dashboard" class="app-dashboard">
     <button id="close-cart">
         <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -150,808 +38,184 @@
     <div id="total-price">جمع کل: 0 تومان</div>
 </div>
 
-<!--Header Start-->
-<header>
-    <nav class="desktop-navigation-menu d-flex justify-content-evenly mt-3 px-4 text-center">
+<div class="b-cs-blog-mobile-filter-fab">
+    <button class="b-cs-blog-btn-open-filters-fab">
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="1em"
+                height="1em"
+        >
+            <g fill="none" stroke="currentColor" stroke-linecap="round">
+                <path d="M5 12V4m14 16v-3M5 20v-4m14-3V4m-7 3V4m0 16v-9"></path>
+                <circle cx="5" cy="14" r="2"></circle>
+                <circle cx="12" cy="9" r="2"></circle>
+                <circle cx="19" cy="15" r="2"></circle>
+            </g>
+        </svg>
+    </button>
+</div>
 
-        <!--icons in header -- :: start-->
-        <div class="d-flex justify-content-between mt-2 icons-in-header">
-            <div class="mx-2 show-search-modal btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="جست و جو ">
-                <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 32 32"
-                        width="1em"
-                        height="1em"
-                >
-                    <path
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
-                    ></path>
-                </svg>
-            </div>
-            <div class="mx-2 btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="حساب کاربری">
-                <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 16 16"
-                        width="1em"
-                        height="1em"
-                >
-                    <path
-                            fill="currentColor"
-                            d="M8 .5A7.77 7.77 0 0 0 0 8a7.77 7.77 0 0 0 8 7.5A7.77 7.77 0 0 0 16 8A7.77 7.77 0 0 0 8 .5M5.16 13.67A2.84 2.84 0 0 1 8 11.51a2.82 2.82 0 0 1 2.84 2.16a7.24 7.24 0 0 1-5.68 0m6.84-.61a4.09 4.09 0 0 0-4-2.77a4.09 4.09 0 0 0-3.95 2.78A6.14 6.14 0 0 1 1.25 8A6.52 6.52 0 0 1 8 1.75A6.52 6.52 0 0 1 14.75 8A6.11 6.11 0 0 1 12 13.06"
-                    ></path>
-                    <path
-                            fill="currentColor"
-                            d="M8.05 4.3A2.33 2.33 0 0 0 5.8 6.7a2.33 2.33 0 0 0 2.25 2.4a2.33 2.33 0 0 0 2.25-2.4a2.33 2.33 0 0 0-2.25-2.4m0 3.55a1.08 1.08 0 0 1-1-1.15a1.08 1.08 0 0 1 1-1.15a1.08 1.08 0 0 1 1 1.15a1.08 1.08 0 0 1-1 1.15"
-                    ></path>
-                </svg>
-            </div>
-            <div class="mx-2 btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="مورد علاقه ها" >
-                <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 14 14"
-                            width="1em"
-                            height="1em"
-                    >
-                        <path
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="m7 12.45l-5.52-5c-3-3 1.41-8.76 5.52-4.1c4.11-4.66 8.5 1.12 5.52 4.1Z"
-                        ></path>
-                    </svg>
-                <!--like and shop number start-->
-                <span class="number-top-icon">
-                    0
-                </span>
-                <!--like and shop number end---->
-            </div>
-            <div class="mx-2 btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="سبد خرید">
-                <svg class="shop-icon"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 14 14"
-                        width="1em"
-                        height="1em"
-                >
-                    <path
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M12.182 7.5h-8.18l-1-5h10a.5.5 0 0 1 .49.59l-.82 4a.49.49 0 0 1-.49.41m-9.18-5L2.582.9a.5.5 0 0 0-.49-.4H.502m3.5 7l.42 2.1a.5.5 0 0 0 .49.4h6.09m-.5 3.5a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1m-5 0a.5.5 0 1 1 0-1a.5.5 0 0 1 0 1"
-                    ></path>
-                </svg>
-                <!--like and shop number start-->
-                <span class="number-top-icon number-top-icon-shop">
-                    0
-                </span>
-                <!--like and shop number end---->
-            </div>
-        </div>
-        <!--icons in header -- :: end---->
-
-        <!--menu -- : start-->
-        <div class="container">
-            <ul class="desktop-menu-category-list">
-                <li class="menu-category">
-                    <a href="#" class="menu-title">تینیجر من</a>
-                </li>
-                <li class="menu-category">
-                    <a href="#" class="menu-title">فروشگاه</a>
-
-                    <div class="dropdown-panel">
-                        <ul class="dropdown-panel-list">
-                            <li class="menu-title"><a href="#">الکترونیکی</a></li>
-                            <li class="panel-list-item"><a href="#">دستاپ</a></li>
-                            <li class="panel-list-item"><a href="#">لب تاب</a></li>
-                            <li class="panel-list-item"><a href="#">دوربین</a></li>
-                            <li class="panel-list-item"><a href="#">هدفون</a></li>
-                            <li class="panel-list-item">
-                            </li>
-                        </ul>
-
-                        <ul class="dropdown-panel-list">
-                            <li class="menu-title"><a href="#">صوتی</a></li>
-                            <li class="panel-list-item"><a href="#">باند</a></li>
-                            <li class="panel-list-item"><a href="#">هندزفری</a></li>
-                            <li class="panel-list-item"><a href="#">ایرپاد</a></li>
-                            <li class="panel-list-item"><a href="#">هدفون</a></li>
-                            <li class="panel-list-item">
-                            </li>
-                        </ul>
-
-                        <ul class="dropdown-panel-list">
-                            <li class="menu-title"><a href="#">ساعت</a></li>
-                            <li class="panel-list-item"><a href="#">ساعت هوشمند</a></li>
-                            <li class="panel-list-item"><a href="#">اپل واچ</a></li>
-                            <li class="panel-list-item"><a href="#">ساعت دیجیتال</a></li>
-                            <li class="panel-list-item"><a href="#">ساعت دیواری</a></li>
-                            <li class="panel-list-item">
-                            </li>
-                        </ul>
-
-                        <ul class="dropdown-panel-list">
-                            <li class="menu-title"><a href="#">مانیتور</a></li>
-                            <li class="panel-list-item"><a href="#">مانیتور گیمینگ</a></li>
-                            <li class="panel-list-item"><a href="#">اسمارت تی وی</a></li>
-                            <li class="panel-list-item"><a href="#">مانیتور لامپی</a></li>
-                            <li class="panel-list-item"><a href="#">تلویزیون</a></li>
-                            <li class="panel-list-item">
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="menu-category">
-                    <a href="index.html" class="menu-title">خانه</a>
-                </li>
-                <li class="menu-category">
-                    <a href="#" class="menu-title">تماس  با  ما</a>
-                </li>
-                <li class="menu-category">
-                    <a href="#" class="menu-title">درباره  ما</a>
-                </li>
-                <li class="menu-category">
-                    <a href="#" class="menu-title">بلاگ</a>
-                </li>
-                <li class="menu-category">
-                    <a href="#" class="menu-title">اعتبار من</a>
-                </li>
-            </ul>
-        </div>
-        <!--menu -- : end---->
-
-        <!--logo in header -- : start-->
-        <div class="text-center"><img class="w-75" alt="من مارکت" src="assets/img/logox.webp"></div>
-        <!--logo in header -- : end---->
-
-    </nav>
-
-    <div class="mobile-bottom-navigation">
-        <button class="action-btn" data-mobile-menu-open-btn>
-            <ion-icon name="menu-outline"></ion-icon>
-        </button>
-
-        <button class="action-btn">
-            <div class="show-search-modal btn p-0 m-0" data-bs-toggle="tooltip" data-bs-placement="top" title="جست و جو ">
-                <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 32 32"
-                        width="1.3em"
-                        height="1.3em"
-                >
-                    <path
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
-                    ></path>
-                </svg>
-            </div>
-        </button>
-        <button class="action-btn">
-            <ion-icon name="home-outline"></ion-icon>
-        </button>
-
-        <button class="action-btn">
-            <ion-icon name="heart-outline"></ion-icon>
-            <span class="count">0</span>
-        </button>
-
-        <button class="action-btn" data-mobile-menu-open-btn>
-            <ion-icon name="grid-outline"></ion-icon>
+<div class="b-cs-blog-mobile-dashboard-menu">
+    <div class="b-cs-blog-dashboard-header">
+        <h3 class="title">فیلترها</h3>
+        <button class="b-cs-blog-btn-close-menu">
+            &times;
         </button>
     </div>
-
-    <nav class="mobile-navigation-menu has-scrollbar " data-mobile-menu>
-        <div class="menu-top">
-            <h2 class="menu-title">منو</h2>
-
-            <button class="menu-close-btn" data-mobile-menu-close-btn>
-                <ion-icon name="close-outline"></ion-icon>
-            </button>
-        </div>
-
-        <ul class="mobile-menu-category-list">
-            <li class="menu-category"><a href="#" class="menu-title">خانه</a></li>
-
-            <li class="menu-category">
-                <button class="accordion-menu" data-accordion-btn>
-                    <p class="menu-title">برای آقایان</p>
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
-                <ul class="submenu-category-list " data-accordion>
-                    <li class="submenu-category"><a href="#" class="submenu-title">تی شرت</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">کلاه</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">کفش</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">لوازم ورزشی</a></li>
-                </ul>
-            </li>
-
-            <li class="menu-category">
-                <button class="accordion-menu" data-accordion-btn>
-                    <p class="menu-title">برای خانوم ها</p>
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
-                <ul class="submenu-category-list" data-accordion>
-                    <li class="submenu-category"><a href="#" class="submenu-title"> لباس </a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">کلاه</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">کفش</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">لوازم ورزشی</a></li>
-                </ul>
-            </li>
-
-            <li class="menu-category">
-                <button class="accordion-menu" data-accordion-btn>
-                    <p class="menu-title">اسپرت</p>
-
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
-                <ul class="submenu-category-list" data-accordion>
-                    <li class="submenu-category"><a href="#" class="submenu-title">کفش</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">لگ</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">فوتبالی</a></li>
-                    <li class="submenu-category"><a href="#" class="submenu-title">توپ</a></li>
-                </ul>
-            </li>
-
-
-            <li class="menu-category"><a href="#" class="menu-title">وبلاگ</a></li>
-
-            <li class="menu-category"><a href="#" class="menu-title">تخفیف های بزرگ</a></li>
-        </ul>
-
-        <div class="menu-bottom">
-            <ul class="menu-social-container">
-                <li><a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
-                <li><a href="#" class="social-link"><ion-icon name="logo-twitter"></ion-icon></a></li>
-                <li><a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
-                <li><a href="#" class="social-link"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+    <div class="b-cs-blog-dashboard-content">
+        <div class="b-cs-blog-widget">
+            <h3 class="b-cs-blog-widget-title">دسته‌بندی‌ها</h3>
+            <ul class="b-cs-blog-category-list">
+                <li><a href="#" class="b-cs-blog-category-link"><span>الکترونیکی</span> <span class="b-cs-blog-category-count">12</span></a></li>
+                <li><a href="#" class="b-cs-blog-category-link"><span>صوتی</span> <span class="b-cs-blog-category-count">8</span></a></li>
+                <li><a href="#" class="b-cs-blog-category-link"><span>ساعت</span> <span class="b-cs-blog-category-count">15</span></a></li>
+                <li><a href="#" class="b-cs-blog-category-link"><span>مانیتور</span> <span class="b-cs-blog-category-count">5</span></a></li>
             </ul>
         </div>
-    </nav>
-</header>
-<!--Header End---->
 
-<div style="display: none !important;" class="sidebar has-scrollbar ">
-    <div class="sidebar-category">
-        <div class="sidebar-top">
-            <h2 class="sidebar-title">دسته بندی</h2>
-
-            <button class="sidebar-close-btn" data-mobile-menu-close-btn>
-                <ion-icon name="close-outline"></ion-icon>
-            </button>
-        </div>
-
-        <ul class="sidebar-menu-category-list">
-            <li class="sidebar-menu-category">
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-                    <div class="menu-title-flex">
-                        <p>لباس </p>
-                    </div>
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
-                <ul class="sidebar-submenu-category-list" data-accordion>
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">تی شرت</p>
-                            <data value="300" class="stock" title="Available Stock">300</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">اجناس برند</p>
-                            <data value="60" class="stock" title="Available Stock">60</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">ژاکت</p>
-                            <data value="50" class="stock" title="Available Stock">50</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">زنانه</p>
-                            <data value="87" class="stock" title="Available Stock">87</data>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-menu-category">
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-                    <div class="menu-title-flex">
-                        <p class="menu-title">دیجیتال</p>
-                    </div>
-
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
-                <ul class="sidebar-submenu-category-list" data-accordion>
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">لب تاب</p>
-                            <data value="45" class="stock" title="Available Stock">45</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">هندزفری</p>
-                            <data value="75" class="stock" title="Available Stock">75</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">هدفون</p>
-                            <data value="35" class="stock" title="Available Stock">35</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">اپل واچ</p>
-                            <data value="26" class="stock" title="Available Stock">26</data>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="sidebar-menu-category">
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-                    <div class="menu-title-flex">
-                        <p class="menu-title">اسباب بازی</p>
-                    </div>
-
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
-                <ul class="sidebar-submenu-category-list" data-accordion>
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">پسرانه</p>
-                            <data value="46" class="stock" title="Available Stock">46</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">دخترانه</p>
-                            <data value="73" class="stock" title="Available Stock">73</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">زیر 10 سال</p>
-                            <data value="61" class="stock" title="Available Stock">61</data>
-                        </a>
-                    </li>
-
-                </ul>
-            </li>
-
-            <li class="sidebar-menu-category">
-                <button class="sidebar-accordion-menu" data-accordion-btn>
-                    <div class="menu-title-flex">
-                        <p class="menu-title">لوازم جانبی</p>
-                    </div>
-
-                    <div>
-                        <ion-icon name="add-outline" class="add-icon"></ion-icon>
-                        <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
-                    </div>
-                </button>
-
-                <ul class="sidebar-submenu-category-list" data-accordion>
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">موبایل</p>
-                            <data value="12" class="stock" title="Available Stock">12 pcs</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">لب تاب</p>
-                            <data value="60" class="stock" title="Available Stock">60 pcs</data>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-submenu-category">
-                        <a href="#" class="sidebar-submenu-title">
-                            <p class="product-name">کیف</p>
-                            <data value="50" class="stock" title="Available Stock">50 pcs</data>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-
-    <div class="product-showcase">
-        <h3 class="showcase-heading">بهترین های این هفته</h3>
-
-        <div class="showcase-wrapper s-img">
-            <div class="showcase-container">
-                <div class="showcase">
-                    <a href="#" class="showcase-img-box">
-                        <img src="assets/img/K.F.1.png" alt="baby fabric shoes" class="showcase-img" width="75" height="75">
-                    </a>
-
-                    <div class="showcase-content">
-                        <a href="#"><h4 class="showcase-title">کفش دخترانه</h4></a>
-
-                        <div class="showcase-rating">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
-
-                        <div class="price-box">
-                            <p class="price">350 هزار تومان</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase">
-                    <a href="#" class="showcase-img-box">
-                        <img src="assets/img/T.S.1.png" alt="men's hoodies t-shirt" class="showcase-img" width="75" height="75">
-                    </a>
-
-                    <div class="showcase-content">
-                        <a href="#"><h4 class="showcase-title">تیشرت مردانه</h4></a>
-
-                        <div class="showcase-rating">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
-
-                        <div class="price-box">
-                            <p class="price">300 هزار تومان </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase">
-                    <a href="#" class="showcase-img-box">
-                        <img src="assets/img/GT.S.1.png" alt="girls t-shirt" class="showcase-img" width="75" height="75">
-                    </a>
-
-                    <div class="showcase-content">
-                        <a href="#"><h4 class="showcase-title">تیشرت دخترانه</h4></a>
-
-                        <div class="showcase-rating">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
-
-                        <div class="price-box">
-                            <p class="price">300 هزار تومان </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="showcase">
-                    <a href="#" class="showcase-img-box">
-                        <img src="assets/img/H.T.1.webp" alt="woolen hat for men" class="showcase-img" width="75" height="75">
-                    </a>
-
-                    <div class="showcase-content">
-                        <a href="#"><h4 class="showcase-title">کلاه اسپرت</h4></a>
-
-                        <div class="showcase-rating">
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                            <ion-icon name="star"></ion-icon>
-                        </div>
-
-                        <div class="price-box">
-                            <p class="price">120 هزار تومان</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="b-cs-blog-widget">
+            <h3 class="b-cs-blog-widget-title">برچسب‌ها</h3>
+            <div class="b-cs-blog-tags-cloud">
+                <a href="#">لپ تاپ</a>
+                <a href="#">هدفون</a>
+                <a href="#">اسپیکر</a>
+                <a href="#">گیمینگ</a>
+                <a href="#">هوشمند</a>
+                <a href="#">دوربین</a>
             </div>
         </div>
+
     </div>
 </div>
 
+<div class="b-cs-blog-mobile-menu-overlay"></div>
 
-    <div class="mobile-filter-bar">
-        <button class="btn-open-filters" id="open-filters-btn">
-            <svg viewBox="0 0 24 24"><path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"></path></svg>
-            <span>فیلترها و دسته‌بندی‌ها</span>
-        </button>
-    </div>
+<main class="b-cs-blog-container">
+    <h1 class="b-cs-blog-page-title">بلاگ من مارکت</h1>
 
-    <div class="blog-l-container">
-        <div class="blog-l-main-layout">
-            <main class="blog-l-content-column">
-                <h1 class="blog-l-page-title">آخرین مقالات</h1>
-                <div class="blog-l-post-grid">
-                    <article class="blog-l-post-card"><a href="#" class="blog-l-card-image"><img src="https://placehold.co/400x250/ff7c7c/ffffff?text=." alt=""><span class="blog-l-card-category">سلامت</span></a><div class="blog-l-card-content"><h3 class="blog-l-card-title">آیا خواب کافی دارید؟</h3><p class="blog-l-card-meta">۲۰ شهریور</p></div></article>
-                    <article class="blog-l-post-card"><a href="#" class="blog-l-card-image"><img src="https://placehold.co/400x250/4ECDC4/ffffff?text=." alt=""><span class="blog-l-card-category">سبک زندگی</span></a><div class="blog-l-card-content"><h3 class="blog-l-card-title">۱۰ نکته برای افزایش تمرکز</h3><p class="blog-l-card-meta">۱۸ شهریور</p></div></article>
-                    <article class="blog-l-post-card"><a href="#" class="blog-l-card-image"><img src="https://placehold.co/400x250/54a0ff/ffffff?text=." alt=""><span class="blog-l-card-category">تکنولوژی</span></a><div class="blog-l-card-content"><h3 class="blog-l-card-title">نقد گجت پوشیدنی سال</h3><p class="blog-l-card-meta">۱۷ شهریور</p></div></article>
-                    <article class="blog-l-post-card"><a href="#" class="blog-l-card-image"><img src="https://placehold.co/400x250/feca57/ffffff?text=." alt=""><span class="blog-l-card-category">بررسی محصول</span></a><div class="blog-l-card-content"><h3 class="blog-l-card-title">مقایسه دو هدفون بی‌سیم</h3><p class="blog-l-card-meta">۱۶ شهریور</p></div></article>
-                </div>
-                <nav class="blog-l-pagination"><a href="#" class="active">۱</a><a href="#">۲</a><a href="#">۳</a></nav>
-            </main>
-            <aside class="blog-l-sidebar"><div id="desktop-sidebar-content"></div></aside>
-        </div>
-    </div>
+    <div class="b-cs-blog-main-layout">
+        <div class="b-cs-blog-content-area">
+            <div class="b-cs-blog-post-grid">
+                <a href="#" class="b-cs-blog-post-card">
+                    <div class="b-cs-blog-card-image">
+                        <img src="https://via.placeholder.com/400x200/ff4f29/ffffff?text=Post+Image+1" alt="Post Title">
+                        <span class="b-cs-blog-card-category">تکنولوژی</span>
+                    </div>
+                    <div class="b-cs-blog-card-content">
+                        <h2 class="b-cs-blog-card-title">۱۰ روش برای افزایش بهره‌وری با ابزارهای جدید</h2>
+                        <p class="b-cs-blog-card-meta">۲۵ خرداد ۱۴۰۳ - توسط نویسنده</p>
+                    </div>
+                </a>
 
-    <div class="filters-bottom-sheet-overlay" id="filters-overlay"></div>
-    <div class="filters-bottom-sheet" id="filters-bottom-sheet">
-        <div class="filters-bottom-sheet-header">
-            <span class="title">فیلترها</span><button class="btn-close-sheet" id="close-filters-btn">×</button>
-        </div>
-        <div class="filters-bottom-sheet-content" id="mobile-sidebar-content"></div>
-    </div>
+                <a href="#" class="b-cs-blog-post-card">
+                    <div class="b-cs-blog-card-image">
+                        <img src="https://via.placeholder.com/400x200/57606f/ffffff?text=Post+Image+2" alt="Post Title">
+                        <span class="b-cs-blog-card-category">زندگی</span>
+                    </div>
+                    <div class="b-cs-blog-card-content">
+                        <h2 class="b-cs-blog-card-title">راهنمای کامل سفر به شمال ایران</h2>
+                        <p class="b-cs-blog-card-meta">۲۰ خرداد ۱۴۰۳ - توسط نویسنده</p>
+                    </div>
+                </a>
 
-    <template id="sidebar-widgets-template">
-        <div class="blog-l-widget">
-            <form class="blog-l-search-box"><input type="search" placeholder="جستجو..."><button type="submit">جستجو</button></form>
-        </div>
-        <div class="blog-l-widget">
-            <h3 class="blog-l-widget-title">دسته‌بندی‌ها</h3>
-            <ul class="blog-l-category-list">
-                <li><a href="#" class="blog-l-category-link"><span>سلامت</span> <span class="blog-l-category-count">۱۵</span></a></li>
-                <li><a href="#" class="blog-l-category-link"><span>تکنولوژی</span> <span class="blog-l-category-count">۹</span></a></li>
-                <li><a href="#" class="blog-l-category-link"><span>سبک زندگی</span> <span class="blog-l-category-count">۲۱</span></a></li>
-            </ul>
-        </div>
-        <div class="blog-l-widget">
-            <h3 class="blog-l-widget-title">هشتگ‌های داغ</h3>
-            <div class="blog-l-tags-cloud">
-                <a href="#">#تقویت_ایمنی</a><a href="#">#گوشی_موبایل</a><a href="#">#ورزش</a><a href="#">#دورکاری</a><a href="#">#ویتامینC</a>
+                <a href="#" class="b-cs-blog-post-card">
+                    <div class="b-cs-blog-card-image">
+                        <img src="https://via.placeholder.com/400x200/2c3a47/ffffff?text=Post+Image+3" alt="Post Title">
+                        <span class="b-cs-blog-card-category">سلامت</span>
+                    </div>
+                    <div class="b-cs-blog-card-content">
+                        <h2 class="b-cs-blog-card-title">فواید یوگا برای ذهن و بدن</h2>
+                        <p class="b-cs-blog-card-meta">۱۸ خرداد ۱۴۰۳ - توسط نویسنده</p>
+                    </div>
+                </a>
+
+                <a href="#" class="b-cs-blog-post-card">
+                    <div class="b-cs-blog-card-image">
+                        <img src="https://via.placeholder.com/400x200/ff4f29/ffffff?text=Post+Image+4" alt="Post Title">
+                        <span class="b-cs-blog-card-category">فناوری</span>
+                    </div>
+                    <div class="b-cs-blog-card-content">
+                        <h2 class="b-cs-blog-card-title">بررسی جدیدترین گوشی‌های هوشمند بازار</h2>
+                        <p class="b-cs-blog-card-meta">۱۵ خرداد ۱۴۰۳ - توسط نویسنده</p>
+                    </div>
+                </a>
+
+                <a href="#" class="b-cs-blog-post-card">
+                    <div class="b-cs-blog-card-image">
+                        <img src="https://via.placeholder.com/400x200/57606f/ffffff?text=Post+Image+5" alt="Post Title">
+                        <span class="b-cs-blog-card-category">سبک زندگی</span>
+                    </div>
+                    <div class="b-cs-blog-card-content">
+                        <h2 class="b-cs-blog-card-title">چگونه یک روتین صبحگاهی عالی داشته باشیم؟</h2>
+                        <p class="b-cs-blog-card-meta">۱۰ خرداد ۱۴۰۳ - توسط نویسنده</p>
+                    </div>
+                </a>
+
+                <a href="#" class="b-cs-blog-post-card">
+                    <div class="b-cs-blog-card-image">
+                        <img src="https://via.placeholder.com/400x200/2c3a47/ffffff?text=Post+Image+6" alt="Post Title">
+                        <span class="b-cs-blog-card-category">اقتصاد</span>
+                    </div>
+                    <div class="b-cs-blog-card-content">
+                        <h2 class="b-cs-blog-card-title">تأثیر هوش مصنوعی بر بازارهای جهانی</h2>
+                        <p class="b-cs-blog-card-meta">۰۵ خرداد ۱۴۰۳ - توسط نویسنده</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="b-cs-blog-pagination">
+                <a href="#">قبلی</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">بعدی</a>
             </div>
         </div>
-    </template>
 
-<!--search modal __ :: start-->
-<section class="search-box">
-    <span class="close-modal mx-5">
-         <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="1em"
-            height="1em"
-             >
-             <path
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="square"
-              stroke-linejoin="round"
-              d="M18 6L6 18M6 6l12 12"
-             ></path>
-         </svg>
-    </span>
-    <h5 class="py-3 text-center">دنبال چی میگردی ؟</h5>
-    <form class="text-center position-relative container">
-        <input class="form-control my-inp" type="search" placeholder="مثلا آیفون 16 ">
-        <div>
-            <button class="sub-btn" type="submit">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 32 32"
-                    width="1em"
-                    height="1em"
-            >
-                <path
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="m28 27l-7.5-7.5M5 13a9 9 0 1 0 18 0a9 9 0 0 0-18 0"
-                ></path>
-            </svg></button>
-        </div>
-    </form>
-</section>
-<!--search modal __ :: end---->
+        <aside class="b-cs-blog-sidebar">
+            <div class="b-cs-blog-widget">
+                <h3 class="b-cs-blog-widget-title">جستجو در بلاگ</h3>
+                <div class="b-cs-blog-search-box">
+                    <input type="text" placeholder="جستجو...">
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14z"/></svg>
+                    </button>
+                </div>
+            </div>
 
+            <div class="b-cs-blog-widget">
+                <h3 class="b-cs-blog-widget-title">دسته‌بندی‌ها</h3>
+                <ul class="b-cs-blog-category-list">
+                    <li><a href="#" class="b-cs-blog-category-link"><span>تکنولوژی</span> <span class="b-cs-blog-category-count">12</span></a></li>
+                    <li><a href="#" class="b-cs-blog-category-link"><span>زندگی</span> <span class="b-cs-blog-category-count">8</span></a></li>
+                    <li><a href="#" class="b-cs-blog-category-link"><span>سلامت</span> <span class="b-cs-blog-category-count">15</span></a></li>
+                    <li><a href="#" class="b-cs-blog-category-link"><span>سفر</span> <span class="b-cs-blog-category-count">5</span></a></li>
+                </ul>
+            </div>
 
-
-
-
-<!--footer :: start------>
-<footer class="mt-5">
-    <div class="footer-nav">
-        <div class="container">
-            <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">دسته بندی کلی</h2></li>
-
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
-            </ul>
-
-            <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">محصولات</h2></li>
-
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
-            </ul>
-
-            <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">کمپانی ها</h2></li>
-
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
-            </ul>
-
-            <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">سرویس ها</h2></li>
-
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">فشن و لباس</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">دیجیتال</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">گیمینگ</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای آقایان</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">برای خانوم ها</a></li>
-            </ul>
-
-            <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">ارتباط با ما</h2></li>
-
-                <li class="footer-nav-item flex">
-                    <div class="icon-box">
-                        <ion-icon name="location-outline"></ion-icon>
-                    </div>
-
-                    <address class="content">
-                        لوکیشن ما
-                    </address>
-                </li>
-
-                <li class="footer-nav-item flex">
-                    <div class="icon-box">
-                        <ion-icon name="call-outline"></ion-icon>
-                    </div>
-
-                    <a href="tel:+607936-8058" class="footer-nav-link">تلفن ما 0915 878 2312</a>
-                </li>
-
-                <li class="footer-nav-item flex">
-                    <div class="icon-box">
-                        <ion-icon name="mail-outline"></ion-icon>
-                    </div>
-
-                    <a href="mailto:example@gmail.com" class="footer-nav-link">example@gmail.com</a>
-                </li>
-            </ul>
-
-            <ul class="footer-nav-list">
-                <li class="footer-nav-item"><h2 class="nav-title">Follow Us</h2></li>
-
-                <li>
-                    <ul class="social-link">
-                        <li class="footer-nav-item">
-                            <a href="#" class="footer-nav-link"><ion-icon name="logo-facebook"></ion-icon></a>
-                        </li>
-
-                        <li class="footer-nav-item">
-                            <a href="#" class="footer-nav-link"><ion-icon name="logo-twitter"></ion-icon></a>
-                        </li>
-
-                        <li class="footer-nav-item">
-                            <a href="#" class="footer-nav-link"><ion-icon name="logo-linkedin"></ion-icon></a>
-                        </li>
-
-                        <li class="footer-nav-item">
-                            <a href="#" class="footer-nav-link"><ion-icon name="logo-instagram"></ion-icon></a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+            <div class="b-cs-blog-widget">
+                <h3 class="b-cs-blog-widget-title">برچسب‌های محبوب</h3>
+                <div class="b-cs-blog-tags-cloud">
+                    <a href="#">برنامه‌نویسی</a>
+                    <a href="#">هوش مصنوعی</a>
+                    <a href="#">طبیعت</a>
+                    <a href="#">رژیم غذایی</a>
+                    <a href="#">گردشگری</a>
+                    <a href="#">روانشناسی</a>
+                </div>
+            </div>
+        </aside>
     </div>
+</main>
 
-    <div class="footer-bottom">
-        <div class="container">
-            <p class="copyright"> تمامی حقوق مادی و معنوی این سایت متعلق به شرکت راه ابریشم نو مسیر توسعه تحول جهانی می باشد .</p>
-        </div>
-    </div>
-</footer>
-<!--footer :: end-------->
-
-
-
-
-
-
-
+<!--اینا مال همه جاس -->
 <div class="custom-overlay"></div>
 <script src="assets/js/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const openBtn = document.getElementById('open-filters-btn');
-        const closeBtn = document.getElementById('close-filters-btn');
-        const bottomSheet = document.getElementById('filters-bottom-sheet');
-        const overlay = document.getElementById('filters-overlay');
-        const desktopSidebarContainer = document.getElementById('desktop-sidebar-content');
-        const mobileSidebarContainer = document.getElementById('mobile-sidebar-content');
-        const widgetsTemplate = document.getElementById('sidebar-widgets-template');
-
-        if (widgetsTemplate && desktopSidebarContainer && mobileSidebarContainer) {
-            const widgetsContent = widgetsTemplate.content.cloneNode(true);
-            desktopSidebarContainer.appendChild(widgetsContent);
-            const widgetsContentMobile = widgetsTemplate.content.cloneNode(true);
-            mobileSidebarContainer.appendChild(widgetsContentMobile);
-        }
-
-        function toggleBottomSheet(show) {
-            if (show) {
-                overlay.classList.add('show');
-                bottomSheet.classList.add('show');
-                document.body.style.overflow = 'hidden';
-            } else {
-                overlay.classList.remove('show');
-                bottomSheet.classList.remove('show');
-                document.body.style.overflow = '';
-            }
-        }
-
-        if (openBtn) openBtn.addEventListener('click', () => toggleBottomSheet(true));
-        if (closeBtn) closeBtn.addEventListener('click', () => toggleBottomSheet(false));
-        if (overlay) overlay.addEventListener('click', () => toggleBottomSheet(false));
-    });
-</script>
 <script  src="script.js"></script>
-
+<!--اینا مال همه جاس -->
+<script src="assets/js/single.blog.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
-<!-- partial -->
 </html>

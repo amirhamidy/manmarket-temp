@@ -1,0 +1,617 @@
+/* --------------------------------------------------------------
+# Base/Global Styles (Essential resets and universal properties)
+-------------------------------------------------------------- */
+* {
+    box-sizing: border-box !important; /* Added !important for safety, can be removed if confident */
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body {
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    background-color: #f8f9fa !important; /* Direct value */
+    color: #2c3a47 !important; /* Direct value */
+    line-height: 1.7 !important;
+    direction: rtl !important;
+    scroll-behavior: smooth !important;
+}
+
+a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* --------------------------------------------------------------
+# Blog List Page Styles (b-cs- prefix)
+-------------------------------------------------------------- */
+
+.b-cs-blog-container {
+    max-width: 1280px !important;
+    margin: 0 auto !important;
+    padding: calc(8px * 5) calc(8px * 2) !important; /* Direct values (8px = spacing-unit) */
+}
+
+.b-cs-blog-main-layout {
+    display: grid !important;
+    grid-template-columns: 1fr 340px !important;
+    gap: calc(8px * 5) !important; /* Direct values */
+    align-items: flex-start !important;
+}
+
+.b-cs-blog-page-title {
+    font-size: 2.5em !important;
+    font-weight: 700 !important;
+    margin-bottom: calc(8px * 4) !important; /* Direct values */
+    border-bottom: 2px solid #e9ecef !important; /* Direct value */
+    padding-bottom: calc(8px * 2) !important; /* Direct values */
+}
+
+.b-cs-blog-content-area {
+    /* No specific styles needed here based on HTML, acts as a wrapper */
+}
+
+.b-cs-blog-post-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+    gap: calc(8px * 4) !important; /* Direct values */
+}
+
+.b-cs-blog-post-card {
+    background-color: #ffffff !important; /* Direct value */
+    border-radius: 12px !important; /* Direct value */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.b-cs-blog-post-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1) !important;
+}
+
+.b-cs-blog-card-image {
+    position: relative !important;
+    height: 200px !important;
+    overflow: hidden !important;
+    background-color: #f0f0f0 !important;
+    text-align: center !important;
+}
+
+.b-cs-blog-card-image img {
+    display: inline-block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.4s ease !important;
+}
+
+.b-cs-blog-post-card:hover .b-cs-blog-card-image img {
+    transform: scale(1.05) !important;
+}
+
+.b-cs-blog-card-category {
+    position: absolute !important;
+    top: calc(8px * 2) !important; /* Direct values */
+    right: 0 !important;
+    background-color: #ff4f29 !important; /* Direct value */
+    color: #ffffff !important; /* Direct value */
+    padding: calc(8px / 2) calc(8px * 1.5) !important; /* Direct values */
+    border-radius: 10px !important;
+    font-size: 0.75em !important;
+    font-weight: bold !important;
+    white-space: nowrap !important;
+}
+
+.b-cs-blog-card-content {
+    padding: calc(8px * 3) !important; /* Direct values */
+    flex-grow: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+.b-cs-blog-card-title {
+    font-size: 1.25em !important;
+    font-weight: 700 !important;
+    margin-bottom: 8px !important; /* Direct value */
+    line-height: 1.4 !important;
+}
+
+.b-cs-blog-card-meta {
+    font-size: 0.8em !important;
+    color: #57606f !important; /* Direct value */
+}
+
+/* --------------------------------------------------------------
+# Blog Sidebar Styles (b-cs- prefix)
+-------------------------------------------------------------- */
+.b-cs-blog-sidebar {
+    position: sticky !important;
+    top: 30px !important;
+}
+
+.b-cs-blog-widget {
+    background-color: #ffffff !important; /* Direct value */
+    border-radius: 12px !important; /* Direct value */
+    padding: calc(8px * 3) !important; /* Direct values */
+    margin-bottom: calc(8px * 4) !important; /* Direct values */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
+    border: 1px solid #e9ecef !important; /* Direct value */
+}
+
+.b-cs-blog-widget-title {
+    font-size: 1.3em !important;
+    font-weight: 700 !important;
+    margin-bottom: calc(8px * 3) !important; /* Direct values */
+    border-bottom: 2px solid #ff4f29 !important; /* Direct value */
+    padding-bottom: 8px !important; /* Direct value */
+}
+
+.b-cs-blog-search-box {
+    display: flex !important;
+}
+
+.b-cs-blog-search-box input {
+    flex-grow: 1 !important;
+    border: 1px solid #e9ecef !important; /* Direct value */
+    padding: 12px !important;
+    border-radius: 0 12px 12px 0 !important; /* Direct values */
+    border-left: 0 !important;
+    outline: none !important;
+}
+
+.b-cs-blog-search-box button {
+    background-color: #ff4f29 !important; /* Direct value */
+    color: #ffffff !important; /* Direct value */
+    border: 0 !important;
+    padding: 0 16px !important;
+    border-radius: 10px !important;
+    cursor: pointer !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.b-cs-blog-search-box button svg {
+    fill: currentColor !important;
+}
+
+.b-cs-blog-category-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: calc(8px * 1.5) !important; /* Direct values */
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.b-cs-blog-category-link {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 8px !important; /* Direct value */
+    border-radius: 12px !important; /* Direct value */
+    transition: all 0.3s ease-in-out !important;
+    color: #2c3a47 !important; /* Direct value */
+}
+
+.b-cs-blog-category-link:hover {
+    background-color: #f8f9fa !important; /* Direct value */
+}
+
+.b-cs-blog-category-count {
+    font-size: 0.8em !important;
+    background-color: #e9ecef !important; /* Direct value */
+    color: #57606f !important; /* Direct value */
+    padding: 2px 8px !important;
+    border-radius: 99px !important;
+}
+
+.b-cs-blog-tags-cloud {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important; /* Direct value */
+}
+
+.b-cs-blog-tags-cloud a {
+    background-color: #f8f9fa !important; /* Direct value */
+    color: #2c3a47 !important; /* Direct value */
+    padding: 6px 12px !important;
+    border-radius: 99px !important;
+    font-size: 0.85em !important;
+    transition: all 0.3s ease-in-out !important;
+}
+
+.b-cs-blog-tags-cloud a:hover {
+    background-color: #ff4f29 !important; /* Direct value */
+    color: #ffffff !important; /* Direct value */
+}
+
+/* --------------------------------------------------------------
+# Blog Pagination Styles (b-cs- prefix)
+-------------------------------------------------------------- */
+.b-cs-blog-pagination {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-top: calc(8px * 8) !important; /* Direct values */
+    gap: 8px !important; /* Direct value */
+}
+
+.b-cs-blog-pagination a,
+.b-cs-blog-pagination span {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0 !important;
+    border: 1px solid #e9ecef !important; /* Direct value */
+    background-color: #ffffff !important; /* Direct value */
+    border-radius: 12px !important; /* Direct value */
+    min-width: 44px !important;
+    height: 44px !important;
+    text-align: center !important;
+    color: #2c3a47 !important; /* Direct value */
+    transition: all 0.3s ease-in-out !important;
+}
+
+.b-cs-blog-pagination a:hover {
+    background-color: #f8f9fa !important; /* Direct value */
+}
+
+.b-cs-blog-pagination a.active {
+    background-color: #ff4f29 !important; /* Direct value */
+    color: #ffffff !important; /* Direct value */
+    border-color: #ff4f29 !important; /* Direct value */
+}
+
+/* --------------------------------------------------------------
+# Mobile Specific Styles (b-cs- prefix, for Blog Mobile Menu/FAB)
+-------------------------------------------------------------- */
+.b-cs-blog-mobile-filter-fab {
+    display: none !important; /* Hidden by default, shown by media query */
+    position: fixed !important;
+    bottom: calc(8px * 4) !important; /* Direct values */
+    right: calc(8px) !important; /* Direct values */
+    z-index: 990 !important;
+}
+
+.b-cs-blog-btn-open-filters-fab {
+    background-color: #ff4f29 !important; /* Direct value */
+    color: #ffffff !important; /* Direct value */
+    border: none !important;
+    border-radius: 50% !important;
+    width: 56px !important;
+    height: 56px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2) !important;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out !important;
+}
+
+.b-cs-blog-btn-open-filters-fab:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3) !important;
+}
+
+.b-cs-blog-btn-open-filters-fab svg {
+    width: 24px !important;
+    height: 24px !important;
+    fill: currentColor !important;
+    stroke: currentColor !important;
+}
+
+.b-cs-blog-mobile-dashboard-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    position: fixed !important;
+    top: 0 !important;
+    right: -330px !important; /* Adjusted for full hiding */
+    width: 320px !important;
+    max-width: 90vw !important;
+    height: 100vh !important;
+    background-color: #f8f9fa !important; /* Direct value */
+    box-shadow: -5px 0 25px rgba(0,0,0,0.15) !important;
+    transform: translateX(0) !important; /* Initial state: not translated */
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    z-index: 1001 !important;
+    overflow-y: auto !important;
+}
+
+.b-cs-blog-mobile-dashboard-menu.show {
+    transform: translateX(-330px) !important; /* Move 330px to the left (into view for RTL) */
+}
+
+.b-cs-blog-dashboard-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 16px !important;
+    border-bottom: 1px solid #e9ecef !important; /* Direct value */
+    flex-shrink: 0 !important;
+}
+
+.b-cs-blog-dashboard-header .title {
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    color: #2c3a47 !important; /* Direct value */
+}
+
+.b-cs-blog-dashboard-header .b-cs-blog-btn-close-menu {
+    background: none !important;
+    border: none !important;
+    font-size: 1.8rem !important;
+    cursor: pointer !important;
+    color: #57606f !important; /* Direct value */
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+
+.b-cs-blog-dashboard-content {
+    padding: 8px !important; /* Direct value */
+}
+
+.b-cs-blog-dashboard-content .b-cs-blog-widget {
+    box-shadow: none !important;
+    border: none !important;
+    background: none !important;
+    margin-bottom: calc(8px * 3) !important; /* Direct values */
+}
+.b-cs-blog-dashboard-content .b-cs-blog-widget:last-child {
+    margin-bottom: 0 !important;
+}
+
+.b-cs-blog-mobile-menu-overlay {
+    display: none !important; /* Controlled by JS to be block when 'show' */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0,0,0,0.4) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 0.35s ease, visibility 0.35s ease !important;
+    z-index: 1000 !important;
+}
+
+.b-cs-blog-mobile-menu-overlay.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* --------------------------------------------------------------
+# Responsive Styles for Blog List Page
+-------------------------------------------------------------- */
+@media (max-width: 992px) {
+    .b-cs-blog-main-layout {
+        grid-template-columns: 1fr !important;
+    }
+
+    .b-cs-blog-sidebar {
+        display: none !important; /* Hide desktop sidebar on mobile */
+    }
+
+    .b-cs-blog-container {
+        padding-top: calc(8px * 2) !important; /* Direct values */
+    }
+
+    .b-cs-blog-mobile-filter-fab {
+        display: flex !important; /* Show mobile filter FAB on mobile */
+    }
+}
+
+/* --------------------------------------------------------------
+# Styles for Elements NOT part of the Blog Layout (General App Elements)
+# These classes are added by me for clarity and to avoid conflicts.
+# If these are part of a global header/footer/etc., they should be in a global CSS file.
+-------------------------------------------------------------- */
+.app-overlay { /* Your existing 'overlay' class renamed for clarity */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    z-index: 1050 !important; /* Above regular content, below dashbords */
+    display: none !important; /* Hidden by default, controlled by JS */
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+}
+.app-overlay.visible {
+    opacity: 1 !important;
+    display: block !important;
+}
+
+.app-dashboard { /* Generic class for any dashboard-like panel (e.g., cart, menu) */
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important; /* For LTR, but RTL might be right:0 */
+    width: 300px !important; /* Example width */
+    max-width: 90vw !important;
+    height: 100vh !important;
+    background-color: #ffffff !important; /* Direct value */
+    box-shadow: 0 0 20px rgba(0,0,0,0.2) !important;
+    z-index: 1100 !important;
+    transition: transform 0.3s ease-in-out !important;
+    transform: translateX(-100%) !important; /* Hidden by default (off-screen to left) */
+    display: flex !important;
+    flex-direction: column !important;
+}
+.app-dashboard.is-open {
+    transform: translateX(0) !important; /* Visible state */
+}
+/* Specific styling for your #cart-dashboard (applying general dashboard properties) */
+#cart-dashboard {
+    right: 0 !important; /* For RTL, it should slide in from right */
+    left: auto !important; /* Ensure it's not trying to position from left */
+    transform: translateX(100%) !important; /* Hidden state for RTL */
+    background-color: #ffffff !important; /* Direct value */
+    color: #2c3a47 !important; /* Direct value */
+    padding: calc(8px * 2) !important;
+}
+#cart-dashboard.is-open {
+    transform: translateX(0) !important; /* Visible state for RTL */
+}
+
+#cart-dashboard #close-cart {
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    position: absolute !important;
+    top: 8px !important; /* Direct value */
+    left: 8px !important; /* Position to the left for RTL close button */
+    padding: 8px !important; /* Direct value */
+    color: #57606f !important; /* Direct value */
+    transition: color 0.2s ease !important;
+}
+#cart-dashboard #close-cart:hover {
+    color: #ff4f29 !important; /* Direct value */
+}
+#cart-dashboard #close-cart svg {
+    width: 1.4em !important;
+    height: 1.4em !important;
+}
+
+.header-in-shop { /* Class for the cart dashboard header title */
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    margin-bottom: calc(8px * 3) !important; /* Direct values */
+    padding-top: calc(8px * 2) !important; /* Direct values */
+    color: #2c3a47 !important; /* Direct value */
+}
+
+#cart-items-container {
+    flex-grow: 1 !important;
+    overflow-y: auto !important;
+    margin-bottom: calc(8px * 2) !important; /* Direct values */
+    padding: 0 8px !important; /* Direct values */
+}
+
+#cart-items {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#total-price {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    padding: calc(8px * 2) !important; /* Direct values */
+    border-top: 1px solid #e9ecef !important; /* Direct value */
+    background-color: #f8f9fa !important; /* Direct value */
+}
+ :root {
+     --font-family-base: 'Vazirmatn', Arial, sans-serif !important;
+     --primary-accent: #fc866a !important;
+     --primary-accent-darker: #EE5253 !important;
+     --text-primary: #2c3a47 !important;
+     --text-secondary: #57606f !important;
+     --text-on-dark: #ffffff !important;
+     --bg-primary: #f0f2f5 !important;
+     --bg-secondary: rgba(255, 255, 255, 0.7) !important;
+     --border-color: #dfe4ea !important;
+     --border-radius-md: 12px !important;
+     --border-radius-lg: 20px !important;
+     --spacing-unit: 8px !important;
+     --transition-ease: all 0.3s ease-in-out !important;
+ }
+
+* { box-sizing: border-box !important; margin: 0 !important; padding: 0 !important; }
+html { scroll-behavior: smooth !important; }
+body { font-family: var(--font-family-base) !important; background-color: var(--bg-primary) !important; color: var(--text-primary) !important; line-height: 1.8 !important; direction: rtl !important; background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) !important; }
+.blog-s-progress-bar { position: fixed !important; top: 0 !important; right: 0 !important; width: 0% !important; height: 5px !important; background: linear-gradient(90deg, var(--primary-accent-darker), var(--primary-accent)) !important; z-index: 1000 !important; transition: width 0.1s linear !important; box-shadow: 0 0 10px var(--primary-accent) !important; }
+
+/* --- هیرو --- */
+.blog-s-hero-container { height: 60vh !important; overflow: hidden !important; position: relative !important; }
+.blog-s-hero-header { height: 100% !important; display: flex !important; flex-direction: column !important; justify-content: center !important; align-items: center !important; text-align: center !important; color: var(--text-on-dark) !important; padding: 0 var(--spacing-unit) !important; background-size: cover !important; background-position: center !important; background-attachment: fixed !important; }
+.blog-s-hero-header::before { content: '' !important; position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, transparent 100%) !important; z-index: 1 !important; }
+.blog-s-hero-content { position: relative !important; z-index: 2 !important; max-width: 800px !important; }
+.blog-s-post-title { font-size: 3.2em !important; font-weight: 800 !important; line-height: 1.3 !important; text-shadow: 0 3px 15px rgba(0,0,0,0.6) !important; }
+.blog-s-post-meta { margin-top: calc(var(--spacing-unit) * 2) !important; font-size: 1em !important; opacity: 0.9 !important; }
+
+/* --- انیمیشن --- */
+.blog-s-animate-on-scroll { opacity: 0 !important; transform: translateY(30px) !important; transition: opacity 0.6s ease-out, transform 0.6s ease-out !important; }
+.blog-s-animate-on-scroll.visible { opacity: 1 !important; transform: translateY(0) !important; font-size: 16px; }
+
+/* --- بخش اصلی محتوا (اینجا CSS Grid حذف شده) --- */
+.blog-s-layout-grid {
+    /* display: grid و grid-template-columns حذف شدند تا بوت استرپ کار کند */
+    max-width: 1280px !important;
+    margin: -10vh auto 0 !important;
+    padding: 0 calc(var(--spacing-unit) * 2) !important;
+    position: relative !important;
+    z-index: 3 !important;
+}
+.blog-s-main-content { background-color: var(--bg-secondary) !important; padding: calc(var(--spacing-unit) * 5) !important; border-radius: var(--border-radius-lg) !important;backdrop-filter: blur(10px) !important; border: 1px solid rgba(255, 255, 255, 0.2) !important; }
+.blog-s-post-body > p:first-of-type::first-letter { font-size: 4.5em !important; font-weight: bold !important; color: var(--primary-accent) !important; float: right !important; margin-left: calc(var(--spacing-unit) * 1.5) !important; line-height: 0.8 !important; padding-top: var(--spacing-unit) !important; }
+.blog-s-post-body h2 { font-size: 18px !important; margin-top: calc(var(--spacing-unit) * 6) !important; margin-bottom: calc(var(--spacing-unit) * 2) !important; padding-bottom: var(--spacing-unit) !important; border-bottom: 2px solid var(--border-color) !important; }
+.blog-s-post-body p { font-size: 15px !important; }
+.blog-s-post-body strong { color: var(--text-primary) !important; font-weight: 700 !important; }
+.blog-s-post-body a { font-weight: 600 !important; color: var(--primary-accent) !important; text-decoration: none !important; }
+.blog-s-post-body ol { margin-bottom: calc(var(--spacing-unit) * 3) !important; }
+.blog-s-post-body li { margin-bottom: var(--spacing-unit) !important; }
+
+/* --- سایدبار --- */
+.blog-s-sidebar {
+    /* position: sticky فقط در دسکتاپ اعمال می شود */
+}
+@media (min-width: 992px) {
+    .blog-s-sidebar {
+        position: sticky !important;
+        top: 20px !important;
+    }
+}
+
+/* --- ویجت‌ها --- */
+.blog-s-widget { background-color: var(--bg-secondary) !important; padding: calc(var(--spacing-unit) * 3) !important; border-radius: var(--border-radius-lg) !important; margin-bottom: calc(var(--spacing-unit) * 3) !important; box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important; backdrop-filter: blur(10px) !important; border: 1px solid rgba(255, 255, 255, 0.2) !important; }
+.blog-s-widget-title { font-size: 1.5em !important; font-weight: 700 !important; margin-bottom: calc(var(--spacing-unit) * 3) !important; text-align: center !important; }
+
+/* --- اسلایدر و کارت محصول --- */
+.blog-s-product-slider { overflow: hidden !important; }
+.blog-s-product-card { border-radius: var(--border-radius-md) !important; text-align: center !important; padding: calc(var(--spacing-unit) * 1.5) !important; }
+.blog-s-product-card-title { font-size: 1.1em !important; font-weight: 600 !important; margin-bottom: 4px !important; }
+.blog-s-product-card-price { color: var(--text-secondary) !important; font-size: 0.9em !important; }
+.blog-s-product-card img { width: 100% !important; height: 200px !important; object-fit: cover !important; border-radius: var(--border-radius-md) !important; margin-bottom: calc(var(--spacing-unit) * 2) !important; }
+
+/* --- استایل سفارشی برای دکمه‌های Slick Slider --- */
+.blog-s-product-slider .slick-prev, .blog-s-product-slider .slick-next { background-color: white !important; border-radius: 50% !important; width: 40px !important; height: 40px !important; box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important; z-index: 2 !important; transition: all 0.3s ease-in-out !important; }
+.blog-s-product-slider .slick-prev { right: 15px !important; }
+.blog-s-product-slider .slick-next { left: 15px !important; }
+.blog-s-product-slider .slick-prev:before, .blog-s-product-slider .slick-next:before { font-family: 'slick' !important; color: var(--primary-accent) !important; font-size: 16px; opacity: 0.8 !important; }
+.blog-s-product-slider .slick-prev:hover, .blog-s-product-slider .slick-next:hover { background-color: var(--primary-accent) !important; }
+.blog-s-product-slider .slick-prev:hover:before, .blog-s-product-slider .slick-next:hover:before { color: white !important; opacity: 1 !important; }
+.blog-s-product-slider .slick-dots li button:before { font-size: 10px !important; color: var(--border-color) !important; opacity: 1 !important; }
+.blog-s-product-slider .slick-dots li.slick-active button:before { color: var(--primary-accent) !important; }
+
+/* --- سایر استایل‌ها --- */
+.blog-s-related-posts-list { list-style: none !important; padding: 0 !important; }
+.blog-s-related-post-link { display: flex !important; align-items: center !important; gap: calc(var(--spacing-unit) * 2) !important; text-decoration: none !important; }
+.blog-s-post-footer { margin-top: calc(var(--spacing-unit) * 6) !important; padding-top: calc(var(--spacing-unit) * 4) !important; border-top: 1px solid var(--border-color) !important; text-align: center !important; }
+.blog-s-tags-container a { display: inline-block !important; background-color: rgba(223, 228, 234, 0.5) !important; padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5) !important; border-radius: 99px !important; }
+
+/* --- کدهای مدیا کوئری سفارشی حذف شدند --- */
+/* @media (max-width: 1024px) { ... }  <-- این بخش حذف شد */
+
+/* --- کدهای ریسپانسیو اختصاصی برای موبایل (اضافی) --- */
+@media (max-width: 767px) {
+    .blog-s-hero-container { height: 45vh !important; }
+    .blog-s-post-title { font-size: 2.2em !important; line-height: 1.4 !important; }
+    .blog-s-layout-grid { margin-top: -8vh !important; }
+    .blog-s-main-content { padding: calc(var(--spacing-unit) * 3) !important; }
+    .blog-s-post-body > p:first-of-type::first-letter { font-size: 3.5em !important; }
+    .footer-nav-list { text-align: center; } /* برای زیبایی بیشتر در موبایل */
+    /* این استایل فقط در صفحه‌های بزرگ (دسکتاپ) اعمال می‌شود */
+    @media (min-width: 992px) {
+        .blog-s-sidebar {
+            position: sticky !important;
+            top: 20px !important;
+        }
+    }
+}

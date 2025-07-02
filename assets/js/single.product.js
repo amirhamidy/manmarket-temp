@@ -1,9 +1,8 @@
-
 document.addEventListener('DOMContentLoaded', function () {
     const galleryTopSwiperEl = document.getElementById('galleryTopSwiper');
     const galleryThumbsSwiperEl = document.getElementById('galleryThumbsSwiper');
+    const fullscreenModalEl = document.getElementById('fullscreenGalleryModal');
     const verticalGalleryContentEl = document.getElementById('verticalGalleryContainer');
-    const fullscreenModalEl = document.getElementById('fullscreenModalContainer');
     const closeModalButton = document.getElementById('modalCloseButton');
     const colorButtonContainer = document.querySelector('.color-selection-buttons');
     const currentYearEl = document.getElementById('currentYear');
@@ -30,90 +29,88 @@ document.addEventListener('DOMContentLoaded', function () {
         { main: 'assets/img/iphone/blue/1.webp', thumb: 'assets/img/iphone/blue/1.webp', alt: 'گوشی A15 سرمه‌ای - نما ۱', color: 'navy' },
         { main: 'assets/img/iphone/blue/2.webp', thumb: 'assets/img/iphone/blue/2.webp', alt: 'گوشی A15 سرمه‌ای - نما ۲', color: 'navy' },
         { main: 'assets/img/iphone/blue/3.webp', thumb: 'assets/img/iphone/blue/3.webp', alt: 'گوشی A15 سرمه‌ای - نما ۳', color: 'navy' },
-
-
-        { main: 'assets/img/iphone/green/1.webp', thumb: 'assets/img/iphone/green/1.webp', alt: 'گوشی A15 آبی روشن - نما ۱', color: 'light-blue' },
-        { main: 'assets/img/iphone/green/2.webp', thumb: 'assets/img/iphone/green/2.webp', alt: 'گوشی A15 آبی روشن - نما ۲', color: 'light-blue' },
-        { main: 'assets/img/iphone/green/3.webp', thumb: 'assets/img/iphone/green/3.webp', alt: 'گوشی A15 آبی روشن - نما ۲', color: 'light-blue' },
-
-
-
+        { main: 'assets/img/iphone/green/1.webp', thumb: 'assets/img/iphone/green/1.webp', alt: 'گوشی A15 آبی روشن - نما ۱', color: 'green' },
+        { main: 'assets/img/iphone/green/2.webp', thumb: 'assets/img/iphone/green/2.webp', alt: 'گوشی A15 آبی روشن - نما ۲', color: 'green' },
+        { main: 'assets/img/iphone/green/3.webp', thumb: 'assets/img/iphone/green/3.webp', alt: 'گوشی A15 آبی روشن - نما ۳', color: 'green' },
         { main: 'assets/img/iphone/white/1.webp', thumb: 'assets/img/iphone/white/1.webp', alt: 'گوشی A15 سفید - نما ۱', color: 'white' },
-        { main: 'assets/img/iphone/white/2.webp', thumb: 'assets/img/iphone/white/2.webp', alt: 'گوشی A15 سفید - نما ۱', color: 'white' },
-        { main: 'assets/img/iphone/white/3.webp', thumb: 'assets/img/iphone/white/3.webp', alt: 'گوشی A15 سفید - نما ۲', color: 'white' },
+        { main: 'assets/img/iphone/white/2.webp', thumb: 'assets/img/iphone/white/2.webp', alt: 'گوشی A15 سفید - نما ۲', color: 'white' },
+        { main: 'assets/img/iphone/white/3.webp', thumb: 'assets/img/iphone/white/3.webp', alt: 'گوشی A15 سفید - نما ۳', color: 'white' },
     ];
-    // ==============================================================================
 
     let galleryTop, galleryThumbs;
     const BASE_SKU = "SAM-A15";
     const DEFAULT_STORAGE = "256G";
 
-    function initSwiper(imagesToShow = null) {
+    function initSwiper(initialIndex = 0) {
         if (!galleryTopSwiperEl || !galleryThumbsSwiperEl) {
+            console.error("Swiper container elements not found. Check your HTML IDs.");
             return;
         }
+
+        if (galleryThumbs && typeof galleryThumbs.destroy === 'function') {
+            galleryThumbs.destroy(true, true);
+            galleryThumbs = null;
+        }
+        if (galleryTop && typeof galleryTop.destroy === 'function') {
+            galleryTop.destroy(true, true);
+            galleryTop = null;
+        }
+
         const galleryTopWrapper = galleryTopSwiperEl.querySelector('.swiper-wrapper');
         const galleryThumbsWrapper = galleryThumbsSwiperEl.querySelector('.swiper-wrapper');
 
-        if (!galleryTopWrapper || !galleryThumbsWrapper) return;
+        if (!galleryTopWrapper || !galleryThumbsWrapper) {
+            console.error("Swiper wrapper elements not found. Make sure .swiper-wrapper exists inside your Swiper containers.");
+            return;
+        }
 
         galleryTopWrapper.innerHTML = '';
         galleryThumbsWrapper.innerHTML = '';
 
-        let effectiveImages = imagesToShow;
-        if (!effectiveImages || effectiveImages.length === 0) {
-            // اگر هیچ تصویری برای نمایش پاس داده نشده (مثلا برای رنگی تصویر نیست)
-            // گالری را خالی یا با یک پیام نشان بده
-            galleryTopWrapper.innerHTML = '<div class="swiper-slide" style="display:flex; align-items:center; justify-content:center; height:100%;"><p style="text-align:center; padding: 20px;">تصویری برای این رنگ موجود نیست.</p></div>';
-            if (galleryThumbs && typeof galleryThumbs.destroy === 'function') galleryThumbs.destroy(true, true);
-            if (galleryTop && typeof galleryTop.destroy === 'function') galleryTop.destroy(true, true);
-            galleryThumbs = null; //  مطمئن شویم که swiper قبلی پاک شده
-            galleryTop = null;
-            return; //  ادامه نده اگر تصویری نیست
+        if (productImages.length === 0) {
+            galleryTopWrapper.innerHTML = '<div class="swiper-slide" style="display:flex; align-items:center; justify-content:center; height:100%;"><p style="text-align:center; padding: 20px;">تصویری برای نمایش موجود نیست.</p></div>';
+            return;
         }
 
-        effectiveImages.forEach(imgData => {
+        productImages.forEach(imgData => {
             galleryTopWrapper.innerHTML += `<div class="swiper-slide"><img class="position-static" src="${imgData.main}" alt="${imgData.alt || 'تصویر محصول'}"></div>`;
             galleryThumbsWrapper.innerHTML += `<div class="swiper-slide"><img class="position-static" src="${imgData.thumb}" alt="${imgData.alt || 'تصویر بندانگشتی محصول'}"></div>`;
         });
 
-        if (galleryThumbs && typeof galleryThumbs.destroy === 'function') galleryThumbs.destroy(true, true);
         galleryThumbs = new Swiper(galleryThumbsSwiperEl, {
             spaceBetween: 10,
-            slidesPerView: Math.min(4, effectiveImages.length > 0 ? effectiveImages.length : 1), // حداقل 1 اسلاید حتی اگر خالی
+            slidesPerView: Math.min(4, productImages.length),
             freeMode: true,
             watchSlidesProgress: true,
         });
 
-        if (galleryTop && typeof galleryTop.destroy === 'function') galleryTop.destroy(true, true);
         galleryTop = new Swiper(galleryTopSwiperEl, {
             spaceBetween: 10,
             slidesPerView: 1,
             thumbs: {
-                swiper: (galleryThumbs && galleryThumbs.slides && galleryThumbs.slides.length > 0) ? galleryThumbs : null
+                swiper: galleryThumbs
             },
         });
 
-        if (!galleryThumbs || !galleryThumbs.slides || galleryThumbs.slides.length === 0) {
-            if (galleryTop && galleryTop.params.thumbs) {
-                galleryTop.params.thumbs.swiper = null;
-            }
-            if (galleryTop && galleryTop.slides && galleryTop.slides.length > 0) {
-                galleryTop.update(); //  آپدیت swiper اصلی اگر thumbs نیست
+        if (galleryTop && productImages.length > initialIndex) {
+            galleryTop.slideTo(initialIndex, 0);
+            if (galleryThumbs) {
+                galleryThumbs.slideTo(initialIndex, 0);
             }
         }
     }
 
     function openFullscreenModal(initialIndex = 0) {
         if (!fullscreenModalEl || !verticalGalleryContentEl) return;
-        const currentActiveColor = colorButtonContainer?.querySelector('.btn-color.active-cs')?.dataset.colorValue;
-        const imagesForModal = currentActiveColor
-            ? productImages.filter(img => img.color === currentActiveColor)
-            : productImages;
+
+        if (!galleryTop || !galleryTop.slides || galleryTop.slides.length === 0) {
+            alert("تصویری برای نمایش در حالت تمام صفحه موجود نیست.");
+            return;
+        }
 
         verticalGalleryContentEl.innerHTML = '';
-        if (imagesForModal.length > 0) {
-            imagesForModal.forEach(imgData => {
+        if (productImages.length > 0) {
+            productImages.forEach(imgData => {
                 const itemDiv = document.createElement('div');
                 itemDiv.classList.add('gallery-item');
                 itemDiv.innerHTML = `<img src="${imgData.main}" alt="${imgData.alt || 'تصویر محصول در حالت تمام صفحه'}">`;
@@ -124,18 +121,15 @@ document.addEventListener('DOMContentLoaded', function () {
             fullscreenModalEl.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
 
-            const actualInitialIndex = Math.min(initialIndex, imagesForModal.length - 1);
+            const actualInitialIndex = Math.min(initialIndex, productImages.length - 1);
             if (verticalGalleryContentEl.children[actualInitialIndex]) {
                 setTimeout(() => {
-                    if (verticalGalleryContentEl.children[actualInitialIndex]) { // Double check
-                        verticalGalleryContentEl.children[actualInitialIndex].scrollIntoView({ behavior: 'auto', block: 'start' });
-                    }
+                    verticalGalleryContentEl.children[actualInitialIndex].scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 50);
             }
             if(closeModalButton) closeModalButton.focus();
         } else {
-            // اگر تصویری نیست، مودال را باز نکن یا پیام بده
-            alert("تصویری برای نمایش در حالت تمام صفحه برای این رنگ موجود نیست.");
+            alert("تصویری برای نمایش در حالت تمام صفحه موجود نیست.");
         }
     }
 
@@ -153,65 +147,80 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    let initialColor = null;
+    let initialIndex = 0;
+
     if (colorButtonContainer) {
         const colorButtons = colorButtonContainer.querySelectorAll('.btn-color');
-        colorButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                if (this.classList.contains('active-cs')) return; // اگر از قبل فعال است کاری نکن
-
-                colorButtons.forEach(btn => btn.classList.remove('active-cs'));
-                this.classList.add('active-cs');
-                const selectedColor = this.dataset.colorValue;
-                updateSku(selectedColor);
-
-                const filteredImages = productImages.filter(img => img.color === selectedColor);
-                initSwiper(filteredImages);
-            });
-        });
 
         const activeColorButton = colorButtonContainer.querySelector('.btn-color.active-cs');
         if (activeColorButton) {
-            const initialColor = activeColorButton.dataset.colorValue;
-            updateSku(initialColor);
-            const initialFilteredImages = productImages.filter(img => img.color === initialColor);
-            initSwiper(initialFilteredImages);
+            initialColor = activeColorButton.dataset.colorValue;
         } else {
             const firstColorButton = colorButtonContainer.querySelector('.btn-color');
-            if(firstColorButton){
+            if (firstColorButton) {
                 firstColorButton.classList.add('active-cs');
-                const initialColor = firstColorButton.dataset.colorValue;
-                updateSku(initialColor);
-                const initialFilteredImages = productImages.filter(img => img.color === initialColor);
-                initSwiper(initialFilteredImages);
-            } else {
-                initSwiper([]); // گالری خالی اگر هیچ دکمه رنگی نیست
+                initialColor = firstColorButton.dataset.colorValue;
             }
         }
+
+        if (initialColor) {
+            const tempIndex = productImages.findIndex(img => img.color === initialColor);
+            initialIndex = (tempIndex !== -1) ? tempIndex : 0;
+            updateSku(initialColor);
+        } else if (productImages.length > 0) {
+            updateSku(productImages[0].color);
+        }
+
+        initSwiper(initialIndex);
+
+        colorButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                colorButtons.forEach(btn => btn.classList.remove('active-cs'));
+                this.classList.add('active-cs');
+
+                const selectedColor = this.dataset.colorValue;
+                updateSku(selectedColor);
+
+                const firstImageIndexForSelectedColor = productImages.findIndex(img => img.color === selectedColor);
+
+                if (firstImageIndexForSelectedColor !== -1 && galleryTop && galleryThumbs) {
+                    galleryTop.slideTo(firstImageIndexForSelectedColor);
+                    galleryThumbs.slideTo(firstImageIndexForSelectedColor);
+                } else if (galleryTop && galleryThumbs) {
+                    console.warn(`Error: No image found in 'productImages' for color: "${selectedColor}". Sliding to index 0.`);
+                    galleryTop.slideTo(0);
+                    galleryThumbs.slideTo(0);
+                }
+            });
+        });
     } else {
-        const firstColorAvailable = productImages.length > 0 ? productImages[0].color : null;
-        if (firstColorAvailable) {
-            const firstImages = productImages.filter(img => img.color === firstColorAvailable);
-            initSwiper(firstImages);
-        } else {
-            initSwiper([]);
+        initSwiper(0);
+        if (productImages.length > 0) {
+            updateSku(productImages[0].color);
         }
     }
 
     if (galleryTopSwiperEl) {
         galleryTopSwiperEl.addEventListener('click', () => {
-            if (galleryTop && typeof galleryTop.realIndex !== 'undefined' && galleryTop.slides.length > 0) {
+            if (galleryTop && galleryTop.slides.length > 0 && typeof galleryTop.realIndex !== 'undefined') {
                 openFullscreenModal(galleryTop.realIndex);
+            } else {
+                console.warn("Cannot open fullscreen modal: galleryTop is not initialized or has no slides.");
             }
         });
     }
+
     if (closeModalButton) {
         closeModalButton.addEventListener('click', closeFullscreenModal);
     }
+
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && fullscreenModalEl && fullscreenModalEl.style.display !== 'none') {
             closeFullscreenModal();
         }
     });
+
     if (fullscreenModalEl) {
         fullscreenModalEl.addEventListener('click', (event) => {
             if (event.target === fullscreenModalEl) {
@@ -224,12 +233,303 @@ document.addEventListener('DOMContentLoaded', function () {
         currentYearEl.textContent = new Date().getFullYear();
     }
 
-    const reviewForm = document.getElementById('productReviewForm');
-    if (reviewForm) {
-        reviewForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            // alert('دیدگاه شما ثبت شد (این یک نمونه نمایشی است و اطلاعات به سرور ارسال نمی‌شود).');
-            this.reset();
+    const ShareIcon = document.querySelector('.share-x');
+    const HeartIcon = document.querySelector('.heart-x');
+    const localOverlay = document.getElementById('sweetalertOverlay');
+
+    const hideAllTooltips = () => {
+        const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+        tooltips.forEach(tooltipEl => {
+            const tooltipInstance = bootstrap.Tooltip.getInstance(tooltipEl);
+            if (tooltipInstance) {
+                tooltipInstance.hide();
+            }
+        });
+    };
+
+    const showSweetAlertAndOverlay = async (options) => {
+        if (localOverlay) {
+            localOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            localOverlay.addEventListener('click', () => {
+                Swal.close();
+            }, { once: true });
+        }
+
+        await Swal.fire(options);
+
+        hideAllTooltips();
+
+        if (localOverlay) {
+            localOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    };
+
+    if (ShareIcon) {
+        ShareIcon.addEventListener('click', async () => {
+            const currentUrl = window.location.href;
+            let swalOptions = {};
+
+            try {
+                await navigator.clipboard.writeText(currentUrl);
+                swalOptions = {
+                    title: 'کپی شد!',
+                    html: 'لینک صفحه در کلیپ‌بورد شما کپی شد.<br><small style="font-size: 0.8em;">(شما با ارسال این لینک برای دوستانتان می‌توانید محصولات دلخواهتان را به یکدیگر معرفی کنید)</small>',
+                    icon: 'success',
+                    position: 'center',
+                    showConfirmButton: false,
+                    customClass: {
+                        title: 'swal2-title-small',
+                        htmlContainer: 'swal2-html-container-small'
+                    }
+                };
+            } catch (err) {
+                swalOptions = {
+                    title: 'خطا!',
+                    text: 'متأسفانه کپی لینک انجام نشد. لطفاً دوباره امتحان کنید.',
+                    icon: 'error',
+                    confirmButtonText: 'باشه',
+                    position: 'center',
+                    customClass: {
+                        title: 'swal2-title-small',
+                        htmlContainer: 'swal2-html-container-small'
+                    }
+                };
+            }
+            await showSweetAlertAndOverlay(swalOptions);
+        });
+    } else {
+        console.warn("هشدار: عنصر ShareIcon (.share-x) برای عملکرد اشتراک‌گذاری پیدا نشد.");
+    }
+
+    if (HeartIcon) {
+        HeartIcon.addEventListener('click', async () => {
+            let success = true;
+
+            let swalOptions = {};
+            if (success) {
+                swalOptions = {
+                    title: 'اضافه شد!',
+                    text: 'با موفقیت به علاقه‌مندی‌های شما اضافه شد.',
+                    icon: 'success',
+                    position: 'center',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    customClass: {
+                        title: 'swal2-title-small',
+                        htmlContainer: 'swal2-html-container-small'
+                    }
+                };
+            } else {
+                swalOptions = {
+                    title: 'خطا!',
+                    text: 'متأسفانه مشکلی پیش آمد و آیتم به علاقه‌مندی‌ها اضافه نشد.',
+                    icon: 'error',
+                    confirmButtonText: 'باشه',
+                    position: 'center',
+                    customClass: {
+                        title: 'swal2-title-small',
+                        htmlContainer: 'swal2-html-container-small'
+                    }
+                };
+            }
+            await showSweetAlertAndOverlay(swalOptions);
+        });
+    } else {
+        console.warn("هشدار: عنصر HeartIcon (.heart-x) برای عملکرد علاقه‌مندی‌ها پیدا نشد.");
+    }
+
+    if (!localOverlay) {
+        console.warn("هشدار: عنصر Overlay (#sweetalertOverlay) پیدا نشد. عملکرد پوشش صفحه و بستن با کلیک بر روی آن غیرفعال خواهد بود.");
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const starRatingInput = document.querySelector('.SH-HS-star-rating-input');
+    if (starRatingInput) {
+        const stars = Array.from(starRatingInput.querySelectorAll('i'));
+        const hiddenInput = document.getElementById('userRating');
+        let currentRating = parseInt(starRatingInput.dataset.currentRating || 0);
+
+        function fillStars(rating) {
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.remove('far');
+                    star.classList.add('fas');
+                } else {
+                    star.classList.remove('fas');
+                    star.classList.add('far');
+                }
+            });
+        }
+
+        fillStars(currentRating);
+        hiddenInput.value = currentRating;
+
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                currentRating = parseInt(this.dataset.value);
+                fillStars(currentRating);
+                hiddenInput.value = currentRating;
+                starRatingInput.dataset.currentRating = currentRating;
+            });
+
+            star.addEventListener('mouseover', function() {
+                const hoverRating = parseInt(this.dataset.value);
+                stars.forEach((s, index) => {
+                    if (index < hoverRating) {
+                        s.classList.remove('far');
+                        s.classList.add('fas');
+                    } else {
+                        s.classList.remove('fas');
+                        s.classList.add('far');
+                    }
+                });
+            });
+
+            star.addEventListener('mouseout', function() {
+                fillStars(currentRating);
+            });
         });
     }
+
+    const staticRatingContainers = document.querySelectorAll('.SH-HS-static-rating');
+    staticRatingContainers.forEach(container => {
+        const rating = parseInt(container.dataset.rating || 0);
+        container.innerHTML = '';
+        for (let i = 0; i < 5; i++) {
+            const star = document.createElement('i');
+            if (i < rating) {
+                star.classList.add('fas', 'fa-star');
+            } else {
+                star.classList.add('far', 'fa-star');
+            }
+            container.appendChild(star);
+        }
+    });
+
+    const colorButtons = document.querySelectorAll('.SH-HS-btn-color');
+    colorButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            colorButtons.forEach(btn => btn.classList.remove('active-cs'));
+            this.classList.add('active-cs');
+        });
+    });
+
+    var galleryThumbs = new Swiper('.gallery-thumbs.SH-HS-gallery-thumbs', {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesVisibility: true,
+        watchSlidesProgress: true,
+        direction: 'horizontal',
+        breakpoints: {
+            992: {
+                direction: 'vertical',
+                slidesPerView: 'auto',
+                freeMode: false,
+            }
+        }
+    });
+
+    var galleryTop = new Swiper('.gallery-top.SH-HS-gallery-top', {
+        spaceBetween: 10,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        thumbs: {
+            swiper: galleryThumbs
+        }
+    });
+
+    const galleryTopSwiper = document.querySelector('.SH-HS-gallery-top');
+    const fullscreenModal = document.querySelector('.SH-HS-fullscreen-modal');
+    const closeModalBtn = document.querySelector('.SH-HS-close-btn');
+    const scrollGallery = document.querySelector('.SH-HS-vertical-scroll-gallery');
+    const overlay = document.querySelector('.SH-HS-overlay');
+
+    if (galleryTopSwiper) {
+        galleryTopSwiper.addEventListener('click', function() {
+            scrollGallery.innerHTML = '';
+            const mainImages = document.querySelectorAll('.SH-HS-gallery-top .swiper-slide img');
+            mainImages.forEach(img => {
+                const galleryItem = document.createElement('div');
+                galleryItem.classList.add('SH-HS-gallery-item');
+                const fullImg = document.createElement('img');
+                fullImg.src = img.src;
+                fullImg.alt = img.alt;
+                galleryItem.appendChild(fullImg);
+                scrollGallery.appendChild(galleryItem);
+            });
+
+            fullscreenModal.setAttribute('aria-hidden', 'false');
+            overlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', function() {
+            fullscreenModal.setAttribute('aria-hidden', 'true');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        });
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', function() {
+            fullscreenModal.setAttribute('aria-hidden', 'true');
+            overlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const callBtn = document.querySelector('.call-btn');
+    if (callBtn) {
+        callBtn.addEventListener('click', function() {
+            var phoneNumber = '0123456789';
+            window.location.href = 'tel:' + phoneNumber;
+        });
+    } else {
+        console.warn("هشدار: دکمه تماس با کلاس 'call-btn' پیدا نشد.");
+    }
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('Splide initialization script is running!');
+
+    var splide = new Splide('.SH-HS-related-splide', {
+        type: 'slide',
+        perPage: 4,
+        gap: '10px',
+        direction: 'rtl',
+        arrows: false,
+        pagination: true,
+        autoplay: true,
+        interval: 3500,
+        pauseOnHover: true,
+        pauseOnFocus: true,
+
+        breakpoints: {
+            575: {
+                perPage: 1,
+                gap: '10px',
+            },
+            991: {
+                perPage: 3,
+                gap: '15px',
+            },
+            1199: {
+                perPage: 7,
+                gap: '20px',
+            },
+        },
+    });
+    splide.mount();
 });

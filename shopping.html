@@ -5,410 +5,179 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>قالب پرداخت (نسخه نهایی با انیمیشن کامل)</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
 
-    <style>
-        :root {
-            --dk-red: #ef4056; --dk-red-light: #fff5f6; --dk-green: #00a049; --dk-text-primary: #0c0c0c;
-            --dk-text-secondary: #5a5a5a; --dk-bg-primary: #f0f0f1; --dk-bg-secondary: #ffffff;
-            --dk-border-color: #e0e0e2; --dk-error: #d32f2f; --dk-focus-ring: rgba(239, 64, 86, 0.2);
-            --border-radius-md: 8px; --border-radius-lg: 12px; --shadow-sm: 0 1px 5px rgba(0,0,0,0.05);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.1); --transition-ease: all 0.25s ease-in-out;
-            --cubic-bezier-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        @keyframes slide-in-down { 0% { opacity: 0; transform: translateY(-10px); } 100% { opacity: 1; transform: translateY(0); } }
-        @keyframes pulse-glow { 0% { box-shadow: 0 0 4px 0px rgba(239, 64, 86, 0.3); } 50% { box-shadow: 0 0 16px 2px rgba(239, 64, 86, 0.5); } 100% { box-shadow: 0 0 4px 0px rgba(239, 64, 86, 0.3); } }
-        @keyframes subtle-gradient-bg { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        @keyframes item-fade-out { to { opacity: 0; transform: scale(0.95); max-height: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0; border: none; } }
+    <link rel="stylesheet" href="assets/css/style.css">
 
-        body {
-            direction: rtl; font-family: 'Vazirmatn', sans-serif; color: var(--dk-text-primary); margin: 0;
-            background: linear-gradient(-45deg, var(--dk-bg-primary), #ffffff, #f7f7f8, var(--dk-bg-primary));
-            background-size: 400% 400%; animation: subtle-gradient-bg 25s ease infinite;
-        }
-        *:focus-visible { outline: 2px solid var(--dk-red); outline-offset: 2px; box-shadow: 0 0 0 4px var(--dk-focus-ring); border-radius: 4px; }
-        .container { max-width: 1300px; margin: 0 auto; padding: 20px; }
-        .checkout-layout { display: grid; grid-template-columns: 1fr 340px; gap: 20px; align-items: flex-start; }
-        .checkout-main { display: flex; flex-direction: column; gap: 16px; }
-        .checkout-sidebar { position: sticky; top: 20px; }
-        .checkout-card { background-color: var(--dk-bg-secondary); border-radius: var(--border-radius-md); border: 1px solid var(--dk-border-color); animation: slide-in-down 0.5s ease-out; }
-        .card-header { display: flex; align-items: center; gap: 12px; padding: 16px; border-bottom: 1px solid var(--dk-border-color); }
-        .card-title { font-size: 1rem; font-weight: 700; margin: 0; }
-        .card-header-actions { margin-right: auto; display: flex; gap: 8px; }
-        .card-header svg { width: 24px; height: 24px; fill: var(--dk-text-secondary); }
-        .card-body { padding: 16px; }
-        .card-body--no-padding { padding: 0; }
-        .price-unit { font-size:0.7rem; font-weight:400; color:var(--dk-text-secondary); }
-
-        .btn { cursor: pointer; transition: var(--transition-ease); border-radius: var(--border-radius-md); font-weight: 700; padding: 8px 16px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; text-align: center; gap: 6px;}
-        .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
-        .btn--primary { background-image: linear-gradient(to top right, #e52d44, var(--dk-red)); color: white; border: none; }
-        .btn--primary:hover { background-image: linear-gradient(to top right, #ef4056, #e52d44); }
-        .btn--secondary { background-color: transparent; border: 1px solid var(--dk-red); color: var(--dk-red); }
-        .btn--secondary:hover { background-color: var(--dk-red-light); }
-        .btn svg { width: 16px; height: 16px; transition: transform 0.3s ease; }
-
-        /* --- STYLES FOR COLLAPSIBLE ADDRESS --- */
-        #active-address-display {
-            display: flex; align-items: flex-start; gap: 12px;
-            padding: 12px; border: 1px solid var(--dk-green);
-            background-color: #f6fff9; border-radius: var(--border-radius-md);
-        }
-        #active-address-display svg { min-width: 20px; width: 20px; height: 20px; fill: var(--dk-green); margin-top: 2px; }
-        #address-list-collapsible {
-            overflow: hidden; max-height: 0; opacity: 0;
-            transition: max-height 0.4s ease-out, opacity 0.3s ease-in-out, margin-top 0.4s ease-out;
-            border-top: 1px dashed var(--dk-border-color);
-            padding-top: 0; margin-top: 0;
-        }
-        #address-list-collapsible.is-open {
-            max-height: 500px; /* Large enough to fit content */
-            opacity: 1; margin-top: 16px; padding-top: 16px;
-        }
-        #btn-toggle-address.is-open .chevron-icon { transform: rotate(180deg); }
-
-        .cart-item { display: flex; align-items: center; gap: 16px; padding: 16px; transition: all 0.3s ease-out; overflow: hidden; max-height: 120px; }
-        .cart-item:not(:last-child) { border-bottom: 1px solid var(--dk-border-color); }
-        .cart-item.fading-out { animation: item-fade-out 0.4s ease-out forwards; }
-        .quantity-control-container { display: flex; align-items: center; background-color: var(--dk-bg-primary); border-radius: 999px; border: 1px solid var(--dk-border-color); }
-        .quantity-btn { background: none; border: none; cursor: pointer; padding: 8px; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; border-radius: 50%; }
-        .quantity-btn svg { width: 16px; height: 16px; stroke-width: 2; fill: none; stroke: currentColor; }
-        .quantity-display { font-weight: 700; padding: 6px 4px; min-width: 24px; text-align: center; color: var(--dk-text-primary); }
-
-        .selectable-option { display: block; margin-bottom: 10px; }
-        .selectable-option:last-child { margin-bottom: 0; }
-        .selectable-option input[type="radio"] { display: none; }
-        .selectable-label {
-            position: relative; overflow: hidden; display: flex; align-items: center; padding: 12px;
-            cursor: pointer; border-radius: var(--border-radius-md); border: 1px solid var(--dk-border-color);
-            transition: border-color 0.2s ease-in-out;
-        }
-        .selectable-label::before {
-            content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 100%;
-            background-color: var(--dk-red-light); transform: scaleX(0); transform-origin: right;
-            transition: transform 0.35s ease-in-out; z-index: 0;
-        }
-        .selectable-option input:checked ~ .selectable-label { border-color: var(--dk-red); }
-        .selectable-option input:checked ~ .selectable-label::before { transform: scaleX(1); }
-        .selectable-label > * { position: relative; z-index: 1; }
-        .custom-tick-container {
-            min-width: 20px; height: 20px; border: 2px solid #a7a7a7; margin-left: 12px; position: relative;
-            display: flex; align-items: center; justify-content: center; transition: border-color 0.2s ease-in-out;
-            background-color: var(--dk-bg-secondary); border-radius: 50%;
-        }
-        .time-slot-option .custom-tick-container { border-radius: var(--border-radius-md); }
-        .selectable-option input:checked ~ .selectable-label .custom-tick-container { border-color: var(--dk-red); }
-        .custom-tick-container::after {
-            content: ''; position: absolute; width: 100%; height: 100%; background-color: transparent;
-            border-radius: inherit; transform: scale(0); transition: transform 0.28s var(--cubic-bezier-bouncy); z-index: 1;
-        }
-        .selectable-option input:checked ~ .selectable-label .custom-tick-container::after { transform: scale(1); background-color: var(--dk-red); }
-        .custom-tick-container .tick-icon {
-            width: 12px; height: 12px; z-index: 2; stroke: white; stroke-width: 2.5; fill: none;
-            stroke-dasharray: var(--tick-path-length, 15); stroke-dashoffset: var(--tick-path-length, 15);
-            transition: stroke-dashoffset 0.3s ease-in-out 0.2s;
-        }
-        .selectable-option input:checked ~ .selectable-label .tick-icon { stroke-dashoffset: 0; }
-        .address-details { flex-grow: 1; }
-        .address-details p { margin: 0; color: var(--dk-text-secondary); font-size: 0.9rem; }
-        .address-details strong { font-size: 1rem; font-weight: 700; display: block; margin-bottom: 4px; }
-
-
-        .scroller-wrapper { position: relative; padding: 0 40px; }
-        .date-scroller { overflow-x: hidden; scroll-behavior: smooth; }
-        .date-list { display: flex; gap: 12px; padding: 4px; }
-        .date-card { flex: 0 0 auto; width: 85px; padding: 12px 8px; border: 1px solid var(--dk-border-color); border-radius: var(--border-radius-md); text-align: center; cursor: pointer; transition: var(--transition-ease); }
-        .date-card.active { border-color: var(--dk-red); background-color: var(--dk-red-light); }
-        .time-slot-section { margin-top: 20px; padding-top: 20px; border-top: 1px dashed #e0e0e0; }
-        .time-slot-group { display: none; }
-        .time-slot-group.active { display: block; animation: slide-in-down 0.3s; }
-
-        .summary-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; font-size: 0.9rem; }
-
-        @media (max-width: 992px) { .checkout-layout { grid-template-columns: 1fr; } .checkout-sidebar { position: static; margin-top: 20px; } }
-    </style>
 </head>
-<body>
+<body class="body-f">
 
-<div class="container">
-    <div class="checkout-layout">
-        <main class="checkout-main">
-            <!-- Address Section -->
-            <section class="checkout-card">
-                <div class="card-header">
+
+
+<div class="shop-cs-container">
+    <div class="shop-cs-checkout-layout">
+        <main class="shop-cs-checkout-main">
+            <section class="shop-cs-checkout-card p-0">
+                <div class="shop-cs-card-header">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C7.589 2 4 5.589 4 10c0 4.411 8 12 8 12s8-7.589 8-12c0-4.411-3.589-8-8-8zm0 12c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"></path></svg>
-                    <h1 class="card-title">آدرس تحویل سفارش</h1>
-                    <div class="card-header-actions">
-                        <button class="btn btn--secondary" id="btn-toggle-address">
+                    <h1 class="shop-cs-card-title text-dark">آدرس تحویل سفارش</h1>
+                    <div class="shop-cs-card-header-actions">
+                        <button class="shop-cs-btn shop-cs-btn--secondary" id="btn-toggle-address">
                             تغییر آدرس
                             <svg class="chevron-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
                         </button>
                     </div>
                 </div>
-                <div class="card-body">
-                    <!-- This div will show the currently selected address -->
+                <div class="shop-cs-card-body">
                     <div id="active-address-display">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path></svg>
-                        <div class="address-details-wrapper">
-                            <!-- Content is populated by JavaScript -->
-                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1.4em" viewBox="0 0 24 24"><path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path></svg>
+                        <div class="address-details-wrapper"></div>
                     </div>
-
-                    <!-- This is the collapsible container for the address list -->
                     <div id="address-list-collapsible">
                         <form id="address-form">
-                            <div class="address-option selectable-option">
+                            <div class="shop-cs-address-option shop-cs-selectable-option">
                                 <input type="radio" name="address_id" value="1" id="address-1" checked>
-                                <label for="address-1" class="selectable-label">
-                                    <span class="custom-tick-container">
-                                        <svg class="tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+                                <label for="address-1" class="shop-cs-selectable-label">
+                                    <span class="shop-cs-custom-tick-container">
+                                        <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
                                     </span>
-                                    <div class="address-details"><strong>خانه</strong><p>تهران، خیابان ولیعصر، کوچه امین، پلاک ۱۱۰</p></div>
+                                    <div class="shop-cs-address-details"><strong>خانه</strong><p>تهران، خیابان ولیعصر، کوچه امین، پلاک ۱۱۰</p></div>
                                 </label>
                             </div>
-                            <div class="address-option selectable-option">
+                            <div class="shop-cs-address-option shop-cs-selectable-option">
                                 <input type="radio" name="address_id" value="2" id="address-2">
-                                <label for="address-2" class="selectable-label">
-                                    <span class="custom-tick-container">
-                                        <svg class="tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+                                <label for="address-2" class="shop-cs-selectable-label">
+                                    <span class="shop-cs-custom-tick-container">
+                                        <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
                                     </span>
-                                    <div class="address-details"><strong>محل کار</strong><p>کرج، مهرشهر، بلوار شهرداری، ساختمان اداری ۱</p></div>
+                                    <div class="shop-cs-address-details"><strong>محل کار</strong><p>کرج، مهرشهر، بلوار شهرداری، ساختمان اداری ۱</p></div>
                                 </label>
                             </div>
-                            <!-- You can add more addresses here -->
-                            <a href="profile.html" class="btn btn--secondary" style="margin-top: 10px;" role="button">+ افزودن آدرس جدید</a>
+                            <a href="profile.html" class="shop-cs-btn shop-cs-btn--secondary" style="margin-top: 10px;" role="button">+ افزودن آدرس جدید</a>
                         </form>
                     </div>
                 </div>
             </section>
-
-            <!-- Shopping Cart Section and others... -->
-            <section class="checkout-card">
-                <div class="card-header">
+            <section class="shop-cs-checkout-card p-0">
+                <div class="shop-cs-card-header">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.822 7.431A1 1 0 0 0 21 7H7.333L6.179 4.23A1.994 1.994 0 0 0 4.333 3H2v2h2.333l4.744 11.385A1 1 0 0 0 10 17h8a1 1 0 0 0 .93-.64L21.99 8.431a1 1 0 0 0-.168-1z"></path><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="17.5" cy="19.5" r="1.5"></circle></svg>
-                    <h2 class="card-title">سبد خرید شما (۲ کالا)</h2>
+                    <h2 class="shop-cs-card-title">سبد خرید شما (۲ کالا)</h2>
                 </div>
-                <div class="card-body card-body--no-padding" id="cart-items-list">
-                    <div class="cart-item">
+                <div class="shop-cs-card-body shop-cs-card-body--no-padding" id="cart-items-list">
+                    <div class="shop-cs-cart-item-s">
                         <img src="assets/img/product/Samsung-galaxy-A25-2.jpg" alt="گوشی موبایل" style="width:80px; height:80px; object-fit: cover; border-radius: var(--border-radius-md);">
-                        <div style="flex-grow: 1;"><h3 style="font-size:0.9rem; margin:0 0 8px;">گوشی موبایل سامسونگ مدل Galaxy S21</h3><div style="font-weight:700;">۱۲,۵۰۰,۰۰۰ <span class="price-unit">تومان</span></div></div>
-                        <div class="quantity-control-container">
-                            <button class="quantity-btn" data-action="increase" aria-label="افزایش تعداد"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
-                            <span class="quantity-display" data-quantity="1">۱</span>
-                            <button class="quantity-btn" aria-label="حذف محصول"></button>
+                        <div style="flex-grow: 1;"><h3 style="margin:0 0 8px;">گوشی موبایل سامسونگ مدل Galaxy S21</h3><div style="font-weight:700;">۱۲,۵۰۰,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div></div>
+                        <div class="shop-cs-quantity-control-container">
+                            <button class="shop-cs-quantity-btn cartexz-qty-button" data-action="increase" aria-label="افزایش تعداد"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                            <span class="shop-cs-quantity-display" data-quantity="2">۲</span>
+                            <button class="shop-cs-quantity-btn cartexz-qty-button" aria-label="کاهش تعداد"></button>
                         </div>
                     </div>
-                    <div class="cart-item">
+                    <div class="shop-cs-cart-item-s">
                         <img src="assets/img/product/honor-x7b-1.jpg" alt="هدفون" style="width:80px; height:80px; object-fit: cover; border-radius: var(--border-radius-md);">
-                        <div style="flex-grow: 1;"><h3 style="font-size:0.9rem; margin:0 0 8px;">موبایل مدل هانر honor x 7 b</h3><div style="font-weight:700;">۱۱,۶۰۰,۰۰۰ <span class="price-unit">تومان</span></div></div>
-                        <div class="quantity-control-container">
-                            <button class="quantity-btn" data-action="increase" aria-label="افزایش تعداد"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
-                            <span class="quantity-display" data-quantity="2">۲</span>
-                            <button class="quantity-btn" aria-label="کاهش تعداد"></button>
+                        <div style="flex-grow: 1;"><h3 style="margin:0 0 8px;">موبایل مدل هانر honor x 7 b</h3><div style="font-weight:700;">۱۱,۶۰۰,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div></div>
+                        <div class="shop-cs-quantity-control-container">
+                            <button class="shop-cs-quantity-btn cartexz-qty-button" data-action="increase" aria-label="افزایش تعداد"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+                            <span class="shop-cs-quantity-display" data-quantity="2">۲</span>
+                            <button class="shop-cs-quantity-btn cartexz-qty-button" aria-label="کاهش تعداد"></button>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Shipment Section -->
-            <section class="checkout-card" id="shipment-section">
-                <div class="card-header">
+            <section class="shop-cs-checkout-card p-0 pb-5" id="shipment-section">
+                <div class="shop-cs-card-header">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M15 11h2.586l-2.293-2.293 1.414-1.414L21.414 12l-4.707 4.707-1.414-1.414L17.586 13H15v-2z"></path><path d="M13 3H8.667C7.194 3 6 4.194 6 5.667V10H4v10h1v-4h1v4h1v-4h1v4h1v-4h1v4h1V5.667C14 4.194 12.806 3 11.333 3H13V2h-2v1zM9 8H8V6h1v2zm2 0h-1V6h1v2z"></path></svg>
-                    <h2 class="card-title">شیوه و زمان ارسال</h2>
+                    <h2 class="shop-cs-card-title">شیوه و زمان ارسال</h2>
                 </div>
-                <div class="card-body">
-                    <div class="scroller-wrapper">
-                        <button class="scroller-btn scroller-btn--left" style="position: absolute; top: 50%; right: 0; transform: translateY(-50%); z-index: 10; background: #fff; border: 1px solid #e0e0e2; border-radius: 50%; width: 36px; height: 36px; display:flex; align-items:center; justify-content:center; cursor:pointer;" aria-label="روز قبل"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="transform: rotate(180deg)"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg></button>
-                        <div class="date-scroller"><div class="date-list">
-                            <div class="date-card active" data-time-group="day1-times">پنج‌شنبه ۱۲</div>
-                            <div class="date-card" data-time-group="day2-times">شنبه ۱۴</div>
-                            <div class="date-card" data-time-group="day3-times">یکشنبه ۱۵</div>
-                        </div></div>
-                        <button class="scroller-btn scroller-btn--right" style="position: absolute; top: 50%; left: 0; transform: translateY(-50%); z-index: 10; background: #fff; border: 1px solid #e0e0e2; border-radius: 50%; width: 36px; height: 36px; display:flex; align-items:center; justify-content:center; cursor:pointer;" aria-label="روز بعد"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg></button>
+                <div class="shop-cs-card-body">
+                    <div class="shop-cs-time-scroller-wrapper">
+                        <div class="shop-cs-time-scroller">
+                            <div class="shop-cs-time-scroller__list">
+                                <div class="shop-cs-time-scroller__item active" data-time-group="day1-times">پنج‌شنبه ۱۲</div>
+                                <div class="shop-cs-time-scroller__item" data-time-group="day2-times">شنبه ۱۴</div>
+                                <div class="shop-cs-time-scroller__item" data-time-group="day3-times">یکشنبه ۱۵</div>
+                                <div class="shop-cs-time-scroller__item" data-time-group="day4-times">دوشنبه ۱۶</div>
+                                <div class="shop-cs-time-scroller__item" data-time-group="day5-times">سه‌شنبه ۱۷</div>
+                                <div class="shop-cs-time-scroller__item" data-time-group="day6-times">چهارشنبه ۱۸</div>
+                                <div class="shop-cs-time-scroller__item" data-time-group="day7-times">پنج‌شنبه ۱۹</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="time-slot-section">
-                        <div id="day1-times" class="time-slot-group active">
-                            <div class="time-slot-option selectable-option"><input type="radio" name="delivery_time" value="d1-t1" id="d1-t1"><label for="d1-t1" class="selectable-label"><span class="custom-tick-container"><svg class="tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span>ساعت ۹ تا ۱۵</label></div>
-                            <div class="time-slot-option selectable-option"><input type="radio" name="delivery_time" value="d1-t2" id="d1-t2"><label for="d1-t2" class="selectable-label"><span class="custom-tick-container"><svg class="tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span>ساعت ۱۵ تا ۲۱</label></div>
+                    <div class="shop-cs-time-slot-section">
+                        <div id="day1-times" class="shop-cs-time-slot-group active">
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option"><input type="radio" name="delivery_time" value="d1-t1" id="d1-t1"><label for="d1-t1" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container"><svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span><span>ساعت ۹ تا ۱۵</span></label></div>
                         </div>
-                        <div id="day2-times" class="time-slot-group">
-                            <div class="time-slot-option selectable-option"><input type="radio" name="delivery_time" value="d2-t1" id="d2-t1"><label for="d2-t1" class="selectable-label"><span class="custom-tick-container"><svg class="tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span>ساعت ۱۰ تا ۱۶</label></div>
+                        <div id="day2-times" class="shop-cs-time-slot-group">
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option"><input type="radio" name="delivery_time" value="d2-t1" id="d2-t1"><label for="d2-t1" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container"><svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span><span>ساعت ۱۰ تا ۱۶</span></label></div>
                         </div>
-                        <div id="day3-times" class="time-slot-group">
-                            <div class="time-slot-option selectable-option"><input type="radio" name="delivery_time" value="d3-t1" id="d3-t1"><label for="d3-t1" class="selectable-label"><span class="custom-tick-container"><svg class="tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span>ساعت ۱۱ تا ۱۷</label></div>
-                            <div class="time-slot-option selectable-option"><input type="radio" name="delivery_time" value="d3-t2" id="d3-t2"><label for="d3-t2" class="selectable-label"><span class="custom-tick-container"><svg class="tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span>ساعت ۱۷ تا ۲۲</label></div>
+                        <div id="day3-times" class="shop-cs-time-slot-group">
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option"><input type="radio" name="delivery_time" value="d3-t1" id="d3-t1"><label for="d3-t1" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container"><svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span><span>ساعت ۱۱ تا ۱۷</span></label></div>
+                        </div>
+                        <div id="day4-times" class="shop-cs-time-slot-group">
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option"><input type="radio" name="delivery_time" value="d4-t1" id="d4-t1"><label for="d4-t1" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container"><svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span><span>ساعت ۹ تا ۱۲</span></label></div>
+                        </div>
+                        <div id="day5-times" class="shop-cs-time-slot-group">
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option"><input type="radio" name="delivery_time" value="d5-t1" id="d5-t1"><label for="d5-t1" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container"><svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span><span>ساعت ۱۰ تا ۱۸</span></label></div>
+                        </div>
+                        <div id="day6-times" class="shop-cs-time-slot-group">
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option"><input type="radio" name="delivery_time" value="d6-t1" id="d6-t1"><label for="d6-t1" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container"><svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span><span>ساعت ۱۲ تا ۱۸</span></label></div>
+                        </div>
+                        <div id="day7-times" class="shop-cs-time-slot-group">
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option"><input type="radio" name="delivery_time" value="d7-t1" id="d7-t1"><label for="d7-t1" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container"><svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span><span>ساعت ۹ تا ۱۵</span></label></div>
+                        </div>
+                        <div id="day8-times" class="shop-cs-time-slot-group">
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option"><input type="radio" name="delivery_time" value="d8-t1" id="d8-t1"><label for="d8-t1" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container"><svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span><span>ساعت ۱۰ تا ۱۴</span></label></div>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
 
-        <aside class="checkout-sidebar">
-            <div class="checkout-card order-summary-card">
-                <div class="card-body card-body--no-padding">
-                    <div class="summary-row"><div class="label">قیمت کالاها (۲)</div><div class="value">۲۴,۱۰۰,۰۰۰ <span class="price-unit">تومان</span></div></div>
-                    <div class="summary-row"><div class="label">تخفیف کالاها</div><div class="value" style="color:var(--dk-red)">(۲۵۰,۰۰۰-)</div></div>
-                    <div class="summary-row"><div class="label">هزینه ارسال</div><div class="value">۳۵,۰۰۰ <span class="price-unit">تومان</span></div></div>
-                    <div class="summary-divider" style="height:1px; background-color:#e0e0e2; margin:8px 16px;"></div>
-                    <div class="summary-row" style="font-weight: 700; font-size: 1rem;"><div class="label">جمع سبد خرید</div><div class="value">۲۳,۸۸۵,۰۰۰ <span class="price-unit">تومان</span></div></div>
-                    <div class="summary-row" style="color:var(--dk-green); font-size: 0.85rem;"><div class="label">سود شما از خرید</div><div class="value">۲۵۰,۰۰۰ <span class="price-unit">تومان</span></div></div>
+        <aside class="shop-cs-checkout-sidebar">
+            <div class="shop-cs-checkout-card shop-cs-order-summary-card">
+                <div class="shop-cs-card-body shop-cs-card-body--no-padding">
+                    <div class="shop-cs-summary-row"><div class="label">قیمت کالاها (۲)</div><div class="value">۲۴,۱۰۰,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div></div>
+                    <div class="shop-cs-summary-row"><div class="label">هزینه ارسال</div><div class="value">۳۵,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div></div>
+                    <div class="shop-cs-summary-row"><div class="label">تخفیف کالاها</div><div class="value" style="color:var(--dk-red)">(۲۵۰,۰۰۰-) <span class="shop-cs-price-unit">تومان</span></div></div>
+                    <div class="shop-cs-summary-row"><div class="label">مالیات (۹٪)</div><div class="value">۹۸,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div></div>
                 </div>
-                <div class="summary-action" style="padding:16px;">
-                    <button class="btn btn--primary" style="width: 100%; padding: 12px;">ادامه فرآیند خرید</button>
+                <div class="shop-cs-summary-divider"></div>
+                <div style="padding: 0 16px;">
+                    <div id="total-amount-row" class="shop-cs-summary-row shop-cs-total-amount"><div class="label">مبلغ قابل پرداخت</div><div class="value">۲۳,۹۸۳,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div></div>
+                </div>
+
+                <form id="payment-form" class="shop-cs-payment-method-section">
+                    <div class="shop-cs-selectable-option">
+                        <input type="radio" name="payment_method" value="wallet" id="payment-wallet" data-discount="10000">
+                        <label for="payment-wallet" class="shop-cs-selectable-label">
+                            <span class="shop-cs-custom-tick-container">
+                                <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+                            </span>
+                            <div class="shop-cs-payment-details"><strong>پرداخت با کیف پول</strong><p>موجودی: ۲۵,۰۰۰,۰۰۰ تومان</p></div>
+                        </label>
+                    </div>
+                    <div class="shop-cs-selectable-option">
+                        <input type="radio" name="payment_method" value="card" id="payment-card" checked>
+                        <label for="payment-card" class="shop-cs-selectable-label">
+                            <span class="shop-cs-custom-tick-container">
+                                <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+                            </span>
+                            <div class="shop-cs-payment-details"><strong>پرداخت با کارت بانکی</strong><p>پرداخت آنلاین از طریق درگاه امن</p></div>
+                        </label>
+                    </div>
+                </form>
+
+                <div class="shop-cs-summary-action" style="padding:16px;">
+                    <button class="shop-cs-btn shop-cs-btn--primary" style="width: 100%; padding: 12px;">ادامه فرآیند خرید</button>
                 </div>
             </div>
         </aside>
     </div>
-
 </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-        const toPersianNum = (n) => n.toString().replace(/\d/g, d => persianNumbers[d]);
-
-        const tickIconForCalc = document.querySelector('.tick-icon path');
-        if (tickIconForCalc) {
-            const length = tickIconForCalc.getTotalLength();
-            document.documentElement.style.setProperty('--tick-path-length', length);
-        }
-
-        // --- NEW: Smart Address Selection ---
-        const addressForm = document.getElementById('address-form');
-        const activeAddressDisplayWrapper = document.querySelector('#active-address-display .address-details-wrapper');
-        const toggleBtn = document.getElementById('btn-toggle-address');
-        const collapsibleList = document.getElementById('address-list-collapsible');
-
-        const updateActiveAddress = () => {
-            if (!addressForm || !activeAddressDisplayWrapper) return;
-            const checkedRadio = addressForm.querySelector('input[name="address_id"]:checked');
-            if (checkedRadio) {
-                const selectedLabel = checkedRadio.closest('.selectable-option').querySelector('.address-details');
-                activeAddressDisplayWrapper.innerHTML = selectedLabel.innerHTML;
-            }
-        };
-
-        if (toggleBtn && collapsibleList) {
-            toggleBtn.addEventListener('click', () => {
-                collapsibleList.classList.toggle('is-open');
-                toggleBtn.classList.toggle('is-open');
-            });
-        }
-
-        if (addressForm) {
-            addressForm.addEventListener('change', () => {
-                updateActiveAddress();
-                // Automatically close the list after selection
-                collapsibleList.classList.remove('is-open');
-                toggleBtn.classList.remove('is-open');
-            });
-        }
-
-        // Initial setup
-        updateActiveAddress();
 
 
-        const trashIconSVG ='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" width="1em" height="1em"><path fill="currentColor" d="M1792 384h-128v1472q0 40-15 75t-41 61t-61 41t-75 15H448q-40 0-75-15t-61-41t-41-61t-15-75V384H128V256h512V128q0-27 10-50t27-40t41-28t50-10h384q27 0 50 10t40 27t28 41t10 50v128h512zM768 256h384V128H768zm768 128H384v1472q0 26 19 45t45 19h1024q26 0 45-19t19-45zM768 1664H640V640h128zm256 0H896V640h128zm256 0h-128V640h128z"></path></svg>'
-        const minusIconSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
-
-        // --- Smart Cart Item Interactions ---
-        const cartList = document.getElementById('cart-items-list');
-        if (cartList) {
-            const updateDecreaseButton = (quantity, decreaseBtn) => {
-                if (quantity === 1) {
-                    decreaseBtn.innerHTML = trashIconSVG;
-                    decreaseBtn.setAttribute('aria-label', 'حذف محصول');
-                    decreaseBtn.dataset.action = 'delete';
-                } else {
-                    decreaseBtn.innerHTML = minusIconSVG;
-                    decreaseBtn.setAttribute('aria-label', 'کاهش تعداد');
-                    decreaseBtn.dataset.action = 'decrease';
-                }
-            };
-
-            cartList.querySelectorAll('.cart-item').forEach(item => {
-                const quantityEl = item.querySelector('.quantity-display');
-                const decreaseBtn = item.querySelector('.quantity-btn:last-child');
-                if (quantityEl && decreaseBtn) {
-                    const quantity = parseInt(quantityEl.dataset.quantity);
-                    updateDecreaseButton(quantity, decreaseBtn);
-                }
-            });
-
-            cartList.addEventListener('click', (e) => {
-                const target = e.target.closest('.quantity-btn');
-                if (!target) return;
-
-                const action = target.dataset.action;
-                const container = target.closest('.quantity-control-container');
-                const quantityEl = container.querySelector('.quantity-display');
-                const decreaseBtn = container.querySelector('.quantity-btn:last-child');
-                let quantity = parseInt(quantityEl.dataset.quantity);
-
-                if (action === 'increase') {
-                    quantity++;
-                } else if (action === 'decrease') {
-                    if (quantity > 1) quantity--;
-                } else if (action === 'delete') {
-                    const itemEl = target.closest('.cart-item');
-                    itemEl.classList.add('fading-out');
-                    itemEl.addEventListener('animationend', () => itemEl.remove());
-                    return;
-                }
-
-                quantityEl.dataset.quantity = quantity;
-                quantityEl.textContent = toPersianNum(quantity);
-                updateDecreaseButton(quantity, decreaseBtn);
-            });
-        }
-
-        // --- Smart Shipment Time Selection ---
-        const shipmentSection = document.getElementById('shipment-section');
-        if(shipmentSection){
-            shipmentSection.addEventListener('click', e => {
-                const dateCard = e.target.closest('.date-card');
-                if (dateCard) {
-                    if(dateCard.classList.contains('active')) return;
-
-                    shipmentSection.querySelector('.date-card.active')?.classList.remove('active');
-                    dateCard.classList.add('active');
-
-                    const timeSlotGroups = shipmentSection.querySelectorAll('.time-slot-group');
-                    timeSlotGroups.forEach(group => {
-                        group.classList.remove('active');
-                        group.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
-                    });
-
-                    const timeGroupId = dateCard.dataset.timeGroup;
-                    const newTimeGroup = document.getElementById(timeGroupId);
-                    if (newTimeGroup) newTimeGroup.classList.add('active');
-                }
-            });
-        }
-
-        // --- Smart Date Scroller ---
-        document.querySelectorAll('.scroller-wrapper').forEach(wrapper => {
-            const scroller = wrapper.querySelector('.date-scroller');
-            if (!scroller) return;
-            const leftBtn = wrapper.querySelector('.scroller-btn--left');
-            const rightBtn = wrapper.querySelector('.scroller-btn--right');
-
-            const checkArrows = () => {
-                if (!leftBtn || !rightBtn) return;
-                const buffer = 1;
-                rightBtn.disabled = scroller.scrollLeft >= (scroller.scrollWidth - scroller.clientWidth - buffer);
-                leftBtn.disabled = scroller.scrollLeft <= 0;
-            };
-            leftBtn.addEventListener('click', () => scroller.scrollLeft -= 150);
-            rightBtn.addEventListener('click', () => scroller.scrollLeft += 150);
-            scroller.addEventListener('scroll', checkArrows);
-            window.addEventListener('resize', checkArrows);
-            checkArrows();
-        });
-    });
-</script>
-
+<script src="assets/js/shopping.js"></script>
 </body>
 </html>

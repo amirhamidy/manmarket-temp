@@ -74,7 +74,7 @@ for (let i = 0; i < accordion.length; i++) {
 let mainOverlay;
 let searchBoxInstance;
 let cartDashboardInstance;
-let quickViewModalInstance, modalProductImage, modalProductName, modalProductPriceDisplay, modalColorInfoP, modalViewDetailsLink;
+// متغیرهای quickViewModalInstance، modalProductImage و ... حذف شدند
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -97,9 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             document.querySelectorAll('[data-mobile-menu].active').forEach(menu => menu.classList.remove('active'));
 
-            if (quickViewModalInstance && quickViewModalInstance.style.display !== 'none') {
-                hideElement(quickViewModalInstance);
-            }
+            // شرط مربوط به quickViewModalInstance حذف شد
+
             deactivateOverlay(mainOverlay);
         });
     }
@@ -378,110 +377,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const savedTheme = localStorage.getItem('theme') || 'light'; applyTheme(savedTheme);
     if (themeToggleButtonTest) { themeToggleButtonTest.addEventListener('click', () => { const currentTheme = htmlElement.hasAttribute('data-theme') ? 'dark' : 'light'; const newTheme = currentTheme === 'dark' ? 'light' : 'dark'; applyTheme(newTheme); }); }
 
-
-    const quickViewModalHTML = `
-        <div id="productQuickViewModal" class="modal" style="display: none; opacity: 0; transition: opacity 0.3s ease-in-out;">
-            <div class="modal-content" style="transform: scale(0.95); transition: transform 0.3s ease-in-out;">
-                <button type="button" class="close-button" aria-label="Close">×</button>
-                <div class="modal-body">
-                    <div class="modal-image-container">
-                         <img id="modalProductImage" src="" alt="تصویر محصول">
-                    </div>
-                    <div class="modal-details-container">
-                        <h3 id="modalProductName"></h3>
-                        <div id="modalProductPriceContainer">
-                            <!-- Price will be dynamically set using a pre-created span -->
-                        </div>
-                        <div id="modalProductColors">
-                            <h4>رنگ‌های موجود:</h4>
-                            <p id="modalColorInfo">برای نمایش رنگ‌ها، داده مربوطه را به محصول اضافه کنید.</p>
-                        </div>
-                        <a href="single.product.html" id="modalViewDetailsLink" class="view-details-button bg-danger">مشاهده جزئیات کامل محصول</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    document.body.insertAdjacentHTML('beforeend', quickViewModalHTML);
-
-    quickViewModalInstance = document.getElementById('productQuickViewModal');
-    const quickViewCloseButton = quickViewModalInstance.querySelector('.close-button');
-    modalProductImage = document.getElementById('modalProductImage');
-    modalProductName = document.getElementById('modalProductName');
-    const modalPriceContainer = document.getElementById('modalProductPriceContainer');
-    modalViewDetailsLink = document.getElementById('modalViewDetailsLink');
-    modalColorInfoP = document.getElementById('modalColorInfo');
-
-    modalProductPriceDisplay = document.createElement('span');
-    modalPriceContainer.appendChild(modalProductPriceDisplay);
-
-    function populateQuickViewModal(productData) {
-        modalProductImage.src = productData.imageSrc || "";
-        modalProductImage.alt = productData.imageAlt || "تصویر محصول";
-        modalProductName.textContent = productData.name || "نام محصول";
-
-        if (productData.priceHTML && productData.priceClass) {
-            modalProductPriceDisplay.innerHTML = productData.priceHTML;
-            modalProductPriceDisplay.className = productData.priceClass.replace(/\bposition-absolute\b/g, '').trim();
-        } else {
-            modalProductPriceDisplay.innerHTML = '';
-            modalProductPriceDisplay.className = '';
-        }
-
-        modalColorInfoP.textContent = productData.colors || "برای نمایش رنگ‌ها، داده مربوطه را به محصول اضافه کنید.";
-        modalViewDetailsLink.href = productData.detailsLink || "single.product.html";
-    }
-
-    function openQuickViewModal() {
-        if (mainOverlay) activateOverlay(mainOverlay);
-        showElement(quickViewModalInstance);
-        quickViewModalInstance.getBoundingClientRect();
-        quickViewModalInstance.style.opacity = '1';
-        quickViewModalInstance.querySelector('.modal-content').style.transform = 'scale(1)';
-    }
-
-    function closeQuickViewModal() {
-        if (!quickViewModalInstance || quickViewModalInstance.style.display === 'none') return;
-        quickViewModalInstance.style.opacity = '0';
-        quickViewModalInstance.querySelector('.modal-content').style.transform = 'scale(0.95)';
-        setTimeout(() => {
-            hideElement(quickViewModalInstance);
-
-            if (mainOverlay) deactivateOverlay(mainOverlay);
-        }, 300);
-    }
-
-    if (quickViewCloseButton) {
-        quickViewCloseButton.addEventListener('click', closeQuickViewModal);
-    }
-
-    const productListContainer = document.getElementById('slider') || document.body;
-    productListContainer.addEventListener('click', function(event) {
-        const viewButton = event.target.closest('button.view');
-        if (!viewButton) return;
-
-        const productArticle = viewButton.closest('article');
-        if (!productArticle) { console.error("Quick View: Product article not found."); return; }
-
-
-        const productImageEl = productArticle.querySelector('.product img.one-img');
-        const productNameEl = productArticle.querySelector('h3.Specifications');
-        const productPriceEl = productArticle.querySelector('span.price');
-
-        const productData = {
-            imageSrc: productImageEl ? productImageEl.src : '',
-            imageAlt: productImageEl ? productImageEl.alt : '',
-            name: productNameEl ? productNameEl.textContent.trim() : '',
-            priceHTML: productPriceEl ? productPriceEl.innerHTML : '',
-            priceClass: productPriceEl ? productPriceEl.className : '',
-
-            detailsLink: productArticle.dataset.detailUrl || "single.product.html"
-        };
-
-        populateQuickViewModal(productData);
-        openQuickViewModal();
-    });
-
+    // بخش مربوط به HTML Quick View Modal و توابع آن و Event Listener مربوط به دکمه "view" حذف شد
 });
 
 $(document).ready(function(){

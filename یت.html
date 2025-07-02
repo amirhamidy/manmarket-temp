@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Product Notification - Image Icon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="not-rot-product-notification-box">
+    <div class="not-rot-notification-icon" id="notRotEmoji">
+    </div>
+    <div class="not-rot-notification-messages-wrapper">
+        <div class="not-rot-notification-messages-inner">
+            <div class="not-rot-message-item"></div>
+            <div class="not-rot-message-item"></div>
+            <div class="not-rot-message-item"></div>
+            <div class="not-rot-message-item"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const messagesInner = document.querySelector('.not-rot-notification-messages-inner');
+        const emojiElement = document.getElementById('notRotEmoji');
+        const messageItems = document.querySelectorAll('.not-rot-message-item');
+        let currentIndex = 0;
+        const intervalTime = 3000;
+        const messageHeight = 24;
+
+        const contents = [
+            { text: 'تعداد بازدید در 24 ساعت اخیر 1000  +', icon: 'assets/img/seenz.png' },
+            { text: 'موجود در سبد خرید 56 نفر دیگر', icon: 'assets/img/khodayaaa.png' },
+            { text: 'تعداد فروش در این هفته 100 + ', icon: 'images/warning.png' },
+            { text: 'این محصول امتیاز **4.5 از 5** گرفته است', icon: 'images/star.png' }
+        ];
+
+        messageItems.forEach((item, index) => {
+            if (contents[index]) {
+                item.innerHTML = contents[index].text;
+            }
+        });
+
+        function showMessage(index) {
+            messagesInner.style.top = `-${index * messageHeight}px`;
+
+            if (contents[index] && contents[index].icon) {
+                emojiElement.style.transform = 'scale(0.5)';
+                emojiElement.style.opacity = '0';
+
+                setTimeout(() => {
+                    const iconContent = contents[index].icon;
+
+                    while (emojiElement.firstChild) {
+                        emojiElement.removeChild(emojiElement.firstChild);
+                    }
+
+                    if (typeof iconContent === 'string' && (iconContent.endsWith('.png') || iconContent.endsWith('.jpg') || iconContent.endsWith('.jpeg') || iconContent.endsWith('.gif'))) {
+                        const imgElement = document.createElement('img');
+                        imgElement.src = iconContent;
+                        imgElement.alt = "Notification Icon"; // متن جایگزین برای دسترسی‌پذیری
+                        emojiElement.appendChild(imgElement);
+                    } else {
+                        // Fallback for emojis or other text-based icons
+                        const spanElement = document.createElement('span');
+                        spanElement.textContent = iconContent;
+                        emojiElement.appendChild(spanElement);
+                    }
+
+                    emojiElement.style.transform = 'scale(1)';
+                    emojiElement.style.opacity = '1';
+                }, 200);
+            }
+        }
+
+        function nextMessage() {
+            currentIndex = (currentIndex + 1) % contents.length;
+            showMessage(currentIndex);
+        }
+
+        // Initial display
+        showMessage(currentIndex);
+
+        // Start the carousel
+        setInterval(nextMessage, intervalTime);
+    });
+</script>
+</body>
+</html>

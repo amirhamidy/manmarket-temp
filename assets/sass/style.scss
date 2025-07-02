@@ -250,7 +250,7 @@
 .mobile-bottom-navigation {
   background: var(--white);
   position: fixed;
-  bottom: -1%;
+  bottom: -1.5%;
   left: 50%;
   transform: translateX(-50%);
   width: 99%;
@@ -289,7 +289,7 @@
   top: 0;
   left: -100%;
   width: 100%;
-  max-width: 320px;
+  max-width: 100%;
   height: 100vh;
   padding: 20px;
   box-shadow: 0 0 10px hsla(0, 0%, 0%, .1);
@@ -346,7 +346,7 @@
 .mobile-menu-category-list .menu-title {
   color: var(--onyx);
   font-size: var(--fs-6);
-  font-weight: var(--weight-500);
+  font-weight: bold !important;
   padding: 12px 0;
 }
 

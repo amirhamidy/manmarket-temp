@@ -1,488 +1,264 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- متغیرهای اصلی ---
-    const resultsGridContainer = document.getElementById('resultsGridContainer');
-    const paginationContainer = document.getElementById('paginationContainer');
-    const paginationUl = document.getElementById('paginationUl');
-
-    // --- مقادیر استاتیک ---
-    // این مقادیر رو میتونی دستی تغییر بدی. قبلا از روی محصولات محاسبه میشد.
-    let actualMinProductPrice = 0;
-    let actualMaxProductPrice = 100000000; // مثلا ۱۰۰ میلیون
-    const totalPagesStatic = parseInt(document.getElementById('paginationUl')?.dataset?.totalPages || '3');
-
-    let categoryFilterContainer, brandFilterContainer, sortOptionsContainer;
-    let mainClearFiltersButton, applyFiltersButton;
-    let sidebarHeaderElement;
-    let currentPageFromURL = 1;
-    let filterIdCounter = 0;
-
-    const tickSVGPath = "M4.5 8.5l2.5 2.5 5-5";
-    const tempTickSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    const tempTickPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    tempTickPath.setAttribute("d", tickSVGPath);
-    tempTickPath.style.strokeWidth = "2.5"; tempTickPath.style.fill = "none";
-    tempTickSVG.appendChild(tempTickPath); document.body.appendChild(tempTickSVG);
-    const tickPathLength = tempTickPath.getTotalLength(); document.body.removeChild(tempTickSVG);
-    document.documentElement.style.setProperty('--tick-path-length', tickPathLength.toFixed(2));
-    const chipRemoveSVGPath = "M4 4 L12 12 M12 4 L4 12";
-    const tempRemoveSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    const tempRemovePath = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    tempRemovePath.setAttribute("d", chipRemoveSVGPath);
-    tempRemovePath.style.strokeWidth = "1.75"; tempRemovePath.style.fill = "none";
-    tempRemoveSVG.appendChild(tempRemovePath); document.body.appendChild(tempRemoveSVG);
-    const chipRemovePathLength = tempRemovePath.getTotalLength(); document.body.removeChild(tempRemoveSVG);
-    document.documentElement.style.setProperty('--chip-remove-icon-path-length', chipRemovePathLength.toFixed(2));
-    const chipRemoveSVGIconHTML = `<svg class="fill-chip-remove-icon" viewBox="0 0 16 16"><path d="${chipRemoveSVGPath}" stroke-width="1.75" fill="none"/></svg>`;
-
-    // --- عناصر اصلی DOM ---
-    const filtersSidebarDOMContainer = document.querySelector('.fill-filters-sidebar-container');
-    const filterContentWrapper = document.querySelector('.fill-filters-sidebar-content-wrapper');
-
     const mobileFilterBar = document.getElementById('mobileFilterBar');
-    const filtersBottomSheet = document.getElementById('filtersBottomSheet');
     const filtersBottomSheetOverlay = document.getElementById('filtersBottomSheetOverlay');
+    const filtersBottomSheet = document.getElementById('filtersBottomSheet');
     const bottomSheetFilterContent = document.getElementById('bottomSheetFilterContent');
     const closeBottomSheetButton = document.getElementById('closeBottomSheetButton');
+    const sidebarFilterContentWrapper = document.querySelector('.fill-filters-sidebar-content-wrapper');
+
+    const isMobile = () => window.innerWidth < 992;
+
+    const updateLayoutBasedOnWidth = () => {
+        if (isMobile()) {
+            document.body.classList.add('is-mobile-layout');
+            if (sidebarFilterContentWrapper && bottomSheetFilterContent) {
+                if (!bottomSheetFilterContent.contains(sidebarFilterContentWrapper)) {
+                    bottomSheetFilterContent.appendChild(sidebarFilterContentWrapper);
+                }
+            }
+        } else {
+            document.body.classList.remove('is-mobile-layout');
+            const desktopSidebar = document.querySelector('.fill-filters-sidebar-container');
+            if (sidebarFilterContentWrapper && desktopSidebar) {
+                if (!desktopSidebar.contains(sidebarFilterContentWrapper)) {
+                    desktopSidebar.appendChild(sidebarFilterContentWrapper);
+                }
+            }
+        }
+    };
+
+    updateLayoutBasedOnWidth();
+    window.addEventListener('resize', updateLayoutBasedOnWidth);
+
+    const filterChips = document.querySelectorAll('.mobile-filter-bar .btn-filter-chip[data-filter-target="all"]');
+    filterChips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            filtersBottomSheetOverlay.classList.add('show');
+            filtersBottomSheet.classList.add('show');
+        });
+    });
+
+    closeBottomSheetButton.addEventListener('click', () => {
+        filtersBottomSheetOverlay.classList.remove('show');
+        filtersBottomSheet.classList.remove('show');
+    });
+
+    filtersBottomSheetOverlay.addEventListener('click', () => {
+        filtersBottomSheetOverlay.classList.remove('show');
+        filtersBottomSheet.classList.remove('show');
+    });
+
+    const applyFiltersMobileButton = document.getElementById('applyFiltersMobileButton');
+    if (applyFiltersMobileButton) {
+        // No change here, keeping it as type="submit" for semantic correctness,
+        // but understanding it won't trigger a form submission without a <form> tag.
+        applyFiltersMobileButton.setAttribute('type', 'submit');
+        applyFiltersMobileButton.addEventListener('click', () => {
+            filtersBottomSheetOverlay.classList.remove('show');
+            filtersBottomSheet.classList.remove('show');
+        });
+    }
+
+    const priceSliderTrack = document.getElementById('priceSliderTrack');
+    const minPriceHandle = document.getElementById('minPriceHandle'); // This is the visual 'right' handle in RTL for min price
+    const maxPriceHandle = document.getElementById('maxPriceHandle'); // This is the visual 'left' handle in RTL for max price
+    const minPriceDisplay = document.getElementById('minPriceDisplay');
+    const maxPriceDisplay = document.getElementById('maxPriceDisplay');
+    const minPriceValueInput = document.getElementById('minPriceValue');
+    const maxPriceValueInput = document.getElementById('maxPriceValue');
+    const priceSliderRange = document.getElementById('priceSliderRange');
+
+    const actualMinProductPrice = 0;
+    const actualMaxProductPrice = 100000000;
+
+    let currentMinPrice = actualMinProductPrice;
+    let currentMaxPrice = actualMaxProductPrice;
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('fa-IR').format(price);
+    };
+
+    const updatePriceDisplays = () => {
+        minPriceDisplay.textContent = formatPrice(currentMinPrice);
+        maxPriceDisplay.textContent = formatPrice(currentMaxPrice);
+        minPriceValueInput.value = currentMinPrice;
+        maxPriceValueInput.value = currentMaxPrice;
+    };
+
+    const updateSliderUI = () => {
+        const totalRange = actualMaxProductPrice - actualMinProductPrice;
+        if (totalRange === 0) {
+            priceSliderRange.style.left = '0%';
+            priceSliderRange.style.width = '100%';
+            minPriceHandle.style.left = '0%';
+            maxPriceHandle.style.left = '100%';
+            return;
+        }
+
+        // Calculation based on visual left (0%) to visual right (100%)
+        // The *visual* minPriceHandle controls the start of the range (left)
+        // The *visual* maxPriceHandle controls the end of the range (right)
+        // Note: I'm reverting to the initial thought for simplicity and common behavior
+        // where the handle on the "left" controls the minimum value and the one on the "right" controls the maximum.
+        // This might be counter-intuitive for RTL if the track visually starts from right.
+        // If your CSS defines left=0% as the rightmost point in RTL, this logic will still be incorrect.
+        // Assuming `left` CSS property always refers to the distance from the left edge of its container.
+
+        const minPercent = ((currentMinPrice - actualMinProductPrice) / totalRange) * 100;
+        const maxPercent = ((currentMaxPrice - actualMinProductPrice) / totalRange) * 100;
+
+        // Visual `minPriceHandle` is on the right, `maxPriceHandle` on the left.
+        // So, `minPriceHandle` refers to `currentMinPrice` and `maxPriceHandle` refers to `currentMaxPrice`.
+        // The `left` CSS property determines the position from the container's left edge.
+
+        // So, the `left` of the range starts at `minPercent`
+        priceSliderRange.style.left = `${minPercent}%`;
+        // The `width` of the range goes up to `maxPercent`
+        priceSliderRange.style.width = `${maxPercent - minPercent}%`;
+
+        // Position the handles based on their current values
+        minPriceHandle.style.left = `${minPercent}%`;
+        maxPriceHandle.style.left = `${maxPercent}%`;
+
+        // Adjust Z-index so the active handle is on top if they overlap
+        if (minPercent > maxPercent) {
+            minPriceHandle.style.zIndex = 3;
+            maxPriceHandle.style.zIndex = 2;
+        } else {
+            minPriceHandle.style.zIndex = 2;
+            maxPriceHandle.style.zIndex = 3;
+        }
+    };
+
+    let activeHandle = null;
+
+    const getClientX = (e) => {
+        return e.touches ? e.touches[0].clientX : e.clientX;
+    };
+
+    const onStart = (e, handle) => {
+        activeHandle = handle;
+        e.preventDefault();
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onEnd);
+        document.addEventListener('touchmove', onMove, { passive: false });
+        document.addEventListener('touchend', onEnd);
+        handle.classList.add('active');
+    };
+
+    const onMove = (e) => {
+        if (!activeHandle) return;
+
+        const sliderRect = priceSliderTrack.getBoundingClientRect();
+        let newX = getClientX(e) - sliderRect.left; // Distance from left edge of track
+        let percent = (newX / sliderRect.width) * 100;
+
+        percent = Math.max(0, Math.min(100, percent));
+
+        const newValue = Math.round(actualMinProductPrice + (percent / 100) * (actualMaxProductPrice - actualMinProductPrice));
+
+        // Reverting to previous logic for handle control
+        // maxPriceHandle (visual left handle) controls the max value
+        // minPriceHandle (visual right handle) controls the min value
+        if (activeHandle === minPriceHandle) { // If dragging the visual right handle
+            currentMinPrice = Math.min(newValue, currentMaxPrice);
+        } else if (activeHandle === maxPriceHandle) { // If dragging the visual left handle
+            currentMaxPrice = Math.max(newValue, currentMinPrice);
+        }
+
+        // Ensure min is always less than or equal to max
+        if (currentMinPrice > currentMaxPrice) {
+            [currentMinPrice, currentMaxPrice] = [currentMaxPrice, currentMinPrice];
+        }
+
+        updateSliderUI();
+        updatePriceDisplays();
+    };
+
+    const onEnd = () => {
+        if (activeHandle) {
+            activeHandle.classList.remove('active');
+        }
+        activeHandle = null;
+        document.removeEventListener('mousemove', onMove);
+        document.removeEventListener('mouseup', onEnd);
+        document.removeEventListener('touchmove', onMove);
+        document.removeEventListener('touchend', onEnd);
+    };
+
+    minPriceHandle.addEventListener('mousedown', (e) => onStart(e, minPriceHandle));
+    maxPriceHandle.addEventListener('mousedown', (e) => onStart(e, maxPriceHandle));
+    minPriceHandle.addEventListener('touchstart', (e) => onStart(e, minPriceHandle));
+    maxPriceHandle.addEventListener('touchstart', (e) => onStart(e, maxPriceHandle));
+
+    updatePriceDisplays();
+    updateSliderUI();
+
+    const clearFiltersButton = document.getElementById('clearFiltersButton');
+    if (clearFiltersButton) {
+        clearFiltersButton.setAttribute('type', 'submit');
+        clearFiltersButton.addEventListener('click', () => {
+            const allCheckboxesAndRadios = document.querySelectorAll('input[type="checkbox"], input[type="radio"]');
+            allCheckboxesAndRadios.forEach(input => {
+                input.checked = false;
+                if (input.name === 'sortOption' && input.value === 'popular') {
+                    input.checked = true;
+                }
+            });
+
+            currentMinPrice = actualMinProductPrice;
+            currentMaxPrice = actualMaxProductPrice;
+            updateSliderUI();
+            updatePriceDisplays();
+        });
+    }
 
     const layoutToggleButton = document.getElementById('layoutToggleButton');
     const layoutPopover = document.getElementById('layoutPopover');
     const resultsGrid = document.getElementById('resultsGrid');
+    const layoutOptions = document.querySelectorAll('.layout-popover .layout-option');
 
-    const gridViewClasses = ['row-cols-2', 'row-cols-sm-2', 'row-cols-md-3', 'row-cols-lg-4'];
-    const listViewClassesMobile = ['row-cols-1'];
-    let currentLayout = 'grid';
-    const lgBreakpoint = 992;
-
-    function initializeFilterElements() {
-        if (!filterContentWrapper) return false;
-        categoryFilterContainer = filterContentWrapper.querySelector('#categoryFilterContainer');
-        brandFilterContainer = filterContentWrapper.querySelector('#brandFilterContainer');
-        sortOptionsContainer = filterContentWrapper.querySelector('#sortOptionsContainer');
-        mainClearFiltersButton = filterContentWrapper.querySelector('#clearFiltersButton');
-        applyFiltersButton = filterContentWrapper.querySelector('#applyFiltersMobileButton');
-        sidebarHeaderElement = filterContentWrapper.querySelector('.fill-sidebar-header');
-        return true;
-    }
-
-    function formatPrice(value) {
-        if (value == null || isNaN(Number(value))) return '';
-        return Number(value).toLocaleString('fa-IR');
-    }
-
-    function formatInitialPricesInDOM() {
-        document.querySelectorAll('#resultsGrid .fill-price-value').forEach(el => {
-            const price = parseFloat(el.closest('.col[data-price]')?.dataset?.price);
-            if (!isNaN(price)) el.textContent = formatPrice(price);
-        });
-    }
-
-    // --- توابع مربوط به اسلایدر قیمت (بدون تغییر زیاد) ---
-    function updatePriceSliderDisplays(currentMin, currentMax) {
-        if (!filterContentWrapper) return;
-        const dMinEl = filterContentWrapper.querySelector('#maxPriceDisplay');
-        const dMaxEl = filterContentWrapper.querySelector('#minPriceDisplay');
-        const iMinEl = filterContentWrapper.querySelector('#minPriceValue');
-        const iMaxEl = filterContentWrapper.querySelector('#maxPriceValue');
-        if (!dMinEl || !dMaxEl || !iMinEl || !iMaxEl) return;
-        dMinEl.textContent = formatPrice(currentMin);
-        dMaxEl.textContent = formatPrice(currentMax);
-        iMinEl.value = (currentMin === actualMinProductPrice && currentMax === actualMaxProductPrice) ? '' : currentMin;
-        iMaxEl.value = (currentMin === actualMinProductPrice && currentMax === actualMaxProductPrice) ? '' : currentMax;
-    }
-
-    function updateSliderHandlesFromValues() {
-        if (!filterContentWrapper) return;
-        const minPriceInput = filterContentWrapper.querySelector('#minPriceValue');
-        const maxPriceInput = filterContentWrapper.querySelector('#maxPriceValue');
-        if (!minPriceInput || !maxPriceInput) return;
-        const minPriceVal = parseFloat(minPriceInput.value || actualMinProductPrice);
-        const maxPriceVal = parseFloat(maxPriceInput.value || actualMaxProductPrice);
-        const hMinVisual = filterContentWrapper.querySelector('#maxPriceHandle');
-        const hMaxVisual = filterContentWrapper.querySelector('#minPriceHandle');
-        const pRange = filterContentWrapper.querySelector('#priceSliderRange');
-        if (!hMinVisual || !hMaxVisual || !pRange ) return;
-        if (actualMaxProductPrice - actualMinProductPrice <= 0) {
-            updateHandlePosition(hMinVisual, 0); updateHandlePosition(hMaxVisual, 100);
-            updateSliderRangeFill(hMinVisual, hMaxVisual, pRange); return;
-        }
-        let minPercent = ((minPriceVal - actualMinProductPrice) / (actualMaxProductPrice - actualMinProductPrice)) * 100;
-        let maxPercent = ((maxPriceVal - actualMinProductPrice) / (actualMaxProductPrice - actualMinProductPrice)) * 100;
-        minPercent = Math.max(0, Math.min(100, minPercent));
-        maxPercent = Math.max(0, Math.min(100, maxPercent));
-        if (minPercent > maxPercent) minPercent = Math.max(0, maxPercent - 0.1);
-        updateHandlePosition(hMinVisual, minPercent);
-        updateHandlePosition(hMaxVisual, maxPercent);
-        updateSliderRangeFill(hMinVisual, hMaxVisual, pRange);
-    }
-
-    function initializePriceSlider() {
-        if (!filterContentWrapper) return;
-        const hMinVisual = filterContentWrapper.querySelector('#maxPriceHandle');
-        const hMaxVisual = filterContentWrapper.querySelector('#minPriceHandle');
-        const pTrack = filterContentWrapper.querySelector('#priceSliderTrack');
-        const pRange = filterContentWrapper.querySelector('#priceSliderRange');
-        if (!hMinVisual || !hMaxVisual || !pTrack || !pRange) return;
-        updateHandlePosition(hMinVisual, 0); updateHandlePosition(hMaxVisual, 100);
-        updateSliderRangeFill(hMinVisual, hMaxVisual, pRange);
-        updatePriceSliderDisplays(actualMinProductPrice, actualMaxProductPrice);
-        [hMinVisual, hMaxVisual].forEach(handle => {
-            handle.addEventListener('mousedown', startDrag);
-            handle.addEventListener('touchstart', startDrag, { passive: false });
-        });
-    }
-
-    let currentHandle = null; let sliderRect = null; let isDragging = false;
-    function startDrag(e) {
-        if (!filterContentWrapper) return;
-        const hMinVisual = filterContentWrapper.querySelector('#maxPriceHandle');
-        const hMaxVisual = filterContentWrapper.querySelector('#minPriceHandle');
-        const pTrack = filterContentWrapper.querySelector('#priceSliderTrack');
-        if (!pTrack) return;
-        if (e.target.closest('#maxPriceHandle')) currentHandle = hMinVisual;
-        else if (e.target.closest('#minPriceHandle')) currentHandle = hMaxVisual;
-        else return;
-        isDragging = true; if(currentHandle) currentHandle.style.zIndex = '3';
-        sliderRect = pTrack.getBoundingClientRect(); document.body.style.userSelect = 'none';
-        window.addEventListener('mousemove', onDrag); window.addEventListener('mouseup', endDragSlider);
-        window.addEventListener('touchmove', onDrag, { passive: false });
-        window.addEventListener('touchend', endDragSlider); window.addEventListener('touchcancel', endDragSlider);
-    }
-    function onDrag(e) {
-        if (!isDragging || !currentHandle || !sliderRect || !filterContentWrapper) return;
-        if (e.cancelable) e.preventDefault();
-        let clientX = e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
-        let percent = ((clientX - sliderRect.left) / sliderRect.width) * 100;
-        const hMinVisual = filterContentWrapper.querySelector('#maxPriceHandle');
-        const hMaxVisual = filterContentWrapper.querySelector('#minPriceHandle');
-        const pRange = filterContentWrapper.querySelector('#priceSliderRange');
-        if (!hMinVisual || !hMaxVisual || !pRange) return;
-        let minVisPercent = parseFloat(hMinVisual.style.left); let maxVisPercent = parseFloat(hMaxVisual.style.left);
-        minVisPercent = isNaN(minVisPercent) ? 0 : minVisPercent; maxVisPercent = isNaN(maxVisPercent) ? 100 : maxVisPercent;
-        if (currentHandle === hMinVisual) percent = Math.min(percent, maxVisPercent - 0.5);
-        else percent = Math.max(percent, minVisPercent + 0.5);
-        percent = Math.max(0, Math.min(100, percent));
-        updateHandlePosition(currentHandle, percent); updateSliderRangeFill(hMinVisual, hMaxVisual, pRange);
-        const newMinHandlePos = parseFloat(hMinVisual.style.left); const newMaxHandlePos = parseFloat(hMaxVisual.style.left);
-        const newMinPrice = actualMinProductPrice + (actualMaxProductPrice - actualMinProductPrice) * (newMinHandlePos / 100);
-        const newMaxPrice = actualMinProductPrice + (actualMaxProductPrice - actualMinProductPrice) * (newMaxHandlePos / 100);
-        updatePriceSliderDisplays(Math.round(newMinPrice), Math.round(newMaxPrice));
-    }
-    function endDragSlider() {
-        if (!isDragging) return; isDragging = false;
-        if (currentHandle) currentHandle.style.zIndex = '2'; currentHandle = null;
-        document.body.style.userSelect = '';
-        window.removeEventListener('mousemove', onDrag); window.removeEventListener('mouseup', endDragSlider);
-        window.removeEventListener('touchmove', onDrag); window.removeEventListener('touchend', endDragSlider);
-        window.removeEventListener('touchcancel', endDragSlider);
-    }
-    function updateHandlePosition(handle, percent) { if (handle) handle.style.left = `${percent}%`; }
-    function updateSliderRangeFill(hMin, hMax, pRange) {
-        if (!hMin || !hMax || !pRange) return;
-        const minPercent = parseFloat(hMin.style.left); const maxPercent = parseFloat(hMax.style.left);
-        if (isNaN(minPercent) || isNaN(maxPercent)) return;
-        pRange.style.left = `${minPercent}%`; pRange.style.width = `${maxPercent - minPercent}%`;
-    }
-
-    // --- توابع مربوط به مدیریت فیلتر و URL (بدون تغییر) ---
-    function getSelectedFiltersFromUI(containerId) {
-        const container = filterContentWrapper?.querySelector(`#${containerId}`);
-        if (!container) return [];
-        return Array.from(container.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.value);
-    }
-
-    function getFiltersAsURLParams() {
-        const params = new URLSearchParams();
-        if (!filterContentWrapper) return params;
-        const minPriceInput = filterContentWrapper.querySelector('#minPriceValue');
-        const maxPriceInput = filterContentWrapper.querySelector('#maxPriceValue');
-        if(minPriceInput?.value && minPriceInput.value !== String(actualMinProductPrice)) params.set('min_price', minPriceInput.value);
-        if(maxPriceInput?.value && maxPriceInput.value !== String(actualMaxProductPrice)) params.set('max_price', maxPriceInput.value);
-        getSelectedFiltersFromUI('categoryFilterContainer').forEach(cat => params.append('category', cat));
-        getSelectedFiltersFromUI('brandFilterContainer').forEach(brand => params.append('brand', brand));
-        const sortInput = filterContentWrapper.querySelector('input[name="sortOption"]:checked');
-        if (sortInput && sortInput.value !== 'popular') params.set('sort', sortInput.value);
-        return params;
-    }
-
-    function applyFiltersFromURLToUI() {
-        if (!filterContentWrapper) return;
-        const params = new URLSearchParams(window.location.search);
-        const minPriceInput = filterContentWrapper.querySelector('#minPriceValue');
-        const maxPriceInput = filterContentWrapper.querySelector('#maxPriceValue');
-        const minPriceFromURL = params.get('min_price'); const maxPriceFromURL = params.get('max_price');
-        if (minPriceInput) minPriceInput.value = minPriceFromURL || '';
-        if (maxPriceInput) maxPriceInput.value = maxPriceFromURL || '';
-        updatePriceSliderDisplays(parseFloat(minPriceFromURL || actualMinProductPrice), parseFloat(maxPriceFromURL || actualMaxProductPrice));
-        const categoriesFromURL = params.getAll('category');
-        categoryFilterContainer?.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = categoriesFromURL.includes(cb.value));
-        const brandsFromURL = params.getAll('brand');
-        brandFilterContainer?.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = brandsFromURL.includes(cb.value));
-        const sortFromURL = params.get('sort') || 'popular';
-        const sortRadio = sortOptionsContainer?.querySelector(`input[name="sortOption"][value="${sortFromURL}"]`);
-        if (sortRadio) sortRadio.checked = true;
-        else sortOptionsContainer?.querySelector(`input[name="sortOption"][value="popular"]`)?.setAttribute('checked', 'true');
-        currentPageFromURL = parseInt(params.get('page')) || 1;
-        updateChipActiveStates();
-    }
-
-    // --- توابع مربوط به چیپ های فیلتر (بدون تغییر) ---
-    function addRemoveIconsToFilterChips() {
-        if (!mobileFilterBar) return;
-        mobileFilterBar.querySelectorAll('.btn-filter-chip[data-filter-target]').forEach(chip => {
-            const filterType = chip.dataset.filterTarget;
-            if (filterType === 'all') return;
-            let textSpan = chip.querySelector('span:not(.chip-remove-icon-container)');
-            if (!textSpan && chip.firstChild?.nodeType === Node.TEXT_NODE) {
-                const chipText = chip.firstChild.nodeValue.trim();
-                chip.innerHTML = '';
-                textSpan = document.createElement('span'); textSpan.textContent = chipText; chip.appendChild(textSpan);
-            } else if (!textSpan && chip.textContent.trim() && !chip.querySelector('svg')) {
-                const chipText = chip.textContent.trim();
-                chip.innerHTML = '';
-                textSpan = document.createElement('span'); textSpan.textContent = chipText; chip.appendChild(textSpan);
-            }
-
-            if (!chip.querySelector('.chip-remove-icon-container')) {
-                const removeIconContainer = document.createElement('span');
-                removeIconContainer.className = 'chip-remove-icon-container';
-                removeIconContainer.innerHTML = chipRemoveSVGIconHTML;
-                chip.appendChild(removeIconContainer);
-                removeIconContainer.addEventListener('click', (e) => {
-                    e.stopPropagation(); clearSpecificFilter(filterType);
-                });
-            }
-        });
-    }
-
-    function isFilterApplied(filterType, params) {
-        if (!params) params = new URLSearchParams(window.location.search);
-        switch (filterType) {
-            case 'price': return params.has('min_price') || params.has('max_price');
-            case 'category': return params.has('category');
-            case 'brand': return params.has('brand');
-            case 'color': return params.has('color');
-            case 'size': return params.has('size');
-            case 'material': return params.has('material');
-            default: return false;
-        }
-    }
-
-    function updateChipActiveStates() {
-        if (!mobileFilterBar) return;
-        const currentParams = new URLSearchParams(window.location.search);
-        mobileFilterBar.querySelectorAll('.btn-filter-chip').forEach(chip => {
-            const filterType = chip.dataset.filterTarget;
-            const sortOption = chip.dataset.sortOption;
-            if (filterType && filterType !== 'all') {
-                const isActive = isFilterApplied(filterType, currentParams);
-                chip.classList.toggle('active', isActive);
-                chip.classList.toggle('has-applied-filter', isActive);
-            } else if (sortOption) {
-                chip.classList.toggle('active', sortOption === (currentParams.get('sort') || 'popular'));
-            }
-        });
-    }
-
-    function clearSpecificFilter(filterType) {
-        const params = new URLSearchParams(window.location.search);
-        switch (filterType) {
-            case 'price': params.delete('min_price'); params.delete('max_price'); break;
-            case 'category': params.delete('category'); break;
-            case 'brand': params.delete('brand'); break;
-            case 'color': params.delete('color'); break;
-            case 'size': params.delete('size'); break;
-            case 'material': params.delete('material'); break;
-        }
-        params.delete('page');
-        window.location.search = params.toString();
-    }
-
-    // --- توابع مربوط به لایوت و ریسپانسیو (بدون تغییر) ---
-    function applyLayout(layout) {
-        if (!resultsGrid || !layoutPopover) return;
-        resultsGrid.classList.remove(...gridViewClasses, ...listViewClassesMobile, 'view-list');
+    const setLayout = (layout) => {
         if (layout === 'list') {
-            resultsGrid.classList.add(...listViewClassesMobile, 'view-list');
-            currentLayout = 'list';
+            resultsGrid.classList.add('view-list');
+            resultsGrid.classList.remove('row-cols-2', 'row-cols-sm-2', 'row-cols-md-3', 'row-cols-lg-4');
         } else {
-            resultsGrid.classList.add(...gridViewClasses);
-            currentLayout = 'grid';
+            resultsGrid.classList.remove('view-list');
+            resultsGrid.classList.add('row-cols-2', 'row-cols-sm-2', 'row-cols-md-3', 'row-cols-lg-4');
         }
-        localStorage.setItem('productLayoutPreference', currentLayout);
-        layoutPopover.querySelectorAll('.layout-option').forEach(opt => {
-            opt.classList.toggle('active', opt.dataset.layout === currentLayout);
+
+        layoutOptions.forEach(option => {
+            if (option.dataset.layout === layout) {
+                option.classList.add('active');
+            } else {
+                option.classList.remove('active');
+            }
+        });
+    };
+
+    if (layoutToggleButton) {
+        layoutToggleButton.addEventListener('click', (event) => {
+            layoutPopover.classList.toggle('show');
+            layoutToggleButton.classList.toggle('popover-active');
+            event.stopPropagation();
         });
     }
 
-    function toggleLayoutPopover(show) {
-        if (!layoutPopover || !layoutToggleButton) return;
-        if (show) {
-            layoutPopover.classList.add('show');
-            layoutToggleButton.classList.add('popover-active');
-        } else {
+    document.addEventListener('click', (event) => {
+        if (!layoutPopover.contains(event.target) && !layoutToggleButton.contains(event.target)) {
             layoutPopover.classList.remove('show');
             layoutToggleButton.classList.remove('popover-active');
         }
-    }
-
-    function resetProductGridScroll() { if(resultsGridContainer) resultsGridContainer.scrollTop = 0; }
-
-    function renderStaticPagination() {
-        if(!paginationUl || !paginationContainer) return;
-        paginationUl.innerHTML = ''; if (totalPagesStatic <= 1) { paginationContainer.classList.add('d-none'); return; }
-        paginationContainer.classList.remove('d-none');
-        const currentFiltersParams = getFiltersAsURLParams(); currentFiltersParams.delete('page');
-        const createPageItem = (text, pageNum, isDisabled, isActive) => {
-            const li = document.createElement('li');
-            li.className = `page-item ${isDisabled ? 'disabled' : ''} ${isActive ? 'active' : ''}`;
-            const a = document.createElement('a'); a.className = 'page-link';
-            const pageParams = new URLSearchParams(currentFiltersParams);
-            if (pageNum && pageNum === 1) pageParams.delete('page');
-            else if (pageNum) pageParams.set('page', pageNum);
-            a.href = isDisabled ? '#' : `?${pageParams.toString()}`;
-            a.textContent = text; li.appendChild(a); return li;
-        };
-        paginationUl.appendChild(createPageItem('قبلی', currentPageFromURL - 1, currentPageFromURL === 1));
-        for (let i = 1; i <= totalPagesStatic; i++) {
-            paginationUl.appendChild(createPageItem(i, i, false, i === currentPageFromURL));
-        }
-        paginationUl.appendChild(createPageItem('بعدی', currentPageFromURL + 1, currentPageFromURL === totalPagesStatic));
-    }
-
-    function setupEventListeners() {
-        if (applyFiltersButton) applyFiltersButton.addEventListener('click', () => {
-            const params = getFiltersAsURLParams(); params.delete('page');
-            window.location.search = params.toString();
-            if (filtersBottomSheet?.classList.contains('show')) toggleBottomSheet(false);
-        });
-        if (mainClearFiltersButton) mainClearFiltersButton.addEventListener('click', () => { window.location.search = ''; });
-
-        if (mobileFilterBar) {
-            const chipsContainer = mobileFilterBar.querySelector('.scrollable-filter-chips');
-            if (chipsContainer) {
-                chipsContainer.querySelectorAll('.btn-filter-chip').forEach(chip => {
-                    chip.addEventListener('click', (e) => {
-                        if (e.target.closest('.chip-remove-icon-container')) return;
-                        const filterTarget = chip.dataset.filterTarget; const sortOption = chip.dataset.sortOption;
-                        if (sortOption) {
-                            const params = getFiltersAsURLParams(); params.set('sort', sortOption); params.delete('page');
-                            window.location.search = params.toString();
-                        } else if (filterTarget) toggleBottomSheet(true, filterTarget);
-                    });
-                });
-            }
-        }
-
-        if (closeBottomSheetButton) closeBottomSheetButton.addEventListener('click', () => toggleBottomSheet(false));
-        if (filtersBottomSheetOverlay) filtersBottomSheetOverlay.addEventListener('click', () => toggleBottomSheet(false));
-
-        if (layoutToggleButton && layoutPopover) {
-            layoutToggleButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleLayoutPopover(!layoutPopover.classList.contains('show'));
-            });
-            layoutPopover.querySelectorAll('.layout-option').forEach(option => {
-                option.addEventListener('click', () => {
-                    applyLayout(option.dataset.layout);
-                    toggleLayoutPopover(false);
-                });
-            });
-            document.addEventListener('click', (e) => {
-                if (layoutPopover.classList.contains('show') && !layoutToggleButton.contains(e.target) && !layoutPopover.contains(e.target)) {
-                    toggleLayoutPopover(false);
-                }
-            });
-        }
-    }
-
-    function isTouchDevice() { return (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0)); }
-
-    function manageFilterLayout() {
-        if (!filterContentWrapper || !filtersSidebarDOMContainer || !bottomSheetFilterContent || !mobileFilterBar || !sidebarHeaderElement) return;
-        const shouldUseMobileLayout = isTouchDevice() || window.innerWidth < lgBreakpoint;
-        const layoutToggleContainer = document.querySelector('.layout-toggle-container');
-        if (layoutToggleContainer) layoutToggleContainer.style.display = shouldUseMobileLayout ? 'flex' : 'none';
-
-        if (shouldUseMobileLayout) {
-            document.body.classList.add('is-mobile-layout'); document.body.classList.remove('is-desktop-layout');
-            if (bottomSheetFilterContent && !bottomSheetFilterContent.contains(filterContentWrapper)) {
-                bottomSheetFilterContent.appendChild(filterContentWrapper);
-            }
-            sidebarHeaderElement?.classList.add('fill-sidebar-header-hidden-in-offcanvas');
-            if (mainClearFiltersButton) mainClearFiltersButton.style.display = 'inline-flex';
-            if (applyFiltersButton) applyFiltersButton.style.display = 'inline-flex';
-            if (resultsGrid && layoutPopover) {
-                const mobileLayout = localStorage.getItem('productLayoutPreference') || 'grid';
-                applyLayout(mobileLayout);
-            }
-        } else {
-            document.body.classList.remove('is-mobile-layout'); document.body.classList.add('is-desktop-layout');
-            if (filtersSidebarDOMContainer && !filtersSidebarDOMContainer.contains(filterContentWrapper)) {
-                filtersSidebarDOMContainer.appendChild(filterContentWrapper);
-            }
-            sidebarHeaderElement?.classList.remove('fill-sidebar-header-hidden-in-offcanvas');
-            if (mainClearFiltersButton) mainClearFiltersButton.style.display = 'inline-flex';
-            if (applyFiltersButton) applyFiltersButton.style.display = 'none';
-            if (layoutPopover?.classList.contains('show')) toggleLayoutPopover(false);
-            if (resultsGrid) applyLayout('grid');
-        }
-    }
-
-    function toggleBottomSheet(show, targetAccordionItemId = null) {
-        if (!filtersBottomSheet || !filtersBottomSheetOverlay) return;
-        if (show) {
-            document.body.style.overflow = 'hidden';
-            filtersBottomSheetOverlay.classList.add('show'); filtersBottomSheet.classList.add('show');
-            if (targetAccordionItemId && targetAccordionItemId !== 'all' && filterContentWrapper) {
-                const accordionIdSuffix = targetAccordionItemId.charAt(0).toUpperCase() + targetAccordionItemId.slice(1);
-                const accordionButton = filterContentWrapper.querySelector(`button[data-bs-target="#collapse${accordionIdSuffix}"]`);
-                const accordionItemHeading = filterContentWrapper.querySelector(`#heading${accordionIdSuffix}`);
-                if (accordionButton && accordionItemHeading) {
-                    const collapseElement = filterContentWrapper.querySelector(accordionButton.dataset.bsTarget);
-                    if (collapseElement) {
-                        const bsCollapse = bootstrap.Collapse.getInstance(collapseElement) || new bootstrap.Collapse(collapseElement);
-                        if (!collapseElement.classList.contains('show')) bsCollapse.show();
-                        setTimeout(() => {
-                            if (bottomSheetFilterContent.scrollHeight > bottomSheetFilterContent.clientHeight) {
-                                accordionItemHeading.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                            }
-                        }, 350);
-                    }
-                }
-            } else if (targetAccordionItemId === 'all') {
-                if(bottomSheetFilterContent) bottomSheetFilterContent.scrollTop = 0;
-            }
-        } else {
-            document.body.style.overflow = '';
-            filtersBottomSheetOverlay.classList.remove('show'); filtersBottomSheet.classList.remove('show');
-        }
-    }
-
-    manageFilterLayout();
-    if (initializeFilterElements()) {
-        addRemoveIconsToFilterChips();
-        initializePriceSlider();
-        applyFiltersFromURLToUI();
-        updateSliderHandlesFromValues();
-        setupEventListeners();
-    }
-    formatInitialPricesInDOM();
-    resetProductGridScroll();
-    renderStaticPagination();
-
-    if (layoutToggleButton && resultsGrid && layoutPopover) {
-        const initialLayout = localStorage.getItem('productLayoutPreference') || 'grid';
-        if (isTouchDevice() || window.innerWidth < lgBreakpoint) {
-            applyLayout(initialLayout);
-        } else {
-            applyLayout('grid');
-        }
-    }
-
-    window.addEventListener('resize', () => {
-        manageFilterLayout();
-        if (resultsGrid && layoutToggleButton && !layoutToggleButton.offsetParent) {
-            applyLayout('grid');
-        }
     });
+
+    layoutOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const selectedLayout = option.dataset.layout;
+            setLayout(selectedLayout);
+            layoutPopover.classList.remove('show');
+            layoutToggleButton.classList.remove('popover-active');
+        });
+    });
+
+    setLayout('grid');
 });

@@ -1,192 +1,104 @@
+    document.addEventListener('DOMContentLoaded', function() {
+    const totalAmountSpan = document.getElementById('cartexz-total-amount');
+    const itemCountSpan = document.getElementById('cartexz-item-count');
+    const discountValue = 500000; // تخفیف ثابت 500,000 تومان
 
-    document.addEventListener('DOMContentLoaded', () => {
-    const cartItemsList = document.querySelector('.items-list');
-    const subtotalPriceEl = document.getElementById('subtotal-price');
-    const totalItemsCountEl = document.getElementById('total-items-count');
-    const discountAmountEl = document.getElementById('discount-amount');
-    const totalPayableEl = document.getElementById('total-payable');
-    const emptyCartMessage = document.getElementById('empty-cart-message');
-    const cartItemsContainer = document.querySelector('.cart-items');
-    const cartSummaryContainer = document.querySelector('.cart-summary');
-    const cartItemsHeader = cartItemsContainer.querySelector('.cart-items-header');
-
-    // --- Helper Function: Format Price ---
-    function formatPrice(price, includeCurrency = true) {
-    const num = Number(price);
-    if (isNaN(num)) return includeCurrency ? `۰ <span class="currency">تومان</span>` : '۰';
-    const formatted = num.toLocaleString('fa-IR');
-    return includeCurrency ? `${formatted} <span class="currency">تومان</span>` : formatted;
+    // تابع برای فرمت‌دهی اعداد به صورت فارسی با کاما
+    function formatPrice(price) {
+    return price.toLocaleString('fa-IR');
 }
 
-    // --- Helper Function: Parse Price (from data-unit-price) ---
-    function parsePrice(priceContainerElement) {
-    if (!priceContainerElement || !priceContainerElement.dataset.unitPrice) return 0;
-    return parseFloat(priceContainerElement.dataset.unitPrice) || 0;
-}
+    // تابع برای به‌روزرسانی آیکون دکمه کاهش/حذف
+    function updateDecreaseButtonIcon(button, currentQty) {
+    const minusIcon = button.querySelector('.minus-icon');
+    const deleteIcon = button.querySelector('.delete-icon');
 
-    // --- Helper Function: Animate Price Update ---
-    function triggerPriceAnimation(element) {
-    if (!element) return;
-    element.classList.add('price-updating');
-    // Use requestAnimationFrame to ensure the class is applied before removing
-    requestAnimationFrame(() => {
-    requestAnimationFrame(() => { // Double RAF for better reliability across browsers
-    element.classList.remove('price-updating');
-});
-});
-    // Optional: Fallback with setTimeout if RAF is not enough
-    // setTimeout(() => element.classList.remove('price-updating'), 50);
-}
-
-
-    // --- Update Item Total Price Display & Animate ---
-    function updateItemDisplay(itemElement) {
-    const priceContainer = itemElement.querySelector('.item-pricing');
-    const quantityEl = itemElement.querySelector('.quantity-value');
-    const itemTotalEl = itemElement.querySelector('.item-total-price');
-    const decreaseBtn = itemElement.querySelector('.decrease');
-
-    const unitPrice = parsePrice(priceContainer);
-    const quantity = parseInt(quantityEl.textContent, 10);
-    const itemTotal = unitPrice * quantity;
-
-    // Update total price display (without currency for animation)
-    itemTotalEl.textContent = formatPrice(itemTotal, false); // Format without currency span initially
-
-    // Trigger animation on the container
-    triggerPriceAnimation(priceContainer);
-
-    // Update decrease button state
-    if(decreaseBtn) decreaseBtn.disabled = (quantity <= 1);
-}
-
-
-    // --- Update Cart Summary & Animate ---
-    function updateCartSummary() {
-    const allItems = cartItemsList.querySelectorAll('.cart-item:not(.removing)');
-    let subtotal = 0;
-    let totalItems = 0;
-    let totalDiscount = 0;
-
-    allItems.forEach(item => {
-    const priceContainer = item.querySelector('.item-pricing');
-    const quantityEl = item.querySelector('.quantity-value');
-    const unitPrice = parsePrice(priceContainer);
-    const quantity = parseInt(quantityEl.textContent, 10);
-    subtotal += unitPrice * quantity;
-    totalItems += quantity;
-});
-
-    const totalPayable = subtotal - totalDiscount;
-
-    // Update DOM elements and trigger animation
-    subtotalPriceEl.innerHTML = formatPrice(subtotal);
-    triggerPriceAnimation(subtotalPriceEl);
-
-    discountAmountEl.innerHTML = formatPrice(totalDiscount);
-    triggerPriceAnimation(discountAmountEl);
-
-    totalPayableEl.innerHTML = formatPrice(totalPayable);
-    triggerPriceAnimation(totalPayableEl);
-
-    // Update item count (no animation needed here usually)
-    totalItemsCountEl.textContent = totalItems.toLocaleString('fa-IR');
-
-    checkEmptyCart();
-}
-
-    // --- Check if Cart is Empty ---
-    function checkEmptyCart() {
-    const items = cartItemsList.querySelectorAll('.cart-item:not(.removing)');
-    const isEmpty = items.length === 0;
-
-    if (isEmpty) {
-    emptyCartMessage.classList.add('visible');
-    if (cartItemsHeader) cartItemsHeader.style.display = 'none';
-    cartSummaryContainer.style.opacity = '0.6';
-    cartSummaryContainer.style.pointerEvents = 'none';
+    if (currentQty === 1) {
+    minusIcon.style.display = 'none';
+    deleteIcon.style.display = 'block';
+    button.classList.add('delete-button'); // اضافه کردن کلاس برای استایلینگ
+    button.setAttribute('aria-label', 'حذف این محصول');
 } else {
-    emptyCartMessage.classList.remove('visible');
-    if (cartItemsHeader) {
-    cartItemsHeader.style.display = window.innerWidth >= 768 ? 'flex' : 'none';
-}
-    cartSummaryContainer.style.opacity = '1';
-    cartSummaryContainer.style.pointerEvents = 'auto';
+    minusIcon.style.display = 'block';
+    deleteIcon.style.display = 'none';
+    button.classList.remove('delete-button');
+    button.setAttribute('aria-label', 'کاهش تعداد');
 }
 }
 
+    // تابع برای به‌روزرسانی خلاصه سبد خرید
+    function updateCartSummary() {
+    let totalItemsPrice = 0;
+    let totalProductCount = 0;
 
-    // --- Event Listener for Item Actions ---
-    cartItemsList.addEventListener('click', (event) => {
+    const itemCards = document.querySelectorAll('.cartexz-item-card');
+
+    if (itemCards.length === 0) {
+    totalAmountSpan.textContent = '۰ تومان';
+    itemCountSpan.textContent = '۰ محصول';
+    return;
+}
+
+    itemCards.forEach(card => {
+    const basePrice = parseInt(card.dataset.basePrice);
+    const qtyDisplay = card.querySelector('.cartexz-qty-display');
+    const decreaseButton = card.querySelector('.decrease-qty'); // دکمه کاهش
+    let currentQty = parseInt(qtyDisplay.dataset.qty); // مطمئن شویم که currentQty همیشه از dataset گرفته شود
+
+    // به‌روزرسانی آیکون دکمه کاهش/حذف
+    updateDecreaseButtonIcon(decreaseButton, currentQty);
+
+    // محاسبه قیمت برای هر آیتم
+    const itemTotalPrice = basePrice * currentQty;
+    let itemPriceSpan = card.querySelector('.cartexz-item-price .price-value'); // هر بار انتخاب شود
+    itemPriceSpan.textContent = formatPrice(itemTotalPrice);
+
+    totalItemsPrice += itemTotalPrice;
+    totalProductCount += currentQty;
+});
+
+    const shippingCost = 0; // رایگان
+    const finalTotal = totalItemsPrice - discountValue + shippingCost;
+
+    totalAmountSpan.textContent = formatPrice(finalTotal) + ' تومان';
+    itemCountSpan.textContent = totalProductCount + ' محصول';
+}
+
+    // اضافه کردن شنونده‌های رویداد به المنت‌های موجود (و آینده)
+    document.querySelector('.cartexz-items-section').addEventListener('click', function(event) {
     const target = event.target;
-    const button = target.closest('button');
+    const decreaseButton = target.closest('.decrease-qty');
+    const increaseButton = target.closest('.increase-qty');
 
-    if (!button) return;
-
-    const itemElement = button.closest('.cart-item');
-    if (!itemElement) return;
-
-    const quantityEl = itemElement.querySelector('.quantity-value');
-    let quantity = parseInt(quantityEl.textContent, 10);
-
-    if (button.classList.contains('increase')) {
-    quantity++;
-    quantityEl.textContent = quantity;
-    updateItemDisplay(itemElement); // Updates item price + animates it
-    updateCartSummary();          // Updates summary + animates it
-}
-    else if (button.classList.contains('decrease')) {
-    if (quantity > 1) {
-    quantity--;
-    quantityEl.textContent = quantity;
-    updateItemDisplay(itemElement); // Updates item price + animates it
-    updateCartSummary();          // Updates summary + animates it
-}
-}
-    else if (button.classList.contains('remove-item-btn')) {
-    removeItem(itemElement);
-}
-});
-
-    // --- Remove Item Function with Animation ---
-    function removeItem(itemElement) {
-    if (itemElement.classList.contains('removing')) return;
-    itemElement.classList.add('removing');
-
-    // Update summary immediately (before animation finishes)
-    // This update itself will trigger summary price animations
+    // کنترل دکمه‌های افزایش و کاهش تعداد
+    if (increaseButton) {
+    const qtyDisplay = increaseButton.previousElementSibling; // span.cartexz-qty-display
+    let currentQty = parseInt(qtyDisplay.dataset.qty);
+    currentQty++;
+    qtyDisplay.dataset.qty = currentQty;
+    qtyDisplay.textContent = currentQty;
     updateCartSummary();
+} else if (decreaseButton) {
+    const qtyDisplay = decreaseButton.nextElementSibling; // span.cartexz-qty-display
+    let currentQty = parseInt(qtyDisplay.dataset.qty);
 
-    itemElement.addEventListener('transitionend', () => {
-    if(document.body.contains(itemElement)) { // Double check exists
-    itemElement.remove();
-    // Check empty state *after* the element is truly removed
-    checkEmptyCart();
+    if (currentQty === 1) {
+    // اگر تعداد ۱ بود، محصول را حذف کن
+    const itemCard = decreaseButton.closest('.cartexz-item-card');
+    if (itemCard) {
+    itemCard.remove();
+    updateCartSummary();
 }
-}, { once: true });
-
-    setTimeout(() => {
-    if (document.body.contains(itemElement)) {
-    itemElement.remove();
-    checkEmptyCart();
+} else {
+    // در غیر این صورت، تعداد را کاهش بده
+    currentQty--;
+    qtyDisplay.dataset.qty = currentQty;
+    qtyDisplay.textContent = currentQty;
+    updateCartSummary();
 }
-}, 500);
 }
-
-    // --- Initial Calculation on Load ---
-    function initializeCart() {
-    const items = cartItemsList.querySelectorAll('.cart-item');
-    items.forEach(item => {
-    updateItemDisplay(item); // Calculate initial total & set button state (no animation needed here)
-});
-    updateCartSummary(); // Calculate initial summary (no animation needed here)
-    checkEmptyCart();
-}
-
-    initializeCart();
-
-    // --- Responsive Header Display on Resize ---
-    window.addEventListener('resize', checkEmptyCart);
-
 });
 
+    // اجرای اولیه برای نمایش مقادیر صحیح و آیکون‌ها در ابتدا
+    updateCartSummary();
+});

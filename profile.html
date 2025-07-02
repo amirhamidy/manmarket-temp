@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>اطلاعات حساب | پروفایل کاربری (نسخه استاتیک)</title>
     <!-- External Links -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -13,15 +12,45 @@
 </head>
 <body class="body-x">
 
+
+<!--Shadow Overly start-->
+<div class="overlay" data-overlay></div>
+<!--Shadow Overly start-->
+
+<div id="cart-dashboard" class="hidden-dashboard">
+    <button id="close-cart">
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="1.4em"
+                height="1.4em"
+        >
+            <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="square"
+                    stroke-linejoin="round"
+                    d="M18 6L6 18M6 6l12 12"
+            ></path>
+        </svg>
+    </button>
+    <h6 class="header-in-shop">سبد خرید</h6>
+    <div id="cart-items-container">
+        <ul id="cart-items"></ul>
+    </div>
+    <div id="total-price">جمع کل: 0 تومان</div>
+</div>
+
+
 <!--Header Start-->
 <header class="mb-3 position-fixed py-2">
     <nav class="desktop-navigation-menu d-flex justify-content-center mt-3 px-5 text-center align-items-center">
         <!--logo in header -- : start-->
-        <div class="mx-1"><img class="cs-w" alt="من مارکت" src="assets/img/main.logo.jpg"></div>
+        <div class="mx-1 w-25"><img class="cs-w" alt="من مارکت" src="assets/img/main.logo.jpg"></div>
         <!--logo in header -- : end---->
 
         <!--menu -- : start-->
-        <div class="container w-center mr-cs mt-2">
+        <div class="container w-center mr-cs mt-2 w-75">
             <ul class="desktop-menu-category-list mb-2 w-center">
                 <li class="menu-category">
                     <div class="mega-menu-trigger-wrapper">
@@ -886,8 +915,8 @@
         <!--menu -- : end---->
 
         <!--icons in header -- :: start-->
-        <div class="d-flex justify-content-between icons-in-header mb-1">
-            <div class="cs-mx show-search-modal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="جست و جو ">
+        <div class="d-flex justify-content-end icons-in-header mb-1 w-25">
+            <div class="cs-mx show-search-modal mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="جست و جو ">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.4em" height="1.4em"><path fill="currentColor" d="M10.77 18.3a7.53 7.53 0 1 1 7.53-7.53a7.53 7.53 0 0 1-7.53 7.53m0-13.55a6 6 0 1 0 6 6a6 6 0 0 0-6-6"></path><path fill="currentColor" d="M20 20.75a.74.74 0 0 1-.53-.22l-4.13-4.13a.75.75 0 0 1 1.06-1.06l4.13 4.13a.75.75 0 0 1 0 1.06a.74.74 0 0 1-.53.22"></path></svg>
             </div>
             <div class="cs-mx btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="حساب کاربری">
@@ -1034,9 +1063,21 @@
     <nav class="mobile-navigation-menu has-scrollbar " data-mobile-menu>
         <div class="menu-top">
             <h2 class="menu-title">منو</h2>
-
             <button class="menu-close-btn" data-mobile-menu-close-btn>
-                <ion-icon name="close-outline"></ion-icon>
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="square"
+                            stroke-linejoin="round"
+                            d="M18 6L6 18M6 6l12 12"
+                    ></path>
+                </svg>
             </button>
         </div>
         <ul class="mobile-menu-category-list">
@@ -1147,35 +1188,6 @@
 
 </header>
 <!--Header End---->
-
-<!--Shadow Overly start-->
-<div class="overlay" data-overlay></div>
-<!--Shadow Overly start-->
-
-<div id="cart-dashboard" class="hidden-dashboard">
-    <button id="close-cart">
-        <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="1.4em"
-                height="1.4em"
-        >
-            <path
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="square"
-                    stroke-linejoin="round"
-                    d="M18 6L6 18M6 6l12 12"
-            ></path>
-        </svg>
-    </button>
-    <h6 class="header-in-shop">سبد خرید</h6>
-    <div id="cart-items-container">
-        <ul id="cart-items"></ul>
-    </div>
-    <div id="total-price">جمع کل: 0 تومان</div>
-</div>
-
 
 
 <!--search modal __ :: start-->

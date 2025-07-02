@@ -570,7 +570,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (typeof iconContent === 'string' && (iconContent.endsWith('.png') || iconContent.endsWith('.jpg') || iconContent.endsWith('.jpeg') || iconContent.endsWith('.gif'))) {
                     const imgElement = document.createElement('img');
                     imgElement.src = iconContent;
-                    imgElement.alt = "Notification Icon"; 
+                    imgElement.alt = "Notification Icon";
                     emojiElement.appendChild(imgElement);
                 } else {
                     const spanElement = document.createElement('span');

@@ -1,0 +1,192 @@
+:root {
+    --primary-color: #f96747;
+    --primary-hover: #e05235;
+    --link-blue: #007bff;
+    --link-blue-hover: #0056b3;
+    --light-bg: #f8f9fa;
+    --content-bg: #ffffff;
+    --border-color: #dee2e6;
+    --text-color: #343a40;
+    --text-muted: #6c757d;
+    --sidebar-bg: #fff;
+    --active-bg: #e9ecef;
+    --active-text: #f96747;
+}
+
+details p{
+    white-space: normal !important;
+}
+
+body {
+    direction: rtl;
+    text-align: right;
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+a { color: var(--link-blue); text-decoration: none; }
+a:hover { color: var(--link-blue-hover); }
+
+/* --- Layout --- */
+.faq-page-container { display: flex; max-width: 1200px; margin: 30px auto; gap: 25px; padding: 0 15px; align-items: flex-start; }
+
+/* --- Sidebar --- */
+.faq-sidebar { flex: 0 0 260px; background-color: var(--sidebar-bg); padding: 20px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07); height: fit-content; position: sticky; top: 20px; }
+.faq-sidebar h3 { margin-top: 0; margin-bottom: 20px; font-size: 1.25em; color: var(--text-color); padding-bottom: 10px; border-bottom: 1px solid var(--border-color); }
+.faq-sidebar ul { list-style: none; padding: 0; margin: 0; }
+.faq-sidebar li { margin-bottom: 5px;white-space: nowrap; }
+.faq-sidebar a { display: flex; align-items: center; /* Align icon and text */ padding: 10px 15px; color: var(--text-muted); border-radius: 5px; transition: background-color 0.2s ease, color 0.2s ease; font-size: 0.95em; cursor: pointer; }
+.faq-sidebar a:hover { background-color: var(--light-bg); color: var(--text-color); }
+.faq-sidebar a.active { background-color: var(--active-bg); color: var(--active-text); font-weight: bold; }
+
+/* === SVG Icon Styling === */
+.sidebar-icon, .title-icon {
+    display: inline-block; /* Needed for width/height */
+    width: 1.1em; /* Adjust size as needed */
+    height: 1.1em;
+    vertical-align: middle; /* Align icon vertically */
+    margin-left: 8px; /* Space between icon and text (RTL) */
+}
+.title-icon {
+    width: 1em; /* Slightly smaller icon for title */
+    height: 1em;
+    margin-left: 10px;
+}
+/* === End SVG Icon Styling === */
+
+
+/* --- Content --- */
+.faq-content { flex-grow: 1; background-color: var(--content-bg); padding: 25px 30px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07); border: 1px solid var(--border-color); }
+.faq-content h2 { /* Main Title Styling - Reduced Size */
+    margin-top: 0;
+    margin-bottom: 20px; /* Adjusted margin */
+    font-size: 1.5em; /* Reduced font size */
+    color: var(--primary-hover);
+    padding-bottom: 12px; /* Adjusted padding */
+    border-bottom: 2px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+}
+/* Title icon color will inherit from h2 */
+
+/* --- FAQ Subsection Title (strong tag) --- */
+.faq-subsection-title {
+    display: block;
+    margin-top: 30px; /* Adjusted margin */
+    margin-bottom: 18px; /* Adjusted margin */
+    font-size: 1.2em; /* Slightly smaller */
+    font-weight: bold;
+    color: var(--text-color);
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+/* --- Accordion --- */
+.faq-accordion { margin-top: 15px; }
+h2 + .faq-accordion { margin-top: 0; margin-bottom: 15px;} /* Accordion directly after H2 */
+/* If an accordion follows a subsection title, adjust margin */
+.faq-subsection-title + .faq-accordion { margin-top: 0; }
+
+
+.faq-item { border: 1px solid var(--border-color); border-radius: 5px; margin-bottom: 12px; background-color: #fff; overflow: hidden; }
+.faq-item summary { font-weight: 600; padding: 12px 18px; /* Adjusted padding */ cursor: pointer; position: relative; list-style: none; color: var(--text-color); font-size: 1.0em; /* Slightly smaller */ transition: background-color 0.2s ease; display: flex; justify-content: space-between; align-items: center; }
+.faq-item summary:hover { background-color: var(--light-bg); }
+/* Target direct summary for icon */
+.faq-item > summary::after { content: '+'; font-weight: bold; font-size: 1.3em; color: var(--primary-color); transition: transform 0.2s ease-in-out, content 0.1s linear; }
+.faq-item[open] > summary { background-color: #fdfdff; } /* Target direct summary for open state */
+.faq-item[open] > summary::after { content: '−'; }
+.faq-item summary::-webkit-details-marker, .faq-item summary::marker { display: none; }
+.faq-answer { padding: 18px 22px; background-color: var(--light-bg); }
+.faq-answer p, .faq-answer ul, .faq-answer li { margin: 0; font-size: 0.95em; color: var(--text-muted); line-height: 1.7; }
+.faq-answer p:not(:last-child) { margin-bottom: 10px; }
+.faq-answer ul { padding-right: 20px; margin-top: 10px; margin-bottom: 10px; }
+.faq-answer li { margin-bottom: 8px; }
+.faq-answer b { color: var(--text-color); font-weight: bold; display: block; margin-bottom: 8px; margin-top: 5px; } /* Styling for bold text in answers */
+
+
+/* Style nested details slightly differently */
+.faq-answer > .faq-item {
+    border-color: #e9ecef; /* Lighter border for nested items */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #fff; /* White background for the whole nested item */
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.faq-answer > .faq-item summary {
+    font-size: 0.95em; /* Slightly smaller summary for nested */
+    padding: 10px 15px;
+    background-color: #f8f9fa; /* Slightly different bg for nested summary */
+    font-weight: normal; /* Less emphasis on nested summary */
+    color: var(--text-muted);
+}
+.faq-answer > .faq-item > summary::after {
+    color: var(--text-muted); /* Match icon color to text */
+    font-size: 1.2em;
+}
+.faq-answer > .faq-item[open] > summary {
+    background-color: #f1f3f5;
+    color: var(--text-color);
+}
+.faq-answer > .faq-item[open] > summary::after {
+    color: var(--primary-color); /* Use primary color for open nested icon */
+}
+.faq-answer > .faq-item .faq-answer {
+    padding: 15px 18px; /* Adjust padding for nested answers */
+    background-color: #fff; /* White background for nested answer */
+}
+/* Reset nested bold tag style if needed */
+.faq-answer > .faq-item .faq-answer b {
+    color: var(--text-color); /* Ensure nested b tags are normal color */
+    margin-top: 10px;
+}
+
+
+/* === Link Color Override within Answers: Keep Blue === */
+.faq-answer a { font-weight: bold; color: var(--link-blue); }
+.faq-answer a:hover { text-decoration: underline; color: var(--link-blue-hover); }
+/* === End Link Color Override === */
+
+/* --- Content Visibility --- */
+.faq-content-section { display: none; }
+.faq-content-section.active-section { display: block; }
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+    .faq-page-container { flex-direction: column; }
+    .faq-sidebar { flex: 0 0 auto; width: 100%; position: static; margin-bottom: 20px; box-sizing: border-box; }
+    .faq-content { width: 100%; box-sizing: border-box; min-height: auto; }
+}
+@media (max-width: 576px) {
+    body { font-size: 13px; }
+    .faq-page-container { margin: 15px auto; padding: 0 10px; gap: 15px; }
+    .faq-sidebar { padding: 15px; }
+    .faq-sidebar h3 { font-size: 1.15em; margin-bottom: 15px;}
+    .faq-sidebar a { padding: 8px 12px; font-size: 0.9em;}
+    /* Icon size might need adjustment for mobile */
+    .sidebar-icon { width: 1em; height: 1em; margin-left: 6px; }
+    .title-icon { width: 0.9em; height: 0.9em; margin-left: 8px; }
+
+    .faq-content { padding: 15px 12px; } /* Adjusted padding */
+    .faq-content h2 { font-size: 1.3em; /* Further reduced for mobile */ margin-bottom: 15px; padding-bottom: 8px;}
+    .faq-subsection-title { font-size: 1.1em; margin-top: 20px; margin-bottom: 12px;}
+    .faq-item summary { padding: 10px 12px; font-size: 0.95em;}
+    .faq-answer { padding: 12px 15px; }
+    .faq-answer p, .faq-answer ul { font-size: 0.9em; }
+    .faq-item summary::after { font-size: 1.2em; }
+
+    .faq-answer > .faq-item summary {
+        font-size: 0.9em;
+        padding: 8px 10px;
+    }
+    .faq-answer > .faq-item > summary::after {
+        font-size: 1.1em;
+    }
+    .faq-answer > .faq-item .faq-answer {
+        padding: 10px 12px;
+    }
+}

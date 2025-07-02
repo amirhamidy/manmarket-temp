@@ -1777,69 +1777,6 @@
 <script src="assets/js/single.product.js"></script>
 <!--این اونیه که مال سینگل پروداکته -->
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const messagesInner = document.querySelector('.not-rot-notification-messages-inner');
-        const emojiElement = document.getElementById('notRotEmoji');
-        const messageItems = document.querySelectorAll('.not-rot-message-item');
-        let currentIndex = 0;
-        const intervalTime = 3000;
-        const messageHeight = 24;
-
-        const contents = [
-            { text: 'تعداد بازدید در 24 ساعت اخیر 1000  +', icon: 'assets/img/seenz.png' },
-            { text: 'موجود در سبد خرید 56 نفر دیگر', icon: 'assets/img/money.soney.png' },
-        ];
-
-        messageItems.forEach((item, index) => {
-            if (contents[index]) {
-                item.innerHTML = contents[index].text;
-            }
-        });
-
-        function showMessage(index) {
-            messagesInner.style.top = `-${index * messageHeight}px`;
-
-            if (contents[index] && contents[index].icon) {
-                emojiElement.style.transform = 'scale(0.5)';
-                emojiElement.style.opacity = '0';
-
-                setTimeout(() => {
-                    const iconContent = contents[index].icon;
-
-                    while (emojiElement.firstChild) {
-                        emojiElement.removeChild(emojiElement.firstChild);
-                    }
-
-                    if (typeof iconContent === 'string' && (iconContent.endsWith('.png') || iconContent.endsWith('.jpg') || iconContent.endsWith('.jpeg') || iconContent.endsWith('.gif'))) {
-                        const imgElement = document.createElement('img');
-                        imgElement.src = iconContent;
-                        imgElement.alt = "Notification Icon"; // متن جایگزین برای دسترسی‌پذیری
-                        emojiElement.appendChild(imgElement);
-                    } else {
-                        // Fallback for emojis or other text-based icons
-                        const spanElement = document.createElement('span');
-                        spanElement.textContent = iconContent;
-                        emojiElement.appendChild(spanElement);
-                    }
-
-                    emojiElement.style.transform = 'scale(1)';
-                    emojiElement.style.opacity = '1';
-                }, 200);
-            }
-        }
-
-        function nextMessage() {
-            currentIndex = (currentIndex + 1) % contents.length;
-            showMessage(currentIndex);
-        }
-
-        showMessage(currentIndex);
-
-        setInterval(nextMessage, intervalTime);
-    });
-</script>
-
 
 
 </body>

@@ -664,3 +664,100 @@
       padding: 8px 14px;
   } */
 }
+@keyframes ws-cs-fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ws-cs-container {
+  background-color: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 420px;
+  animation: ws-cs-fadeIn 0.8s ease;
+  margin: auto;
+}
+
+.ws-cs-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.ws-cs-wallet-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  background: #f1f1f1;
+  border-radius: 12px;
+  padding: 10px 15px;
+}
+
+.ws-cs-wallet-info img {
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+.ws-cs-wallet-info span {
+  font-weight: bold;
+  color: #333;
+}
+
+.ws-cs-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: bold;
+}
+
+.ws-cs-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: border-color 0.3s;
+}
+
+.ws-cs-input:focus {
+  border-color: #7e57c2 !important;
+  outline: none !important;
+}
+
+.ws-cs-button {
+  width: 100%;
+  padding: 14px;
+  background: #7e57c2;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.ws-cs-button:hover {
+  background: #5e35b1;
+}
+
+.ws-cs-tip {
+  text-align: center;
+  font-size: 14px;
+  color: #777;
+  margin-top: 15px;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

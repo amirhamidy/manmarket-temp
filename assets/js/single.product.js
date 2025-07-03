@@ -593,3 +593,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setInterval(nextMessage, intervalTime);
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollButton = document.querySelector('.alll-cs');
+
+    const targetSection = document.getElementById('mosh');
+
+    if (scrollButton && targetSection) {
+        scrollButton.addEventListener('click', function() {
+
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    } else {
+        console.warn('دکمه با کلاس "alll-cs" یا عنصر با آیدی "mosh" پیدا نشد.');
+    }
+});

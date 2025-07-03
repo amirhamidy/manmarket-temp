@@ -206,7 +206,7 @@ a {
     background-color: #e9ecef !important; /* Direct value */
     color: #57606f !important; /* Direct value */
     padding: 2px 8px !important;
-    border-radius: 99px !important;
+    border-radius: 6px !important;
 }
 
 .b-cs-blog-tags-cloud {
@@ -571,7 +571,7 @@ body { font-family: var(--font-family-base) !important; background-color: var(--
 
 /* --- ویجت‌ها --- */
 .blog-s-widget { background-color: var(--bg-secondary) !important; padding: calc(var(--spacing-unit) * 3) !important; border-radius: var(--border-radius-lg) !important; margin-bottom: calc(var(--spacing-unit) * 3) !important; box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important; backdrop-filter: blur(10px) !important; border: 1px solid rgba(255, 255, 255, 0.2) !important; }
-.blog-s-widget-title { font-size: 1.5em !important; font-weight: 700 !important; margin-bottom: calc(var(--spacing-unit) * 3) !important; text-align: center !important; }
+.blog-s-widget-title { font-size: 1em !important; margin-bottom: calc(var(--spacing-unit) * 3) !important; text-align: center !important; }
 
 /* --- اسلایدر و کارت محصول --- */
 .blog-s-product-slider { overflow: hidden !important; }
@@ -592,7 +592,7 @@ body { font-family: var(--font-family-base) !important; background-color: var(--
 
 /* --- سایر استایل‌ها --- */
 .blog-s-related-posts-list { list-style: none !important; padding: 0 !important; }
-.blog-s-related-post-link { display: flex !important; align-items: center !important; gap: calc(var(--spacing-unit) * 2) !important; text-decoration: none !important; }
+.blog-s-related-post-link { align-items: center !important; gap: calc(var(--spacing-unit) * 2) !important; text-decoration: none !important; }
 .blog-s-post-footer { margin-top: calc(var(--spacing-unit) * 6) !important; padding-top: calc(var(--spacing-unit) * 4) !important; border-top: 1px solid var(--border-color) !important; text-align: center !important; }
 .blog-s-tags-container a { display: inline-block !important; background-color: rgba(223, 228, 234, 0.5) !important; padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5) !important; border-radius: 99px !important; }
 

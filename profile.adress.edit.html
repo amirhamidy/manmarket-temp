@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سفارشات من | پروفایل کاربری (نسخه استاتیک)</title>
+    <title>آدرس‌های من | پروفایل کاربری (نسخه استاتیک)</title>
     <!-- External Links -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -14,15 +13,45 @@
 <body class="body-x">
 
 
+<!--Shadow Overly start-->
+<div class="overlay" data-overlay></div>
+<!--Shadow Overly start-->
+
+<div id="cart-dashboard" class="hidden-dashboard">
+    <button id="close-cart">
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="1.4em"
+                height="1.4em"
+        >
+            <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="square"
+                    stroke-linejoin="round"
+                    d="M18 6L6 18M6 6l12 12"
+            ></path>
+        </svg>
+    </button>
+    <h6 class="header-in-shop">سبد خرید</h6>
+    <div id="cart-items-container">
+        <ul id="cart-items"></ul>
+    </div>
+    <div id="total-price">جمع کل: 0 تومان</div>
+</div>
+
+
+
 <!--Header Start-->
 <header class="mb-3 position-fixed py-2">
     <nav class="desktop-navigation-menu d-flex justify-content-center mt-3 px-5 text-center align-items-center">
         <!--logo in header -- : start-->
-        <div class="mx-1"><img class="cs-w" alt="من مارکت" src="assets/img/main.logo.jpg"></div>
+        <div class="mx-1 w-25"><img class="cs-w" alt="من مارکت" src="assets/img/main.logo.jpg"></div>
         <!--logo in header -- : end---->
 
         <!--menu -- : start-->
-        <div class="container w-center mr-cs mt-2">
+        <div class="container w-center mr-cs mt-2 w-75">
             <ul class="desktop-menu-category-list mb-2 w-center">
                 <li class="menu-category">
                     <div class="mega-menu-trigger-wrapper">
@@ -887,8 +916,8 @@
         <!--menu -- : end---->
 
         <!--icons in header -- :: start-->
-        <div class="d-flex justify-content-between icons-in-header mb-1">
-            <div class="cs-mx show-search-modal btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="جست و جو ">
+        <div class="d-flex justify-content-end icons-in-header mb-1 w-25">
+            <div class="cs-mx show-search-modal mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="جست و جو ">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.4em" height="1.4em"><path fill="currentColor" d="M10.77 18.3a7.53 7.53 0 1 1 7.53-7.53a7.53 7.53 0 0 1-7.53 7.53m0-13.55a6 6 0 1 0 6 6a6 6 0 0 0-6-6"></path><path fill="currentColor" d="M20 20.75a.74.74 0 0 1-.53-.22l-4.13-4.13a.75.75 0 0 1 1.06-1.06l4.13 4.13a.75.75 0 0 1 0 1.06a.74.74 0 0 1-.53.22"></path></svg>
             </div>
             <div class="cs-mx btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="حساب کاربری">
@@ -926,7 +955,7 @@
                 </span>
                 <!--like and shop number end---->
             </div>
-            <div class="cs-mx btn position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="سبد خرید">
+            <div class="cs-mx position-relative" data-bs-toggle="tooltip" data-bs-placement="bottom" title="سبد خرید">
                 <svg class="shop-icon"
                      xmlns="http://www.w3.org/2000/svg"
                      viewBox="0 0 14 14"
@@ -1035,9 +1064,21 @@
     <nav class="mobile-navigation-menu has-scrollbar " data-mobile-menu>
         <div class="menu-top">
             <h2 class="menu-title">منو</h2>
-
             <button class="menu-close-btn" data-mobile-menu-close-btn>
-                <ion-icon name="close-outline"></ion-icon>
+                <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="1em"
+                        height="1em"
+                >
+                    <path
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="square"
+                            stroke-linejoin="round"
+                            d="M18 6L6 18M6 6l12 12"
+                    ></path>
+                </svg>
             </button>
         </div>
         <ul class="mobile-menu-category-list">
@@ -1150,38 +1191,6 @@
 <!--Header End---->
 
 
-<!--Shadow Overly start-->
-<div class="overlay" data-overlay></div>
-<!--Shadow Overly start-->
-
-
-
-<div id="cart-dashboard" class="hidden-dashboard">
-    <button id="close-cart">
-        <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="1.4em"
-                height="1.4em"
-        >
-            <path
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="square"
-                    stroke-linejoin="round"
-                    d="M18 6L6 18M6 6l12 12"
-            ></path>
-        </svg>
-    </button>
-    <h6 class="header-in-shop">سبد خرید</h6>
-    <div id="cart-items-container">
-        <ul id="cart-items"></ul>
-    </div>
-    <div id="total-price">جمع کل: 0 تومان</div>
-</div>
-
-
-
 <!--search modal __ :: start-->
 <section class="search-box">
     <span class="close-modal mx-5">
@@ -1227,7 +1236,9 @@
 
 
 
-<!-- SVG Icons Definition (Unchanged) -->
+
+
+<!-- SVG Icons Definition -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="icon-user-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></symbol>
     <symbol id="icon-receipt-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></symbol>
@@ -1236,12 +1247,16 @@
     <symbol id="icon-comment-dots" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></symbol>
     <symbol id="icon-lock-password" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></symbol>
     <symbol id="icon-logout-door" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></symbol>
-    <symbol id="icon-eye-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></symbol>
+    <symbol id="icon-edit-pencil" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></symbol>
+    <symbol id="icon-plus-circle-fill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></symbol>
+    <symbol id="icon-trash-can" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></symbol>
+    <symbol id="icon-check-circle-fill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></symbol>
+    <symbol id="icon-info-circle-fill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></symbol>
 </svg>
 
-<div class="main-container mt-5 py-5">
+<div class="main-container py-5 mt-5">
     <div class="profile-layout-grid">
-        <!-- Sidebar with hardcoded user info -->
+        <!-- Sidebar with static info -->
         <aside class="profile-sidebar-new">
             <div class="sidebar-user-info">
                 <div class="sidebar-avatar-wrapper">
@@ -1253,9 +1268,9 @@
             <nav class="sidebar-nav-new">
                 <ul>
                     <li><a href="profile.html" data-page="account"><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
-                    <li><a href="profile.sefaresh.html" data-page="orders" class="active"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
+                    <li><a href="profile.sefaresh.html" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
                     <li><a href="profile.Kifpol.html" data-page="wallet"><svg><use xlink:href="#icon-wallet"></use></svg> کیف پول</a></li>
-                    <li><a href="profile.adress.html" data-page="addresses"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
+                    <li><a href="profile.adress.html" data-page="addresses" class="active"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
                     <li><a href="profile.whilist.html" data-page="wishlist"><svg><use xlink:href="#icon-heart-solid"></use></svg> علاقه‌مندی‌ها</a></li>
                     <li><a href="profile.comments.html" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg> نظرات من</a></li>
                     <li><a href="profile.password.html" data-page="password"><svg><use xlink:href="#icon-lock-password"></use></svg> تغییر رمز</a></li>
@@ -1269,42 +1284,35 @@
         <main class="profile-content-area-new">
             <section class="profile-section-new">
                 <header class="section-header-new border-0">
-                    <h2><svg><use xlink:href="#icon-receipt-list"></use></svg>سفارشات من</h2>
+                    <h2><svg><use xlink:href="#icon-map-pin"></use></svg>آدرس‌های من</h2>
                 </header>
-                <div id="ordersListContainer">
-                    <!-- STATIC: Orders are hardcoded below. JS will only show/hide them. -->
 
-                    <div class="" data-status="delivered">
-                        <div class="w-100 d-flex justify-content-around flex-wrap">
-                            <p class="order-items-preview my-2 w-50">
-                                <span class="text-dark">کد پیگیری سفارش</span>
-                                : 445566
-                            </p>
-                            <p class="order-items-preview my-2 w-50">تاریخ ثبت سفارش : 24 اسفند 1403</p>
-                            <p class="order-items-preview my-2 w-50">تحویل گیرنده : امیررضا عطاری بجدن</p>
-                            <p class="order-items-preview my-2 w-50">شماره موبایل : ۰۹۱۵۹۵۲۶۶۲۴</p>
-                            <p class="order-items-preview my-2 w-50">آدرس : میدان دکتر علی شریعتی، بلوار شریعتی، خیابان آرمان جنوبی، جنب پمپ بنزین و پمپ گاز شریعتی</p>
-                            <p class="order-items-preview my-2 w-50">
-                                مبلغ مرسوله : 12,000,000
-                                <svg class="ms-3" width="15" height="15" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="text-gray-880 dark:text-white" d="M1.14878 6.91843C1.44428 6.91843 1.70285 6.87142 1.92447 6.77739C2.15282 6.68337 2.34422 6.55577 2.49869 6.39458C2.65316 6.2334 2.77069 6.04535 2.85128 5.83044C2.93187 5.62224 2.97888 5.40062 2.99231 5.16556H1.98492C1.6424 5.16556 1.36033 5.12862 1.1387 5.05474C0.917077 4.98087 0.742461 4.87341 0.614858 4.73238C0.487254 4.59134 0.396588 4.42344 0.34286 4.22868C0.295849 4.0272 0.272343 3.80221 0.272343 3.55372C0.272343 3.29852 0.309281 3.05674 0.383156 2.8284C0.457032 2.60005 0.564488 2.39857 0.705523 2.22396C0.846559 2.04934 1.02117 1.91167 1.22937 1.81093C1.44428 1.70347 1.68941 1.64974 1.96477 1.64974C2.1864 1.64974 2.39795 1.68668 2.59943 1.76056C2.80091 1.83443 2.97888 1.95196 3.13335 2.11315C3.28782 2.26761 3.40871 2.47245 3.49601 2.72766C3.59004 2.97615 3.63705 3.27837 3.63705 3.63431V4.47045H4.60415C4.68474 4.47045 4.73847 4.50068 4.76533 4.56112C4.79891 4.61485 4.8157 4.6988 4.8157 4.81297C4.8157 4.93386 4.79891 5.02452 4.76533 5.08497C4.73847 5.13869 4.68474 5.16556 4.60415 5.16556H3.6169C3.60347 5.49464 3.53631 5.80693 3.41542 6.10244C3.30125 6.39794 3.14007 6.65651 2.93187 6.87813C2.72368 7.09976 2.47518 7.27438 2.1864 7.40198C1.89761 7.5363 1.57188 7.60346 1.20922 7.60346H0.141381L0.0809373 6.91843H1.14878ZM0.896929 3.51343C0.896929 3.68133 0.913719 3.82572 0.947299 3.94661C0.987594 4.0675 1.0514 4.16823 1.1387 4.24883C1.23273 4.3227 1.35697 4.37979 1.51144 4.42008C1.66591 4.45366 1.86067 4.47045 2.09573 4.47045H3.00239V3.71491C3.00239 3.21792 2.90501 2.86198 2.71024 2.64707C2.51548 2.43215 2.24684 2.3247 1.90433 2.3247C1.58196 2.3247 1.33347 2.43215 1.15885 2.64707C0.984237 2.86198 0.896929 3.15076 0.896929 3.51343ZM6.26895 4.47045C6.35626 4.47045 6.41335 4.50068 6.44021 4.56112C6.47379 4.61485 6.49058 4.6988 6.49058 4.81297C6.49058 4.93386 6.47379 5.02452 6.44021 5.08497C6.41335 5.13869 6.35626 5.16556 6.26895 5.16556H4.60675C4.51944 5.16556 4.46235 5.13869 4.43549 5.08497C4.40191 5.03124 4.38512 4.94729 4.38512 4.83312C4.38512 4.71223 4.40191 4.62156 4.43549 4.56112C4.46235 4.50068 4.51944 4.47045 4.60675 4.47045H6.26895ZM7.93155 4.47045C8.01886 4.47045 8.07594 4.50068 8.10281 4.56112C8.13639 4.61485 8.15318 4.6988 8.15318 4.81297C8.15318 4.93386 8.13639 5.02452 8.10281 5.08497C8.07594 5.13869 8.01886 5.16556 7.93155 5.16556H6.26935C6.18204 5.16556 6.12495 5.13869 6.09809 5.08497C6.06451 5.03124 6.04772 4.94729 6.04772 4.83312C6.04772 4.71223 6.06451 4.62156 6.09809 4.56112C6.12495 4.50068 6.18204 4.47045 6.26935 4.47045H7.93155ZM9.59415 4.47045C9.68146 4.47045 9.73854 4.50068 9.76541 4.56112C9.79899 4.61485 9.81578 4.6988 9.81578 4.81297C9.81578 4.93386 9.79899 5.02452 9.76541 5.08497C9.73854 5.13869 9.68146 5.16556 9.59415 5.16556H7.93194C7.84464 5.16556 7.78755 5.13869 7.76069 5.08497C7.72711 5.03124 7.71032 4.94729 7.71032 4.83312C7.71032 4.71223 7.72711 4.62156 7.76069 4.56112C7.78755 4.50068 7.84464 4.47045 7.93194 4.47045H9.59415ZM11.2567 4.47045C11.3441 4.47045 11.4011 4.50068 11.428 4.56112C11.4616 4.61485 11.4784 4.6988 11.4784 4.81297C11.4784 4.93386 11.4616 5.02452 11.428 5.08497C11.4011 5.13869 11.3441 5.16556 11.2567 5.16556H9.59454C9.50723 5.16556 9.45015 5.13869 9.42328 5.08497C9.3897 5.03124 9.37291 4.94729 9.37291 4.83312C9.37291 4.71223 9.3897 4.62156 9.42328 4.56112C9.45015 4.50068 9.50723 4.47045 9.59454 4.47045H11.2567ZM12.1638 4.47045C12.4257 4.47045 12.6339 4.39994 12.7884 4.2589C12.9496 4.11787 13.0302 3.9231 13.0302 3.67461V2.2844H13.685V3.67461C13.685 4.15144 13.5506 4.52082 13.282 4.78275C13.0201 5.03795 12.6608 5.16556 12.2041 5.16556H11.2571C11.1698 5.16556 11.1127 5.13869 11.0859 5.08497C11.0523 5.03124 11.0355 4.94729 11.0355 4.83312C11.0355 4.71223 11.0523 4.62156 11.0859 4.56112C11.1127 4.50068 11.1698 4.47045 11.2571 4.47045H12.1638ZM13.7857 0.994934H12.9798V0.279683H13.7857V0.994934ZM12.5063 0.994934H11.7004V0.279683H12.5063V0.994934ZM5.64177 12.9641C5.64177 13.3267 5.58468 13.6659 5.47051 13.9815C5.35634 14.3039 5.1918 14.5826 4.97689 14.8177C4.76198 15.0595 4.50005 15.2509 4.19112 15.3919C3.8889 15.5329 3.54638 15.6035 3.16357 15.6035H2.56921C1.81702 15.6035 1.23273 15.3718 0.816337 14.9084C0.399946 14.445 0.191751 13.8103 0.191751 13.0044V11.2414H0.836485V12.9842C0.836485 13.273 0.870065 13.5349 0.937225 13.77C1.0111 14.0051 1.12191 14.2065 1.26967 14.3744C1.42413 14.549 1.61554 14.6834 1.84388 14.7774C2.07223 14.8714 2.34758 14.9184 2.66995 14.9184H3.1132C3.42885 14.9184 3.70421 14.8647 3.93927 14.7572C4.17433 14.6565 4.36909 14.5188 4.52356 14.3442C4.68474 14.1696 4.80227 13.9648 4.87615 13.7297C4.95674 13.4946 4.99703 13.2495 4.99703 12.9943V10.2844H5.64177V12.9641ZM3.21394 10.0628H2.36773V9.32738H3.21394V10.0628ZM8.24526 13.1656C8.07064 13.1656 7.90274 13.1421 7.74156 13.095C7.58038 13.0413 7.43598 12.954 7.30838 12.8331C7.18749 12.7122 7.09011 12.5544 7.01624 12.3596C6.94236 12.1582 6.90542 11.9097 6.90542 11.6142V6.9197H7.56023V11.4933C7.56023 11.7754 7.62067 12.0104 7.74156 12.1985C7.86916 12.3798 8.074 12.4705 8.35607 12.4705H8.52733C8.67508 12.4705 8.74896 12.5846 8.74896 12.813C8.74896 13.048 8.67508 13.1656 8.52733 13.1656H8.24526ZM8.69324 12.4705C8.95516 12.4705 9.15328 12.4067 9.2876 12.279C9.42192 12.1514 9.48908 11.9802 9.48908 11.7653V11.3825C9.48908 10.7982 9.63683 10.3415 9.93233 10.0124C10.2346 9.68332 10.6509 9.51878 11.1815 9.51878C11.4569 9.51878 11.6986 9.56243 11.9068 9.64974C12.115 9.73705 12.2863 9.8613 12.4206 10.0225C12.5616 10.1837 12.6657 10.3751 12.7329 10.5967C12.8001 10.8183 12.8336 11.0635 12.8336 11.3321C12.8336 11.9097 12.6825 12.3596 12.3803 12.682C12.0781 13.0044 11.6651 13.1656 11.1412 13.1656C10.8726 13.1656 10.614 13.1152 10.3655 13.0144C10.117 12.907 9.92226 12.7189 9.78123 12.4503C9.72078 12.6048 9.64691 12.729 9.5596 12.823C9.47229 12.9171 9.38162 12.9909 9.2876 13.0447C9.19358 13.0917 9.09284 13.1253 8.98538 13.1454C8.88464 13.1588 8.78726 13.1656 8.69324 13.1656H8.53205C8.44475 13.1656 8.38766 13.1387 8.3608 13.085C8.32722 13.0312 8.31043 12.9473 8.31043 12.8331C8.31043 12.7122 8.32722 12.6216 8.3608 12.5611C8.38766 12.5007 8.44475 12.4705 8.53205 12.4705H8.69324ZM12.1889 11.3925C12.1889 11.0433 12.1117 10.7612 11.9572 10.5463C11.8027 10.3247 11.5375 10.2139 11.1614 10.2139C10.4629 10.2139 10.1137 10.6202 10.1137 11.4328C10.1137 11.7754 10.2077 12.0339 10.3957 12.2085C10.5905 12.3831 10.839 12.4705 11.1412 12.4705C11.4837 12.4705 11.7423 12.3764 11.9169 12.1884C12.0982 12.0003 12.1889 11.7351 12.1889 11.3925Z" fill="currentColor"></path></svg></p>
-                            <p class="order-items-preview my-2 w-50">
-                                هزینه ارسال ( بر اساس وزن , حجم ) : 58,000
-                                <svg class="ms-3" width="15" height="15" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path class="text-gray-880 dark:text-white" d="M1.14878 6.91843C1.44428 6.91843 1.70285 6.87142 1.92447 6.77739C2.15282 6.68337 2.34422 6.55577 2.49869 6.39458C2.65316 6.2334 2.77069 6.04535 2.85128 5.83044C2.93187 5.62224 2.97888 5.40062 2.99231 5.16556H1.98492C1.6424 5.16556 1.36033 5.12862 1.1387 5.05474C0.917077 4.98087 0.742461 4.87341 0.614858 4.73238C0.487254 4.59134 0.396588 4.42344 0.34286 4.22868C0.295849 4.0272 0.272343 3.80221 0.272343 3.55372C0.272343 3.29852 0.309281 3.05674 0.383156 2.8284C0.457032 2.60005 0.564488 2.39857 0.705523 2.22396C0.846559 2.04934 1.02117 1.91167 1.22937 1.81093C1.44428 1.70347 1.68941 1.64974 1.96477 1.64974C2.1864 1.64974 2.39795 1.68668 2.59943 1.76056C2.80091 1.83443 2.97888 1.95196 3.13335 2.11315C3.28782 2.26761 3.40871 2.47245 3.49601 2.72766C3.59004 2.97615 3.63705 3.27837 3.63705 3.63431V4.47045H4.60415C4.68474 4.47045 4.73847 4.50068 4.76533 4.56112C4.79891 4.61485 4.8157 4.6988 4.8157 4.81297C4.8157 4.93386 4.79891 5.02452 4.76533 5.08497C4.73847 5.13869 4.68474 5.16556 4.60415 5.16556H3.6169C3.60347 5.49464 3.53631 5.80693 3.41542 6.10244C3.30125 6.39794 3.14007 6.65651 2.93187 6.87813C2.72368 7.09976 2.47518 7.27438 2.1864 7.40198C1.89761 7.5363 1.57188 7.60346 1.20922 7.60346H0.141381L0.0809373 6.91843H1.14878ZM0.896929 3.51343C0.896929 3.68133 0.913719 3.82572 0.947299 3.94661C0.987594 4.0675 1.0514 4.16823 1.1387 4.24883C1.23273 4.3227 1.35697 4.37979 1.51144 4.42008C1.66591 4.45366 1.86067 4.47045 2.09573 4.47045H3.00239V3.71491C3.00239 3.21792 2.90501 2.86198 2.71024 2.64707C2.51548 2.43215 2.24684 2.3247 1.90433 2.3247C1.58196 2.3247 1.33347 2.43215 1.15885 2.64707C0.984237 2.86198 0.896929 3.15076 0.896929 3.51343ZM6.26895 4.47045C6.35626 4.47045 6.41335 4.50068 6.44021 4.56112C6.47379 4.61485 6.49058 4.6988 6.49058 4.81297C6.49058 4.93386 6.47379 5.02452 6.44021 5.08497C6.41335 5.13869 6.35626 5.16556 6.26895 5.16556H4.60675C4.51944 5.16556 4.46235 5.13869 4.43549 5.08497C4.40191 5.03124 4.38512 4.94729 4.38512 4.83312C4.38512 4.71223 4.40191 4.62156 4.43549 4.56112C4.46235 4.50068 4.51944 4.47045 4.60675 4.47045H6.26895ZM7.93155 4.47045C8.01886 4.47045 8.07594 4.50068 8.10281 4.56112C8.13639 4.61485 8.15318 4.6988 8.15318 4.81297C8.15318 4.93386 8.13639 5.02452 8.10281 5.08497C8.07594 5.13869 8.01886 5.16556 7.93155 5.16556H6.26935C6.18204 5.16556 6.12495 5.13869 6.09809 5.08497C6.06451 5.03124 6.04772 4.94729 6.04772 4.83312C6.04772 4.71223 6.06451 4.62156 6.09809 4.56112C6.12495 4.50068 6.18204 4.47045 6.26935 4.47045H7.93155ZM9.59415 4.47045C9.68146 4.47045 9.73854 4.50068 9.76541 4.56112C9.79899 4.61485 9.81578 4.6988 9.81578 4.81297C9.81578 4.93386 9.79899 5.02452 9.76541 5.08497C9.73854 5.13869 9.68146 5.16556 9.59415 5.16556H7.93194C7.84464 5.16556 7.78755 5.13869 7.76069 5.08497C7.72711 5.03124 7.71032 4.94729 7.71032 4.83312C7.71032 4.71223 7.72711 4.62156 7.76069 4.56112C7.78755 4.50068 7.84464 4.47045 7.93194 4.47045H9.59415ZM11.2567 4.47045C11.3441 4.47045 11.4011 4.50068 11.428 4.56112C11.4616 4.61485 11.4784 4.6988 11.4784 4.81297C11.4784 4.93386 11.4616 5.02452 11.428 5.08497C11.4011 5.13869 11.3441 5.16556 11.2567 5.16556H9.59454C9.50723 5.16556 9.45015 5.13869 9.42328 5.08497C9.3897 5.03124 9.37291 4.94729 9.37291 4.83312C9.37291 4.71223 9.3897 4.62156 9.42328 4.56112C9.45015 4.50068 9.50723 4.47045 9.59454 4.47045H11.2567ZM12.1638 4.47045C12.4257 4.47045 12.6339 4.39994 12.7884 4.2589C12.9496 4.11787 13.0302 3.9231 13.0302 3.67461V2.2844H13.685V3.67461C13.685 4.15144 13.5506 4.52082 13.282 4.78275C13.0201 5.03795 12.6608 5.16556 12.2041 5.16556H11.2571C11.1698 5.16556 11.1127 5.13869 11.0859 5.08497C11.0523 5.03124 11.0355 4.94729 11.0355 4.83312C11.0355 4.71223 11.0523 4.62156 11.0859 4.56112C11.1127 4.50068 11.1698 4.47045 11.2571 4.47045H12.1638ZM13.7857 0.994934H12.9798V0.279683H13.7857V0.994934ZM12.5063 0.994934H11.7004V0.279683H12.5063V0.994934ZM5.64177 12.9641C5.64177 13.3267 5.58468 13.6659 5.47051 13.9815C5.35634 14.3039 5.1918 14.5826 4.97689 14.8177C4.76198 15.0595 4.50005 15.2509 4.19112 15.3919C3.8889 15.5329 3.54638 15.6035 3.16357 15.6035H2.56921C1.81702 15.6035 1.23273 15.3718 0.816337 14.9084C0.399946 14.445 0.191751 13.8103 0.191751 13.0044V11.2414H0.836485V12.9842C0.836485 13.273 0.870065 13.5349 0.937225 13.77C1.0111 14.0051 1.12191 14.2065 1.26967 14.3744C1.42413 14.549 1.61554 14.6834 1.84388 14.7774C2.07223 14.8714 2.34758 14.9184 2.66995 14.9184H3.1132C3.42885 14.9184 3.70421 14.8647 3.93927 14.7572C4.17433 14.6565 4.36909 14.5188 4.52356 14.3442C4.68474 14.1696 4.80227 13.9648 4.87615 13.7297C4.95674 13.4946 4.99703 13.2495 4.99703 12.9943V10.2844H5.64177V12.9641ZM3.21394 10.0628H2.36773V9.32738H3.21394V10.0628ZM8.24526 13.1656C8.07064 13.1656 7.90274 13.1421 7.74156 13.095C7.58038 13.0413 7.43598 12.954 7.30838 12.8331C7.18749 12.7122 7.09011 12.5544 7.01624 12.3596C6.94236 12.1582 6.90542 11.9097 6.90542 11.6142V6.9197H7.56023V11.4933C7.56023 11.7754 7.62067 12.0104 7.74156 12.1985C7.86916 12.3798 8.074 12.4705 8.35607 12.4705H8.52733C8.67508 12.4705 8.74896 12.5846 8.74896 12.813C8.74896 13.048 8.67508 13.1656 8.52733 13.1656H8.24526ZM8.69324 12.4705C8.95516 12.4705 9.15328 12.4067 9.2876 12.279C9.42192 12.1514 9.48908 11.9802 9.48908 11.7653V11.3825C9.48908 10.7982 9.63683 10.3415 9.93233 10.0124C10.2346 9.68332 10.6509 9.51878 11.1815 9.51878C11.4569 9.51878 11.6986 9.56243 11.9068 9.64974C12.115 9.73705 12.2863 9.8613 12.4206 10.0225C12.5616 10.1837 12.6657 10.3751 12.7329 10.5967C12.8001 10.8183 12.8336 11.0635 12.8336 11.3321C12.8336 11.9097 12.6825 12.3596 12.3803 12.682C12.0781 13.0044 11.6651 13.1656 11.1412 13.1656C10.8726 13.1656 10.614 13.1152 10.3655 13.0144C10.117 12.907 9.92226 12.7189 9.78123 12.4503C9.72078 12.6048 9.64691 12.729 9.5596 12.823C9.47229 12.9171 9.38162 12.9909 9.2876 13.0447C9.19358 13.0917 9.09284 13.1253 8.98538 13.1454C8.88464 13.1588 8.78726 13.1656 8.69324 13.1656H8.53205C8.44475 13.1656 8.38766 13.1387 8.3608 13.085C8.32722 13.0312 8.31043 12.9473 8.31043 12.8331C8.31043 12.7122 8.32722 12.6216 8.3608 12.5611C8.38766 12.5007 8.44475 12.4705 8.53205 12.4705H8.69324ZM12.1889 11.3925C12.1889 11.0433 12.1117 10.7612 11.9572 10.5463C11.8027 10.3247 11.5375 10.2139 11.1614 10.2139C10.4629 10.2139 10.1137 10.6202 10.1137 11.4328C10.1137 11.7754 10.2077 12.0339 10.3957 12.2085C10.5905 12.3831 10.839 12.4705 11.1412 12.4705C11.4837 12.4705 11.7423 12.3764 11.9169 12.1884C12.0982 12.0003 12.1889 11.7351 12.1889 11.3925Z" fill="currentColor"></path></svg>
-                            </p>
-                            <p class="order-items-preview my-2 w-50">کد پیگیری مرسوله : 34859345</p>
-                            <p class="order-items-preview my-2 w-50">مرسوله 1 از 1  :  در حال ارسال به مرکز ارسال من مارکت</p>
-                            <p class="order-items-preview my-2 w-50">شامل: هدفون گیمینگ حرفه‌ای, موس بی‌سیم...</p>
-                            <p class="order-items-preview my-2 w-100"> این کد را هنگام دریافت مرسوله، به مامور ارسال اعلام کنید</p>
-                            <p class="order-items-preview my-2 w-100"> <svg class="navi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.3em" height="1.3em"><path fill="currentColor" d="M9.116 17q-.691 0-1.153-.462T7.5 15.385V4.615q0-.69.463-1.153T9.116 3h7.769q.69 0 1.153.462t.462 1.153v10.77q0 .69-.462 1.152T16.884 17zm0-1h7.769q.23 0 .423-.192t.192-.423V4.615q0-.23-.192-.423T16.884 4H9.116q-.231 0-.424.192t-.192.423v10.77q0 .23.192.423t.423.192m-3 4q-.69 0-1.153-.462T4.5 18.385V6.615h1v11.77q0 .23.192.423t.423.192h8.77v1zM8.5 16V4z"></path></svg> کد تحویل مرسوله : 908453 </p>
-                        </div>
+                <div id="addressesListContainer" class="mt-4">
+                    <!-- STATIC: Addresses are hardcoded. JS only handles visual toggles. -->
+
+                    <div class="rounded-3 container">
+                        <form>
+                            <label for="as" class="ws-cs-label">استان</label>
+                            <input type="text" id="as" name="amount" placeholder="مثلا تهران" class="ws-cs-input" required />
+                            <label for="amount" class="ws-cs-label">شهر</label>
+                            <input type="text" id="amount" name="amount" placeholder="تهران" class="ws-cs-input" required />
+                            <label for="df" class="ws-cs-label">کد پستی</label>
+                            <input type="number" id="df" name="amount" placeholder="0123456789" class="ws-cs-input" required />
+                            <label for="addressLine1Input" class="form-label-custom">آدرس کامل</label>
+                            <textarea id="hghg" class="ws-cs-input" rows="3" placeholder="خیابان، کوچه، پلاک..."></textarea>
+
+
+                            <button type="submit" class="theme-color text-light rounded-3">ویرایش آدرس</button>
+                        </form>
                     </div>
+
                 </div>
             </section>
         </main>
     </div>
 </div>
 
-<!-- Mobile Bottom Navigation (Unchanged) -->
+<!-- Mobile Bottom Navigation -->
 <nav class="mobile-bottom-nav" id="mobileNavigation">
     <a href="#" class="mobile-nav-item" data-page="account"><svg><use xlink:href="#icon-user-circle"></use></svg><span>حساب</span></a>
     <a href="#" class="mobile-nav-item" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg><span>سفارش‌ها</span></a>
@@ -1313,6 +1321,33 @@
     <a href="#" class="mobile-nav-item" data-page="password"><svg><use xlink:href="#icon-lock-password"></use></svg><span>تغییر رمز</span></a>
     <a href="#" class="mobile-nav-item" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg><span>نظرات</span></a>
 </nav>
+
+<!-- Address Form Modal -->
+<div class="modal-backdrop-new" id="addressModalBackdrop"></div>
+<div class="modal-dialog-new" id="addressModal">
+    <header class="modal-header-new">
+        <h3 class="modal-title-new" id="addressModalTitle"></h3>
+        <button class="modal-close-btn-new">×</button>
+    </header>
+    <div class="modal-body-new">
+        <form id="addressForm">
+            <div class="form-group-custom"><label for="addressTitleInput" class="form-label-custom">عنوان آدرس</label><input type="text" id="addressTitleInput" class="form-control-custom" placeholder="مثلا: خانه"></div>
+            <div class="row gx-3">
+                <div class="col-md-6"><div class="form-group-custom"><label for="addressProvinceInput" class="form-label-custom">استان</label><input type="text" id="addressProvinceInput" class="form-control-custom" placeholder="تهران"></div></div>
+                <div class="col-md-6"><div class="form-group-custom"><label for="addressCityInput" class="form-label-custom">شهر</label><input type="text" id="addressCityInput" class="form-control-custom" placeholder="تهران"></div></div>
+            </div>
+            <div class="form-group-custom"><label for="addressLine1Input" class="form-label-custom">آدرس کامل</label><textarea id="addressLine1Input" class="form-control-custom" rows="3" placeholder="خیابان، کوچه، پلاک..."></textarea></div>
+            <div class="d-flex justify-content-end gap-2 mt-4">
+                <button type="button" class="btn-custom btn-secondary cancel-form-btn">انصراف</button>
+                <button type="submit" class="btn-custom btn-primary">ذخیره آدرس</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="wow-notification-container-new" id="notificationToastContainer"></div>
+
+
 
 
 <!--footer :: start------>
@@ -1374,10 +1409,14 @@
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 <script  src="script.js"></script>
 <!--این همه جا هست -->
+<!--این همه جا هست -->
+<script src="assets/js/jquery-3.7.1.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script  src="script.js"></script>
+<!--این همه جا هست -->
 
 
 <script src="assets/js/profile.js"></script>
-
 
 
 </body>

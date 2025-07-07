@@ -50,8 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const applyFiltersMobileButton = document.getElementById('applyFiltersMobileButton');
     if (applyFiltersMobileButton) {
-        // No change here, keeping it as type="submit" for semantic correctness,
-        // but understanding it won't trigger a form submission without a <form> tag.
         applyFiltersMobileButton.setAttribute('type', 'submit');
         applyFiltersMobileButton.addEventListener('click', () => {
             filtersBottomSheetOverlay.classList.remove('show');
@@ -60,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const priceSliderTrack = document.getElementById('priceSliderTrack');
-    const minPriceHandle = document.getElementById('minPriceHandle'); // This is the visual 'right' handle in RTL for min price
-    const maxPriceHandle = document.getElementById('maxPriceHandle'); // This is the visual 'left' handle in RTL for max price
+    const minPriceHandle = document.getElementById('minPriceHandle');
+    const maxPriceHandle = document.getElementById('maxPriceHandle');
     const minPriceDisplay = document.getElementById('minPriceDisplay');
     const maxPriceDisplay = document.getElementById('maxPriceDisplay');
     const minPriceValueInput = document.getElementById('minPriceValue');
@@ -95,32 +93,15 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Calculation based on visual left (0%) to visual right (100%)
-        // The *visual* minPriceHandle controls the start of the range (left)
-        // The *visual* maxPriceHandle controls the end of the range (right)
-        // Note: I'm reverting to the initial thought for simplicity and common behavior
-        // where the handle on the "left" controls the minimum value and the one on the "right" controls the maximum.
-        // This might be counter-intuitive for RTL if the track visually starts from right.
-        // If your CSS defines left=0% as the rightmost point in RTL, this logic will still be incorrect.
-        // Assuming `left` CSS property always refers to the distance from the left edge of its container.
-
         const minPercent = ((currentMinPrice - actualMinProductPrice) / totalRange) * 100;
         const maxPercent = ((currentMaxPrice - actualMinProductPrice) / totalRange) * 100;
 
-        // Visual `minPriceHandle` is on the right, `maxPriceHandle` on the left.
-        // So, `minPriceHandle` refers to `currentMinPrice` and `maxPriceHandle` refers to `currentMaxPrice`.
-        // The `left` CSS property determines the position from the container's left edge.
-
-        // So, the `left` of the range starts at `minPercent`
         priceSliderRange.style.left = `${minPercent}%`;
-        // The `width` of the range goes up to `maxPercent`
         priceSliderRange.style.width = `${maxPercent - minPercent}%`;
 
-        // Position the handles based on their current values
         minPriceHandle.style.left = `${minPercent}%`;
         maxPriceHandle.style.left = `${maxPercent}%`;
 
-        // Adjust Z-index so the active handle is on top if they overlap
         if (minPercent > maxPercent) {
             minPriceHandle.style.zIndex = 3;
             maxPriceHandle.style.zIndex = 2;
@@ -150,23 +131,21 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!activeHandle) return;
 
         const sliderRect = priceSliderTrack.getBoundingClientRect();
-        let newX = getClientX(e) - sliderRect.left; // Distance from left edge of track
+        let newX = getClientX(e) - sliderRect.left;
         let percent = (newX / sliderRect.width) * 100;
 
         percent = Math.max(0, Math.min(100, percent));
 
-        const newValue = Math.round(actualMinProductPrice + (percent / 100) * (actualMaxProductPrice - actualMinProductPrice));
+        const step = 1000000;
+        let rawValue = actualMinProductPrice + (percent / 100) * (actualMaxProductPrice - actualMinProductPrice);
+        const newValue = Math.round(rawValue / step) * step;
 
-        // Reverting to previous logic for handle control
-        // maxPriceHandle (visual left handle) controls the max value
-        // minPriceHandle (visual right handle) controls the min value
-        if (activeHandle === minPriceHandle) { // If dragging the visual right handle
+        if (activeHandle === minPriceHandle) {
             currentMinPrice = Math.min(newValue, currentMaxPrice);
-        } else if (activeHandle === maxPriceHandle) { // If dragging the visual left handle
+        } else if (activeHandle === maxPriceHandle) {
             currentMaxPrice = Math.max(newValue, currentMinPrice);
         }
 
-        // Ensure min is always less than or equal to max
         if (currentMinPrice > currentMaxPrice) {
             [currentMinPrice, currentMaxPrice] = [currentMaxPrice, currentMinPrice];
         }

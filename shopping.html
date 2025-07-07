@@ -90,11 +90,34 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M15 11h2.586l-2.293-2.293 1.414-1.414L21.414 12l-4.707 4.707-1.414-1.414L17.586 13H15v-2z"></path><path d="M13 3H8.667C7.194 3 6 4.194 6 5.667V10H4v10h1v-4h1v4h1v-4h1v4h1v-4h1v4h1V5.667C14 4.194 12.806 3 11.333 3H13V2h-2v1zM9 8H8V6h1v2zm2 0h-1V6h1v2z"></path></svg>
                     <h2 class="shop-cs-card-title">شیوه و زمان ارسال</h2>
                 </div>
+
+                <form id="" class="shop-cs-payment-method-section">
+                    <div class="shop-cs-selectable-option">
+                        <input type="radio" name="payment_method" value="wallet" id="payment-eyyo" >
+                        <label for="payment-eyyo" class="shop-cs-selectable-label">
+                            <span class="shop-cs-custom-tick-container">
+                                <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+                            </span>
+                            <div class="shop-cs-payment-details"><strong>ارسال با ماهکس</strong></div>
+                        </label>
+                    </div>
+                    <div class="shop-cs-selectable-option">
+                        <input type="radio" name="payment_method" value="card" id="payment-yoey"  checked>
+                        <label for="payment-yoey" class="shop-cs-selectable-label">
+                            <span class="shop-cs-custom-tick-container">
+                                <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+                            </span>
+                            <div class="shop-cs-payment-details"><strong>ارسال با تیپاکس</strong></div>
+                        </label>
+                    </div>
+                </form>
+
                 <div class="shop-cs-card-body">
                     <div class="shop-cs-time-scroller-wrapper">
                         <div class="shop-cs-time-scroller">
                             <div class="shop-cs-time-scroller__list">
-                                <div class="shop-cs-time-scroller__item active" data-time-group="day1-times">پنج‌شنبه ۱۲</div>
+                                <div class="shop-cs-time-scroller__item active" data-time-group="one-day">ارسال امروز</div>
+                                <div class="shop-cs-time-scroller__item" data-time-group="day1-times">پنج‌شنبه ۱۲</div>
                                 <div class="shop-cs-time-scroller__item" data-time-group="day2-times">شنبه ۱۴</div>
                                 <div class="shop-cs-time-scroller__item" data-time-group="day3-times">یکشنبه ۱۵</div>
                                 <div class="shop-cs-time-scroller__item" data-time-group="day4-times">دوشنبه ۱۶</div>
@@ -105,8 +128,58 @@
                         </div>
                     </div>
                     <div class="shop-cs-time-slot-section">
-                        <div id="day1-times" class="shop-cs-time-slot-group active">
-                            <div class="shop-cs-time-slot-option shop-cs-selectable-option"><input type="radio" name="delivery_time" value="d1-t1" id="d1-t1"><label for="d1-t1" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container"><svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span><span>ساعت ۹ تا ۱۵</span></label></div>
+                        <div id="one-day" class="shop-cs-time-slot-group active">
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option">
+                                <input type="radio" name="delivery_time" value="d1-em" id="d1-em">
+                                <label for="d1-em" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container">
+                                    <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+                                </span>
+                                    <span>امروز ساعت 8 صبح تا 12 ظهر </span>
+                                </label>
+                            </div>
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option">
+                                <input type="radio" name="delivery_time" value="d1-em2" id="d1-em2">
+                                <label for="d1-em2" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container">
+                                    <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+                                </span>
+                                    <span>امروز ساعت 12 ظهر تا 4 بعد از ظهر </span>
+                                </label>
+                            </div>
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option">
+                                <input type="radio" name="delivery_time" value="d1-em3" id="d1-em3">
+                                <label for="d1-em3" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container">
+                                    <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+                                </span>
+                                    <span>امروز ساعت 4 بعد از ظهر تا 8 شب </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="day1-times" class="shop-cs-time-slot-group">
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option">
+                                <input type="radio" name="delivery_time" value="d1-t1" id="d1-t1">
+                                <label for="d1-t1" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container">
+                                    <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+                                </span>
+                                    <span>از 8 صبح تا 12 ظهر </span>
+                                </label>
+                            </div>
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option">
+                                <input type="radio" name="delivery_time" value="d1-t2" id="d1-t2">
+                                <label for="d1-t2" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container">
+                                    <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+                                </span>
+                                    <span>از 12 ظهر تا 4 بعد از ظهر </span>
+                                </label>
+                            </div>
+                            <div class="shop-cs-time-slot-option shop-cs-selectable-option">
+                                <input type="radio" name="delivery_time" value="d1-t3" id="d1-t3">
+                                <label for="d1-t3" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container">
+                                    <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+                                </span>
+                                    <span>از 4 بعد از ظهر تا 8 شب</span>
+                                </label>
+                            </div>
                         </div>
                         <div id="day2-times" class="shop-cs-time-slot-group">
                             <div class="shop-cs-time-slot-option shop-cs-selectable-option"><input type="radio" name="delivery_time" value="d2-t1" id="d2-t1"><label for="d2-t1" class="shop-cs-selectable-label"><span class="shop-cs-custom-tick-container"><svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span><span>ساعت ۱۰ تا ۱۶</span></label></div>

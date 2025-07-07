@@ -6,6 +6,7 @@
     <title>اطلاعات حساب | پروفایل کاربری (نسخه استاتیک)</title>
     <!-- External Links -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -1338,6 +1339,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="account-detail-row is-editable">
+                        <div class="account-detail-label">تاریخ تولد</div>
+                        <div class="account-detail-value-wrapper">
+                            <span class="account-detail-value"></span>
+                            <div class="account-detail-input-wrapper">
+                                <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="تاریخ را انتخاب کنید">
+                            </div>
+                            <div class="account-detail-actions">
+                                <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
+                                <div class="save-cancel-btns">
+                                    <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
+                                    <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="account-detail-row"> <!-- Not editable -->
                         <div class="account-detail-label">نام کاربری</div>
@@ -1527,8 +1544,14 @@
 <script  src="script.js"></script>
 <!--این همه جا هست -->
 
+<!--فقط همین صفحه-->
+<script src="assets/js/taghvim-1.js"></script>
+<script src="assets/js/taghvim-2.js"></script>
+<!--فقط همین صفحه-->
 
 <script src="assets/js/profile.js"></script>
+
+
 
 
 </body>

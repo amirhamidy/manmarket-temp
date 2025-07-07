@@ -39,7 +39,6 @@ a {
 }
 
 .b-cs-blog-page-title {
-    font-size: 2.5em !important;
     font-weight: 700 !important;
     margin-bottom: calc(8px * 4) !important; /* Direct values */
     border-bottom: 2px solid #e9ecef !important; /* Direct value */
@@ -112,7 +111,7 @@ a {
 }
 
 .b-cs-blog-card-title {
-    font-size: 1.25em !important;
+    font-size: 16px !important;
     font-weight: 700 !important;
     margin-bottom: 8px !important; /* Direct value */
     line-height: 1.4 !important;
@@ -141,8 +140,8 @@ a {
 }
 
 .b-cs-blog-widget-title {
-    font-size: 1.3em !important;
     font-weight: 700 !important;
+    font-size: 16px !important;
     margin-bottom: calc(8px * 3) !important; /* Direct values */
     border-bottom: 2px solid #ff4f29 !important; /* Direct value */
     padding-bottom: 8px !important; /* Direct value */
@@ -212,26 +211,37 @@ a {
 .b-cs-blog-tags-cloud {
     display: flex !important;
     flex-wrap: wrap !important;
-    gap: 8px !important; /* Direct value */
+    gap: 8px !important;
 }
 
 .b-cs-blog-tags-cloud a {
-    background-color: #f8f9fa !important; /* Direct value */
-    color: #2c3a47 !important; /* Direct value */
+    background-color: #f8f9fa !important;
+    color: #2c3a47 !important;
     padding: 6px 12px !important;
     border-radius: 99px !important;
     font-size: 0.85em !important;
     transition: all 0.3s ease-in-out !important;
 }
 
-.b-cs-blog-tags-cloud a:hover {
-    background-color: #ff4f29 !important; /* Direct value */
-    color: #ffffff !important; /* Direct value */
+.b-cs-blog-tags-cloud-2 a{
+    background-color: #eeeeee !important;
+    color: #2c3a47 !important;
+    padding: 6px 12px !important;
+    border-radius: 99px !important;
+    font-size: 0.85em !important;
+    transition: all 0.3s ease-in-out !important;
+}
+.b-cs-blog-tags-cloud-2 a:hover {
+    background-color: #ff4f29 !important;
+    color: #ffffff !important;
 }
 
-/* --------------------------------------------------------------
-# Blog Pagination Styles (b-cs- prefix)
--------------------------------------------------------------- */
+
+.b-cs-blog-tags-cloud a:hover {
+    background-color: #ff4f29 !important;
+    color: #ffffff !important;
+}
+
 .b-cs-blog-pagination {
     display: flex !important;
     justify-content: center !important;
@@ -303,6 +313,8 @@ a {
     fill: currentColor !important;
     stroke: currentColor !important;
 }
+
+
 
 .b-cs-blog-mobile-dashboard-menu {
     display: flex !important;

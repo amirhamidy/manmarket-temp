@@ -1,3 +1,6 @@
+
+
+
 function showToast({ type = 'info', title, message, duration = 4500, isConfirm = false, onConfirm = () => {}, onCancel = () => {} }) {
     const container = document.getElementById('notificationToastContainer');
     if (!container) return;
@@ -315,75 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const wishlistContainer = document.getElementById('wishlistContainer');
-    if (!wishlistContainer) return;
-
-    let wishlistItems = [
-        { id: 'prod1', name: 'ساعت هوشمند گلکسی واچ ۶', price: 1200000, image: 'https://via.placeholder.com/100/FF6B6B/FFF?text=Watch', category: 'گجت پوشیدنی' },
-        { id: 'prod2', name: 'کتاب روانشناسی پول', price: 180000, image: 'https://via.placeholder.com/100/4ECDC4/FFF?text=Book', category: 'کتاب' },
-        { id: 'prod3', name: 'هدفون بی‌سیم سونی', price: 850000, image: 'https://via.placeholder.com/100/3498DB/FFF?text=Headphone', category: 'لوازم جانبی' }
-    ];
-
-    function renderWishlist() {
-        wishlistContainer.innerHTML = '';
-        if (wishlistItems.length === 0) {
-            wishlistContainer.innerHTML = '<p class="text-muted text-center py-5">لیست علاقه‌مندی شما خالی است.</p>';
-            return;
-        }
-        const grid = document.createElement('div');
-        grid.className = 'row g-3';
-        wishlistItems.forEach(item => {
-            const col = document.createElement('div');
-            col.className = 'col-md-6';
-            col.id = `item-${item.id}`;
-            col.innerHTML = `
-                    <div class="product-card-minimal">
-                        <img src="${item.image}" alt="${item.name}" class="product-card-minimal-img">
-                        <div class="product-card-minimal-info">
-                            <h6>${item.name}</h6>
-                            <p class="category-text">${item.category}</p>
-                            <p class="price-text">${item.price.toLocaleString('fa-IR')} <small>تومان</small></p>
-                            <div class="product-card-minimal-actions d-flex gap-2">
-                                <button class="btn-custom btn-secondary btn-sm remove-wishlist-btn" data-id="${item.id}">
-                                    <svg><use xlink:href="#icon-trash-can"></use></svg>حذف
-                                </button>
-                                <button class="btn-custom btn-primary btn-sm">افزودن به سبد</button>
-                            </div>
-                        </div>
-                    </div>`;
-            grid.appendChild(col);
-        });
-        wishlistContainer.appendChild(grid);
-    }
-
-    wishlistContainer.addEventListener('click', function(e) {
-        const button = e.target.closest('.remove-wishlist-btn');
-        if (button) {
-            const productId = button.dataset.id;
-            showToast({
-                type: 'warning',
-                title: 'تایید حذف',
-                message: 'آیا از حذف این محصول مطمئن هستید؟',
-                isConfirm: true,
-                onConfirm: () => {
-                    const productCardWrapper = document.getElementById(`item-${productId}`);
-                    if (productCardWrapper) {
-                        productCardWrapper.style.transition = 'all 0.3s ease';
-                        productCardWrapper.style.opacity = '0';
-                        productCardWrapper.style.transform = 'scale(0.95)';
-                        setTimeout(() => {
-                            wishlistItems = wishlistItems.filter(item => item.id !== productId);
-                            renderWishlist();
-                        }, 300);
-                    }
-                }
-            });
-        }
-    });
-
-    renderWishlist();
-});
 
 document.addEventListener('DOMContentLoaded', () => {
     const orderFilter = document.getElementById('orderFilterStatus');
@@ -512,4 +446,11 @@ document.addEventListener('DOMContentLoaded', () => {
             activeNavLink.classList.add('active');
         }
     }
+});
+
+
+$('#birthDate').persianDatepicker({
+    format: 'YYYY/MM/DD',
+    initialValue: false,
+    autoClose: true
 });

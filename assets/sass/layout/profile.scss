@@ -37,6 +37,10 @@
   --current-shadow-md: var(--shadow-md);
   --primary-accent-rgb: 255, 107, 107;
 }
+.s-x{
+  overflow-x: scroll !important;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 .body-x { line-height: 1.65; color: var(--text-primary); background-color: var(--bg-primary); font-size: 0.9375rem; padding-bottom: calc(var(--spacing-unit) * 10); }
 .main-container { max-width: 1200px; margin: calc(var(--spacing-unit) * 3) auto; padding: 0 calc(var(--spacing-unit) * 2); }
@@ -271,7 +275,7 @@ html[dir="rtl"] .wow-notification-new { transform: translateX(-100%); } html[dir
 
 .main-container { max-width: 1200px; margin: calc(var(--spacing-unit) * 3) auto; padding: 0 calc(var(--spacing-unit) * 2); }
 .btn-custom { padding: calc(var(--spacing-unit)*1.2) calc(var(--spacing-unit)*2.5); border-radius: var(--border-radius-md); font-weight: 500; font-size: 0.9rem; transition: var(--transition-cubic); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-unit); }
-.btn-custom.btn-primary { background-color: var(--primary-accent); color: white; }
+.btn-custom.btn-primary { background-color: var(--primary-accent); color: white; font-size: 15px }
 .form-control-custom { width: 100%; padding: calc(var(--spacing-unit)*1.2) calc(var(--spacing-unit)*1.5); font-size: 0.9rem; line-height: 1.5; color: var(--text-primary); background-color: var(--input-bg); border: 1px solid var(--input-border); border-radius: var(--border-radius-md); transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; }
 .form-control-custom:focus { border-color: var(--primary-accent); outline: 0; box-shadow: 0 0 0 0.2rem rgba(var(--primary-accent-rgb), 0.25); }
 .form-label-custom { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); margin-bottom: calc(var(--spacing-unit)*0.75); display: block; }
@@ -364,11 +368,16 @@ html[dir="rtl"] .wow-notification-new { transform: translateX(-100%); } html[dir
 .transaction-item.withdrawal .transaction-icon { background-color: rgba(220, 53, 69, 0.08); color: var(--error);font-size: 0.85rem; }
 .transaction-amount.withdrawal { color: var(--error);font-size: 0.85rem;padding: 0 15px }
 
+.fs-14{
+  font-size: 14px !important;
+}
+
 @media (max-width: 991.98px) {
   .profile-layout-grid { grid-template-columns: 1fr; }
   .profile-sidebar-new { display: none; }
   .main-container { padding-top: 100px; }
 }
+
 
 
 .brand-card{

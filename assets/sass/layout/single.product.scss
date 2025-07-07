@@ -406,13 +406,13 @@
   color: var(--text-color);
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius-sm);
-  padding: 8px 15px;
+  padding: 4px 15px;
   font-size: 15px;
   font-weight: normal;
   cursor: pointer;
   transition: all 0.2s ease;
   min-width: 80px;
-  height: 50px;
+  height: 40px;
   text-align: center;
   box-shadow: none;
   display: inline-flex;
@@ -1815,7 +1815,7 @@
   display: flex;
   align-items: center;
   border-radius: 8px;
-  padding: 10px 15px;
+  padding: 10px 0;
   margin-top: 20px;
   position: relative;
   direction: rtl;
@@ -1842,6 +1842,7 @@
   max-height: 100%;
   object-fit: contain;
   display: block;
+  z-index: 9999;
 }
 
 .not-rot-notification-icon span {
@@ -1854,7 +1855,9 @@
   overflow: hidden;
   position: relative;
   flex-grow: 1;
+  margin-left: 30px !important;
 }
+
 
 .not-rot-notification-messages-inner {
   position: absolute;
@@ -1894,7 +1897,34 @@
   max-height: 400px;
   overflow-y: auto;
   direction: rtl;
+  padding-left: 4px;
+
+  scrollbar-width: thin;
 }
+
+/* Chrome, Edge, Safari */
+.spec-scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.spec-scroll-container::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.spec-scroll-container::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  border: 2px solid #f0f0f0;
+}
+
+
+
+
+//.spec-scroll-container::-webkit-scrollbar{
+//  width: 8px !important;
+//  display: block !important;
+//  scrollbar-width:  5px !important;
+//  -ms-overflow-style: scrollbar;
+//}
 
 .SH-HS-spec-table {
   width: 100%;
@@ -1964,5 +1994,47 @@
     padding: 10px 15px;
 
   }
+}
+.h-400 {
+  max-height: 400px;
+  overflow-y: auto;
+  direction: rtl;
+  padding-left: 4px;
+
+  scrollbar-width: thin;
+}
+
+/* Chrome, Edge, Safari */
+.h-400::-webkit-scrollbar {
+  width: 8px;
+}
+
+.h-400::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.h-400::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  border: 2px solid #f0f0f0;
+}
+.SH-HS-product-description-content {
+  max-height: 400px;
+  overflow-y: auto;
+  direction: rtl;
+  scrollbar-width: thin;
+}
+
+/* Chrome, Edge, Safari */
+.SH-HS-product-description-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.SH-HS-product-description-content::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+.SH-HS-product-description-content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  border: 2px solid #f0f0f0;
 }
 

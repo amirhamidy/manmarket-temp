@@ -2022,11 +2022,13 @@
   overflow-y: auto;
   direction: rtl;
   scrollbar-width: thin;
+  padding: 0 10px;
 }
 
 /* Chrome, Edge, Safari */
 .SH-HS-product-description-content::-webkit-scrollbar {
   width: 8px;
+  margin-left: 10px !important;
 }
 
 .SH-HS-product-description-content::-webkit-scrollbar-track {

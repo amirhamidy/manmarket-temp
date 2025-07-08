@@ -41,6 +41,11 @@
   overflow-x: scroll !important;
 }
 
+
+.profile-section-new{
+  box-shadow: none !important;
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 .body-x { line-height: 1.65; color: var(--text-primary); background-color: var(--bg-primary); font-size: 0.9375rem; padding-bottom: calc(var(--spacing-unit) * 10); }
 .main-container { max-width: 1200px; margin: calc(var(--spacing-unit) * 3) auto; padding: 0 calc(var(--spacing-unit) * 2); }
@@ -108,7 +113,7 @@ html[dir="rtl"] .wow-notification-new { transform: translateX(-100%); } html[dir
 .mobile-nav-item.active { color: var(--primary-accent);  } .mobile-nav-item svg { width: 22px; height: 22px; margin-bottom: 2px; }
 /* --- PAGE-SPECIFIC STYLES: Orders (Unchanged) --- */
 .order-card-new { background-color: var(--bg-primary); border-radius: var(--border-radius-md); padding: calc(var(--spacing-unit)*2); margin-bottom: calc(var(--spacing-unit)*2.5); border: 1px solid var(--border-color); transition: var(--transition-cubic), opacity 0.3s ease; }
-.order-card-new:hover { transform: translateY(-3px); box-shadow: var(--current-shadow-sm); }
+.order-card-new:hover { box-shadow: var(--current-shadow-sm); }
 .order-card-header-new { display: flex; justify-content: space-between; align-items: center; margin-bottom: calc(var(--spacing-unit)*1.5); }
 .order-id-new {font-size: 14px; } .order-date-new { color: var(--text-muted); margin-right: var(--spacing-unit);font-size: 14px; }
 .order-status-badge-new { font-size: 0.75rem; padding: calc(var(--spacing-unit)*0.5) calc(var(--spacing-unit)*1.2); white-space: nowrap; border-radius: 20px; color: white;  }

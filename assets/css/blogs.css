@@ -8,8 +8,6 @@
 }
 
 body {
-    font-family: 'Vazirmatn', Arial, sans-serif !important;
-    background-color: #f8f9fa !important; /* Direct value */
     color: #2c3a47 !important; /* Direct value */
     line-height: 1.7 !important;
     direction: rtl !important;
@@ -546,7 +544,7 @@ a {
 
 * { box-sizing: border-box !important; margin: 0 !important; padding: 0 !important; }
 html { scroll-behavior: smooth !important; }
-body { font-family: var(--font-family-base) !important; background-color: var(--bg-primary) !important; color: var(--text-primary) !important; line-height: 1.8 !important; direction: rtl !important; background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%) !important; }
+body { font-family: var(--font-family-base) !important; color: var(--text-primary) !important; line-height: 1.8 !important; direction: rtl !important; }
 .blog-s-progress-bar { position: fixed !important; top: 0 !important; right: 0 !important; width: 0% !important; height: 5px !important; background: linear-gradient(90deg, var(--primary-accent-darker), var(--primary-accent)) !important; z-index: 1000 !important; transition: width 0.1s linear !important; box-shadow: 0 0 10px var(--primary-accent) !important; }
 
 /* --- هیرو --- */

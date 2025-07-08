@@ -1473,3 +1473,29 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
     margin-top: 0.8rem !important;
   }
 }
+
+.d-bx{
+  width: 100%;
+  text-align: -webkit-left;
+}
+.m-text{
+  transition: 0.3s;
+}
+.m-box{
+  white-space: nowrap;
+  transition: 0.3s;
+  &:hover{
+    .m-text{
+      margin-top: -10px !important;
+    }
+  }
+}
+
+.cs-svg{
+  color: #f96747 !important;
+  border: 1px solid #eeeeee;
+  border-radius: 50%;
+  padding: 10px !important;
+  transition: 0.3s !important;
+}
+

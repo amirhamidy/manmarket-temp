@@ -1,5 +1,24 @@
 
+document.addEventListener('DOMContentLoaded', () => {
+    const navixElement = document.querySelector('.navix');
+    const codeElement = document.querySelector('.code');
+    const trueCElement = document.querySelector('.true-c');
 
+    if (navixElement && codeElement && trueCElement) {
+        navixElement.addEventListener('click', async () => {
+            const fullText = codeElement.textContent;
+            const numbersOnly = fullText.replace(/[^0-9]/g, '');
+
+            try {
+                await navigator.clipboard.writeText(numbersOnly);
+                navixElement.style.display = 'none';
+                trueCElement.style.display = 'inline';
+            } catch (err) {
+                alert("روند کپی کردن با مشکل مواجه شد")
+            }
+        });
+    }
+});
 
 function showToast({ type = 'info', title, message, duration = 4500, isConfirm = false, onConfirm = () => {}, onCancel = () => {} }) {
     const container = document.getElementById('notificationToastContainer');
@@ -454,3 +473,4 @@ $('#birthDate').persianDatepicker({
     initialValue: false,
     autoClose: true
 });
+

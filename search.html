@@ -1173,7 +1173,7 @@
 <div class="container-fluid my-3 fill-page-container mt-5 pt-4">
     <div class="row gx-3 h-100">
 
-        <aside class="col-lg-3 fill-filters-sidebar-container mb-3 mb-lg-0">
+        <form class="col-lg-3 fill-filters-sidebar-container mb-3 mb-lg-0">
             <div class="fill-filters-sidebar-content-wrapper">
                 <div class="fill-sidebar-header">فیلتر محصولات</div>
                 <div class="accordion" id="filtersAccordion">
@@ -1254,7 +1254,7 @@
                     </button>
                 </div>
             </div>
-        </aside>
+        </form>
 
         <main class="col-lg-9 py-3 d-flex flex-column fill-main-content mt-0">
 
@@ -1265,15 +1265,16 @@
                             <label class="mx-0">  مرتب سازی بر اساس :  </label>
                         </div>
                         <div class="fill-filter-option b-none w-center">
-                            <input type="radio" id="sort-filter-1" name="sortOption" value="popular" checked>
+                        <input type="radio" id="sort-filter-2" name="sortOption" value="newest" checked>
+                        <label for="sort-filter-2">جدیدترین
+                            <span class=" ms-3 fill-custom-tick-container"><svg class="fill-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span></label>
+                       </div>
+                        <div class="fill-filter-option b-none w-center">
+                            <input type="radio" id="sort-filter-1" name="sortOption" value="popular" >
                             <label for="sort-filter-1">محبوب ترین
                                 <span class=" ms-3 fill-custom-tick-container"><svg class="fill-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span></label>
                         </div>
-                        <div class="fill-filter-option b-none w-center">
-                            <input type="radio" id="sort-filter-2" name="sortOption" value="newest">
-                            <label for="sort-filter-2">جدیدترین
-                                <span class=" ms-3 fill-custom-tick-container"><svg class="fill-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg></span></label>
-                        </div>
+
                         <div class="fill-filter-option b-none w-center">
                             <input type="radio" id="sort-filter-3" name="sortOption" value="price-asc">
                             <label for="sort-filter-3">ارزان ترین

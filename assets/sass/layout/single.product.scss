@@ -42,7 +42,7 @@
 }
 
 .gallery-top {
-  height: 380px;
+  height: 400px;
   width: 100%;
   margin-bottom: 12px;
   cursor: pointer;
@@ -68,10 +68,11 @@
 }
 
 .gallery-top .swiper-slide img {
-  max-width: 95% !important;
+  max-width: 85% !important;
   height: auto;
   object-fit: contain;
   border-radius: 4px;
+  max-height: 130%;
 }
 
 .gallery-thumbs {
@@ -456,7 +457,6 @@
 
 .share-x, .heart-x {
   position: absolute;
-  z-index: 10;
   background-color: #fff;
   border-radius: 50%;
   width: 35px;
@@ -467,6 +467,8 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   transition: all 0.2s ease;
   cursor: pointer;
+  z-index: 1 !important;
+
 }
 .share-x:hover, .heart-x:hover {
   background-color: var(--light-gray);
@@ -1250,8 +1252,6 @@
 .SH-HS-detail-card {
   background-color: var(--white-color);
   border-radius: var(--border-radius-lg);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  padding: 20px;
   box-sizing: border-box;
 }
 
@@ -1260,7 +1260,6 @@
   font-weight: bold;
   color: var(--text-color);
   margin-bottom: 20px;
-  border-bottom: 2px solid var(--primary-color);
   padding-bottom: 10px;
   text-align: right;
 }
@@ -1311,10 +1310,8 @@
 .SH-HS-product-description-content {
   font-size: 15px;
   color: var(--secondary-text-color);
-  line-height: 1.7;
+  line-height: 2.3;
   text-align: justify;
-  height: 400px;
-  overflow-y: scroll !important;
 }
 .SH-HS-product-description-content p {
   margin-bottom: 15px;
@@ -1795,7 +1792,7 @@
 
 
 .mt-cs{
-  margin-top: 200px !important;
+  margin-top: 150px !important;
 }
 
 .cs-z{
@@ -1876,11 +1873,9 @@
 }
 
 .SH-HS-detail-card {
-  border: 1px solid var(--border-color, #e0e0e0);
   border-radius: var(--border-radius-md, 8px);
   overflow: hidden;
   background-color: var(--white-color, #fff);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .SH-HS-detail-card-title {
@@ -1888,33 +1883,17 @@
   font-weight: bold;
   padding: 15px 20px;
   margin-bottom: 0;
-  border-bottom: 1px solid var(--primary-color);
   color: var(--text-color, #333);
   text-align: right;
 }
 
 .spec-scroll-container {
-  max-height: 400px;
   overflow-y: auto;
   direction: rtl;
   padding-left: 4px;
-
   scrollbar-width: thin;
 }
 
-/* Chrome, Edge, Safari */
-.spec-scroll-container::-webkit-scrollbar {
-  width: 8px;
-}
-
-.spec-scroll-container::-webkit-scrollbar-track {
-  border-radius: 10px;
-}
-
-.spec-scroll-container::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  border: 2px solid #f0f0f0;
-}
 
 
 
@@ -2018,7 +1997,6 @@
   border: 2px solid #f0f0f0;
 }
 .SH-HS-product-description-content {
-  max-height: 400px;
   overflow-y: auto;
   direction: rtl;
   scrollbar-width: thin;

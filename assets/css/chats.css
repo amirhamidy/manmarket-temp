@@ -139,11 +139,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto; backg
 }
 .x-chat-product-item:hover { background-color: #f1f5f8; }
 .x-chat-product-item.x-chat-active { background-color: var(--active-chat-bg); border-right-color: var(--brand-primary); }
-.x-chat-product-item.x-chat-active .x-chat-product-item-name { color: var(--brand-primary); }
+.x-chat-product-item.x-chat-active .x-chat-product-item-name {    font-size: 14px; color: var(--brand-primary); }
 .x-chat-product-item-image img { width: 60px; height: 60px; border-radius: 12px; object-fit: cover; }
 .x-chat-product-item-info { flex-grow: 1; overflow: hidden; }
-.x-chat-product-item-name { font-weight: 600; color: var(--text-primary); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.x-chat-product-item-last-message { font-size: 0.9rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.x-chat-product-item-name {     font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.x-chat-product-item-last-message {     font-size: 14px; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .x-chat-unread-badge {
     position: absolute; top: 50%; left: 16px; transform: translateY(-50%);
@@ -156,7 +156,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto; backg
 .x-chat-main { display: flex; flex-direction: column; overflow: hidden; }
 .x-chat-header { padding: 12px 20px; border-bottom: 1px solid var(--border-color); flex-shrink: 0; display: flex; align-items: center; }
 .x-chat-header-info { flex-grow: 1; }
-.x-chat-header-title { font-size: 1.1rem; font-weight: 600; }
+.x-chat-header-title { font-size: 14px; font-weight: 600; }
 .x-chat-header-subtitle { font-size: 0.85rem; color: var(--brand-primary); }
 .x-chat-back-button { display: none; margin-left: 10px; }
 .x-chat-header-product-image { display: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-left: 12px; }
@@ -170,7 +170,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto; backg
 .x-chat-message-bubble.x-chat-received { background-color: #f1f2f6; border-bottom-left-radius: 6px; }
 .x-chat-message-group.x-chat-sent { align-items: flex-end; }
 .x-chat-message-bubble.x-chat-sent { background-color: var(--sent-bubble-bg); border-bottom-right-radius: 6px; }
-.x-chat-message-text { padding-bottom: 20px; line-height: 1.6; word-wrap: break-word; }
+.x-chat-message-text {font-size: 13px; padding-bottom: 20px; line-height: 1.6; word-wrap: break-word; }
 .x-chat-message-image img { display: block; max-width: 100%; height: auto; border-radius: 12px; cursor: pointer; }
 .x-chat-message-meta { position: absolute; bottom: 6px; left: 12px; font-size: 0.75rem; color: var(--time-color); }
 .x-chat-message-bubble.x-chat-sent .x-chat-message-meta { color: var(--sent-time-color); }
@@ -185,6 +185,11 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto; backg
     opacity: 0.4; transform: scale(0.9); cursor: not-allowed;
     border: none; outline: none;
 }
+
+.x-chat-message-input:focus-visible{
+box-shadow: none !important;
+}
+
 .x-chat-send-button.x-chat-active { opacity: 1; transform: scale(1); cursor: pointer; }
 .x-chat-lightbox-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0s 0.3s; }
 .x-chat-lightbox-overlay.x-chat-active { opacity: 1; visibility: visible; transition: opacity 0.3s ease; }
@@ -193,15 +198,15 @@ body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto; backg
 .x-chat-lightbox-content img { width: 100%; height: 100%; object-fit: contain; }
 
 @media (max-width: 800px) {
-    body { padding: 0; }
-    .x-chat-layout { grid-template-columns: 1fr; height: 100vh; max-height: 100vh; border-radius: 0; }
-    .x-chat-product-sidebar { border-left: none; }
-    .x-chat-main { display: none; }
-    .x-chat-back-button { display: flex; }
-    .x-chat-header-product-image { display: block; }
-    .x-chat-header-title { font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .x-chat-header-subtitle { font-size: 0.75rem; }
-    .x-chat-layout.x-chat-mobile-view-chat .x-chat-product-sidebar { display: none; }
-    .x-chat-layout.x-chat-mobile-view-chat .x-chat-main { display: flex; }
+body { padding: 0; }
+.x-chat-layout { grid-template-columns: 1fr; height: 100vh; max-height: 100vh; border-radius: 0; }
+.x-chat-product-sidebar { border-left: none; }
+.x-chat-main { display: none; }
+.x-chat-back-button { display: flex; }
+.x-chat-header-product-image { display: block; }
+.x-chat-header-title { font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.x-chat-header-subtitle { font-size: 0.75rem; }
+.x-chat-layout.x-chat-mobile-view-chat .x-chat-product-sidebar { display: none; }
+.x-chat-layout.x-chat-mobile-view-chat .x-chat-main { display: flex; }
 }
 

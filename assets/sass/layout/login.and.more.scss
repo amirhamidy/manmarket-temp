@@ -261,31 +261,29 @@
 }
 /* --- Brand Logo Slider --- */
 .brand-sl-container {
-  width: 100%; /* یا هر عرضی که برای کانتینر اصلی در نظر دارید */
-  overflow: hidden; /* این خیلی مهمه! */
+  width: 100%;
+  overflow: hidden;
   padding: 20px 0;
-  position: relative; /* برای کنترل بهتر */
+  position: relative;
   box-sizing: border-box;
 }
 
 .brand-sl-wrapper {
-  display: flex; /* برای چیدن افقی آیتم‌ها */
-  /* عرض wrapper توسط جاوااسکریپت تنظیم می‌شود */
-  /* transition برای انیمیشن نرم */
-  transition: transform 0.5s ease-in-out; /* سرعت انیمیشن حرکت اسلاید */
+  display: flex;
+  transition: transform 0.5s ease-in-out;
 }
 
 .brand-sl-item {
-  /* هر آیتم 20% عرض کانتینر رو می‌گیره تا 5 تا نمایش داده بشه */
+
   flex: 0 0 20%;
   box-sizing: border-box;
-  padding: 0 15px; /* فاصله بین لوگوها */
+  padding: 0 15px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.ow-container { /* تغییر نام کلاس */
+.ow-container {
   max-width: 1200px;
 }
 h1 {

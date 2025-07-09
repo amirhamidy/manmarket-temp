@@ -602,6 +602,26 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
   white-space: normal !important;
 }
 
+.card-title-2 {
+  font-size: 12px !important;
+  font-family: 'Poppins', sans-serif !important;
+  color: #666 !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: visible !important;
+  white-space: normal !important;
+}
+
+.card-title-2 .line {
+  flex-grow: 1 !important;
+  height: 1.5px !important;
+  background-color: #ccc !important;
+  margin-left: 12px !important;
+  border-radius: 1px !important;
+}
+
+
+
 
 .box-cs{
   position: relative;

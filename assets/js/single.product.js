@@ -545,6 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contents = [
         { text: 'تعداد بازدید در 24 ساعت اخیر 1000  +', icon: 'assets/img/seenz.png' },
         { text: 'موجود در سبد خرید 56 نفر دیگر', icon: 'assets/img/money.soney.png' },
+        { text: '3 عدد در انبار موجود است', icon: 'assets/img/ananan.png' },
     ];
 
     messageItems.forEach((item, index) => {
@@ -595,17 +596,26 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const scrollButton = document.querySelector('.alll-cs');
-
-    const targetSection = document.getElementById('mosh');
-
-    if (scrollButton && targetSection) {
-        scrollButton.addEventListener('click', function() {
-
-            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-    } else {
-        console.warn('دکمه با کلاس "alll-cs" یا عنصر با آیدی "mosh" پیدا نشد.');
-    }
+document.querySelector('.alll-cs').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.querySelectorAll('.nav-tabs button').forEach(el => el.classList.remove('active'));
+    const targetButton = document.getElementById('description-tab2');
+    targetButton.classList.add('active');
+    targetButton.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
 });
+document.querySelectorAll('.alll-cs').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const tabId = '#descriptionPane2'
+        const tabBtnSelector = '#description-tab2'
+        document.querySelectorAll('#productTab button').forEach(tab => tab.classList.remove('active'))
+        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('show', 'active'))
+        const tabBtn = document.querySelector(tabBtnSelector)
+        tabBtn.classList.add('active')
+        const tabPane = document.querySelector(tabId)
+        tabPane.classList.add('show', 'active')
+        tabPane.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+})

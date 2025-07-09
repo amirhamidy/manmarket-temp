@@ -1,11 +1,7 @@
 /* --------------------------------------------------------------
 # Base/Global Styles (Essential resets and universal properties)
 -------------------------------------------------------------- */
-* {
-    box-sizing: border-box !important; /* Added !important for safety, can be removed if confident */
-    margin: 0 !important;
-    padding: 0 !important;
-}
+
 
 body {
     color: #2c3a47 !important; /* Direct value */
@@ -289,7 +285,7 @@ a {
 .b-cs-blog-mobile-filter-fab {
     display: none !important; /* Hidden by default, shown by media query */
     position: fixed !important;
-    bottom: calc(8px * 4) !important; /* Direct values */
+    bottom: calc(8px * 11) !important;
     right: calc(8px) !important; /* Direct values */
     z-index: 990 !important;
 }
@@ -542,7 +538,6 @@ a {
      --transition-ease: all 0.3s ease-in-out !important;
  }
 
-* { box-sizing: border-box !important; margin: 0 !important; padding: 0 !important; }
 html { scroll-behavior: smooth !important; }
 body { font-family: var(--font-family-base) !important; color: var(--text-primary) !important; line-height: 1.8 !important; direction: rtl !important; }
 .blog-s-progress-bar { position: fixed !important; top: 0 !important; right: 0 !important; width: 0% !important; height: 5px !important; background: linear-gradient(90deg, var(--primary-accent-darker), var(--primary-accent)) !important; z-index: 1000 !important; transition: width 0.1s linear !important; box-shadow: 0 0 10px var(--primary-accent) !important; }

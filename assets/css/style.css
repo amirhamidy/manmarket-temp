@@ -1547,6 +1547,7 @@ body {
 .shop-cs-selectable-option {
   display: block;
   margin-bottom: 10px;
+  padding: 0 15px;
 }
 
 .shop-cs-selectable-option:last-child {
@@ -1793,6 +1794,55 @@ body {
     margin-top: 20px;
   }
 }
+.shop-cs-time-scroller {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  white-space: nowrap;
+  cursor: grab;
+  user-select: none;
+  padding: 8px 0;
+}
+
+.shop-cs-time-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.shop-cs-time-scroller.active {
+  cursor: grabbing;
+}
+
+.shop-cs-time-scroller__list {
+  display: flex;
+  gap: 12px;
+  padding: 0 8px;
+}
+
+.shop-cs-time-scroller__item {
+  flex: 0 0 auto;
+  width: 90px;
+  padding: 12px 8px;
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  transition: var(--transition-ease);
+  background-color: var(--dk-bg-secondary);
+  user-select: none;
+}
+
+.shop-cs-time-scroller__item:hover {
+  background-color: var(--dk-red-light);
+  border-color: var(--dk-red);
+}
+
+.shop-cs-time-scroller__item.active {
+  border-color: var(--dk-red);
+  background-color: var(--dk-red-light);
+}
+
 .image-container {
   position: relative;
   overflow: hidden;
@@ -2255,31 +2305,28 @@ body {
 
 /* --- Brand Logo Slider --- */
 .brand-sl-container {
-  width: 100%; /* یا هر عرضی که برای کانتینر اصلی در نظر دارید */
-  overflow: hidden; /* این خیلی مهمه! */
+  width: 100%;
+  overflow: hidden;
   padding: 20px 0;
-  position: relative; /* برای کنترل بهتر */
+  position: relative;
   box-sizing: border-box;
 }
 
 .brand-sl-wrapper {
-  display: flex; /* برای چیدن افقی آیتم‌ها */
-  /* عرض wrapper توسط جاوااسکریپت تنظیم می‌شود */
-  /* transition برای انیمیشن نرم */
-  transition: transform 0.5s ease-in-out; /* سرعت انیمیشن حرکت اسلاید */
+  display: flex;
+  transition: transform 0.5s ease-in-out;
 }
 
 .brand-sl-item {
-  /* هر آیتم 20% عرض کانتینر رو می‌گیره تا 5 تا نمایش داده بشه */
   flex: 0 0 20%;
   box-sizing: border-box;
-  padding: 0 15px; /* فاصله بین لوگوها */
+  padding: 0 15px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.ow-container { /* تغییر نام کلاس */
+.ow-container {
   max-width: 1200px;
 }
 
@@ -3684,6 +3731,7 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   margin-bottom: 10px;
   font-weight: bold;
   text-align: right;
+  white-space: normal !important;
 }
 
 @media (max-width: 767.98px) {
@@ -6574,6 +6622,24 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay {
   overflow: hidden !important;
   -webkit-line-clamp: 1 !important;
   white-space: normal !important;
+}
+
+.card-title-2 {
+  font-size: 12px !important;
+  font-family: "Poppins", sans-serif !important;
+  color: #666 !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: visible !important;
+  white-space: normal !important;
+}
+
+.card-title-2 .line {
+  flex-grow: 1 !important;
+  height: 1.5px !important;
+  background-color: #ccc !important;
+  margin-left: 12px !important;
+  border-radius: 1px !important;
 }
 
 .box-cs {
@@ -12209,11 +12275,17 @@ html[dir=rtl] .wow-notification-close-new {
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline mandatory;
+  cursor: grab;
+  user-select: none;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
 }
 
 .blog-card {
-  min-width: 100%;
   scroll-snap-align: start;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  user-select: none;
 }
 
 .blog-banner {

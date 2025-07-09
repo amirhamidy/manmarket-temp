@@ -71,10 +71,39 @@ for (let i = 0; i < accordion.length; i++) {
 }
 
 
+const csBlogContainer = document.querySelector('.blog-container.has-scrollbar');
+let csIsDragging = false, csStartX, csScrollLeft;
+
+csBlogContainer.addEventListener('mousedown', e => {
+    csIsDragging = true;
+    csBlogContainer.classList.add('active');
+    csStartX = e.pageX - csBlogContainer.offsetLeft;
+    csScrollLeft = csBlogContainer.scrollLeft;
+});
+
+csBlogContainer.addEventListener('mouseleave', () => {
+    csIsDragging = false;
+    csBlogContainer.classList.remove('active');
+});
+
+csBlogContainer.addEventListener('mouseup', () => {
+    csIsDragging = false;
+    csBlogContainer.classList.remove('active');
+});
+
+csBlogContainer.addEventListener('mousemove', e => {
+    if (!csIsDragging) return;
+    e.preventDefault();
+    const x = e.pageX - csBlogContainer.offsetLeft;
+    const walk = (x - csStartX) * 3;
+    csBlogContainer.scrollLeft = csScrollLeft - walk;
+});
+
+
+
 let mainOverlay;
 let searchBoxInstance;
 let cartDashboardInstance;
-// متغیرهای quickViewModalInstance، modalProductImage و ... حذف شدند
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -97,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             document.querySelectorAll('[data-mobile-menu].active').forEach(menu => menu.classList.remove('active'));
 
-            // شرط مربوط به quickViewModalInstance حذف شد
 
             deactivateOverlay(mainOverlay);
         });

@@ -576,11 +576,21 @@
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline mandatory;
+  cursor: grab;
+  user-select: none;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
 }
 
 .blog-card {
-  min-width: 100%;
+  //min-width: 25% !important;
   scroll-snap-align: start;
+  //max-width: 25% !important;
+
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  user-select: none;
+
 }
 
 .blog-banner {

@@ -17,7 +17,12 @@
 <div class="shop-cs-container">
     <div class="shop-cs-checkout-layout">
         <main class="shop-cs-checkout-main">
-            <section class="shop-cs-checkout-card p-0">
+            <section class="shop-cs-checkout-card py-1">
+
+                <a class="mx-2 back-to d-inline  mt-4" href="" style="right: 10px">
+                    <svg class="cs-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="35px" height="35px"><path fill="currentColor" fill-rule="evenodd" d="M2 10a.75.75 0 0 1 .75-.75h12.59l-2.1-1.95a.75.75 0 1 1 1.02-1.1l3.5 3.25a.75.75 0 0 1 0 1.1l-3.5 3.25a.75.75 0 1 1-1.02-1.1l2.1-1.95H2.75A.75.75 0 0 1 2 10" clip-rule="evenodd"></path></svg>
+                </a>
+
                 <div class="shop-cs-card-header">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C7.589 2 4 5.589 4 10c0 4.411 8 12 8 12s8-7.589 8-12c0-4.411-3.589-8-8-8zm0 12c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"></path></svg>
                     <h1 class="shop-cs-card-title text-dark">آدرس تحویل سفارش</h1>
@@ -216,50 +221,75 @@
             </section>
         </main>
 
-        <aside class="shop-cs-checkout-sidebar">
+        <form class="shop-cs-checkout-sidebar">
             <div class="shop-cs-checkout-card shop-cs-order-summary-card">
                 <div class="shop-cs-card-body shop-cs-card-body--no-padding">
-                    <div class="shop-cs-summary-row"><div class="label">قیمت کالاها (۲)</div><div class="value">۲۴,۱۰۰,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div></div>
-                    <div class="shop-cs-summary-row"><div class="label">هزینه ارسال</div><div class="value">۳۵,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div></div>
-                    <div class="shop-cs-summary-row"><div class="label">تخفیف کالاها</div><div class="value" style="color:var(--dk-red)">(۲۵۰,۰۰۰-) <span class="shop-cs-price-unit">تومان</span></div></div>
-                    <div class="shop-cs-summary-row"><div class="label">مالیات (۹٪)</div><div class="value">۹۸,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div></div>
-                </div>
-                <div class="shop-cs-summary-divider"></div>
-                <div style="padding: 0 16px;">
-                    <div id="total-amount-row" class="shop-cs-summary-row shop-cs-total-amount"><div class="label">مبلغ قابل پرداخت</div><div class="value">۲۳,۹۸۳,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div></div>
+                    <div class="shop-cs-summary-row">
+                        <div class="label">قیمت کالاها (۲)</div>
+                        <div class="value">۲۴,۱۰۰,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div>
+                    </div>
+                    <div class="shop-cs-summary-row">
+                        <div class="label">هزینه ارسال</div>
+                        <div class="value">۳۵,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div>
+                    </div>
+                    <div class="shop-cs-summary-row">
+                        <div class="label">تخفیف کالاها</div>
+                        <div class="value" style="color:var(--dk-red)">(۲۵۰,۰۰۰-) <span class="shop-cs-price-unit">تومان</span></div>
+                    </div>
+                    <div id="total-amount-row" class="shop-cs-summary-row">
+                        <div class="label">مبلغ نهایی</div>
+                        <div class="value" id="final-amount" data-amount="23885000">۲۳,۸۸۵,۰۰۰ <span class="shop-cs-price-unit">تومان</span></div>
+                    </div>
+                    <div class="d-flex justify-content-around align-items-center flex-wrap px-3 shop-cs-summary-row">
+                        <div class="fs-14">کد تخفیف :</div>
+                        <div class="fs-14"><input type="text" class="form-control"></div>
+                        <div class="fs-14 w-100 w-center mt-3">
+                            <button class="w-50 shop-cs-btn--primary text-light rounded-3">بررسی کد</button>
+                        </div>
+                    </div>
                 </div>
 
-                <form id="payment-form" class="shop-cs-payment-method-section">
+                <div id="payment-form" class="shop-cs-payment-method-section">
                     <div class="shop-cs-selectable-option">
-                        <input type="radio" name="payment_method" value="wallet" id="payment-wallet" data-discount="10000">
+                        <input type="radio" name="payment_method" value="wallet" id="payment-wallet" data-wallet="25000000">
                         <label for="payment-wallet" class="shop-cs-selectable-label">
-                            <span class="shop-cs-custom-tick-container">
-                                <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
-                            </span>
-                            <div class="shop-cs-payment-details"><strong>پرداخت با کیف پول</strong><p>موجودی: ۲۵,۰۰۰,۰۰۰ تومان</p></div>
+          <span class="shop-cs-custom-tick-container">
+            <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+          </span>
+                            <div class="shop-cs-payment-details">
+                                <strong>پرداخت با کیف پول</strong>
+                                <p id="wallet-text">موجودی: ۲۵,۰۰۰,۰۰۰ تومان</p>
+                            </div>
                         </label>
                     </div>
                     <div class="shop-cs-selectable-option">
                         <input type="radio" name="payment_method" value="card" id="payment-card" checked>
                         <label for="payment-card" class="shop-cs-selectable-label">
-                            <span class="shop-cs-custom-tick-container">
-                                <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
-                            </span>
-                            <div class="shop-cs-payment-details"><strong>پرداخت با کارت بانکی</strong><p>پرداخت آنلاین از طریق درگاه امن</p></div>
+          <span class="shop-cs-custom-tick-container">
+            <svg class="shop-cs-tick-icon" viewBox="0 0 16 16"><path d="M4.5 8.5l2.5 2.5 5-5"></path></svg>
+          </span>
+                            <div class="shop-cs-payment-details">
+                                <strong>پرداخت با کارت بانکی</strong>
+                                <p>پرداخت آنلاین از طریق درگاه امن</p>
+                            </div>
                         </label>
                     </div>
-                </form>
+                </div>
 
                 <div class="shop-cs-summary-action" style="padding:16px;">
                     <button class="shop-cs-btn shop-cs-btn--primary" style="width: 100%; padding: 12px;">ادامه فرآیند خرید</button>
                 </div>
             </div>
-        </aside>
+        </form>
+
+
     </div>
 </div>
 
 
 
 <script src="assets/js/shopping.js"></script>
+
+
 </body>
 </html>

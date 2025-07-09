@@ -49,7 +49,7 @@ body {
 .shop-cs-quantity-btn svg { width: 16px; height: 16px; stroke-width: 2; fill: none; stroke: currentColor; }
 .shop-cs-quantity-display { font-weight: 700; padding: 6px 4px; min-width: 24px; text-align: center; color: var(--dk-text-primary); }
 
-.shop-cs-selectable-option { display: block; margin-bottom: 10px; }
+.shop-cs-selectable-option { display: block; margin-bottom: 10px; padding: 0 15px; }
 .shop-cs-selectable-option:last-child { margin-bottom: 0; }
 .shop-cs-selectable-option input[type="radio"] { display: none; }
 .shop-cs-selectable-label { position: relative; overflow: hidden; display: flex; align-items: center; padding: 12px; cursor: pointer; border-radius: var(--border-radius-md); border: 1px solid var(--dk-border-color); transition: border-color 0.2s ease-in-out; font-size: 0.9rem; }
@@ -91,3 +91,51 @@ body {
 
 @media (max-width: 992px) { .shop-cs-checkout-layout { grid-template-columns: 1fr; }
   .shop-cs-checkout-sidebar { position: static; margin-top: 20px; } }
+
+.shop-cs-time-scroller {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  white-space: nowrap;
+  cursor: grab;
+  user-select: none;
+
+  padding: 8px 0;
+}
+.shop-cs-time-scroller::-webkit-scrollbar {
+  display: none;
+}
+.shop-cs-time-scroller.active {
+  cursor: grabbing;
+}
+
+.shop-cs-time-scroller__list {
+  display: flex;
+  gap: 12px;
+  padding: 0 8px;
+}
+
+.shop-cs-time-scroller__item {
+  flex: 0 0 auto;
+  width: 90px;
+  padding: 12px 8px;
+  border-radius: var(--border-radius-md);
+  text-align: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  transition: var(--transition-ease);
+  background-color: var(--dk-bg-secondary);
+  user-select: none;
+}
+
+.shop-cs-time-scroller__item:hover {
+  background-color: var(--dk-red-light);
+  border-color: var(--dk-red);
+}
+
+.shop-cs-time-scroller__item.active {
+  border-color: var(--dk-red);
+  background-color: var(--dk-red-light);
+}

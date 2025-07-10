@@ -1,3 +1,7 @@
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const mobileFilterBar = document.getElementById('mobileFilterBar');
     const filtersBottomSheetOverlay = document.getElementById('filtersBottomSheetOverlay');

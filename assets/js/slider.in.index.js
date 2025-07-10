@@ -106,3 +106,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+
+const csBlogContainer = document.querySelector('.blog-container.has-scrollbar');
+let csIsDragging = false, csStartX, csScrollLeft;
+
+csBlogContainer.addEventListener('mousedown', e => {
+    csIsDragging = true;
+    csBlogContainer.classList.add('active');
+    csStartX = e.pageX - csBlogContainer.offsetLeft;
+    csScrollLeft = csBlogContainer.scrollLeft;
+});
+
+csBlogContainer.addEventListener('mouseleave', () => {
+    csIsDragging = false;
+    csBlogContainer.classList.remove('active');
+});
+
+csBlogContainer.addEventListener('mouseup', () => {
+    csIsDragging = false;
+    csBlogContainer.classList.remove('active');
+});
+
+csBlogContainer.addEventListener('mousemove', e => {
+    if (!csIsDragging) return;
+    e.preventDefault();
+    const x = e.pageX - csBlogContainer.offsetLeft;
+    const walk = (x - csStartX) * 3;
+    csBlogContainer.scrollLeft = csScrollLeft - walk;
+});
+

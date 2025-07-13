@@ -378,13 +378,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
             star.addEventListener('mouseover', function() {
                 const hoverRating = parseInt(this.dataset.value);
+                stars.forEach(s => {
+                    s.classList.remove('fas');
+                    s.classList.add('far');
+                });
                 stars.forEach((s, index) => {
                     if (index < hoverRating) {
                         s.classList.remove('far');
                         s.classList.add('fas');
-                    } else {
-                        s.classList.remove('fas');
-                        s.classList.add('far');
                     }
                 });
             });
@@ -402,9 +403,9 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = 0; i < 5; i++) {
             const star = document.createElement('i');
             if (i < rating) {
-                star.classList.add('fas', 'fa-star');
+                star.classList.add('fa-solid', 'fa-star');
             } else {
-                star.classList.add('far', 'fa-star');
+                star.classList.add('fas', 'fa-star');
             }
             container.appendChild(star);
         }
@@ -619,5 +620,3 @@ document.querySelectorAll('.alll-cs').forEach(btn => {
         tabPane.scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
 })
-
-

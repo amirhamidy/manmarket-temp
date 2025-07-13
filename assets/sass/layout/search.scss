@@ -214,8 +214,9 @@ html, body {
   text-overflow: ellipsis !important;
   word-break: break-word !important;
   display: -webkit-box !important;
-  -webkit-line-clamp: 3 !important;
   -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  white-space: normal !important;
 }
 .fill-product-card .card-price { font-size: 1rem !important; font-weight: 700 !important; color: var(--text-muted) !important; margin-top: auto !important; text-align: left !important; display: flex !important; justify-content: flex-end !important; align-items: center !important; }
 .fill-product-card .card-price .fill-price-value { }
@@ -588,7 +589,11 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
 .w-right { text-align: right !important; }
 .w-right .fill-card-brand,
 .w-right .card-title,
-.w-right .fill-description { width: 100% !important; }
+.w-right .fill-description { width: 100% !important;   display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  -webkit-line-clamp: 2 !important;
+  white-space: normal !important; }
 .w-right .card-price { justify-content: flex-start !important; direction: rtl !important; }
 .w-right .card-price span.fill-price-value { margin-left: calc(var(--spacing-unit) * 0.5) !important; margin-right: 0 !important; }
 .w-right .card-price svg { margin-right: calc(var(--spacing-unit) * 0.5) !important; margin-left: 0 !important; }
@@ -598,7 +603,7 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
-  -webkit-line-clamp: 1 !important;
+  -webkit-line-clamp: 2 !important;
   white-space: normal !important;
 }
 
@@ -641,8 +646,8 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
 }
 
 .colors-search{
-  left: 3%;
-  top: 1%;
+  left: 0.3%;
+  top: 0;
 }
 
 .for-color , .three-color , .two-color , .one-color{

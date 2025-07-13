@@ -4412,7 +4412,7 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   font-size: 18px;
   margin-bottom: 10px;
   font-weight: bold;
-  text-align: right;
+  text-align: -webkit-center;
 }
 
 .SH-HS-product-rating {
@@ -5211,6 +5211,16 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   padding: 0 5px; /* کمی پدینگ داخلی برای متن */
 }
 
+.h-300 {
+  height: 300px !important;
+  overflow-y: scroll !important;
+}
+
+.fa-solid {
+  font-weight: 900 !important;
+  color: gold;
+}
+
 .SH-HS-product-price {
   font-size: 17px;
   font-weight: bold;
@@ -5218,7 +5228,7 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   margin-bottom: 15px;
   display: block;
   direction: rtl; /* برای فارسی */
-  text-align: right; /* برای فارسی */
+  text-align: -webkit-center; /* برای فارسی */
   padding: 0 5px; /* کمی پدینگ داخلی برای قیمت */
 }
 
@@ -5499,15 +5509,15 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
 }
 
 /* Chrome, Edge, Safari */
-.h-400::-webkit-scrollbar {
+.h-400, .h-300::-webkit-scrollbar {
   width: 8px;
 }
 
-.h-400::-webkit-scrollbar-track {
+.h-400, .h-300::-webkit-scrollbar-track {
   border-radius: 10px;
 }
 
-.h-400::-webkit-scrollbar-thumb {
+.h-400, .h-300::-webkit-scrollbar-thumb {
   border-radius: 10px;
   border: 2px solid #f0f0f0;
 }
@@ -5532,6 +5542,10 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
 .SH-HS-product-description-content::-webkit-scrollbar-thumb {
   border-radius: 10px;
   border: 2px solid #f0f0f0;
+}
+
+.cs-fa-icon {
+  fill: gold !important;
 }
 
 .user-panel-content, .user-panel-aside {
@@ -6085,8 +6099,9 @@ html, body {
   text-overflow: ellipsis !important;
   word-break: break-word !important;
   display: -webkit-box !important;
-  -webkit-line-clamp: 3 !important;
   -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  white-space: normal !important;
 }
 
 .fill-product-card .card-price {
@@ -6610,6 +6625,11 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay {
 .w-right .card-title,
 .w-right .fill-description {
   width: 100% !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  -webkit-line-clamp: 2 !important;
+  white-space: normal !important;
 }
 
 .w-right .card-price {
@@ -6632,7 +6652,7 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay {
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
-  -webkit-line-clamp: 1 !important;
+  -webkit-line-clamp: 2 !important;
   white-space: normal !important;
 }
 
@@ -6673,8 +6693,8 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay {
 }
 
 .colors-search {
-  left: 3%;
-  top: 1%;
+  left: 0.3%;
+  top: 0;
 }
 
 .for-color, .three-color, .two-color, .one-color {

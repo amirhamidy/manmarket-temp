@@ -884,7 +884,7 @@
   font-size: 18px;
   margin-bottom: 10px;
   font-weight: bold;
-  text-align: right;
+  text-align: -webkit-center;
 }
 
 .SH-HS-product-rating {
@@ -1667,6 +1667,17 @@
   padding: 0 5px; /* کمی پدینگ داخلی برای متن */
 }
 
+.h-300{
+  height: 300px!important;
+  overflow-y: scroll !important;
+}
+
+.fa-solid{
+  font-weight: 900 !important;
+  color: gold;
+}
+
+
 .SH-HS-product-price {
   font-size: 17px;
   font-weight: bold;
@@ -1674,7 +1685,7 @@
   margin-bottom: 15px;
   display: block;
   direction: rtl; /* برای فارسی */
-  text-align: right; /* برای فارسی */
+  text-align: -webkit-center; /* برای فارسی */
   padding: 0 5px; /* کمی پدینگ داخلی برای قیمت */
 }
 
@@ -1987,15 +1998,15 @@
 }
 
 /* Chrome, Edge, Safari */
-.h-400::-webkit-scrollbar {
+.h-400,.h-300::-webkit-scrollbar {
   width: 8px;
 }
 
-.h-400::-webkit-scrollbar-track {
+.h-400,.h-300::-webkit-scrollbar-track {
   border-radius: 10px;
 }
 
-.h-400::-webkit-scrollbar-thumb {
+.h-400,.h-300::-webkit-scrollbar-thumb {
   border-radius: 10px;
   border: 2px solid #f0f0f0;
 }
@@ -2019,5 +2030,10 @@
 .SH-HS-product-description-content::-webkit-scrollbar-thumb {
   border-radius: 10px;
   border: 2px solid #f0f0f0;
+}
+
+
+.cs-fa-icon{
+  fill: gold !important;
 }
 

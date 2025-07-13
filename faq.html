@@ -1731,7 +1731,9 @@
 
     </main>
 
-</div> <!-- End of faq-page-container -->
+</div>
+
+<!-- End of faq-page-container -->
 
 <!--footer :: start------>
 <footer class="mt-5 py-5">
@@ -1744,7 +1746,7 @@
                 <li class="footer-nav-item"><a href="#" class="footer-nav-link">پیگیری سفارشات</a></li>
                 <li class="footer-nav-item"><a href="#" class="footer-nav-link">راهنمای خرید اقساطی</a></li>
                 <li class="footer-nav-item"><a href="#" class="footer-nav-link">پلتفرم مالی اعتبار من</a></li>
-                <li class="footer-nav-item"><a href="#" class="footer-nav-link">مفاد ضمانت هفت روزه برگشت وجه</a></li>
+                <li class="footer-nav-item"><a href="faq.html#content-returns" id="go-to-mf" class="footer-nav-link">مفاد ضمانت هفت روزه برگشت وجه</a></li>
             </ul>
 
             <ul class="footer-nav-list">
@@ -1834,155 +1836,12 @@
 </footer>
 <!--footer :: end-------->
 
-<script>
-    // === JavaScript با منطق اصلاح شده برای آکاردئون ===
-    document.addEventListener('DOMContentLoaded', function() {
-        // --- Tab Switching Logic (Existing) ---
-        const sidebarLinks = document.querySelectorAll('.faq-sidebar a');
-        const contentSections = document.querySelectorAll('.faq-content-section');
-
-        function switchTab(targetId) {
-            targetId = targetId.startsWith('#') ? targetId.substring(1) : targetId;
-            let sectionFound = false;
-            contentSections.forEach(section => {
-                if (section.id === targetId) {
-                    section.classList.add('active-section');
-                    sectionFound = true;
-                } else {
-                    section.classList.remove('active-section');
-                }
-            });
-            if (!sectionFound) console.warn(`Content section ID "${targetId}" not found.`);
-
-            let linkFound = false;
-            sidebarLinks.forEach(link => {
-                const linkTarget = (link.dataset.target || '').replace(/^#/, '');
-                if (linkTarget === targetId) {
-                    link.classList.add('active');
-                    linkFound = true;
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-            if (!linkFound) console.warn(`Sidebar link targeting "${targetId}" not found.`);
-        }
-
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const targetId = this.dataset.target;
-                if (targetId) {
-                    const cleanTargetId = targetId.replace(/^#/, '');
-                    switchTab(cleanTargetId);
-                    try {
-                        history.pushState(null, '', `#${cleanTargetId}`);
-                    } catch (e) { console.warn("Could not update URL hash:", e); }
-                }
-            });
-        });
-
-        // Initial State Handling (Existing)
-        let initialTargetId = null;
-        try {
-            const currentHash = window.location.hash;
-            if (currentHash && currentHash.length > 1) {
-                const potentialTargetId = currentHash.substring(1);
-                if (document.getElementById(potentialTargetId)) {
-                    initialTargetId = potentialTargetId;
-                } else { console.warn(`Hash target "${potentialTargetId}" does not exist.`); }
-            }
-        } catch (e) { console.warn("Could not read URL hash:", e); }
-
-        if (!initialTargetId) {
-            const firstLink = document.querySelector('.faq-sidebar a');
-            if (firstLink && firstLink.dataset.target) {
-                initialTargetId = (firstLink.dataset.target || '').replace(/^#/, '');
-                if (!window.location.hash || window.location.hash.length <= 1 || !document.getElementById(window.location.hash.substring(1))) {
-                    sidebarLinks.forEach(link => link.classList.remove('active'));
-                    firstLink.classList.add('active');
-                }
-            }
-        }
 
 
-        if (initialTargetId && document.getElementById(initialTargetId)) {
-            if (window.location.hash && window.location.hash.length > 1 && window.location.hash.substring(1) === initialTargetId) {
-                sidebarLinks.forEach(link => link.classList.remove('active'));
-                const activeLink = document.querySelector(`.faq-sidebar a[data-target="#${initialTargetId}"]`) || document.querySelector(`.faq-sidebar a[data-target="${initialTargetId}"]`);
-                if(activeLink) activeLink.classList.add('active');
-            }
-            switchTab(initialTargetId);
-        } else {
-            const firstExistingSection = document.querySelector('.faq-content-section');
-            if(firstExistingSection) {
-                const fallbackId = firstExistingSection.id;
-                console.warn(`Initial target '${initialTargetId}' not found, falling back to first section '${fallbackId}'.`);
-                switchTab(fallbackId);
-                const fallbackLink = document.querySelector(`.faq-sidebar a[data-target="#${fallbackId}"]`) || document.querySelector(`.faq-sidebar a[data-target="${fallbackId}"]`);
-                if (fallbackLink && !document.querySelector('.faq-sidebar a.active')) {
-                    sidebarLinks.forEach(link => link.classList.remove('active'));
-                    fallbackLink.classList.add('active');
-                }
-            } else {
-                console.error("No content sections found to display.");
-                contentSections.forEach(section => section.classList.remove('active-section'));
-                sidebarLinks.forEach(link => link.classList.remove('active'));
-            }
-        }
-        // --- End of Tab Switching Logic ---
-
-
-        // --- START: Improved Accordion Logic for Nested Details ---
-        const allAccordionItems = document.querySelectorAll('.faq-item'); // Select all details elements
-
-        allAccordionItems.forEach(item => {
-            // Check if this item has a summary; if not, it's likely not a standard details/summary pair
-            const summary = item.querySelector(':scope > summary');
-            if (!summary) return; // Skip elements without a direct summary child
-
-            summary.addEventListener('click', event => {
-                // Prevent the click from immediately toggling; we'll handle it manually
-                event.preventDefault();
-                const currentItem = item; // The <details> element whose summary was clicked
-
-                // Toggle the current item's open state
-                currentItem.open = !currentItem.open;
-
-                // If the current item was just opened...
-                if (currentItem.open) {
-                    let siblingsToClose = [];
-                    const parentElement = currentItem.parentElement;
-
-                    // Check if it's a top-level item (parent is .faq-accordion)
-                    if (parentElement && parentElement.classList.contains('faq-accordion')) {
-                        // Find other TOP-LEVEL siblings within the same accordion
-                        siblingsToClose = parentElement.querySelectorAll(':scope > .faq-item');
-                    }
-                    // Check if it's a nested item (parent is .faq-answer)
-                    else if (parentElement && parentElement.classList.contains('faq-answer')) {
-                        // Find other NESTED siblings within the same answer section
-                        const parentDetails = parentElement.closest('.faq-item[open]');
-                        if (parentDetails) { // Ensure the parent is actually open
-                            siblingsToClose = parentElement.querySelectorAll(':scope > .faq-item');
-                        }
-                    }
-
-                    // Close the identified siblings (excluding the current one)
-                    siblingsToClose.forEach(sibling => {
-                        // Ensure sibling is a <details> element and not the current one before attempting to close
-                        if (sibling instanceof HTMLDetailsElement && sibling !== currentItem && sibling.open) {
-                            sibling.open = false;
-                        }
-                    });
-                }
-            });
-        });
-        // --- END: Improved Accordion Logic ---
-
-    }); // End of DOMContentLoaded
-</script>
 
 <div class="custom-overlay"></div>
+
+<script src="assets/js/faq.js"></script>
 
 <!--اینا مال همه جاست-->
 <script src="assets/js/jquery-3.7.1.min.js"></script>

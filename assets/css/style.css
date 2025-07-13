@@ -1102,6 +1102,15 @@ button {
     top: 2% !important;
   }
 }
+.optional-span {
+  font-size: 15px !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .m-x-right {
+    justify-content: start !important;
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -2569,6 +2578,7 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   .np-wr {
     white-space: nowrap !important;
     font-size: 11.5px !important;
+    width: 100% !important;
   }
   .min-mr {
     margin-right: 0.5rem !important;
@@ -3854,9 +3864,11 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   line-height: 1.4;
   margin-top: 0;
   text-align: right;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  -webkit-line-clamp: 1 !important;
+  white-space: normal !important;
 }
 
 .btn-more-features {
@@ -9292,16 +9304,17 @@ html[dir=rtl] .wow-notification-close-new {
 .mobile-bottom-nav {
   display: none;
   position: fixed;
-  bottom: 10%;
-  flex-direction: column;
+  bottom: 78% !important;
+  flex-direction: inherit !important;
   left: 0;
-  border-radius: 0 10px 10px 0;
-  padding: 5px 10px;
+  border-radius: 0 !important;
+  padding: 5px 0 !important;
   background-color: var(--bg-secondary);
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  justify-content: space-around;
+  justify-content: space-between;
   z-index: 1000;
   border-top: 1px solid var(--border-color);
+  right: 0;
 }
 
 .mobile-nav-item {
@@ -11650,6 +11663,699 @@ html[dir=rtl] .wow-notification-close-new {
     margin-top: -30px;
   }
 }
+.story-module-main-wrapper {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 20px;
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+.story-module-d-none {
+  display: none !important;
+}
+
+.story-module-container {
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  padding: 0 10px;
+  direction: rtl;
+}
+
+.story-module-stories-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 15px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-top: 10px;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer !important;
+  direction: rtl;
+}
+
+.story-module-stories-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.story-module-stories-wrapper.is-dragging {
+  cursor: pointer !important;
+}
+
+.story-module-stories-grid {
+  display: inline-flex;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.story-module-story-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
+  width: 80px;
+}
+
+.story-module-story-gradient-border {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #833ab4, #5851db, #405de6);
+  padding: 3px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.story-module-story-gradient-border.story-module-story-seen {
+  background: #ccc;
+}
+
+.story-module-story-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  object-fit: cover;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+}
+
+.story-module-story-username {
+  font-size: 0.8em;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  pointer-events: none;
+}
+
+.story-module-story-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex; /* تغییر: از column به flex برای سنتر کردن محتوا */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+  /* padding: 20px; */ /* حذف شد، به modal-content منتقل شد */
+  box-sizing: border-box;
+  direction: rtl;
+}
+
+.story-module-story-modal.story-module-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.story-module-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 90vh;
+  max-height: 700px; /* از ارتفاع viewport استفاده می کنیم و سپس کنترل می کنیم */
+  background-color: black;
+  border-radius: 10px;
+  overflow: hidden; /* مهم برای برش محتوای اضافه */
+  display: flex;
+  flex-direction: column; /* چیدمان ستونی برای هدر، مدیا و کپشن */
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-sizing: border-box; /* اضافه شد */
+  /* margin-bottom: 10px; */ /* حذف شد، کپشن داخل این کانتینر رفت */
+}
+
+@media (max-width: 768px) {
+  .story-module-modal-content {
+    border-radius: 0;
+    max-width: 100%;
+    max-height: 100%;
+    height: 100%; /* در موبایل تمام صفحه شود */
+  }
+}
+.story-module-modal-story-header {
+  position: absolute; /* همچنان absolute برای روی مدیا */
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  color: white;
+  z-index: 50;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  direction: rtl;
+}
+
+.story-module-story-header-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  margin-right: 0;
+  margin-left: 10px;
+  pointer-events: none;
+}
+
+.story-module-header-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: right;
+}
+
+.story-module-story-header-username {
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.story-module-story-header-time {
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* دکمه بستن (ضربدر) */
+.story-module-modal-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
+  padding: 5px;
+  margin-right: 5px;
+  margin-left: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: -1;
+}
+
+.story-module-modal-close > svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.story-module-modal-progress-bar-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  gap: 5px;
+  width: calc(100% - 20px);
+  z-index: 100;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  direction: rtl;
+}
+
+.story-module-modal-progress-bar {
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 1.5px;
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+  direction: rtl;
+}
+
+.story-module-modal-progress-bar.story-module-completed .story-module-progress-inner {
+  width: 100%;
+  transition: none;
+}
+
+.story-module-progress-inner {
+  height: 100%;
+  background-color: white;
+  width: 0%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 1.5px;
+  transform-origin: right;
+  transition: width linear;
+}
+
+.story-module-modal-story-media {
+  position: relative; /* مهم: برای absolute بودن کنترل‌بارها و دکمه‌های ناوبری */
+  z-index: 10;
+  overflow: hidden;
+  width: 100%;
+  height: 100%; /* این مهم است */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+  /* touch-action: none; */ /* برای جلوگیری از تداخل با اسکرول خود Video.js یا کشیدن مدال می تواند مشکل ساز باشد */
+  flex-grow: 1; /* این خط مهم است: فضای باقی مانده را پر می کند */
+}
+
+.story-module-story-media-content {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  transition: opacity 0.2s ease-out;
+}
+
+.story-module-fade-in {
+  animation: story-module-fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes story-module-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.story-module-loader {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: story-module-spin 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+@keyframes story-module-spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+.story-module-nav-button {
+  position: absolute;
+  top: 50%;
+  transform: none; /* حذف شد */
+  border: none;
+  color: white;
+  font-size: 2em;
+  cursor: pointer;
+  z-index: 55;
+  width: 60px;
+  /* height: calc(100% - 60px); */ /* حذف شد */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  transition: background-color 0.2s ease;
+  margin: 0 10px;
+  box-sizing: border-box;
+  direction: ltr; /* جهت دکمه‌ها را ltr نگه می‌دارد */
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.story-module-nav-button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.story-module-nav-button > svg {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+.story-module-nav-button-prev {
+  right: -5%;
+  left: auto;
+}
+
+.story-module-nav-button-next {
+  left: -5%;
+  right: auto;
+}
+
+/* --- شروع تغییرات برای Video.js و کپشن --- */
+/* این استایل Video.js .vjs-tech برای اطمینان از object-fit: contain */
+.story-module-modal-story-media .video-js {
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important; /* این مهم است */
+  top: 0;
+  left: 0;
+  object-fit: contain !important; /* این مهم است */
+  background-color: black;
+  z-index: 15;
+}
+
+.story-module-modal-story-media .video-js .vjs-tech {
+  object-fit: contain !important; /* مهم: برای خود تگ video در Video.js */
+}
+
+.video-js .vjs-control-bar {
+  display: flex !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  height: 40px !important;
+  z-index: 20 !important; /* z-index بالا برای دیده شدن */
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: opacity 0.3s ease, visibility 0.3s ease !important;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  align-items: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+  direction: ltr;
+}
+
+/* این بلاک برای اینکه کنترل‌بار در حالت عدم فعالیت کاربر پنهان شود. */
+.video-js:not(.vjs-user-inactive) .vjs-control-bar {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.video-js.vjs-user-inactive .vjs-control-bar {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.video-js .vjs-time-control {
+  flex: 0 0 auto;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: 0.85em;
+  color: white;
+  line-height: 1;
+  margin: 0 2px;
+  padding: 0;
+  height: 100%;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  direction: ltr;
+}
+
+.video-js .vjs-current-time-display,
+.video-js .vjs-duration-display {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  line-height: 1 !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  white-space: nowrap;
+  font-weight: normal;
+  min-width: 3ch;
+  justify-content: center;
+  direction: ltr;
+}
+
+.video-js .vjs-time-divider {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  margin: 0 3px;
+  padding: 0;
+  line-height: 1 !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  direction: ltr;
+}
+
+.video-js .vjs-progress-control {
+  flex-grow: 1;
+  margin: 0 10px;
+  position: relative;
+  z-index: 21 !important;
+  align-self: center;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  direction: ltr;
+}
+
+.video-js .vjs-slider {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 5px;
+  height: 5px !important;
+  margin: 0 !important;
+  position: absolute;
+  left: 0;
+  right: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100% !important;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: height 0.1s ease, transform 0.1s ease;
+}
+
+.video-js .vjs-progress-control:hover .vjs-slider {
+  height: 7px !important;
+  transform: translateY(-50%);
+}
+
+.video-js .vjs-play-progress {
+  background-color: #007bff !important;
+  height: 100% !important;
+  border-radius: 5px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0%;
+  z-index: 23 !important;
+  pointer-events: none;
+  transform-origin: left;
+}
+
+.video-js .vjs-load-progress {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  height: 100% !important;
+  border-radius: 5px;
+  z-index: 22 !important;
+  pointer-events: none !important;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: left;
+}
+
+.video-js .vjs-seek-handle {
+  background-color: white !important;
+  border: 2px solid #007bff !important;
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  position: absolute;
+  top: 50%;
+  z-index: 24 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, width 0.1s ease, height 0.1s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  direction: ltr;
+}
+
+.video-js .vjs-progress-control:hover .vjs-seek-handle {
+  width: 14px !important;
+  height: 14px !important;
+  margin-top: 0;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+}
+
+.video-js .vjs-seek-handle:active {
+  transform: translate(-50%, -50%) scale(1.2);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+  cursor: grabbing !important;
+}
+
+.video-js .vjs-volume-control {
+  z-index: 22 !important;
+  flex: 0 0 auto;
+  width: 60px !important;
+  display: flex !important;
+  align-items: center;
+  height: 15px;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  margin: 0 5px;
+  box-sizing: border-box;
+  direction: ltr;
+}
+
+.video-js .vjs-volume-bar {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 5px !important;
+  height: 5px !important;
+  width: 100% !important;
+  position: absolute;
+  left: 0;
+  transform: translateY(-50%);
+  margin: 0 !important;
+  transition: height 0.1s ease, transform 0.1s ease;
+}
+
+.video-js .vjs-volume-control:hover .vjs-volume-bar {
+  height: 7px !important;
+  transform: translateY(-50%);
+}
+
+.video-js .vjs-volume-level {
+  background-color: #007bff !important;
+  height: 100% !important;
+  border-radius: 5px !important;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 23 !important;
+  pointer-events: none;
+  transform-origin: left;
+}
+
+.video-js .vjs-volume-handle {
+  background-color: white !important;
+  border: 2px solid #007bff !important;
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50% !important;
+  position: absolute;
+  top: 50%;
+  z-index: 24 !important;
+  pointer-events: auto !important;
+  cursor: grab !important;
+  transition: transform 0.1s ease, box-shadow 0.1s ease, width 0.1s ease, height 0.1s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  direction: ltr;
+}
+
+.video-js .vjs-volume-control:hover .vjs-volume-handle {
+  width: 14px !important;
+  height: 14px !important;
+  margin-top: 0;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+}
+
+.video-js .vjs-volume-handle:active {
+  transform: translate(-50%, -50%) scale(1.2);
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+  cursor: grabbing !important;
+}
+
+.video-js .vjs-play-control, .vjs-pause-control {
+  z-index: 22 !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  pointer-events: auto !important;
+}
+
+.video-js .vjs-time-control.vjs-current-time,
+.video-js .vjs-time-control.vjs-duration {
+  text-align: left;
+}
+
+/* استایل برای کپشن بیرونی (External Caption) - مهم: موقعیت آن تغییر کرد */
+/* این عنصر اکنون باید داخل .story-module-modal-content قرار گیرد */
+.story-module-external-caption {
+  width: 100%;
+  /* max-width: 400px; */ /* حذف شد چون flex-item است */
+  background-color: rgba(0, 0, 0, 0.7); /* پس‌زمینه برای خوانایی بهتر */
+  color: white;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  max-height: 100px; /* فضای کمتری اشغال کند */
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  direction: rtl;
+  font-size: 0.95em;
+  line-height: 1.4;
+  z-index: 999;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  flex-shrink: 0; /* از کوچک شدن کپشن جلوگیری می کند */
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* خط جداکننده */
+}
+
+.story-module-external-caption::-webkit-scrollbar {
+  display: none;
+}
+
+.story-module-external-caption p {
+  margin: 0;
+  padding: 0;
+  color: inherit;
+  direction: rtl;
+}
+
+/* در حالت موبایل، مدال و کپشن باید تمام عرض را بگیرند */
+@media (max-width: 768px) {
+  .story-module-external-caption {
+    border-radius: 0;
+    max-width: 100%;
+    max-height: 20vh; /* در موبایل هم کنترل شود */
+  }
+}
+/* --- پایان تغییرات برای Video.js و کپشن --- */
 .modal {
   position: fixed;
   top: 0;

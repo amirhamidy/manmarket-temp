@@ -619,3 +619,5 @@ document.querySelectorAll('.alll-cs').forEach(btn => {
         tabPane.scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
 })
+
+

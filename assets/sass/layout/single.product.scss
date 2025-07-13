@@ -348,9 +348,11 @@
   line-height: 1.4;
   margin-top: 0;
   text-align: right;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  -webkit-line-clamp: 1 !important;
+  white-space: normal !important;
 }
 
 

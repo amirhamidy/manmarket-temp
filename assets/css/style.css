@@ -389,42 +389,86 @@ header {
   cursor: pointer;
   transform: none;
   text-transform: none;
-  padding: 3px 10px;
-  margin: auto 5px;
+  margin: auto 8px;
 }
-.product:hover .href-slide {
+
+.Specifications {
+  color: black !important;
+}
+
+.one-img {
+  opacity: 1;
+  transition: 0.7s;
+  pointer-events: none;
+}
+
+.d-bx {
+  width: 100%;
+  text-align: -webkit-left;
+}
+
+@media only screen and (max-width: 550px) {
+  .cs-slide-v-2-swiper-button-next {
+    position: absolute;
+    top: 45% !important;
+    transform: translateY(41%);
+    left: -12% !important;
+  }
+  .cs-slide-v-2-swiper-button-prev {
+    position: absolute;
+    top: 45% !important;
+    transform: translateY(41%);
+    right: -12% !important;
+  }
+  .d-bx {
+    padding-right: 0.6rem !important;
+    padding-left: 0.6rem !important;
+    margin-left: 1rem !important;
+    text-align: -webkit-center !important;
+  }
+  .Specifications {
+    padding-right: 0.6rem !important;
+    padding-left: 0.6rem !important;
+  }
+  .stars {
+    left: 30px !important;
+  }
+}
+.href-slide {
   visibility: visible !important;
   z-index: 99;
-}
-.product:hover .one-img {
-  opacity: 0;
-  transition: 0.7s;
-  pointer-events: none !important;
 }
 
 article {
   cursor: pointer;
+  transition: 0.7s ease all;
 }
 article:hover .two-img {
   opacity: 1;
-  transition: 0.7s;
+  transition: 0.7s !important;
+  pointer-events: none !important;
+}
+article:hover .one-img {
+  opacity: 0;
+  transition: 0.7s !important;
+  visibility: hidden !important;
   pointer-events: none !important;
 }
 article:hover .icons {
   visibility: visible;
   opacity: 1;
   margin-top: 0;
-  z-index: 1;
+  z-index: 999;
 }
 article:hover .icons .like, article:hover .icons .add-to-cart, article:hover .icons .view {
   top: 77%;
 }
 
 .product img {
-  width: 100%;
+  width: 120%;
   height: auto;
   object-fit: cover;
-  max-width: 100% !important;
+  max-width: 120% !important;
 }
 
 .two-img {
@@ -656,8 +700,9 @@ button {
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
-  -webkit-line-clamp: 1 !important;
+  -webkit-line-clamp: 2 !important;
   white-space: normal !important;
+  line-height: 1.2rem;
 }
 
 .price {
@@ -693,7 +738,7 @@ button {
 .stars {
   display: flex;
   cursor: pointer;
-  left: 15px !important;
+  left: 40px;
   top: 15px !important;
   z-index: 1 !important;
 }
@@ -720,7 +765,7 @@ button {
 
 @media only screen and (max-width: 750px) {
   .product .one-img, .product .two-img {
-    width: 100% !important;
+    width: 120% !important;
   }
 }
 @media only screen and (max-width: 450px) {
@@ -825,7 +870,7 @@ button {
   height: 50% !important;
 }
 
-.swiper-slide img {
+.sw-2 img {
   display: block;
   height: 80%;
   position: absolute;
@@ -1017,6 +1062,41 @@ button {
 }
 .b-none {
   border: none !important;
+}
+
+.slider-btn {
+  top: 0;
+  z-index: 1000000000000000000 !important;
+}
+
+.back-and-next-c-b {
+  height: 50px;
+  width: 50px;
+  background-color: #EEEEEE;
+  border-radius: 50%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: 0.3s;
+  z-index: 1;
+}
+.back-and-next-c-b:hover {
+  color: white;
+  background-color: var(--primary-color);
+}
+
+.cs-slide-v-2-swiper-button-next {
+  position: absolute;
+  top: 45%;
+  transform: translateY(41%);
+  left: -4.1%;
+}
+
+.cs-slide-v-2-swiper-button-prev {
+  position: absolute;
+  top: 45%;
+  transform: translateY(41%);
+  right: -4.1%;
 }
 
 .w-center {
@@ -2846,6 +2926,11 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   letter-spacing: 0.02em;
 }
 
+.btn-primary:focus {
+  background-color: var(--forgetx-primary-color) !important;
+  border-color: var(--forgetx-primary-color) !important;
+}
+
 .btn-primary:hover {
   background-color: var(--forgetx-secondary-color);
   border-color: var(--forgetx-secondary-color);
@@ -3489,11 +3574,6 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
     margin-top: 0.8rem !important;
   }
 }
-.d-bx {
-  width: 100%;
-  text-align: -webkit-left;
-}
-
 .m-text {
   transition: 0.3s;
 }
@@ -12687,7 +12767,7 @@ html[dir=rtl] .wow-notification-close-new {
   background: var(--white);
   position: fixed;
   top: 0;
-  left: -100%;
+  right: -100%;
   width: 100%;
   max-width: 100%;
   height: 100vh;
@@ -12701,7 +12781,7 @@ html[dir=rtl] .wow-notification-close-new {
 }
 
 .mobile-navigation-menu.active {
-  left: 0;
+  right: 0;
   visibility: visible;
   z-index: 99999999999;
 }

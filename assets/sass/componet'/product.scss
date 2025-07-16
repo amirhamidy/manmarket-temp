@@ -7,34 +7,80 @@
   cursor: pointer;
   transform: none;
   text-transform: none;
-  padding: 3px 10px;
-  margin: auto 5px;
-  &:hover{
-    .href-slide{
-     visibility: visible !important;
-      z-index: 99;
-    }
-      .one-img{
-      opacity: 0;
-      transition: 0.7s;
-      pointer-events: none !important;
-    }
-  }
+  margin: auto 8px;
 }
 
+
+.Specifications{
+  color: black !important;
+}
+
+.one-img{
+  opacity: 1;
+  transition: 0.7s ;
+  pointer-events: none ;
+}
+
+.d-bx{
+  width: 100%;
+  text-align: -webkit-left;
+  //margin-top: 0.5rem !important;
+}
+
+@media only screen and (max-width: 550px){
+  .cs-slide-v-2-swiper-button-next{
+    position: absolute;
+    top: 45% !important;
+    transform: translateY(41%);
+    left: -12% !important;
+  }
+  .cs-slide-v-2-swiper-button-prev{
+    position: absolute;
+    top: 45% !important;
+    transform: translateY(41%);
+    right: -12% !important;
+  }
+  .d-bx{
+    padding-right: 0.6rem !important;
+    padding-left: 0.6rem !important;
+    margin-left: 1rem !important;
+    text-align: -webkit-center !important;
+  }
+  .Specifications{
+    padding-right: 0.6rem !important;
+    padding-left: 0.6rem !important;
+  }
+
+  .stars{
+    left: 30px !important;
+  }
+
+}
+
+.href-slide{
+  visibility: visible !important;
+  z-index: 99;
+}
 article{
   cursor: pointer;
+  transition: 0.7s ease all;
   &:hover{
     .two-img{
       opacity: 1;
-      transition: 0.7s;
+      transition: 0.7s !important;
+      pointer-events: none !important;
+    }
+    .one-img{
+      opacity: 0;
+      transition: 0.7s !important;
+      visibility: hidden !important;
       pointer-events: none !important;
     }
     .icons{
       visibility: visible;
       opacity: 1;
       margin-top: 0;
-      z-index: 1;
+      z-index: 999;
       .like , .add-to-cart , .view{
         top: 77%;
       }
@@ -44,10 +90,10 @@ article{
 
 
 .product img {
-  width: 100%;
+  width: 120%;
   height: auto;
   object-fit: cover;
-  max-width: 100% !important;
+  max-width: 120% !important;
 }
 
 .two-img{
@@ -285,8 +331,9 @@ button {
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
-  -webkit-line-clamp: 1 !important;
+  -webkit-line-clamp: 2 !important;
   white-space: normal !important;
+  line-height: 1.2rem;
 }
 
 .price{
@@ -324,7 +371,7 @@ button {
 .stars {
   display: flex;
   cursor: pointer;
-  left: 15px !important;
+  left: 40px ;
   top: 15px !important;
   z-index: 1 !important;
 }
@@ -350,7 +397,7 @@ button {
 @media only screen and (max-width: 750px){
   .product {
     .one-img,.two-img{
-      width: 100% !important;
+      width: 120% !important;
     }
   }
 }

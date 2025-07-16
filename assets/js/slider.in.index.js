@@ -1,139 +1,56 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const allDragSliders = document.querySelectorAll('.cs-f--slider');
-
-    if (allDragSliders.length > 0) {
-        allDragSliders.forEach((sliderEl) => {
-            const slidesInDragSlider = sliderEl.querySelectorAll('.slide');
-            slidesInDragSlider.forEach(s => {
-                if (s.classList.contains('row')) {
-                    s.style.display = 'flex';
-                }
-            });
-
-            let isDown = false;
-            let isDragging = false;
-            let startX, startY;
-            let scrollLeftVal;
-            let scrollDirectionLocked = false;
-            let isHorizontalScroll = false;
-
-            sliderEl.addEventListener('mousedown', (e) => {
-                isDown = true;
-                isDragging = false;
-                sliderEl.classList.add('active-dragging');
-                startX = e.pageX - sliderEl.offsetLeft;
-                scrollLeftVal = sliderEl.scrollLeft;
-            });
-
-            sliderEl.addEventListener('mouseleave', () => {
-                if (!isDown) return;
-                isDown = false;
-                sliderEl.classList.remove('active-dragging');
-            });
-
-            sliderEl.addEventListener('mouseup', () => {
-                if (!isDown) return;
-                isDown = false;
-                sliderEl.classList.remove('active-dragging');
-            });
-
-            sliderEl.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.pageX - sliderEl.offsetLeft;
-                const walk = x - startX;
-                if (Math.abs(walk) > 10) {
-                    isDragging = true;
-                }
-                sliderEl.scrollLeft = scrollLeftVal - (walk * 1.5);
-            });
-
-            sliderEl.addEventListener('touchstart', (e) => {
-                isDown = true;
-                isDragging = false;
-                startX = e.touches[0].pageX;
-                startY = e.touches[0].pageY;
-                scrollLeftVal = sliderEl.scrollLeft;
-                scrollDirectionLocked = false;
-                isHorizontalScroll = false;
-            });
-
-            sliderEl.addEventListener('touchmove', (e) => {
-                if (!isDown) return;
-
-                if (!scrollDirectionLocked) {
-                    const deltaX = Math.abs(e.touches[0].pageX - startX);
-                    const deltaY = Math.abs(e.touches[0].pageY - startY);
-
-                    if (deltaX > 5 || deltaY > 5) {
-                        if (deltaX > deltaY) {
-                            isHorizontalScroll = true;
-                        }
-                        scrollDirectionLocked = true;
-                    }
-                }
-
-                if (isHorizontalScroll) {
-                    e.preventDefault();
-                    const x = e.touches[0].pageX;
-                    const walk = x - startX;
-                    if (Math.abs(walk) > 10) {
-                        isDragging = true;
-                    }
-                    sliderEl.scrollLeft = scrollLeftVal - (walk * 1.5);
-                }
-            });
-
-            const resetState = () => {
-                if (!isDown) return;
-                isDown = false;
-                sliderEl.classList.remove('active-dragging');
-            };
-
-            sliderEl.addEventListener('touchend', resetState);
-            sliderEl.addEventListener('touchcancel', resetState);
-
-            const links = sliderEl.querySelectorAll('a');
-            links.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    if (isDragging) {
-                        e.preventDefault();
-                    }
-                });
-            });
-
-            sliderEl.addEventListener('dragstart', (e) => e.preventDefault());
-        });
+var swiper1 = new Swiper('#main-product-swiper-1', {
+    slidesPerView: 4,
+    spaceBetween: 20,
+    grid: {
+        rows: 2,
+        fill: 'row',
+    },
+    navigation: {
+        nextEl: '#main-product-swiper-1 .cs-slide-v-2-swiper-button-next',
+        prevEl: '#main-product-swiper-1 .cs-slide-v-2-swiper-button-prev',
+    },
+    breakpoints: {
+        992: { slidesPerView: 4, spaceBetween: 20, grid: { rows: 2.1, fill: 'row', }, },
+        768: { slidesPerView: 3, spaceBetween: 20, grid: { rows: 2, fill: 'row', }, },
+        480: { slidesPerView: 2, spaceBetween: 20, grid: { rows: 2, fill: 'row', }, },
+        0: { slidesPerView: 2, spaceBetween: 18 , grid: { rows:  2.3, fill: 'row', }, }
     }
 });
 
-
-
-const csBlogContainer = document.querySelector('.blog-container.has-scrollbar');
-let csIsDragging = false, csStartX, csScrollLeft;
-
-csBlogContainer.addEventListener('mousedown', e => {
-    csIsDragging = true;
-    csBlogContainer.classList.add('active');
-    csStartX = e.pageX - csBlogContainer.offsetLeft;
-    csScrollLeft = csBlogContainer.scrollLeft;
+var swiper2 = new Swiper('#main-product-swiper-2', {
+    slidesPerView: 4,
+    spaceBetween: 20,
+    grid: {
+        rows: 2,
+        fill: 'row',
+    },
+    navigation: {
+        nextEl: '#main-product-swiper-2 .cs-slide-v-2-swiper-button-next',
+        prevEl: '#main-product-swiper-2 .cs-slide-v-2-swiper-button-prev',
+    },
+    breakpoints: {
+        992: { slidesPerView: 4, spaceBetween: 18, grid: { rows: 2.4, fill: 'row', }, },
+        768: { slidesPerView: 3, spaceBetween: 18, grid: { rows: 2.4, fill: 'row', }, },
+        480: { slidesPerView: 2, spaceBetween: 18, grid: { rows: 2.4, fill: 'row', }, },
+        0: { slidesPerView: 2, spaceBetween: 18 , grid: { rows:  2.3, fill: 'row', }, }
+    }
 });
 
-csBlogContainer.addEventListener('mouseleave', () => {
-    csIsDragging = false;
-    csBlogContainer.classList.remove('active');
+var swiper3 = new Swiper('#main-product-swiper-3', {
+    slidesPerView: 4,
+    spaceBetween: 20,
+    grid: {
+        rows: 2,
+        fill: 'row',
+    },
+    navigation: {
+        nextEl: '#main-product-swiper-3 .cs-slide-v-2-swiper-button-next',
+        prevEl: '#main-product-swiper-3 .cs-slide-v-2-swiper-button-prev',
+    },
+    breakpoints: {
+        992: { slidesPerView: 4, spaceBetween: 20, grid: { rows: 2, fill: 'row', }, },
+        768: { slidesPerView: 3, spaceBetween: 15, grid: { rows: 2, fill: 'row', }, },
+        480: { slidesPerView: 2, spaceBetween: 10, grid: { rows: 2, fill: 'row', }, },
+        0: { slidesPerView: 2, spaceBetween: 18 , grid: { rows:  2.3, fill: 'row', }, }
+    }
 });
-
-csBlogContainer.addEventListener('mouseup', () => {
-    csIsDragging = false;
-    csBlogContainer.classList.remove('active');
-});
-
-csBlogContainer.addEventListener('mousemove', e => {
-    if (!csIsDragging) return;
-    e.preventDefault();
-    const x = e.pageX - csBlogContainer.offsetLeft;
-    const walk = (x - csStartX) * 3;
-    csBlogContainer.scrollLeft = csScrollLeft - walk;
-});
-

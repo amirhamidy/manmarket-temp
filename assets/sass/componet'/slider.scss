@@ -50,7 +50,7 @@
 }
 
 
-.swiper-slide img {
+.sw-2 img{
   display: block;
   height: 80%;
   position: absolute;
@@ -243,6 +243,43 @@
 .b-none{
   border: none !important;
 }
+
+
+.slider-btn{
+  top: 0;
+  z-index: 999999999999999999 !important;
+}
+
+
+.back-and-next-c-b{
+  height: 50px;
+  width: 50px;
+  background-color: #EEEEEE;
+  border-radius: 50%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: 0.3s;
+  z-index: 1;
+  &:hover{
+    color:white;
+    background-color: var(--primary-color);
+  }
+}
+
+.cs-slide-v-2-swiper-button-next{
+  position: absolute;
+  top: 45%;
+  transform: translateY(41%);
+  left: -4.1%;
+}
+.cs-slide-v-2-swiper-button-prev{
+  position: absolute;
+  top: 45%;
+  transform: translateY(41%);
+  right: -4.1%;
+}
+
 
 
 

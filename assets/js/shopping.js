@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const persianNumbers = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
 
     const toPersianNum = (n) => n.toString().replace(/\d/g, d => persianNumbers[d]);
-    const toEnglishNum = (s) => s.toString().replace(/[۰-۹]/g, d => persianNumbers.indexOf(d));
 
     const parsePrice = (priceString) => {
         if (!priceString) return 0;
@@ -16,14 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
         return toPersianNum(withCommas);
     };
 
-    // tick icon length for CSS variable (if needed)
     const tickIconForCalc = document.querySelector('.shop-cs-tick-icon path');
     if (tickIconForCalc) {
         const length = tickIconForCalc.getTotalLength();
         document.documentElement.style.setProperty('--tick-path-length', length);
     }
 
-    // ADDRESS LOGIC
     const addressForm = document.getElementById('address-form');
     const activeAddressDisplayWrapper = document.querySelector('#active-address-display .address-details-wrapper');
     const toggleBtn = document.getElementById('btn-toggle-address');
@@ -60,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     updateActiveAddress();
 
-    // CART ITEM LOGIC
     const trashIconSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048" width="1em" height="1em"><path fill="currentColor" d="M1792 384h-128v1472q0 40-15 75t-41 61t-61 41t-75 15H448q-40 0-75-15t-61-41t-41-61t-15-75V384H128V256h512V128q0-27 10-50t27-40t41-28t50-10h384q27 0 50 10t40 27t28 41t10 50v128h512zM768 256h384V128H768zm768 128H384v1472q0 26 19 45t45 19h1024q26 0 45-19t19-45zM768 1664H640V640h128zm256 0H896V640h128zm256 0h-128V640h128z"></path></svg>';
     const minusIconSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
     const cartList = document.getElementById('cart-items-list');
@@ -106,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // SHIPMENT LOGIC (TIME SLOTS)
     const shipmentSection = document.getElementById('shipment-section');
     if (shipmentSection) {
         shipmentSection.addEventListener('click', e => {
@@ -126,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // TIME SCROLLER SETUP
     const setupScroller = (wrapper) => {
         const scroller = wrapper.querySelector('.shop-cs-time-scroller');
         if (!scroller) return;
@@ -151,25 +145,76 @@ document.addEventListener('DOMContentLoaded', () => {
         scroller.addEventListener('scroll', updateButtons);
         window.addEventListener('resize', updateButtons);
         window.addEventListener('load', updateButtons);
+
+        let isDragging = false, startX, scrollLeftVal;
+
+        scroller.addEventListener('mousedown', e => {
+            isDragging = true;
+            scroller.classList.add('active');
+            startX = e.pageX - scroller.offsetLeft;
+            scrollLeftVal = scroller.scrollLeft;
+        });
+
+        scroller.addEventListener('mouseleave', () => {
+            isDragging = false;
+            scroller.classList.remove('active');
+        });
+
+        scroller.addEventListener('mouseup', () => {
+            isDragging = false;
+            scroller.classList.remove('active');
+        });
+
+        scroller.addEventListener('mousemove', e => {
+            if(!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - scroller.offsetLeft;
+            const walk = (x - startX) * 10;
+            scroller.scrollLeft = scrollLeftVal - walk;
+        });
     };
 
     document.querySelectorAll('.shop-cs-time-scroller-wrapper').forEach(setupScroller);
 
-    // PAYMENT LOGIC WITH WALLET AND DISCOUNT
     const paymentForm = document.getElementById('payment-form');
-    const totalAmountRow = document.getElementById('total-amount-row');
     const finalAmountEl = document.getElementById('final-amount');
     const walletTextEl = document.getElementById('wallet-text');
 
-    if (paymentForm && finalAmountEl && walletTextEl) {
+    const mahaxShipmentOption = document.querySelector('input[name="shipment_method"][value="mahax"]');
+    const allShipmentOptions = document.querySelectorAll('input[name="shipment_method"]');
+    const otherShipmentOptions = document.querySelectorAll('input[name="shipment_method"]:not([value="mahax"])');
+
+    const updateShipmentMethodDisplay = (selectedPaymentValue, selectedPaymentId) => {
+        if (selectedPaymentId === 'payment-home' && selectedPaymentValue === 'card_mahax') {
+            if (mahaxShipmentOption) {
+                mahaxShipmentOption.checked = true;
+                mahaxShipmentOption.closest('.shop-cs-selectable-option')?.classList.remove('disabled');
+                mahaxShipmentOption.disabled = false;
+            }
+            otherShipmentOptions.forEach(option => {
+                option.disabled = true;
+                option.closest('.shop-cs-selectable-option')?.classList.add('disabled');
+            });
+        } else {
+            allShipmentOptions.forEach(option => {
+                option.disabled = false;
+                option.closest('.shop-cs-selectable-option')?.classList.remove('disabled');
+            });
+        }
+    };
+
+    if (paymentForm && finalAmountEl) {
         const originalTotal = parsePrice(finalAmountEl.textContent);
         const walletInput = paymentForm.querySelector('input[value="wallet"]');
         const originalWalletAmount = walletInput ? parsePrice(walletInput.dataset.wallet || '0') : 0;
 
         paymentForm.addEventListener('change', () => {
-            const checked = paymentForm.querySelector('input[name="payment_method"]:checked');
-            if (!checked) return;
-            if (checked.value === 'wallet') {
+            const checkedPaymentMethod = paymentForm.querySelector('input[name="payment_method"]:checked');
+            if (!checkedPaymentMethod) return;
+
+            updateShipmentMethodDisplay(checkedPaymentMethod.value, checkedPaymentMethod.id);
+
+            if (checkedPaymentMethod.value === 'wallet') {
                 let walletAmount = originalWalletAmount;
                 let finalTotal = originalTotal;
                 if (walletAmount >= finalTotal) {
@@ -180,40 +225,20 @@ document.addEventListener('DOMContentLoaded', () => {
                     walletAmount = 0;
                 }
                 finalAmountEl.innerHTML = formatPrice(finalTotal) + ' <span class="shop-cs-price-unit">تومان</span>';
-                walletTextEl.textContent = 'موجودی: ' + formatPrice(walletAmount) + ' تومان';
+                if (walletTextEl) {
+                    walletTextEl.textContent = 'موجودی: ' + formatPrice(walletAmount) + ' تومان';
+                }
             } else {
                 finalAmountEl.innerHTML = formatPrice(originalTotal) + ' <span class="shop-cs-price-unit">تومان</span>';
-                walletTextEl.textContent = 'موجودی: ' + formatPrice(originalWalletAmount) + ' تومان';
+                if (walletTextEl) {
+                    walletTextEl.textContent = 'موجودی: ' + formatPrice(originalWalletAmount) + ' تومان';
+                }
             }
         });
+
+        const initialCheckedPaymentMethod = paymentForm.querySelector('input[name="payment_method"]:checked');
+        if (initialCheckedPaymentMethod) {
+            updateShipmentMethodDisplay(initialCheckedPaymentMethod.value, initialCheckedPaymentMethod.id);
+        }
     }
-});
-
-
-const scroller = document.querySelector('.shop-cs-time-scroller');
-let isDragging = false, startX, scrollLeft;
-
-scroller.addEventListener('mousedown', e => {
-    isDragging = true;
-    scroller.classList.add('active');
-    startX = e.pageX - scroller.offsetLeft;
-    scrollLeft = scroller.scrollLeft;
-});
-
-scroller.addEventListener('mouseleave', () => {
-    isDragging = false;
-    scroller.classList.remove('active');
-});
-
-scroller.addEventListener('mouseup', () => {
-    isDragging = false;
-    scroller.classList.remove('active');
-});
-
-scroller.addEventListener('mousemove', e => {
-    if(!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - scroller.offsetLeft;
-    const walk = (x - startX) * 10;
-    scroller.scrollLeft = scrollLeft - walk;
 });

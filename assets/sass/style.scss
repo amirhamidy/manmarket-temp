@@ -597,6 +597,8 @@
   width: 100%;
   border-radius: var(--border-radius-medium);
   margin-bottom: 20px;
+  max-height: 222px !important;
+  object-fit: contain !important;
 }
 
 .blog-category {

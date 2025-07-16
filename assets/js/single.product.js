@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         galleryThumbs = new Swiper(galleryThumbsSwiperEl, {
             spaceBetween: 10,
-            slidesPerView: Math.min(4, productImages.length),
+            slidesPerView: Math.min(3, productImages.length),
             freeMode: true,
             watchSlidesProgress: true,
         });

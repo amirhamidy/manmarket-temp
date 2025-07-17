@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>کیف پول | پروفایل کاربری حرفه‌ای</title>
-
+    <title>لیست علاقه‌مندی | پروفایل کاربری (استاتیک)</title>
+    <!-- External Links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
-<body data-current-page="wallet" class="body-x">
-
+<body class="body-x">
 
 <!--Shadow Overly start-->
 <div class="overlay" data-overlay></div>
@@ -46,11 +47,11 @@
 <header class="mb-3 position-fixed py-2">
     <nav class="desktop-navigation-menu d-flex justify-content-center mt-3 px-5 text-center align-items-center">
         <!--logo in header -- : start-->
-        <div class="mx-1 w-25"><img class="cs-w" alt="من مارکت" src="assets/img/main.logo.jpg"></div>
+        <div class="mx-1"><img class="cs-w" alt="من مارکت" src="assets/img/main.logo.jpg"></div>
         <!--logo in header -- : end---->
 
         <!--menu -- : start-->
-        <div class="container w-center mr-cs mt-2 w-75">
+        <div class="container w-center mr-cs mt-2">
             <ul class="desktop-menu-category-list mb-2 w-center">
                 <li class="menu-category">
                     <div class="mega-menu-trigger-wrapper">
@@ -915,8 +916,8 @@
         <!--menu -- : end---->
 
         <!--icons in header -- :: start-->
-        <div class="d-flex justify-content-end icons-in-header mb-1 w-25">
-            <div class="cs-mx show-search-modal mt-1" data-bs-toggle="tooltip" data-bs-placement="bottom" title="جست و جو ">
+        <div class="d-flex justify-content-between icons-in-header mb-1">
+            <div class="cs-mx show-search-modal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="جست و جو ">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1.4em" height="1.4em"><path fill="currentColor" d="M10.77 18.3a7.53 7.53 0 1 1 7.53-7.53a7.53 7.53 0 0 1-7.53 7.53m0-13.55a6 6 0 1 0 6 6a6 6 0 0 0-6-6"></path><path fill="currentColor" d="M20 20.75a.74.74 0 0 1-.53-.22l-4.13-4.13a.75.75 0 0 1 1.06-1.06l4.13 4.13a.75.75 0 0 1 0 1.06a.74.74 0 0 1-.53.22"></path></svg>
             </div>
             <div class="cs-mx btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="حساب کاربری">
@@ -1063,21 +1064,9 @@
     <nav class="mobile-navigation-menu has-scrollbar " data-mobile-menu>
         <div class="menu-top">
             <h2 class="menu-title">منو</h2>
+
             <button class="menu-close-btn" data-mobile-menu-close-btn>
-                <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        height="1em"
-                >
-                    <path
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-linecap="square"
-                            stroke-linejoin="round"
-                            d="M18 6L6 18M6 6l12 12"
-                    ></path>
-                </svg>
+                <ion-icon name="close-outline"></ion-icon>
             </button>
         </div>
         <ul class="mobile-menu-category-list">
@@ -1235,7 +1224,7 @@
 
 
 
-<!-- SVG Icons Definition -->
+<!-- SVG Icons Definition (Shared) -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="icon-user-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></symbol>
     <symbol id="icon-receipt-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></symbol>
@@ -1253,10 +1242,9 @@
 
 </svg>
 
-
 <div class="main-container py-5 mt-5">
     <div class="profile-layout-grid">
-        <!-- Sidebar -->
+        <!-- Sidebar with static info -->
         <aside class="profile-sidebar-new">
             <div class="sidebar-user-info">
                 <div class="sidebar-avatar-wrapper">
@@ -1269,10 +1257,10 @@
                 <ul>
                     <li><a href="profile.html" data-page="account"><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
                     <li><a href="profile.sefaresh.html" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
-                    <li><a href="profile.Kifpol.html" data-page="wallet" class="active"><svg><use xlink:href="#icon-wallet"></use></svg> کیف پول</a></li>
+                    <li><a href="profile.Kifpol.html" data-page="wallet"><svg><use xlink:href="#icon-wallet"></use></svg> کیف پول</a></li>
                     <li><a href="profile.adress.html" data-page="addresses"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
                     <li><a href="profile.whilist.html" data-page="wishlist"><svg><use xlink:href="#icon-heart-solid"></use></svg> علاقه‌مندی‌ها</a></li>
-                    <li><a href="profile.chats.html" data-page="chat"><svg><use xlink:href="#icon-chat"></use></svg>گفتگو ها</a></li>
+                    <li><a href="profile.chats.html" data-page="chat" class="active"><svg><use xlink:href="#icon-chat"></use></svg>گفتگو ها</a></li>
                     <li><a href="profile.comments.html" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg> نظرات من</a></li>
                     <li><a href="profile.password.html" data-page="password"><svg><use xlink:href="#icon-lock-password"></use></svg> تغییر رمز</a></li>
                     <li class="nav-separator"></li>
@@ -1281,51 +1269,48 @@
             </nav>
         </aside>
 
-        <!-- Main Content: Wallet -->
+        <!-- Main Content Area -->
         <main class="profile-content-area-new">
-            <section id="wallet-section" class="profile-section-new">
+            <section class="profile-section-new">
                 <header class="section-header-new border-0">
-                    <h2><svg><use xlink:href="#icon-wallet"></use></svg>کیف پول شما</h2>
+                    <h2><svg><use xlink:href="#icon-chat"></use></svg>لیست گفتگو ها</h2>
                 </header>
-
-                <section class="w-center p-0">
-                    <div class="wallet-balance-card w-50 w-right m-0">
-                        <div>
-                            <p class="wallet-balance-label my-3">علی رضایی</p>
-                            <p class="wallet-balance-amount my-3">
-                            <p class="my-3"></p>    موجودی فعلی
-                            :
-                            ۱۲۵,۰۰۰ <span class="currency">تومان</span></p>
+                <div id="wishlistContainer" class="mt-3 d-flex justify-content-around flex-wrap">
+                    <a href="" class="product-card-minimal my-2 align-items-center w-100">
+                        <img src="assets/img/iphone/white/2.webp" alt="" class="product-card-minimal-img">
+                        <div class="product-card-minimal-info">
+                            <p class="custom-text text-dark">گوشی موبایل اپل مدل iPhone 16 Pro Max ZAA دو سیم کارت ظرفیت 256 گیگابایت و رم 8 گیگابایت - نات اکتیو</p>
+                            <p class="custom-text mt-3">اینجا آخرین پیام کاربر رو باید نمایش بدیم برای بهره بری از ux</p>
                         </div>
-                        <button class="btn-custom z-x">
-                            <a class="text-light" href="">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
-                                افزایش موجودی
-                            </a>
-                        </button>
-
-                        <img class="position-absolute w-25 brand-card" alt="من مارکت" src="assets/img/main-Bubble.webp">
-                        <img class="position-absolute w-25 brand-card-2" alt="من مارکت" src="assets/img/main-Bubble.webp">
-                        <img class="position-absolute w-25 brand-card-3" alt="من مارکت" src="assets/img/main-Bubble.webp">
-                        <img class="position-absolute w-25 brand-card-4" alt="من مارکت" src="assets/img/main-Bubble.webp">
-                        <img class="position-absolute w-25 brand-card-5" alt="من مارکت" src="assets/img/main-Bubble.webp">
-                    </div>
-                </section>
-
-                <div class="transaction-list-container">
-                    <h3 class="transaction-list-header mt-5">تراکنش‌های اخیر</h3>
-                    <div class="transaction-list">
-                        <div class="transaction-item deposit"><div class="transaction-icon"><svg><use xlink:href="#icon-arrow-up-circle"></use></svg></div><div class="transaction-details"><p class="transaction-title">افزایش موجودی از طریق درگاه</p><p class="transaction-date">۲۴ اردیبهشت ۱۴۰۳ - ساعت ۱۸:۳۰</p></div><div class="transaction-amount deposit">+ ۲۰۰,۰۰۰ تومان</div></div>
-                        <div class="transaction-item withdrawal"><div class="transaction-icon"><svg><use xlink:href="#icon-arrow-down-circle"></use></svg></div><div class="transaction-details"><p class="transaction-title">خرید سفارش #DKC-846513</p><p class="transaction-date">۲۳ اردیبهشت ۱۴۰۳ - ساعت ۱۱:۰۵</p></div><div class="transaction-amount withdrawal">- ۷۵,۰۰۰ تومان</div></div>
-                        <div class="transaction-item withdrawal"><div class="transaction-icon"><svg><use xlink:href="#icon-arrow-down-circle"></use></svg></div><div class="transaction-details"><p class="transaction-title">خرید هدفون بی‌سیم</p><p class="transaction-date">۱۹ اردیبهشت ۱۴۰۳ - ساعت ۲۲:۱۴</p></div><div class="transaction-amount withdrawal">- ۴۵۰,۰۰۰ تومان</div></div>
-                        <div class="transaction-item deposit"><div class="transaction-icon"><svg><use xlink:href="#icon-arrow-up-circle"></use></svg></div><div class="transaction-details"><p class="transaction-title">واریز هدیه ثبت نام</p><p class="transaction-date">۱۸ اردیبهشت ۱۴۰۳ - ساعت ۲۰:۰۰</p></div><div class="transaction-amount deposit">+ ۵۰,۰۰۰ تومان</div></div>
-                    </div>
+                    </a>
+                    <a href="" class="product-card-minimal my-2 align-items-center w-100">
+                        <img src="assets/img/iphone/white/2.webp" alt="" class="product-card-minimal-img">
+                        <div class="product-card-minimal-info">
+                            <p class="custom-text text-dark">گوشی موبایل اپل مدل iPhone 16 Pro Max ZAA دو سیم کارت ظرفیت 256 گیگابایت و رم 8 گیگابایت - نات اکتیو</p>
+                            <p class="custom-text mt-3">اینجا آخرین پیام کاربر رو باید نمایش بدیم برای بهره بری از ux</p>
+                        </div>
+                    </a>
+                    <a href="" class="product-card-minimal my-2 align-items-center w-100">
+                        <img src="assets/img/iphone/white/2.webp" alt="" class="product-card-minimal-img">
+                        <div class="product-card-minimal-info">
+                            <p class="custom-text text-dark">گوشی موبایل اپل مدل iPhone 16 Pro Max ZAA دو سیم کارت ظرفیت 256 گیگابایت و رم 8 گیگابایت - نات اکتیو</p>
+                            <p class="custom-text mt-3">اینجا آخرین پیام کاربر رو باید نمایش بدیم برای بهره بری از ux</p>
+                        </div>
+                    </a>
+                    <a href="" class="product-card-minimal my-2 align-items-center w-100">
+                        <img src="assets/img/iphone/white/2.webp" alt="" class="product-card-minimal-img">
+                        <div class="product-card-minimal-info">
+                            <p class="custom-text text-dark">گوشی موبایل اپل مدل iPhone 16 Pro Max ZAA دو سیم کارت ظرفیت 256 گیگابایت و رم 8 گیگابایت - نات اکتیو</p>
+                            <p class="custom-text mt-3">اینجا آخرین پیام کاربر رو باید نمایش بدیم برای بهره بری از ux</p>
+                        </div>
+                    </a>
                 </div>
             </section>
         </main>
     </div>
 </div>
 
+<!-- Mobile Bottom Navigation (Shared) -->
 <nav class="mobile-bottom-nav" id="mobileNavigation">
     <a href="#" class="mobile-nav-item" data-page="account"><svg><use xlink:href="#icon-user-circle"></use></svg><span>حساب</span></a>
     <a href="#" class="mobile-nav-item" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg><span>سفارش‌ها</span></a>
@@ -1335,7 +1320,61 @@
     <a href="#" class="mobile-nav-item" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg><span>نظرات</span></a>
 </nav>
 
+<div class="wow-notification-container-new" id="notificationToastContainer"></div>
 
+<!--footer :: start------>
+<footer>
+    <div class="footer-nav d-flex justify-content-between">
+        <div class="container align-items-baseline">
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">لینک های مفید</h2></li>
+
+                <li class="footer-nav-item mt-2"><a href="faq.html" class="footer-nav-link">سوالات متداول</a></li>
+                <li class="footer-nav-item mt-2"><a href="#" class="footer-nav-link">پیگیری سفارشات</a></li>
+                <li class="footer-nav-item mt-2"><a href="#" class="footer-nav-link">راهنمای خرید اقساطی</a></li>
+                <li class="footer-nav-item mt-2"><a href="#" class="footer-nav-link">پلتفرم مالی اعتبار من</a></li>
+                <li class="footer-nav-item mt-2"><a href="#" class="footer-nav-link">مفاد ضمانت هفت روزه برگشت وجه</a></li>
+            </ul>
+            <ul class="footer-nav-list">
+                <li class="footer-nav-item"><h2 class="nav-title">درباره ما</h2></li>
+
+                <li class="footer-nav-item mt-2"><a href="man.market.call.we.html" class="footer-nav-link">تماس با ما</a></li>
+                <li class="footer-nav-item mt-2"><a href="man.market.target.t.html" class="footer-nav-link">قوانین و مقررات</a></li>
+                <li class="footer-nav-item mt-2"><a href="man.market.Rules.html" class="footer-nav-link">اهداف و تعهدات ما</a></li>
+                <li class="footer-nav-item mt-2"><a href="#" class="footer-nav-link">فروشگاه های حضوری</a></li>
+                <li class="footer-nav-item mt-2"><a href="man.market.one.seen.html" class="footer-nav-link">من مارکت در یک نگاه</a></li>
+            </ul>
+            <ul class="footer-nav-list d-flex flex-wrap flex-column w-50 justify-content-end">
+                <li class="footer-nav-item"><h2 class="nav-title w-center mx-3">من مارکت</h2></li>
+                <div class="">
+                    <div class="d-flex flex-wrap justify-content-end center-max-24">
+                        <a referrerpolicy='origin' target='_blank'  href="https://trustseal.enamad.ir/?id=527464&Code=pPrrLy886QxLMhLkgAStOwlJBtPaDni4" class="footer-nav-item b-x-s">
+                            <img referrerpolicy='origin' class="w-50 mt-2" alt="من مارکت" src="assets/img/E.namad.png">
+                        </a>
+                        <a target="_blank" href="" class="footer-nav-item b-x-s">
+                            <img class="w-50 mt-2" referrerpolicy='origin' id = 'rgvjjzpenbqeapfunbqeesgt' style = 'cursor:pointer' onclick = 'window.open("https://logo.samandehi.ir/Verify.aspx?id=372520&p=xlaojyoeuiwkdshwuiwkobpd", "Popup","toolbar=no,scrollbars=no, location=no, statusbar=no, menubar=no, resizable=0, width=450, height=630, top=30")' alt = 'logo-samandehi'  src="assets/img/E.namad.t">
+                        </a>
+                        <a target="_blank"  href="https://qr.mojavez.ir/track/11011459" class="footer-nav-item b-x-s">
+                            <img class="w-50" alt="من مارکت" src="assets/img/E.namad.3.png">
+                        </a>
+                        <a target="_blank" href="https://www.irannsr.org/" class="footer-nav-item b-x-s">
+                            <img class="w-50 mt-3" alt="من مارکت" src="assets/img/E.namad.4.png">
+                        </a>
+                        <a target="_blank" href="https://daneshbonyan.isti.ir/" class="footer-nav-item b-x-s">
+                            <img class="w-50" alt="من مارکت" src="assets/img/E.namad.5.png">
+                        </a>
+                        <a target="_blank" href="https://www.mcth.ir/" class="footer-nav-item b-x-s">
+                            <img class="w-50 mt-2" alt="من مارکت" src="assets/img/E.namad.6.jpg">
+                        </a>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+
+    <h6 class="text-center my-4 coppy">زیرمجموعه‌ای از اکوسیستم راه ابریشم نو</h6>
+</footer>
+<!--footer :: end-------->
 <!--این همه جا هست -->
 <script src="assets/js/jquery-3.7.1.min.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -1344,6 +1383,7 @@
 
 
 <script src="assets/js/profile.js"></script>
+
 
 
 </body>

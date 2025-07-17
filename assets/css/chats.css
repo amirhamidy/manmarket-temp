@@ -45,6 +45,7 @@ body {
     flex-direction: column;
     background-color: rgba(255, 255, 255, 0.8);
     position: relative;
+    overflow: hidden;
 }
 
 .chat-header {
@@ -57,6 +58,7 @@ body {
     z-index: 10;
     backdrop-filter: blur(6px);
     position: relative;
+    flex-shrink: 0;
 }
 
 .user-info {
@@ -93,19 +95,8 @@ body {
 }
 
 .status {
-    font-size: 13px;
-    margin-right: 10px;
-    padding: 4px 12px;
-    border-radius: 18px;
-    font-weight: 600;
-    color: white;
-    background-color: rgba(76, 175, 80, 0.7);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    white-space: nowrap;
+    display: none;
 }
-
-.status.offline { background-color: rgba(136, 136, 136, 0.7); }
-.status.typing { background-color: rgba(0, 123, 255, 0.7); }
 
 .mobile-menu-icon {
     display: none;
@@ -132,6 +123,7 @@ body {
 .message-area {
     flex-grow: 1;
     padding: 20px;
+    padding-bottom: 90px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -139,6 +131,7 @@ body {
     background-size: 10px;
     background-blend-mode: overlay;
     position: relative;
+    min-height: 0;
 }
 
 .message-area::-webkit-scrollbar {
@@ -169,6 +162,14 @@ body {
     backdrop-filter: blur(3px);
 }
 
+.message-sender {
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    opacity: 0.9;
+}
+
 .message p {
     margin: 0;
     padding: 0;
@@ -191,13 +192,17 @@ body {
     border-bottom-right-radius: 4px;
 }
 
+.message.sent .message-sender {
+    color: rgba(255, 255, 255, 0.9);
+}
+
 .message.sent p {
     color: white;
 }
 
 .message.sent .message-time {
     color: rgba(255, 255, 255, 0.9);
-    align-self: flex-start;
+    align-self: flex-end;
 }
 
 .message.received {
@@ -220,6 +225,7 @@ body {
     align-items: flex-end;
     gap: 12px;
     backdrop-filter: blur(5px);
+    flex-shrink: 0;
 }
 
 .message-input-area textarea {
@@ -289,7 +295,7 @@ body {
 }
 
 .chat-list .search-bar {
-    padding: 15px 18px;
+    padding: 24px 18px;
     border-bottom: 1px solid rgba(224, 224, 224, 0.5);
     position: sticky;
     top: 0;
@@ -297,9 +303,11 @@ body {
     z-index: 5;
     backdrop-filter: blur(5px);
     text-align: -webkit-center;
+    flex-shrink: 0;
 }
 
 .chat-list .search-bar input {
+    width: 90%;
     padding: 10px 18px;
     border: 1px solid rgba(221, 221, 221, 0.7);
     border-radius: 24px;
@@ -309,7 +317,6 @@ body {
     background-color: rgba(255, 255, 255, 0.7);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     color: #333;
-    width: 90%;
 }
 
 .chat-list .search-bar input::placeholder {
@@ -335,6 +342,7 @@ body {
     font-size: 13px;
     text-decoration: none;
     color: inherit;
+    flex-shrink: 0;
 }
 
 .chat-item:hover {
@@ -362,6 +370,8 @@ body {
 }
 
 .chat-info {
+    overflow: hidden;
+    text-overflow: ellipsis;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -407,8 +417,8 @@ body {
 }
 
 .scroll-to-bottom-btn {
-    position: absolute;
-    bottom: 25px;
+    position: fixed;
+    bottom: 100px;
     left: 20px;
     background-color: rgba(249, 103, 71, 0.85);
     color: white;
@@ -425,7 +435,7 @@ body {
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
     transform: translateY(10px);
-    z-index: 5;
+    z-index: 21;
 }
 
 .scroll-to-bottom-btn svg {
@@ -440,7 +450,7 @@ body {
 
 .scroll-to-bottom-btn:active {
     background-color: rgba(212, 92, 64, 1);
-    transform: translateY(0px) scale(0.95);
+    transform: translateY(0);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
@@ -476,6 +486,7 @@ body {
         flex: 1;
         border-left: none;
         border-bottom: none;
+        overflow: hidden;
     }
 
     .chat-item {
@@ -502,8 +513,16 @@ body {
     }
 
     .message-input-area {
-        padding: 3px 15px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 10px 15px;
         gap: 8px;
+        margin-bottom: 0;
+        z-index: 20;
     }
 
     .message-input-area textarea {
@@ -545,8 +564,7 @@ body {
     }
 
     .status {
-        padding: 4px 10px;
-        font-size: 12px;
+        display: none;
     }
 
     .chat-item.active {
@@ -583,12 +601,18 @@ body {
     .scroll-to-bottom-btn {
         width: 40px;
         height: 40px;
-        bottom: 15px;
+        bottom: 80px;
         left: 15px;
+        z-index: 21;
     }
 
     .scroll-to-bottom-btn svg {
         width: 20px;
         height: 20px;
+    }
+
+    .message-area {
+        padding-bottom: 90px;
+        min-height: 0;
     }
 }

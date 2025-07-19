@@ -5628,6 +5628,10 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   fill: gold !important;
 }
 
+.cs-h {
+  height: 80px !important;
+}
+
 .user-panel-content, .user-panel-aside {
   border: 1px solid #c7c7c7;
   border-radius: 8px;
@@ -11786,6 +11790,10 @@ html[dir=rtl] .wow-notification-close-new {
     margin-top: -30px;
   }
 }
+.pwt-btn-calendar {
+  display: none !important;
+}
+
 .story-module-main-wrapper {
   margin: 0;
   display: flex;
@@ -11859,7 +11867,7 @@ html[dir=rtl] .wow-notification-close-new {
   justify-content: center;
   align-items: center;
   margin-bottom: 8px;
-  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #833ab4, #5851db, #405de6);
+  background: var(--primary-color);
   padding: 3px;
   box-sizing: border-box;
   flex-shrink: 0;

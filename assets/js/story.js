@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modalContent.style.transform = isMobile ? 'translateY(100vh)' : 'scale(0.9)';
         modal.style.opacity = '0';
 
-        void modalContent.offsetWidth; // برای اعمال تغییرات CSS قبل از انیمیشن
+        void modalContent.offsetWidth;
 
         requestAnimationFrame(() => {
             modalContent.style.transform = 'translateY(0) scale(1)';
@@ -594,3 +594,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+const hrefSlides = document.querySelectorAll('.href-slide');
+
+hrefSlides.forEach(link => {
+    link.setAttribute('target', '_blank');
+});
+
+
+
+

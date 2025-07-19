@@ -11794,6 +11794,10 @@ html[dir=rtl] .wow-notification-close-new {
   display: none !important;
 }
 
+.comments-box {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
 .story-module-main-wrapper {
   margin: 0;
   display: flex;

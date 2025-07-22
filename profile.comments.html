@@ -1233,16 +1233,24 @@
     <div class="profile-layout-grid">
         <!-- Sidebar -->
         <aside class="profile-sidebar-new">
-            <div class="sidebar-user-info">
-                <div class="sidebar-avatar-wrapper">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2M2ZDFlMCI+PHBhdGggZD0iTTIwIDIxdi0yYTQgNCAwIDAgMC00LTRIOGE0IDQgMCAwIDAtNCA0djJtOC0xMWE0IDQgMCAxIDAgMC04IDQgNCAwIDAgMCAwIDhaIiBzdHJva2U9IiNhOGJjZGEiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIi8+PC9zdmc+" alt="آواتار پیش‌فرض" class="sidebar-avatar">
+            <form method="post" id="profileImageForm" action="">
+                <input type="hidden" name="csrfmiddlewaretoken" value="cScSRZsDXpFJSsJmfUVTH73u6sOqWHdJo08HYmq5AuZjmqIejRUH6ILde8S0nuTC">
+                <div class="sidebar-user-info">
+                    <div class="sidebar-avatar-wrapper">
+                        <img src="assets/img/profile.png" alt="آواتار پیش‌فرض" class="sidebar-avatar" id="profileAvatarPreview">
+                        <label for="avatarUploadInput" class="sidebar-avatar-upload p-1" title="تغییر عکس پروفایل">
+                            <svg viewBox="0 0 24 24">
+                                <use xlink:href="#icon-edit-pencil"></use>
+                            </svg>
+                        </label>
+                        <input type="file" name="image" id="avatarUploadInput" class="d-none">
+                    </div>
                 </div>
-                <h1 class="sidebar-user-name text-dark">علی رضایی</h1>
-                <p class="sidebar-user-handle">@ali_reza</p>
-            </div>
+            </form>
+            <h1 class="sidebar-user-name text-dark"></h1>
             <nav class="sidebar-nav-new">
                 <ul>
-                    <li><a href="profile.html" data-page="account"><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
+                    <li><a href="profile.html" data-page="account" ><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
                     <li><a href="profile.sefaresh.html" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
                     <li><a href="profile.Kifpol.html" data-page="wallet"><svg><use xlink:href="#icon-wallet"></use></svg> کیف پول</a></li>
                     <li><a href="profile.adress.html" data-page="addresses"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>

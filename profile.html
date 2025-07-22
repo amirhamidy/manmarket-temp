@@ -1227,161 +1227,173 @@
     <symbol id="icon-check-circle-fill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="9 12 11 14 15 10"></polyline></symbol>
     <symbol id="icon-alert-triangle-fill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path></symbol>
     <symbol id="icon-info-circle-fill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path><circle cx="12" cy="11.5" r="1"></circle><circle cx="16" cy="11.5" r="1"></circle><circle cx="8" cy="11.5" r="1"></circle></symbol>
+    <symbol id="icon-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.7v5.8a1.5 1.5 0 0 1-1.5 1.5H4.5A1.5 1.5 0 0 1 3 18.5v-13A1.5 1.5 0 0 1 4.5 4H18a1.5 1.5 0 0 1 1.5 1.5V9"></path><path d="M21 7.5H3"></path><path d="M18 12.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path></symbol>
+
 </svg>
 
-<div class="main-container mt-5 py-5">
-    <div class="profile-layout-grid">
-        <!-- Sidebar with hardcoded user info -->
-        <aside class="profile-sidebar-new">
-            <div class="sidebar-user-info">
-                <div class="sidebar-avatar-wrapper">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2M2ZDFlMCI+PHBhdGggZD0iTTIwIDIxdi0yYTQgNCAwIDAgMC00LTRIOGE0IDQgMCAwIDAtNCA0djJtOC0xMWE0IDQgMCAxIDAgMC04IDQgNCAwIDAgMCAwIDhaIiBzdHJva2U9IiNhOGJjZGEiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIi8+PC9zdmc+" alt="آواتار پیش‌فرض" class="sidebar-avatar">
-                </div>
-                <h1 class="sidebar-user-name text-dark">علی رضایی</h1>
-                <p class="sidebar-user-handle">@ali_reza</p>
-            </div>
-            <nav class="sidebar-nav-new">
-                <ul>
-                    <li><a href="profile.html" data-page="account" class="active"><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
-                    <li><a href="profile.sefaresh.html" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
-                    <li><a href="profile.Kifpol.html" data-page="wallet"><svg><use xlink:href="#icon-wallet"></use></svg> کیف پول</a></li>
-                    <li><a href="profile.adress.html" data-page="addresses"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
-                    <li><a href="profile.whilist.html" data-page="wishlist"><svg><use xlink:href="#icon-heart-solid"></use></svg> علاقه‌مندی‌ها</a></li>
-                    <li><a href="profile.chats.html" data-page="chat"><svg><use xlink:href="#icon-chat"></use></svg>گفتگو ها</a></li>
-                    <li><a href="profile.comments.html" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg> نظرات من</a></li>
-                    <li><a href="profile.password.html" data-page="password"><svg><use xlink:href="#icon-lock-password"></use></svg> تغییر رمز</a></li>
-                    <li class="nav-separator"></li>
-                    <li><a href="" id="logoutButton"><svg><use xlink:href="#icon-logout-door"></use></svg> خروج از حساب</a></li>
-                </ul>
-            </nav>
-        </aside>
+    <div class="main-container mt-5 py-5">
+        <div class="profile-layout-grid">
+            <!-- Sidebar with hardcoded user info -->
+            <aside class="profile-sidebar-new">
+                <form method="post" id="profileImageForm" action="" enctype="multipart/form-data">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="cScSRZsDXpFJSsJmfUVTH73u6sOqWHdJo08HYmq5AuZjmqIejRUH6ILde8S0nuTC">
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-avatar-wrapper">
+                            <img src="assets/img/profile.png" alt="آواتار پیش‌فرض" class="sidebar-avatar" id="profileAvatarPreview">
+                            <label for="avatarUploadInput" class="sidebar-avatar-upload p-1" title="تغییر عکس پروفایل">
+                                <svg viewBox="0 0 24 24">
+                                    <use xlink:href="#icon-edit-pencil"></use>
+                                </svg>
+                            </label>
+                            <input type="file" name="image" id="avatarUploadInput" class="d-none">
+                        </div>
+                    </div>
+                </form>
 
-        <!-- Main Content Area -->
-        <main class="profile-content-area-new">
-            <section id="account-details-section" class="profile-section-new">
+                <h1 class="sidebar-user-name text-dark"></h1>
 
-                <div class="sidebar-avatar-wrapper-2 position-relative w-center my-5">
-                    <!-- STATIC: Default avatar SVG placeholder -->
-                    <div class="position-relative w-50">
+                <nav class="sidebar-nav-new">
+                    <ul>
+                        <li><a href="profile.html" data-page="account" class="active"><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
+                        <li><a href="profile.sefaresh.html" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
+                        <li><a href="profile.Kifpol.html" data-page="wallet"><svg><use xlink:href="#icon-wallet"></use></svg> کیف پول</a></li>
+                        <li><a href="profile.adress.html" data-page="addresses"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
+                        <li><a href="profile.whilist.html" data-page="wishlist"><svg><use xlink:href="#icon-heart-solid"></use></svg> علاقه‌مندی‌ها</a></li>
+                        <li><a href="profile.chats.html" data-page="chat"><svg><use xlink:href="#icon-chat"></use></svg>گفتگو ها</a></li>
+                        <li><a href="profile.comments.html" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg> نظرات من</a></li>
+                        <li><a href="profile.password.html" data-page="password"><svg><use xlink:href="#icon-lock-password"></use></svg> تغییر رمز</a></li>
+                        <li class="nav-separator"></li>
+                        <li><a href="" id="logoutButton"><svg><use xlink:href="#icon-logout-door"></use></svg> خروج از حساب</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <!-- Main Content Area -->
+            <main class="profile-content-area-new">
+                <section id="account-details-section" class="profile-section-new">
 
-                        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2M2ZDFlMCI+PHBhdGggZD0iTTIwIDIxdi0yYTQgNCAwIDAgMC00LTRIOGE0IDQgMCAwIDAtNCA0djJtOC0xMWE0IDQgMCAxIDAgMC04IDQgNCAwIDAgMCAwIDhaIiBzdHJva2U9IiNhOGJjZGEiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIi8+PC9zdmc+" alt="آواتار پیش‌فرض" class="sidebar-avatar" id="profileAvatarPreview-2">
-                        <label for="avatarUploadInput-2" class="sidebar-avatar-upload p-1 w-right position-absolute ms-5" title="تغییر عکس پروفایل">
-                            <svg viewBox="0 0 24 24"><use xlink:href="#icon-edit-pencil"></use></svg>
-                        </label>
-                        <input type="file" id="avatarUploadInput-2" class="d-none" accept="image/*">
+                    <div class="sidebar-avatar-wrapper-2 position-relative w-center my-5">
+                        <!-- STATIC: Default avatar SVG placeholder -->
+                        <div class="position-relative w-50">
+
+                            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2M2ZDFlMCI+PHBhdGggZD0iTTIwIDIxdi0yYTQgNCAwIDAgMC00LTRIOGE0IDQgMCAwIDAtNCA0djJtOC0xMWE0IDQgMCAxIDAgMC04IDQgNCAwIDAgMCAwIDhaIiBzdHJva2U9IiNhOGJjZGEiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIi8+PC9zdmc+" alt="آواتار پیش‌فرض" class="sidebar-avatar" id="profileAvatarPreview-2">
+                            <label for="avatarUploadInput-2" class="sidebar-avatar-upload p-1 w-right position-absolute ms-5" title="تغییر عکس پروفایل">
+                                <svg viewBox="0 0 24 24"><use xlink:href="#icon-edit-pencil"></use></svg>
+                            </label>
+                            <input type="file" id="avatarUploadInput-2" class="d-none" accept="image/*">
+                        </div>
+
                     </div>
 
-                </div>
+                    <header class="section-header-new border-0">
+                        <h2><svg><use xlink:href="#icon-user-circle"></use></svg>اطلاعات حساب</h2>
+                    </header>
+                    <!-- STATIC: Account details are hardcoded. JS only handles visual toggles. -->
+                    <div id="accountDetailsContainer">
 
-                <header class="section-header-new border-0">
-                    <h2><svg><use xlink:href="#icon-user-circle"></use></svg>اطلاعات حساب</h2>
-                </header>
-                <!-- STATIC: Account details are hardcoded. JS only handles visual toggles. -->
-                <div id="accountDetailsContainer">
-
-                    <div class="account-detail-row is-editable">
-                        <div class="account-detail-label">نام</div>
-                        <div class="account-detail-value-wrapper">
-                            <span class="account-detail-value">علی</span>
-                            <div class="account-detail-input-wrapper">
-                                <input type="text" class="form-control-custom" value="علی">
-                            </div>
-                            <div class="account-detail-actions">
-                                <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
-                                <div class="save-cancel-btns">
-                                    <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
-                                    <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                        <div class="account-detail-row is-editable">
+                            <div class="account-detail-label">نام</div>
+                            <div class="account-detail-value-wrapper">
+                                <span class="account-detail-value">علی</span>
+                                <div class="account-detail-input-wrapper">
+                                    <input type="text" class="form-control-custom" value="علی">
+                                </div>
+                                <div class="account-detail-actions">
+                                    <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
+                                    <div class="save-cancel-btns">
+                                        <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
+                                        <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="account-detail-row is-editable">
-                        <div class="account-detail-label">نام خانوادگی</div>
-                        <div class="account-detail-value-wrapper">
-                            <span class="account-detail-value">رضایی</span>
-                            <div class="account-detail-input-wrapper">
-                                <input type="text" class="form-control-custom" value="رضایی">
-                            </div>
-                            <div class="account-detail-actions">
-                                <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
-                                <div class="save-cancel-btns">
-                                    <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
-                                    <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                        <div class="account-detail-row is-editable">
+                            <div class="account-detail-label">نام خانوادگی</div>
+                            <div class="account-detail-value-wrapper">
+                                <span class="account-detail-value">رضایی</span>
+                                <div class="account-detail-input-wrapper">
+                                    <input type="text" class="form-control-custom" value="رضایی">
+                                </div>
+                                <div class="account-detail-actions">
+                                    <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
+                                    <div class="save-cancel-btns">
+                                        <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
+                                        <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="account-detail-row is-editable">
-                        <div class="account-detail-label">تاریخ تولد</div>
-                        <div class="account-detail-value-wrapper">
-                            <span class="account-detail-value"></span>
-                            <div class="account-detail-input-wrapper">
-                                <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="تاریخ را انتخاب کنید">
-                            </div>
-                            <div class="account-detail-actions">
-                                <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
-                                <div class="save-cancel-btns">
-                                    <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
-                                    <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                        <div class="account-detail-row is-editable">
+                            <div class="account-detail-label">تاریخ تولد</div>
+                            <div class="account-detail-value-wrapper">
+                                <span class="account-detail-value"></span>
+                                <div class="account-detail-input-wrapper">
+                                    <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="تاریخ را انتخاب کنید">
+                                </div>
+                                <div class="account-detail-actions">
+                                    <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
+                                    <div class="save-cancel-btns">
+                                        <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
+                                        <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="account-detail-row"> <!-- Not editable -->
-                        <div class="account-detail-label">نام کاربری</div>
-                        <div class="account-detail-value-wrapper">
-                            <span class="account-detail-value">ali_reza</span>
-                        </div>
-                    </div>
-
-                    <div class="account-detail-row"> <!-- Not editable -->
-                        <div class="account-detail-label">ایمیل</div>
-                        <div class="account-detail-value-wrapper">
-                            <span class="account-detail-value">ali.reza@example.com</span>
-                        </div>
-                    </div>
-
-                    <div class="account-detail-row is-editable">
-                        <div class="account-detail-label">موبایل</div>
-                        <div class="account-detail-value-wrapper">
-                            <span class="account-detail-value">۰۹۱۲۱۱۱২২۳۳</span>
-                            <div class="account-detail-input-wrapper">
-                                <input type="tel" class="form-control-custom" value="۰۹۱۲۱۱۱২২۳۳">
+                        <div class="account-detail-row"> <!-- Not editable -->
+                            <div class="account-detail-label">نام کاربری</div>
+                            <div class="account-detail-value-wrapper">
+                                <span class="account-detail-value">ali_reza</span>
                             </div>
-                            <div class="account-detail-actions">
-                                <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
-                                <div class="save-cancel-btns">
-                                    <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
-                                    <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                        </div>
+
+                        <div class="account-detail-row"> <!-- Not editable -->
+                            <div class="account-detail-label">ایمیل</div>
+                            <div class="account-detail-value-wrapper">
+                                <span class="account-detail-value">ali.reza@example.com</span>
+                            </div>
+                        </div>
+
+                        <div class="account-detail-row is-editable">
+                            <div class="account-detail-label">موبایل</div>
+                            <div class="account-detail-value-wrapper">
+                                <span class="account-detail-value">۰۹۱۲۱۱۱২২۳۳</span>
+                                <div class="account-detail-input-wrapper">
+                                    <input type="tel" class="form-control-custom" value="۰۹۱۲۱۱۱২২۳۳">
+                                </div>
+                                <div class="account-detail-actions">
+                                    <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
+                                    <div class="save-cancel-btns">
+                                        <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
+                                        <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="account-detail-row is-editable">
-                        <div class="account-detail-label">درباره من</div>
-                        <div class="account-detail-value-wrapper">
-                            <span class="account-detail-value">توسعه دهنده وب فول استک.</span>
-                            <div class="account-detail-input-wrapper">
-                                <textarea class="form-control-custom" rows="3">توسعه دهنده وب فول استک.</textarea>
-                            </div>
-                            <div class="account-detail-actions">
-                                <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
-                                <div class="save-cancel-btns">
-                                    <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
-                                    <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                        <div class="account-detail-row is-editable">
+                            <div class="account-detail-label">درباره من</div>
+                            <div class="account-detail-value-wrapper">
+                                <span class="account-detail-value">توسعه دهنده وب فول استک.</span>
+                                <div class="account-detail-input-wrapper">
+                                    <textarea class="form-control-custom" rows="3">توسعه دهنده وب فول استک.</textarea>
+                                </div>
+                                <div class="account-detail-actions">
+                                    <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
+                                    <div class="save-cancel-btns">
+                                        <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
+                                        <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
-            </section>
-        </main>
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
-</div>
 
 <!-- Mobile Bottom Navigation -->
 <nav class="mobile-bottom-nav" id="mobileNavigation">
@@ -1391,6 +1403,8 @@
     <a href="#" class="mobile-nav-item" data-page="wishlist"><svg><use xlink:href="#icon-heart-solid"></use></svg><span>علاقه‌ها</span></a>
     <a href="#" class="mobile-nav-item" data-page="password"><svg><use xlink:href="#icon-lock-password"></use></svg><span>تغییر رمز</span></a>
     <a href="#" class="mobile-nav-item" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg><span>نظرات</span></a>
+    <a href="#" class="mobile-nav-item" data-page=""><svg><use xlink:href="#icon-chat"></use></svg><span>گفتگو</span></a>
+    <a href="#" class="mobile-nav-item" data-page=""><svg><use xlink:href="#icon-logout-door"></use></svg>خروج</a>
 </nav>
 
 <!-- Notification Container -->

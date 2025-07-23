@@ -54,3 +54,53 @@ var swiper3 = new Swiper('#main-product-swiper-3', {
         0: { slidesPerView: 2, spaceBetween: 18 , grid: { rows:  2.3, fill: 'row', }, }
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const blogContainer = document.querySelector('.blog-container');
+
+    if (!blogContainer) {
+        console.warn('Blog container with class "blog-container" not found.');
+        return;
+    }
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    blogContainer.addEventListener('mousedown', (e) => {
+
+        if (window.innerWidth > 768) {
+            isDown = true;
+
+            blogContainer.classList.add('is-dragging');
+            startX = e.pageX - blogContainer.offsetLeft;
+            scrollLeft = blogContainer.scrollLeft;
+            e.preventDefault();
+        }
+    });
+
+    blogContainer.addEventListener('mouseleave', () => {
+        isDown = false;
+        blogContainer.classList.remove('is-dragging');
+    });
+
+    blogContainer.addEventListener('mouseup', () => {
+        isDown = false;
+        blogContainer.classList.remove('is-dragging');
+    });
+
+    blogContainer.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - blogContainer.offsetLeft;
+        const walk = (x - startX) * 2;
+
+        blogContainer.scrollLeft = scrollLeft - walk;
+    });
+
+    blogContainer.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        blogContainer.scrollLeft += e.deltaY * 8;
+    });
+
+});

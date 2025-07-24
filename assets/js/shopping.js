@@ -103,6 +103,90 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const shipmentSection = document.getElementById('shipment-section');
+    const shipmentMethodForm = document.getElementById('shipment-method-form');
+
+    const paymentForm = document.getElementById('payment-form');
+    const finalAmountEl = document.getElementById('final-amount');
+    const walletTextEl = document.getElementById('wallet-text');
+
+    const mahaxShipmentOption = document.querySelector('input[name="shipment_method"][value="mahax"]');
+    const hozoriShipmentOption = document.querySelector('input[name="shipment_method"][value="hozori"]');
+    const allShipmentOptions = document.querySelectorAll('input[name="shipment_method"]');
+    const otherShipmentOptions = document.querySelectorAll('input[name="shipment_method"]:not([value="mahax"])');
+
+    const updatePaymentAndShipmentOptions = () => {
+        const checkedPaymentMethod = paymentForm.querySelector('input[name="payment_method"]:checked');
+        const checkedShipmentMethod = shipmentMethodForm.querySelector('input[name="shipment_method"]:checked');
+        const paymentHomeOption = document.getElementById('payment-home');
+
+        // Reset all payment options to enabled by default for specific conditions
+        document.querySelectorAll('input[name="payment_method"]').forEach(option => {
+            option.disabled = false;
+            option.closest('.shop-cs-selectable-option')?.classList.remove('disabled');
+        });
+
+        // Logic for "card_mahax" payment method
+        if (checkedPaymentMethod && checkedPaymentMethod.id === 'payment-home' && checkedPaymentMethod.value === 'card_mahax') {
+            if (mahaxShipmentOption) {
+                mahaxShipmentOption.checked = true;
+                mahaxShipmentOption.closest('.shop-cs-selectable-option')?.classList.remove('disabled');
+                mahaxShipmentOption.disabled = false;
+            }
+            otherShipmentOptions.forEach(option => {
+                option.disabled = true;
+                option.closest('.shop-cs-selectable-option')?.classList.add('disabled');
+            });
+        }
+        // Logic for "hozori" shipment method
+        else if (hozoriShipmentOption && hozoriShipmentOption.checked) {
+            if (paymentHomeOption) {
+                paymentHomeOption.disabled = true;
+                paymentHomeOption.closest('.shop-cs-selectable-option')?.classList.add('disabled');
+                if (paymentHomeOption.checked) {
+                    document.getElementById('payment-card').checked = true;
+                }
+            }
+            // All shipment methods should be enabled if not specific to card_mahax payment
+            allShipmentOptions.forEach(option => {
+                option.disabled = false;
+                option.closest('.shop-cs-selectable-option')?.classList.remove('disabled');
+            });
+        }
+        // General case: enable all shipment options if no specific payment/shipment method rule applies
+        else {
+            allShipmentOptions.forEach(option => {
+                option.disabled = false;
+                option.closest('.shop-cs-selectable-option')?.classList.remove('disabled');
+            });
+        }
+
+        // Update total amount based on payment method
+        const originalTotal = parsePrice(finalAmountEl.textContent);
+        const walletInput = paymentForm.querySelector('input[value="wallet"]');
+        const originalWalletAmount = walletInput ? parsePrice(walletInput.dataset.wallet || '0') : 0;
+
+        if (checkedPaymentMethod && checkedPaymentMethod.value === 'wallet') {
+            let walletAmount = originalWalletAmount;
+            let finalTotal = originalTotal;
+            if (walletAmount >= finalTotal) {
+                walletAmount -= finalTotal;
+                finalTotal = 0;
+            } else {
+                finalTotal -= walletAmount;
+                walletAmount = 0;
+            }
+            finalAmountEl.innerHTML = formatPrice(finalTotal) + ' <span class="shop-cs-price-unit">تومان</span>';
+            if (walletTextEl) {
+                walletTextEl.textContent = 'موجودی: ' + formatPrice(walletAmount) + ' تومان';
+            }
+        } else {
+            finalAmountEl.innerHTML = formatPrice(originalTotal) + ' <span class="shop-cs-price-unit">تومان</span>';
+            if (walletTextEl) {
+                walletTextEl.textContent = 'موجودی: ' + formatPrice(originalWalletAmount) + ' تومان';
+            }
+        }
+    };
+
     if (shipmentSection) {
         shipmentSection.addEventListener('click', e => {
             const dateCard = e.target.closest('.shop-cs-time-scroller__item');
@@ -119,7 +203,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (newTimeGroup) newTimeGroup.classList.add('active');
             }
         });
+
+        if (shipmentMethodForm) {
+            shipmentMethodForm.addEventListener('change', updatePaymentAndShipmentOptions);
+        }
     }
+
+    if (paymentForm) {
+        paymentForm.addEventListener('change', updatePaymentAndShipmentOptions);
+    }
+
 
     const setupScroller = (wrapper) => {
         const scroller = wrapper.querySelector('.shop-cs-time-scroller');
@@ -176,69 +269,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.shop-cs-time-scroller-wrapper').forEach(setupScroller);
 
-    const paymentForm = document.getElementById('payment-form');
-    const finalAmountEl = document.getElementById('final-amount');
-    const walletTextEl = document.getElementById('wallet-text');
-
-    const mahaxShipmentOption = document.querySelector('input[name="shipment_method"][value="mahax"]');
-    const allShipmentOptions = document.querySelectorAll('input[name="shipment_method"]');
-    const otherShipmentOptions = document.querySelectorAll('input[name="shipment_method"]:not([value="mahax"])');
-
-    const updateShipmentMethodDisplay = (selectedPaymentValue, selectedPaymentId) => {
-        if (selectedPaymentId === 'payment-home' && selectedPaymentValue === 'card_mahax') {
-            if (mahaxShipmentOption) {
-                mahaxShipmentOption.checked = true;
-                mahaxShipmentOption.closest('.shop-cs-selectable-option')?.classList.remove('disabled');
-                mahaxShipmentOption.disabled = false;
-            }
-            otherShipmentOptions.forEach(option => {
-                option.disabled = true;
-                option.closest('.shop-cs-selectable-option')?.classList.add('disabled');
-            });
-        } else {
-            allShipmentOptions.forEach(option => {
-                option.disabled = false;
-                option.closest('.shop-cs-selectable-option')?.classList.remove('disabled');
-            });
-        }
-    };
-
-    if (paymentForm && finalAmountEl) {
-        const originalTotal = parsePrice(finalAmountEl.textContent);
-        const walletInput = paymentForm.querySelector('input[value="wallet"]');
-        const originalWalletAmount = walletInput ? parsePrice(walletInput.dataset.wallet || '0') : 0;
-
-        paymentForm.addEventListener('change', () => {
-            const checkedPaymentMethod = paymentForm.querySelector('input[name="payment_method"]:checked');
-            if (!checkedPaymentMethod) return;
-
-            updateShipmentMethodDisplay(checkedPaymentMethod.value, checkedPaymentMethod.id);
-
-            if (checkedPaymentMethod.value === 'wallet') {
-                let walletAmount = originalWalletAmount;
-                let finalTotal = originalTotal;
-                if (walletAmount >= finalTotal) {
-                    walletAmount -= finalTotal;
-                    finalTotal = 0;
-                } else {
-                    finalTotal -= walletAmount;
-                    walletAmount = 0;
-                }
-                finalAmountEl.innerHTML = formatPrice(finalTotal) + ' <span class="shop-cs-price-unit">تومان</span>';
-                if (walletTextEl) {
-                    walletTextEl.textContent = 'موجودی: ' + formatPrice(walletAmount) + ' تومان';
-                }
-            } else {
-                finalAmountEl.innerHTML = formatPrice(originalTotal) + ' <span class="shop-cs-price-unit">تومان</span>';
-                if (walletTextEl) {
-                    walletTextEl.textContent = 'موجودی: ' + formatPrice(originalWalletAmount) + ' تومان';
-                }
-            }
-        });
-
-        const initialCheckedPaymentMethod = paymentForm.querySelector('input[name="payment_method"]:checked');
-        if (initialCheckedPaymentMethod) {
-            updateShipmentMethodDisplay(initialCheckedPaymentMethod.value, initialCheckedPaymentMethod.id);
-        }
-    }
+    // Initial call to set correct states on load
+    updatePaymentAndShipmentOptions();
 });

@@ -1580,11 +1580,10 @@ body {
 .shop-cs-cart-item-s {
   display: flex;
   align-items: center;
+  flex-wrap: wrap !important;
   gap: 16px;
   padding: 16px;
   transition: all 0.3s ease-out;
-  overflow: hidden;
-  max-height: 120px;
 }
 
 .shop-cs-cart-item-s:not(:last-child) {

@@ -40,7 +40,7 @@ body {
 #address-list-collapsible.is-open { max-height: 500px; opacity: 1; margin-top: 16px; padding-top: 16px; }
 #btn-toggle-address.is-open .chevron-icon { transform: rotate(180deg); }
 
-.shop-cs-cart-item-s { display: flex; align-items: center; gap: 16px; padding: 16px; transition: all 0.3s ease-out; overflow: hidden; max-height: 120px; }
+.shop-cs-cart-item-s { display: flex; align-items: center; flex-wrap: wrap !important; gap: 16px; padding: 16px; transition: all 0.3s ease-out; }
 .shop-cs-cart-item-s:not(:last-child) { border-bottom: 1px solid var(--dk-border-color); }
 .shop-cs-cart-item-s h3 { font-size: 0.85rem; }
 .shop-cs-cart-item-s.fading-out { animation: item-fade-out 0.4s ease-out forwards; }

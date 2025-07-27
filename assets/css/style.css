@@ -405,6 +405,7 @@ header {
 .d-bx {
   width: 100%;
   text-align: -webkit-left;
+  white-space: nowrap;
 }
 
 @media only screen and (max-width: 550px) {
@@ -11885,7 +11886,7 @@ html[dir=rtl] .wow-notification-close-new {
 }
 
 .story-module-story-gradient-border.story-module-story-seen {
-  background: #ccc;
+  background: #ccc !important;
 }
 
 .story-module-story-avatar {
@@ -11893,6 +11894,7 @@ html[dir=rtl] .wow-notification-close-new {
   height: 100%;
   border-radius: 50%;
   border: 3px solid #fff;
+  background-color: rgba(238, 238, 238, 0.9333333333);
   object-fit: cover;
   user-select: none;
   -webkit-user-select: none;

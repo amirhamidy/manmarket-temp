@@ -85,7 +85,7 @@
 }
 
 .story-module-story-gradient-border.story-module-story-seen {
-    background: #ccc;
+    background: #ccc!important;
 }
 
 .story-module-story-avatar {
@@ -93,6 +93,7 @@
     height: 100%;
     border-radius: 50%;
     border: 3px solid #fff;
+    background-color: #eeeeeeee;
     object-fit: cover;
     user-select: none;
     -webkit-user-select: none;

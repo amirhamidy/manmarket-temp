@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const externalCaptionElement = modalContent.querySelector('#story-module-external-caption');
     const captionTextElement = externalCaptionElement.querySelector('#story-module-caption-text');
+    captionTextElement.setAttribute('href' , '')
+    captionTextElement.setAttribute('target' , '_blank')
+    captionTextElement.style.cursor = 'pointer'
+
+    captionTextElement.addEventListener('click' , ()=>{
+        window.location.href = '../../single.product.html'
+    })
 
 
     let currentStoryUserIndex = 0;

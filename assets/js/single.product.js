@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
             galleryTop = null;
         }
 
+
         const galleryTopWrapper = galleryTopSwiperEl.querySelector('.swiper-wrapper');
         const galleryThumbsWrapper = galleryThumbsSwiperEl.querySelector('.swiper-wrapper');
 
@@ -126,6 +127,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 setTimeout(() => {
                     verticalGalleryContentEl.children[actualInitialIndex].scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 50);
+                setTimeout(
+                    ()=>{
+                        let HiddenS = document.getElementsByClassName('box-in-slider-single-pr')
+                        Array.from(HiddenS).forEach(element => {
+                            element.style.display = 'none'
+                        });
+                    },3000)
             }
             if(closeModalButton) closeModalButton.focus();
         } else {

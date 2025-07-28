@@ -11812,6 +11812,18 @@ html[dir=rtl] .wow-notification-close-new {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
+.product-img-in-sr {
+  width: 80% !important;
+  height: 250px !important;
+  object-fit: cover !important;
+  max-width: 80% !important;
+  max-height: 280px !important;
+}
+
+.line-h-1 {
+  line-height: 1.7em !important;
+}
+
 .story-module-main-wrapper {
   margin: 0;
   display: flex;

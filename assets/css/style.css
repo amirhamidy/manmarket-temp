@@ -3821,6 +3821,11 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   margin-bottom: 10px;
   font-weight: bold;
   text-align: right;
+  width: 160% !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  -webkit-line-clamp: 2 !important;
   white-space: normal !important;
 }
 
@@ -3829,6 +3834,10 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
     font-size: 18px;
   }
 }
+#a-s {
+  margin-top: 9% !important;
+}
+
 .product-rating {
   display: flex;
   align-items: center;
@@ -4245,9 +4254,29 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   -webkit-transform: translateY(-2px);
 }
 
-@media screen and (min-width: 770px) {
+@media screen and (max-width: 2000px) {
   #a-s {
-    margin-top: 0px !important;
+    margin-top: 6% !important;
+  }
+}
+@media screen and (max-width: 1400px) {
+  #a-s {
+    margin-top: 9% !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  #a-s {
+    margin-top: 0 !important;
+  }
+}
+@media screen and (max-width: 991px) {
+  .product-title {
+    width: 100% !important;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    overflow: auto !important;
+    -webkit-line-clamp: 100 !important;
+    white-space: normal !important;
   }
 }
 .icon-x:hover {

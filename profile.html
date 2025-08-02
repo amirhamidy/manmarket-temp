@@ -1290,103 +1290,87 @@
                     <!-- STATIC: Account details are hardcoded. JS only handles visual toggles. -->
                     <div id="accountDetailsContainer">
 
-                        <div class="account-detail-row is-editable">
-                            <div class="account-detail-label">نام</div>
-                            <div class="account-detail-value-wrapper">
+
+
+                        <form>
+                            <div class="account-detail-row is-editable align-items-center">
+                                <div class="account-detail-label">نام</div>
+                                <div class="account-detail-value-wrapper align-items-center" >
                                 <span class="account-detail-value">علی</span>
                                 <div class="account-detail-input-wrapper">
                                     <input type="text" class="form-control-custom" value="علی">
                                 </div>
                                 <div class="account-detail-actions">
-                                    <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
+                                    <button type="button" class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
                                     <div class="save-cancel-btns">
-                                        <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
-                                        <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                                        <button type="button" class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
+                                        <button type="button" class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="account-detail-row is-editable">
-                            <div class="account-detail-label">نام خانوادگی</div>
-                            <div class="account-detail-value-wrapper">
-                                <span class="account-detail-value">رضایی</span>
-                                <div class="account-detail-input-wrapper">
-                                    <input type="text" class="form-control-custom" value="رضایی">
-                                </div>
-                                <div class="account-detail-actions">
-                                    <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
-                                    <div class="save-cancel-btns">
-                                        <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
-                                        <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                            </div>
+                            <div class="account-detail-row is-editable align-items-center">
+                                <div class="account-detail-label">نام خانوادگی</div>
+                                <div class="account-detail-value-wrapper align-items-center">
+                                    <span class="account-detail-value">رضایی</span>
+                                    <div class="account-detail-input-wrapper">
+                                        <input type="text" class="form-control-custom" value="رضایی">
+                                    </div>
+                                    <div class="account-detail-actions">
+                                        <button type="button" class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
+                                        <div class="save-cancel-btns">
+                                            <button type="button" class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
+                                            <button type="button" class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="account-detail-row is-editable">
-                            <div class="account-detail-label">تاریخ تولد</div>
-                            <div class="account-detail-value-wrapper">
-                                <span class="account-detail-value"></span>
-                                <div class="account-detail-input-wrapper">
-                                    <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="تاریخ را انتخاب کنید">
-                                </div>
-                                <div class="account-detail-actions">
-                                    <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
-                                    <div class="save-cancel-btns">
-                                        <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
-                                        <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                            <div class="account-detail-row is-editable align-items-center">
+                                <div class="account-detail-label">تاریخ تولد</div>
+                                <div class="account-detail-value-wrapper align-items-center">
+                                    <span class="account-detail-value"></span>
+                                    <div class="account-detail-input-wrapper">
+                                        <input type="text" class="form-control" id="birthDate" name="birthDate" placeholder="تاریخ را انتخاب کنید">
+                                    </div>
+                                    <div class="account-detail-actions">
+                                        <button type="button" class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
+                                        <div class="save-cancel-btns">
+                                            <button type="button" class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
+                                            <button type="button" class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="account-detail-row"> <!-- Not editable -->
-                            <div class="account-detail-label">نام کاربری</div>
-                            <div class="account-detail-value-wrapper">
-                                <span class="account-detail-value">ali_reza</span>
-                            </div>
-                        </div>
-
-                        <div class="account-detail-row"> <!-- Not editable -->
-                            <div class="account-detail-label">ایمیل</div>
-                            <div class="account-detail-value-wrapper">
-                                <span class="account-detail-value">ali.reza@example.com</span>
-                            </div>
-                        </div>
-
-                        <div class="account-detail-row is-editable">
-                            <div class="account-detail-label">موبایل</div>
-                            <div class="account-detail-value-wrapper">
-                                <span class="account-detail-value">۰۹۱۲۱۱۱২২۳۳</span>
-                                <div class="account-detail-input-wrapper">
-                                    <input type="tel" class="form-control-custom" value="۰۹۱۲۱۱۱২২۳۳">
+                            <div class="account-detail-row align-items-center">
+                                <div class="account-detail-label">نام کاربری</div>
+                                <div class="account-detail-value-wrapper align-items-center">
+                                    <span class="account-detail-value">ali_reza</span>
                                 </div>
-                                <div class="account-detail-actions">
-                                    <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
-                                    <div class="save-cancel-btns">
-                                        <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
-                                        <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                            </div>
+                            <div class="account-detail-row align-items-center">
+                                <div class="account-detail-label">ایمیل</div>
+                                <div class="account-detail-value-wrapper align-items-center">
+                                    <span class="account-detail-value">ali.reza@example.com</span>
+                                </div>
+                            </div>
+                            <div class="account-detail-row is-editable align-items-center">
+                                <div class="account-detail-label">موبایل</div>
+                                <div class="account-detail-value-wrapper align-items-center">
+                                    <span class="account-detail-value">۰۹۱۲۱۱۱২২۳۳</span>
+                                    <div class="account-detail-input-wrapper">
+                                        <input type="tel" class="form-control-custom" value="۰۹۱۲۱۱۱২২۳۳">
+                                    </div>
+                                    <div class="account-detail-actions">
+                                        <button type="button" class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
+                                        <div class="save-cancel-btns">
+                                            <button type="button" class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
+                                            <button type="button" class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="account-detail-row is-editable">
-                            <div class="account-detail-label">درباره من</div>
-                            <div class="account-detail-value-wrapper">
-                                <span class="account-detail-value">توسعه دهنده وب فول استک.</span>
-                                <div class="account-detail-input-wrapper">
-                                    <textarea class="form-control-custom" rows="3">توسعه دهنده وب فول استک.</textarea>
-                                </div>
-                                <div class="account-detail-actions">
-                                    <button class="edit-trigger-btn" title="ویرایش"><svg><use xlink:href="#icon-edit-pencil"></use></svg></button>
-                                    <div class="save-cancel-btns">
-                                        <button class="save-btn" title="ذخیره"><svg><use xlink:href="#icon-save-disk"></use></svg></button>
-                                        <button class="cancel-btn" title="لغو"><svg><use xlink:href="#icon-cancel-circle"></use></svg></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <button type="submit" class="theme-color text-light rounded-3 mt-3 px-4 py-2">ثبت مشخصات</button>
+                        </form>
 
                     </div>
                 </section>

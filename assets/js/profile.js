@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const navixElement = document.querySelector('.navix');
     const codeElement = document.querySelector('.code');
@@ -14,58 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 navixElement.style.display = 'none';
                 trueCElement.style.display = 'inline';
             } catch (err) {
-                alert("روند کپی کردن با مشکل مواجه شد")
+                alert("روند کپی کردن با مشکل مواجه شد");
             }
         });
     }
 });
-
-function showToast({ type = 'info', title, message, duration = 4500, isConfirm = false, onConfirm = () => {}, onCancel = () => {} }) {
-    const container = document.getElementById('notificationToastContainer');
-    if (!container) return;
-    const iconMap = { success: '#icon-check-circle-fill', error: '#icon-alert-triangle-fill', warning: '#icon-alert-triangle-fill', info: '#icon-info-circle-fill' };
-    const toastId = `toast-${Date.now()}`;
-    const toastDiv = document.createElement('div');
-    toastDiv.className = `wow-notification-new ${type} ${isConfirm ? 'confirm' : ''}`;
-    toastDiv.id = toastId;
-
-    let confirmButtonsHTML = '';
-    if (isConfirm) {
-        confirmButtonsHTML = `
-        <div class="wow-notification-actions">
-            <button class="btn-custom btn-sm btn-secondary cancel-btn">انصراف</button>
-            <button class="btn-custom btn-sm btn-danger-outline confirm-btn">بله، حذف کن</button>
-        </div>`;
-    }
-
-    toastDiv.innerHTML = `
-        <div class="wow-notification-header">
-            <div class="wow-notification-icon-new"><svg><use xlink:href="${iconMap[type] || iconMap.info}"></use></svg></div>
-            <div class="wow-notification-content-new">
-                <div class="wow-notification-title-new">${title}</div>
-                <div class="wow-notification-message-new">${message}</div>
-            </div>
-            <button class="wow-notification-close-new">×</button>
-        </div>
-        ${confirmButtonsHTML}`;
-
-    container.prepend(toastDiv);
-    requestAnimationFrame(() => toastDiv.classList.add('show'));
-
-    const removeToast = () => {
-        toastDiv.classList.remove('show');
-        setTimeout(() => toastDiv.remove(), 400);
-    };
-
-    toastDiv.querySelector('.wow-notification-close-new').onclick = removeToast;
-
-    if (isConfirm) {
-        toastDiv.querySelector('.confirm-btn').onclick = () => { onConfirm(); removeToast(); };
-        toastDiv.querySelector('.cancel-btn').onclick = () => { onCancel(); removeToast(); };
-    } else {
-        if (duration > 0) setTimeout(removeToast, duration);
-    }
-}
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.account-detail-row.is-editable').forEach(row => {
@@ -88,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         saveBtn.addEventListener('click', () => {
             valueSpan.textContent = inputEl.value;
             row.classList.remove('editing');
-            showToast({type: 'success', title: 'نمایشی', message: 'تغییرات شما (به صورت نمایشی) ذخیره شد.'});
         });
     });
 
@@ -101,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     document.getElementById('profileAvatarPreview').src = event.target.result;
-                    showToast({type: 'success', title: 'پیش‌نمایش آواتار', message: 'عکس پروفایل شما برای پیش‌نمایش تغییر کرد.'});
                 }
                 reader.readAsDataURL(file);
             }
@@ -114,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     document.getElementById('profileAvatarPreview-2').src = event.target.result;
-                    showToast({type: 'success', title: 'پیش‌نمایش آواتار', message: 'عکس پروفایل شما برای پیش‌نمایش تغییر کرد.'});
                 }
                 reader.readAsDataURL(file);
             }
@@ -124,12 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const logoutButton = document.getElementById('logoutButton');
     if (logoutButton) {
         logoutButton.onclick = (e) => {
-            e.preventDefault();
-            showToast({type: 'info', title: 'خروج از حساب', message: 'این یک دکمه نمایشی برای خروج از حساب است.'});
         };
     }
 });
-
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -161,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
             currentDefault.classList.remove('is-default');
         }
         cardToMakeDefault.classList.add('is-default');
-        showToast({type: 'success', title: 'انجام شد', message: 'آدرس پیش‌فرض با موفقیت تغییر کرد.'});
     };
 
     if (addressListContainer) {
@@ -177,14 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     openAddressModal('edit');
                 } else if (button.classList.contains('delete-address-btn')) {
                     if (card.classList.contains('is-default')) {
-                        showToast({type: 'error', title: 'خطا', message: 'شما نمی‌توانید آدرس پیش‌فرض را حذف کنید.'});
                         return;
                     }
                     card.style.transition = 'all 0.3s ease';
                     card.style.opacity = '0';
                     card.style.transform = 'translateX(50px)';
                     setTimeout(() => card.remove(), 300);
-                    showToast({type: 'info', title: 'حذف شد', message: 'آدرس مورد نظر حذف گردید.'});
                 }
             } else {
                 setDefaultAddress(card);
@@ -201,9 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (addressForm) {
         addressForm.addEventListener('submit', (e) => {
-            e.preventDefault();
             closeAddressModal();
-            showToast({type: 'success', title: 'ذخیره شد', message: 'آدرس شما (به صورت نمایشی) ذخیره شد.'});
         });
     }
 });
@@ -301,7 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     form.addEventListener('submit', (e) => {
-        e.preventDefault();
         document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
         let isValid = true;
         const DUMMY_CURRENT_PASSWORD = 'password123';
@@ -338,7 +278,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+const myScrollElement = document.getElementById('my-scrolling-container');
 
+if (myScrollElement) {
+    myScrollElement.addEventListener('scroll', () => {
+        const atEnd = myScrollElement.scrollWidth - myScrollElement.scrollLeft === myScrollElement.clientWidth;
+
+        if (atEnd) {
+            myScrollElement.scrollLeft = 0;
+        }
+    });
+}
 $('#birthDate').persianDatepicker({
     format: 'YYYY/MM/DD',
     initialValue: false,

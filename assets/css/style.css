@@ -9073,7 +9073,6 @@ svg {
 }
 
 .ws-cs-input:focus {
-  border-color: #7e57c2 !important;
   outline: none !important;
 }
 

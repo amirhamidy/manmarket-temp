@@ -9502,6 +9502,7 @@ html[dir=rtl] .wow-notification-close-new {
 
 /* --- PAGE-SPECIFIC STYLES: Account Details (for demo) --- */
 .account-detail-row {
+  height: 60px !important;
   display: flex;
   align-items: flex-start;
   padding: calc(var(--spacing-unit) * 1.5) 0;

@@ -3755,6 +3755,11 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   text-shadow: none;
 }
 
+#modalCloseButton:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
 .fullscreen-modal .close-btn:hover {
   color: var(--primary-color);
   transform: rotate(90deg);
@@ -6782,9 +6787,15 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay {
   display: flex !important;
   align-items: center !important;
   overflow: visible !important;
+  width: 160% !important;
   white-space: normal !important;
 }
 
+@media (max-width: 100px) {
+  .card-title-2 {
+    width: 100% !important;
+  }
+}
 .card-title-2 .line {
   flex-grow: 1 !important;
   height: 1.5px !important;

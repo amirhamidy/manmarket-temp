@@ -159,6 +159,11 @@
   line-height: 1;
   text-shadow: none;
 }
+
+#modalCloseButton:focus{
+  border: none !important;
+  box-shadow: none !important;
+}
 .fullscreen-modal .close-btn:hover {
   color: var(--primary-color);
   transform: rotate(90deg);

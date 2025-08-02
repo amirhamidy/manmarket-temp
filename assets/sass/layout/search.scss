@@ -614,7 +614,14 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
   display: flex !important;
   align-items: center !important;
   overflow: visible !important;
+  width: 160% !important;
   white-space: normal !important;
+}
+
+@media (max-width: 100px){
+  .card-title-2{
+    width: 100% !important;
+  }
 }
 
 .card-title-2 .line {

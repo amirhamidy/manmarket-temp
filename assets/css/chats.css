@@ -299,7 +299,7 @@ body {
 }
 
 .chat-list .search-bar {
-    padding: 24px 18px;
+    padding: 24px 30px;
     border-bottom: 1px solid rgba(224, 224, 224, 0.5);
     position: sticky;
     top: 0;
@@ -308,6 +308,8 @@ body {
     backdrop-filter: blur(5px);
     text-align: -webkit-center;
     flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .chat-list .search-bar input {

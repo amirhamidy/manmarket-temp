@@ -11551,6 +11551,11 @@ html[dir=rtl] .wow-notification-close-new {
     padding-top: 100px;
   }
 }
+@media (max-width: 700px) {
+  .s-x {
+    padding-right: 180px;
+  }
+}
 .brand-card {
   left: 0;
   top: 0;

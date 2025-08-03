@@ -405,7 +405,7 @@ header {
 .d-bx {
   width: 100%;
   text-align: -webkit-left;
-  white-space: nowrap;
+  white-space: nowrap !important;
 }
 
 @media only screen and (max-width: 550px) {
@@ -413,13 +413,13 @@ header {
     position: absolute;
     top: 45% !important;
     transform: translateY(41%);
-    left: -12% !important;
+    left: -9% !important;
   }
   .cs-slide-v-2-swiper-button-prev {
     position: absolute;
     top: 45% !important;
     transform: translateY(41%);
-    right: -12% !important;
+    right: -9% !important;
   }
   .d-bx {
     padding-right: 0.6rem !important;
@@ -12238,6 +12238,13 @@ html[dir=rtl] .wow-notification-close-new {
   left: auto;
 }
 
+#close-btn-story {
+  position: absolute;
+  top: 1%;
+  right: 88%;
+  z-index: 100000000000000000;
+}
+
 .story-module-nav-button-next {
   left: -5%;
   right: auto;
@@ -12553,15 +12560,20 @@ html[dir=rtl] .wow-notification-close-new {
   direction: rtl;
 }
 
-/* در حالت موبایل، مدال و کپشن باید تمام عرض را بگیرند */
 @media (max-width: 768px) {
   .story-module-external-caption {
     border-radius: 0;
     max-width: 100%;
-    max-height: 20vh; /* در موبایل هم کنترل شود */
+    max-height: 20vh;
   }
 }
-/* --- پایان تغییرات برای Video.js و کپشن --- */
+.close-btn-story {
+  position: absolute;
+  top: 4%;
+  left: 5%;
+  color: white;
+}
+
 .modal {
   position: fixed;
   top: 0;

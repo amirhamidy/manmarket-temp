@@ -24,7 +24,7 @@
 .d-bx{
   width: 100%;
   text-align: -webkit-left;
-  white-space: nowrap;
+  white-space: nowrap !important;
 }
 
 @media only screen and (max-width: 550px){
@@ -32,13 +32,13 @@
     position: absolute;
     top: 45% !important;
     transform: translateY(41%);
-    left: -12% !important;
+    left: -9% !important;
   }
   .cs-slide-v-2-swiper-button-prev{
     position: absolute;
     top: 45% !important;
     transform: translateY(41%);
-    right: -12% !important;
+    right: -9% !important;
   }
   .d-bx{
     padding-right: 0.6rem !important;

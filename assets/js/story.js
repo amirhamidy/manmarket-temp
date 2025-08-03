@@ -124,6 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         hideLoader();
 
+
+
         modalContent.style.transition = 'transform 0.3s ease-in, opacity 0.3s ease-in';
         modal.style.transition = 'opacity 0.3s ease-in';
 
@@ -491,6 +493,10 @@ document.addEventListener('DOMContentLoaded', () => {
             closeStoryModal();
         }
     });
+    let CloseStoryInMB = document.getElementById('close-btn-story')
+    CloseStoryInMB.addEventListener('click' , ()=>{
+        closeStoryModal();
+    })
     modalContent.addEventListener('click', (e) => {
         e.stopPropagation();
     });
@@ -499,6 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('story-module-active')) {
             closeStoryModal();
+
         }
         if (e.key === 'ArrowRight' && modal.classList.contains('story-module-active')) {
             prevStory();

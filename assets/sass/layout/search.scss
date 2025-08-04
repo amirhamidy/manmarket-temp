@@ -612,9 +612,11 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
   font-family: 'Poppins', sans-serif !important;
   color: #666 !important;
   display: flex !important;
-  align-items: center !important;
-  overflow: visible !important;
   width: 160% !important;
+  align-items: center !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  -webkit-line-clamp: 0.5 !important;
   white-space: normal !important;
 }
 

@@ -23,66 +23,17 @@
 
     <form>
         <div class="mb-3">
-            <label for="email" class="form-label">ایمیل</label>
-            <input type="email" class="form-control" id="email" placeholder="مثال: yourname@example.com" required>
-            <div class="invalid-feedback d-none" id="email-error">لطفاً یک ایمیل معتبر وارد کنید.</div>
+            <label for="email" class="form-label">ایمیل / شماره تلفن</label>
+            <input type="email" class="form-control" id="email" placeholder="" required>
+            <div class="invalid-feedback d-none" id="email-error">ایمیل / شماره تلفن شما معتبر نیست </div>
         </div>
 
-        <div class="mb-3">
-            <label for="password" class="form-label">رمز عبور</label>
-            <div class="sing-password-field-container">
-                <input type="password" class="form-control sing-password-field" id="password" placeholder="حداقل ۸ کاراکتر" required minlength="8">
-                <span class="sing-toggle-password" data-target="password">
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 16 16"
-                                width="1em"
-                                height="1em"
-                        >
-                            <g fill="none" stroke="currentColor">
-                                <circle cx="8" cy="8" r="2.5"></circle>
-                                <path
-                                        strokeLinecap="round"
-                                        d="M15.42 8.29c.12-.18.12-.4 0-.58c-.7-1-3.28-4.21-7.42-4.21S1.28 6.71.58 7.71c-.12.18-.12.4 0 .58c.7 1 3.28 4.21 7.42 4.21s6.72-3.21 7.42-4.21z"
-                                ></path>
-                            </g>
-                        </svg>
-                    </span>
-            </div>
-        </div>
-
-        <div class="mb-4">
-            <label for="confirm-password" class="form-label">
-                تکرار رمز عبور
-            </label>
-            <div class="sing-password-field-container">
-                <input type="password" class="form-control sing-password-field" id="confirm-password" placeholder="رمز عبور خود را دوباره وارد کنید" required>
-                <span class="sing-toggle-password" data-target="confirm-password">
-                        <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 16 16"
-                                width="1em"
-                                height="1em"
-                        >
-                            <g fill="none" stroke="currentColor">
-                                <circle cx="8" cy="8" r="2.5"></circle>
-                                <path
-                                        strokeLinecap="round"
-                                        d="M15.42 8.29c.12-.18.12-.4 0-.58c-.7-1-3.28-4.21-7.42-4.21S1.28 6.71.58 7.71c-.12.18-.12.4 0 .58c.7 1 3.28 4.21 7.42 4.21s6.72-3.21 7.42-4.21z"
-                                ></path>
-                            </g>
-                        </svg>
-                    </span>
-            </div>
-            <div class="invalid-feedback d-none" id="confirm-password-error">رمزهای عبور با هم مطابقت ندارند.</div>
-        </div>
-
-        <button type="submit" class="btn btn-primary w-100">ثبت نام</button>
+        <button type="submit" class="btn btn-primary w-100 fs-14">ثبت نام</button>
     </form>
 
     <div class="sing-divider">یا</div>
 
-    <button type="button" class="btn btn-outline-secondary w-100">
+    <button type="button" class="btn btn-outline-secondary w-100 fs-14">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path d="M22.56 12.25c0-.78-.07-1.5-.18-2.22H12v4.46h6.41c-.29 1.45-1.12 2.68-2.34 3.47v2.92h3.76c2.2-2.03 3.48-4.97 3.48-8.63z" fill="#4285F4"/>
             <path d="M12 23c3.04 0 5.58-1 7.44-2.73l-3.76-2.92c-1.09.73-2.52 1.15-4.06 1.15-3.13 0-5.78-2.11-6.73-4.93H1.47v2.99c1.97 3.89 5.86 6.55 10.53 6.55z" fill="#34A853"/>
@@ -93,7 +44,7 @@
     </button>
 
     <div class="form-text mt-3">
-        قبلاً حساب کاربری دارید؟ <a href="#">ورود</a>
+        قبلاً حساب کاربری دارید؟ <a href="#" class="fs-14">ورود</a>
     </div>
 </div>
 

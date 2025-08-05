@@ -628,3 +628,20 @@ document.querySelectorAll('.alll-cs').forEach(btn => {
         tabPane.scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
 })
+
+
+let notX = document.querySelector('.not-x')
+
+notX.addEventListener('click' , function (){
+    Swal.fire({
+        title: 'اضافه شد!',
+        text: 'بعد از موجود شدن کالا توسط ایمیل یا پیامک به شما اطلاع خواهیم داد',
+        icon: 'success',
+        position: 'center',
+        showConfirmButton: false,
+        timer: 5000,
+        timerProgressBar: true,
+    });
+})
+
+

@@ -1,22 +1,21 @@
 @charset "UTF-8";
 @font-face {
   font-family: peyda;
-  src: url("../Peyda.font/Peyda/02-Farsi_Namerals/WebFonts/fonts/woff2/PeydaWebFaNum-Medium.woff2") format("woff2");
-  src: url("../Peyda.font/Peyda/02-Farsi_Namerals/WebFonts/fonts/woff/PeydaWebFaNum-Medium.woff") format("woff");
-  src: url("../Peyda.font/Peyda/02-Farsi_Namerals/TTF/PeydaFaNum-Medium.ttf") format("truetype");
-  src: url("../Peyda.font/Peyda/02-Farsi_Namerals/TTF/PeydaFaNum-Medium.ttf") format("truetype");
-  src: url("../Peyda.font/Peyda/02-Farsi_Namerals/TTF/PeydaFaNum-Medium.ttf") format("truetype");
-  src: url("../Peyda.font/Peyda/02-Farsi_Namerals/TTF/PeydaFaNum-Medium.ttf") format("truetype");
+  src: url("../Peyda.font/Peyda/01-Standard/WebFonts/fonts/woff2/PeydaWeb-Medium.woff2") format("woff2");
+  src: url("../Peyda.font/Peyda/01-Standard/WebFonts/fonts/woff/PeydaWeb-Medium.woff") format("woff");
+  src: url("../Peyda.font/Peyda/01-Standard/TTF/Peyda-Medium.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 body {
   overflow-x: hidden !important;
+  font-feature-settings: "lnum" on;
 }
 
 body * {
   font-family: peyda, sans-serif;
   font-weight: normal !important;
+  font-feature-settings: "lnum" on;
 }
 
 :root {
@@ -81,8 +80,13 @@ span {
 }
 
 html {
-  font-family: "Poppins", sans-serif;
+  font-family: peyda, sans-serif;
+  font-weight: normal !important;
   overscroll-behavior: contain;
+}
+
+[lang=en] {
+  font-family: peyda, sans-serif !important;
 }
 
 p {
@@ -1422,7 +1426,6 @@ main .box-gray-logo img:hover {
 }
 body {
   direction: rtl;
-  font-family: "Vazirmatn", sans-serif;
   color: var(--dk-text-primary);
   margin: 0;
 }
@@ -3010,7 +3013,6 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family: "Vazirmatn", sans-serif;
   direction: rtl;
   text-align: right;
   overflow: hidden;
@@ -4070,7 +4072,7 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   color: var(--secondary-text-color);
 }
 
-.share-x, .heart-x {
+.share-x, .heart-x, .not-x {
   position: absolute;
   background-color: #fff;
   border-radius: 50%;
@@ -4085,20 +4087,20 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   z-index: 1 !important;
 }
 
-.share-x:hover, .heart-x:hover {
+.share-x:hover, .heart-x:hover, .not-x:hover {
   background-color: var(--light-gray);
   transform: translateY(-2px);
   -webkit-transform: translateY(-2px);
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
 }
 
-.share-x svg, .heart-x svg {
+.share-x svg, .heart-x svg, .not-x svg {
   width: 18px;
   height: 18px;
   color: var(--secondary-text-color);
 }
 
-.share-x:hover svg, .heart-x:hover svg {
+.share-x:hover svg, .heart-x:hover svg, .not-x:hover svg {
   color: var(--primary-color);
 }
 
@@ -4109,7 +4111,13 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
 }
 
 .heart-x {
-  top: 50px;
+  top: 60px;
+  right: 10px;
+  left: auto;
+}
+
+.not-x {
+  top: 110px;
   right: 10px;
   left: auto;
 }
@@ -4126,6 +4134,10 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
     top: 45px;
   }
 }
+.no-arrow-tooltip .tooltip-arrow {
+  display: none;
+}
+
 #product-summary-panel {
   background-color: #ffffff;
   border-radius: 8px;
@@ -5512,6 +5524,10 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   line-height: 1;
 }
 
+.cs-span {
+  font-size: 12px !important;
+}
+
 .not-rot-notification-messages-wrapper {
   height: 24px;
   overflow: hidden;
@@ -5893,7 +5909,13 @@ aside {
 
 html, body {
   height: 100% !important;
-  font-family: var(--font-family-base);
+  font-family: peyda, sans-serif;
+  font-weight: normal !important;
+}
+
+* {
+  font-family: peyda, sans-serif;
+  font-weight: normal !important;
 }
 
 .vh-100 {
@@ -6071,7 +6093,7 @@ html, body {
 }
 
 .fill-price-display span {
-  font-weight: 700 !important;
+  font-weight: normal !important;
   color: var(--secondary-accent) !important;
   margin: 0 3px !important;
 }
@@ -8558,7 +8580,6 @@ svg {
 
 /* تنظیمات عمومی */
 .cartexz-container-1 {
-  font-family: "Vazirmatn", "Arial", sans-serif;
   margin: 0;
   padding: 40px;
   background-color: #fcfcfc;

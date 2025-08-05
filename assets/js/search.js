@@ -1,7 +1,3 @@
-
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const mobileFilterBar = document.getElementById('mobileFilterBar');
     const filtersBottomSheetOverlay = document.getElementById('filtersBottomSheetOverlay');
@@ -70,8 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const maxPriceValueInput = document.getElementById('maxPriceValue');
     const priceSliderRange = document.getElementById('priceSliderRange');
 
-    const actualMinProductPrice = 0;
-    const actualMaxProductPrice = 100000000;
+    const actualMinProductPrice = 100;
+    const actualMaxProductPrice = 180000000;
 
     let currentMinPrice = actualMinProductPrice;
     let currentMaxPrice = actualMaxProductPrice;

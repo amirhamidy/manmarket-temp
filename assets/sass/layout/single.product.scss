@@ -471,7 +471,7 @@
 
 
 
-.share-x, .heart-x {
+.share-x, .heart-x , .not-x {
   position: absolute;
   background-color: #fff;
   border-radius: 50%;
@@ -486,18 +486,18 @@
   z-index: 1 !important;
 
 }
-.share-x:hover, .heart-x:hover {
+.share-x:hover, .heart-x:hover , .not-x:hover {
   background-color: var(--light-gray);
   transform: translateY(-2px);
   -webkit-transform: translateY(-2px);
   box-shadow: 0 3px 10px rgba(0,0,0,0.12);
 }
-.share-x svg, .heart-x svg {
+.share-x svg, .heart-x svg , .not-x svg {
   width: 18px;
   height: 18px;
   color: var(--secondary-text-color);
 }
-.share-x:hover svg, .heart-x:hover svg {
+.share-x:hover svg, .heart-x:hover svg , .not-x:hover svg {
   color: var(--primary-color);
 }
 
@@ -507,7 +507,12 @@
   left: auto;
 }
 .heart-x {
-  top: 50px;
+  top: 60px;
+  right: 10px;
+  left: auto;
+}
+.not-x{
+  top: 110px;
   right: 10px;
   left: auto;
 }
@@ -522,6 +527,10 @@
   .heart-x {
     top: 45px;
   }
+}
+
+.no-arrow-tooltip .tooltip-arrow {
+  display: none;
 }
 
 #product-summary-panel {
@@ -1894,6 +1903,11 @@
 .not-rot-notification-icon span {
   font-size: 20px;
   line-height: 1;
+}
+
+
+.cs-span{
+  font-size: 12px !important;
 }
 
 .not-rot-notification-messages-wrapper {

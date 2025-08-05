@@ -12,7 +12,7 @@
 @keyframes item-fade-out { to { opacity: 0; transform: scale(0.95); max-height: 0; padding-top: 0; padding-bottom: 0; margin-bottom: 0; border: none; } }
 
 body {
-  direction: rtl; font-family: 'Vazirmatn', sans-serif; color: var(--dk-text-primary); margin: 0;
+  direction: rtl; color: var(--dk-text-primary); margin: 0;
 }
 *:focus-visible { outline: 2px solid var(--dk-red); outline-offset: 2px; box-shadow: 0 0 0 4px var(--dk-focus-ring); border-radius: 4px; }
 .shop-cs-container { max-width: 1300px; margin: 0 auto; padding: 20px; }

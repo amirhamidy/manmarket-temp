@@ -1,11 +1,14 @@
 
 body{
   overflow-x: hidden !important;
+  font-feature-settings: "lnum" on;
 }
 
 body *{
   font-family: peyda, sans-serif ;
   font-weight: normal !important;
+  font-feature-settings: "lnum" on;
+
 }
 
 
@@ -70,8 +73,12 @@ img, ion-icon, a { display: block; }
 span { display: inline-block; }
 
 html {
-  font-family: "Poppins", sans-serif;
+  font-family: peyda, sans-serif ;
+  font-weight: normal !important;
   overscroll-behavior: contain;
+}
+[lang="en"] {
+  font-family: peyda, sans-serif  !important;
 }
 
 p{

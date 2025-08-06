@@ -634,8 +634,7 @@ let notX = document.querySelector('.not-x')
 
 notX.addEventListener('click' , function (){
     Swal.fire({
-        title: 'اضافه شد!',
-        text: 'بعد از موجود شدن کالا توسط ایمیل یا پیامک به شما اطلاع خواهیم داد',
+        title: 'به محض موجود شدن این کالا , از طریق پیامک یا ایمیل به شما اطلاع رسانی خواهد شد .',
         icon: 'success',
         position: 'center',
         showConfirmButton: false,

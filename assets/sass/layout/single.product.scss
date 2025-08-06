@@ -517,7 +517,7 @@
   left: auto;
 }
 @media (max-width: 767.98px) {
-  .share-x, .heart-x {
+  .share-x, .heart-x ,.not-x {
     width: 30px;
     height: 30px;
     top: 8px;
@@ -526,6 +526,12 @@
   }
   .heart-x {
     top: 45px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .not-x {
+    top: 85px;
   }
 }
 
@@ -682,7 +688,7 @@
 
 }
 @media screen and (max-width: 991px) {
-  .product-title{
+  .product-title {
     width: 100% !important;
     display: -webkit-box !important;
     -webkit-box-orient: vertical !important;
@@ -691,7 +697,15 @@
     white-space: normal !important;
   }
 
+
 }
+@media screen and (max-width: 1323px) {
+  .card-title-2{
+    width: 100% !important;
+    white-space: normal !important;
+  }
+}
+
 
 .icon-x:hover{
   background-color: var(--primary-color);

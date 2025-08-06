@@ -17,7 +17,11 @@ main{
 
 .blog-container { padding-top: 20px;  }
 .blog-card { min-width: calc(33.33% - 20px); }
-.blog-title { --fs-5: 1rem; }
+.blog-title { --fs-5: 1rem;    display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  -webkit-line-clamp: 2 !important;
+  white-space: normal !important; }
 .blog-banner{
   transition: 0.5s;
   &:hover{

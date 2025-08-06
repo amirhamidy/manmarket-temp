@@ -165,7 +165,7 @@
 .mega-category-item a {
   display: flex;
   align-items: center;
-  padding: 0.75rem 1.2rem;
+  padding: 0.95rem 1.2rem;
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--secondary-text-color);
@@ -194,8 +194,10 @@
   padding: 1.5rem 2rem;
   position: relative;
   /* height: 100%; */ /* Let it take height of content */
-  overflow-y: auto;
   max-height: calc(520px - 3rem); /* Adjust for padding if panel has fixed height */
+  overflow-y: scroll;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  scrollbar-width: thin;
 }
 .mega-menu-pane {
   display: none;

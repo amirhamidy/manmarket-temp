@@ -102,7 +102,7 @@ html, body {
 }
 
 .accordion-button {
-  font-weight: 600 !important; font-size: 1rem !important; background-color: transparent !important;
+  font-weight: 600 !important; font-size: 1rem !important; background-color: #ffffff !important;
   border-right: 3px solid transparent !important;
   padding-right: calc(var(--spacing-unit) * 1.5 - 3px + var(--spacing-unit) * 0.5) !important;
   transition: border-color var(--transition-base), color var(--transition-base) !important;
@@ -130,7 +130,7 @@ html, body {
   transition: transform 0.2s ease-in-out !important; flex-shrink: 0 !important; fill: currentColor !important;
 }
 .accordion-button:not(.collapsed) .fill-accordion-chevron { transform: rotate(-180deg) !important; }
-.accordion-item { border: none !important; }
+.accordion-item { border: none !important; background-color: white !important; }
 .fill-accordion-header-icon {
   width: 19px !important; height: 19px !important;
   margin-left: calc(var(--spacing-unit) * 0.75) !important; fill: currentColor !important;
@@ -205,8 +205,9 @@ html, body {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px !important;
 }
 .cs-fs-se-2{
-  font-size: 17px!important;
+  font-size: 0.95rem !important;
 }
+
 .fill-product-card-img { width: 70% !important; max-width: 70% !important; object-fit: cover !important; margin: 10px auto !important; display: block !important; }
 .fill-product-card .card-body { padding: var(--spacing-unit) !important; }
 .fill-product-card .card-title { margin-bottom: 4px !important; line-height: 1.7 !important; }
@@ -558,18 +559,23 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
   display: flex; flex-direction: row; align-items: center;
 }
 #resultsGrid.view-list .fill-product-card-img {
-  width: 50% !important;  max-width: 50% !important;
-  margin: var(--spacing-unit) !important; object-fit: contain;
+  width: 40% !important;
+  max-width: 40% !important;
+  margin: var(--spacing-unit) !important;
+  object-fit: cover !important;
+  height: 90%;
+  max-height: 90%;
 }
 #resultsGrid.view-list .fill-product-card .card-body {
   flex-grow: 1; padding-left: var(--spacing-unit) !important;
 }
-#resultsGrid.view-list .fill-product-card .card-title { font-size: 0.65rem !important; }
+#resultsGrid.view-list .fill-product-card .card-title { font-size: 0.65rem !important;margin-top: 30px !important; }
 #resultsGrid.view-list .fill-product-card .fill-description {
   -webkit-line-clamp: 2 !important; max-height: calc(1.4em * 2) !important;
+
 }
 #resultsGrid.view-list .fill-product-card .card-price {
-  justify-content: flex-end !important; margin-top: var(--spacing-unit) !important;
+  justify-content: flex-end !important;
 }
 
 
@@ -622,7 +628,7 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
   font-family: 'Poppins', sans-serif !important;
   color: #666 !important;
   display: flex !important;
-  width: 160% !important;
+  width: 160% ;
   align-items: center !important;
   -webkit-box-orient: vertical !important;
   overflow: hidden !important;
@@ -655,7 +661,7 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
   position: absolute;
   align-items: center !important;
   top: 3%;
-  right: 5%;
+  right: 2%;
 }
 .card{
   padding-top: 10px !important;
@@ -665,12 +671,11 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
 }
 
 .colors-search{
-  left: 0.3%;
+  left: 1.3%;
   top: 0;
 }
 
 .for-color , .three-color , .two-color , .one-color{
-
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -710,12 +715,22 @@ body:not(.is-mobile-layout) .filters-bottom-sheet-overlay { display: none !impor
 
 }
 
+@media (max-width: 992px){
+
+  .colors-search{
+    flex-direction: unset !important;
+    top: 2% !important;
+    left: 2% !important;
+  }
+}
+
 
 .h-130 {
   height: 130px;
   overflow-y: scroll;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
   scrollbar-width: thin;
+  background-color: white !important;
 }
 
 

@@ -10,6 +10,7 @@
 body {
   overflow-x: hidden !important;
   font-feature-settings: "lnum" on;
+  background-color: white !important;
 }
 
 body * {
@@ -95,10 +96,6 @@ p {
 
 input::placeholder {
   font: inherit;
-}
-
-body {
-  background: var(--white);
 }
 
 body::-webkit-scrollbar {
@@ -823,6 +820,15 @@ button {
   height: 100%;
 }
 
+@media (max-width: 1400px) {
+  .d-n-text {
+    width: 100% !important;
+    text-align: -webkit-center !important;
+  }
+  .ex-pex {
+    width: 6% !important;
+  }
+}
 .swiper {
   width: 99%;
   height: 80vh;

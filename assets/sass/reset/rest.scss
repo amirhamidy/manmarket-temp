@@ -2,6 +2,7 @@
 body{
   overflow-x: hidden !important;
   font-feature-settings: "lnum" on;
+  background-color: white !important;
 }
 
 body *{
@@ -87,9 +88,6 @@ p{
 
 input::placeholder { font: inherit; }
 
-body {
-  background: var(--white);
-}
 
 
 body::-webkit-scrollbar { width: 15px; }

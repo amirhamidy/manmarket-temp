@@ -92,6 +92,9 @@ html[dir="rtl"] .wow-notification-new { transform: translateX(-100%); } html[dir
 /* --- RESPONSIVE --- */
 @media (max-width: 991.98px) { .profile-layout-grid { grid-template-columns: 1fr; } .profile-sidebar-new { display: none; } .mobile-bottom-nav { display: flex; } }
 
+.form-control-custom::-webkit-input-placeholder{
+  color: #9f9f9f !important;
+}
 
 .btn-custom { padding: calc(var(--spacing-unit)*1.2) calc(var(--spacing-unit)*2.5); border-radius: var(--border-radius-md); font-size: 0.9rem; transition: var(--transition-cubic); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-unit); }
 .btn-custom.btn-secondary { background-color: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-color); } .btn-custom.btn-secondary:hover { background-color: var(--border-color); transform: translateY(-1px); }
@@ -685,4 +688,7 @@ html[dir="rtl"] .wow-notification-close-new {
 
 .cancelled-2 {
   background-color: rgba(128, 0, 128, 0.4);
+}
+.cancelled-3 {
+  background-color: rgba(255, 58, 140, 0.8);
 }

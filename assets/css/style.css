@@ -9150,10 +9150,14 @@ svg {
   font-weight: bold;
 }
 
+.ws-cs-input::-webkit-input-placeholder {
+  color: lightgray !important;
+}
+
 .ws-cs-input {
   width: 100%;
   padding: 12px;
-  border: 2px solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 10px;
   font-size: 16px;
   margin-bottom: 20px;
@@ -9161,7 +9165,9 @@ svg {
 }
 
 .ws-cs-input:focus {
-  outline: none !important;
+  border-color: var(--primary-accent);
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(var(--primary-accent-rgb, 255, 107, 107), 0.25);
 }
 
 .ws-cs-button {
@@ -9679,6 +9685,10 @@ html[dir=rtl] .wow-notification-close-new {
     display: flex;
   }
 }
+.form-control-custom::-webkit-input-placeholder {
+  color: #9f9f9f !important;
+}
+
 .btn-custom {
   padding: calc(var(--spacing-unit) * 1.2) calc(var(--spacing-unit) * 2.5);
   border-radius: var(--border-radius-md);
@@ -11974,6 +11984,10 @@ html[dir=rtl] .wow-notification-close-new {
 
 .cancelled-2 {
   background-color: rgba(128, 0, 128, 0.4);
+}
+
+.cancelled-3 {
+  background-color: rgba(255, 58, 140, 0.8);
 }
 
 .story-module-main-wrapper {

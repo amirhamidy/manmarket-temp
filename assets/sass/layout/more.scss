@@ -712,11 +712,13 @@
   color: #555;
   font-weight: bold;
 }
-
+.ws-cs-input::-webkit-input-placeholder{
+  color:lightgray !important;
+}
 .ws-cs-input {
   width: 100%;
   padding: 12px;
-  border: 2px solid #ddd;
+  border: 1px solid #ddd;
   border-radius: 10px;
   font-size: 16px;
   margin-bottom: 20px;
@@ -724,7 +726,7 @@
 }
 
 .ws-cs-input:focus {
-  outline: none !important;
+  border-color: var(--primary-accent); outline: 0; box-shadow: 0 0 0 0.2rem rgba(var(--primary-accent-rgb, 255, 107, 107), 0.25);
 }
 
 .ws-cs-button {

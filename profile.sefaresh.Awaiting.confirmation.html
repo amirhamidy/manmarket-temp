@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>آدرس‌های من | پروفایل کاربری (نسخه استاتیک)</title>
+    <title>سفارشات من | پروفایل کاربری (نسخه استاتیک)</title>
     <!-- External Links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -16,8 +17,6 @@
 <!--Shadow Overly start-->
 <div class="overlay" data-overlay></div>
 <!--Shadow Overly start-->
-
-
 
 
 <!--Header Start-->
@@ -1213,9 +1212,7 @@
 
 
 
-
-
-<!-- SVG Icons Definition -->
+<!-- SVG Icons Definition (Unchanged) -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="icon-user-circle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></symbol>
     <symbol id="icon-receipt-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></symbol>
@@ -1234,13 +1231,16 @@
     <symbol id="icon-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.7v5.8a1.5 1.5 0 0 1-1.5 1.5H4.5A1.5 1.5 0 0 1 3 18.5v-13A1.5 1.5 0 0 1 4.5 4H18a1.5 1.5 0 0 1 1.5 1.5V9"></path><path d="M21 7.5H3"></path><path d="M18 12.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path></symbol>
     <symbol id="icon-wallet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.7v5.8a1.5 1.5 0 0 1-1.5 1.5H4.5A1.5 1.5 0 0 1 3 18.5v-13A1.5 1.5 0 0 1 4.5 4H18a1.5 1.5 0 0 1 1.5 1.5V9"></path><path d="M21 7.5H3"></path><path d="M18 12.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path></symbol>
     <symbol id="icon-arrow-up-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  stroke-width="1.5"><path fill="currentColor" d="M6 17.59L7.41 19L12 14.42L16.59 19L18 17.59l-6-6z"></path><path fill="currentColor" d="m6 11l1.41 1.41L12 7.83l4.59 4.58L18 11l-6-6z"></path></symbol><symbol id="icon-arrow-down-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5"> <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m7 6l5 5l5-5M7 13l5 5l5-5" ></path></symbol>
+    <symbol id="icon-external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.8"><g fill="none" stroke="currentColor"><path d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6s4.03-6 9-6s9 4.8 9 6Z"></path><path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0Z"></path></g>
+    </symbol>
+
 </svg>
 
 
 
-<div class="main-container py-5 mt-5">
+<div class="main-container mt-5 py-5">
     <div class="profile-layout-grid">
-        <!-- Sidebar with static info -->
+        <!-- Sidebar with hardcoded user info -->
         <aside class="profile-sidebar-new">
             <form method="post" id="profileImageForm" action="">
                 <input type="hidden" name="csrfmiddlewaretoken" value="cScSRZsDXpFJSsJmfUVTH73u6sOqWHdJo08HYmq5AuZjmqIejRUH6ILde8S0nuTC">
@@ -1260,9 +1260,9 @@
             <nav class="sidebar-nav-new">
                 <ul>
                     <li><a href="profile.html" data-page="account" ><svg><use xlink:href="#icon-user-circle"></use></svg> اطلاعات حساب</a></li>
-                    <li><a href="profile.sefaresh.html" data-page="orders"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
+                    <li><a href="profile.sefaresh.sent.html" data-page="orders" class="active"><svg><use xlink:href="#icon-receipt-list"></use></svg> سفارشات</a></li>
                     <li><a href="profile.Kifpol.html" data-page="wallet"><svg><use xlink:href="#icon-wallet"></use></svg> کیف پول</a></li>
-                    <li><a href="profile.adress.html" data-page="addresses" class="active"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
+                    <li><a href="profile.adress.html" data-page="addresses"><svg><use xlink:href="#icon-map-pin"></use></svg> آدرس‌ها</a></li>
                     <li><a href="profile.whilist.html" data-page="wishlist"><svg><use xlink:href="#icon-heart-solid"></use></svg> علاقه‌مندی‌ها</a></li>
                     <li><a href="profile.chats.html" data-page="chat"><svg><use xlink:href="#icon-chat"></use></svg>گفتگو ها</a></li>
                     <li><a href="profile.comments.html" data-page="reviews"><svg><use xlink:href="#icon-comment-dots"></use></svg> نظرات من</a></li>
@@ -1277,28 +1277,62 @@
         <main class="profile-content-area-new">
             <section class="profile-section-new">
                 <header class="section-header-new border-0">
-                    <h2><svg><use xlink:href="#icon-map-pin"></use></svg>آدرس‌های من</h2>
+                    <h2><svg><use xlink:href="#icon-receipt-list"></use></svg>سفارشات من</h2>
+
+
+
                 </header>
+                <ul class="nav nav-tabs mb-0 b-none w-center justify-content-center flex-nowrap s-x my-scrolling-container">
+                    <a href="profile.sefaresh.Awaiting.payment.html" class="nav-item" ><button class="text-nowrap">در انتظار پرداخت</button></a>
+                    <a href="profile.sefaresh.Awaiting.confirmation.html" class="nav-item" ><button class="active text-nowrap">در انتظار تایید سفارش</button></a>
+                    <a href="profile.sefaresh.Processing.html" class="nav-item" ><button class="text-nowrap">در حال پردازش</button></a>
+                    <a href="profile.sefaresh.sent.html" class="nav-item" ><button class="text-nowrap">ارسال شده</button></a>
+                    <a href="profile.sefaresh.Delivered.html" class="nav-item" ><button class="text-nowrap">تحویل  شده</button></a>
+                    <a href="profile.sefaresh.canceled.html" class="nav-item" ><button class="text-nowrap">لغو شده</button></a>
+                </ul>
 
-                <div id="addressesListContainer" class="mt-4">
-                    <!-- STATIC: Addresses are hardcoded. JS only handles visual toggles. -->
+                <div class="tab-content container p-0" id="productTabContent">
+                    <div class="tab-pane fade show active">
+                        <!--product slider :: start--------->
+                        <div class="tab-pane fade show ">
+                            <!--product slider :: start--------->
+                            <div class="order-card-new" data-status="cancelled">
+                                <div class="order-card-header-new">
+                                    <div><span class="order-id-new">سفارش #DKC-0998</span> - <span class="order-date-new">1403/02/15</span></div>
+                                    <span class="order-status-badge-new cancelled-3">در انتظار تایید سفارش</span>
+                                </div>
+                                <p class="order-items-preview">شامل: هارد اکسترنال 1 ترابایت</p>
+                                <div class="order-footer-new">
+                                    <span class="order-total-new">450,000 <small>تومان</small></span>
+                                    <div class="mx-3">
+                                        <a href="" class="btn-custom btn-secondary btn-sm">
+                                            <svg class="svg-icon"><use xlink:href="#icon-external-link"></use></svg>
+                                            مشاهده جزئیات
+                                        </a>
+                                        <a href="" class="btn-custom btn-secondary btn-sm mx-1">
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24"
+                                                    width="22px"
+                                                    height="22px"
+                                            >
+                                                <g fill="currentColor">
+                                                    <path d="M6 6a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1m0 4a1 1 0 0 1 1-1h10a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1m1 3a1 1 0 1 0 0 2h10a1 1 0 1 0 0-2zm-1 5a1 1 0 0 1 1-1h4a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1"></path>
+                                                    <path
+                                                            fill-rule="evenodd"
+                                                            d="M2 4a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v16a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3zm3-1h14a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1"
+                                                            clip-rule="evenodd"
+                                                    ></path>
+                                                </g>
+                                            </svg>مشاهده فاکتور
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--product slider :: end--------->
 
-                    <div class="rounded-3 container">
-                        <form>
-                            <label for="as" class="ws-cs-label my-1 fs-14">استان مورد نظر خود را بنویسید</label>
-                            <input type="text" id="as" name="amount" placeholder="تهران" class="form-control-custom my-1 fs-14" required />
-                            <label for="amount" class="ws-cs-label my-1 fs-14">شهر مورد نظر خود را بنویسید</label>
-                            <input type="text" id="amount" name="amount" placeholder="تهران" class="form-control-custom my-1 fs-14" required />
-                            <label for="df" class="ws-cs-label  my-1 fs-14">کد پستی</label>
-                            <input type="number" id="df" name="amount" placeholder="0123456789" class="form-control-custom my-1 fs-14" required />
-                            <label for="addressLine1Input" class="form-label-custom my-1 fs-14">جزئیات آدرس</label>
-                            <textarea id="hghg" class="ws-cs-input form-label-custom" rows="3" placeholder="خیابان، کوچه، پلاک..."></textarea>
-
-
-                            <button type="submit" class="theme-color text-light rounded-3">ویرایش آدرس</button>
-                        </form>
                     </div>
-
                 </div>
             </section>
         </main>
@@ -1317,32 +1351,38 @@
     <a href="#" class="mobile-nav-item" data-page=""><svg><use xlink:href="#icon-logout-door"></use></svg>خروج</a>
 </nav>
 
-<!-- Address Form Modal -->
-<div class="modal-backdrop-new" id="addressModalBackdrop"></div>
-<div class="modal-dialog-new" id="addressModal">
+<!-- Order Details Modal with Static Content -->
+<div class="modal-backdrop-new" id="orderModalBackdrop"></div>
+<div class="modal-dialog-new" id="orderDetailsModal">
     <header class="modal-header-new">
-        <h3 class="modal-title-new" id="addressModalTitle"></h3>
+        <h3 class="modal-title-new">جزئیات سفارش #DKC-1045</h3>
         <button class="modal-close-btn-new">×</button>
     </header>
     <div class="modal-body-new">
-        <form id="addressForm">
-            <div class="form-group-custom"><label for="addressTitleInput" class="form-label-custom">عنوان آدرس</label><input type="text" id="addressTitleInput" class="form-control-custom" placeholder="مثلا: خانه"></div>
-            <div class="row gx-3">
-                <div class="col-md-6"><div class="form-group-custom"><label for="addressProvinceInput" class="form-label-custom">استان</label><input type="text" id="addressProvinceInput" class="form-control-custom" placeholder="تهران"></div></div>
-                <div class="col-md-6"><div class="form-group-custom"><label for="addressCityInput" class="form-label-custom">شهر</label><input type="text" id="addressCityInput" class="form-control-custom" placeholder="تهران"></div></div>
-            </div>
-            <div class="form-group-custom"><label for="addressLine1Input" class="form-label-custom">آدرس کامل</label><textarea id="addressLine1Input" class="form-control-custom" rows="3" placeholder="خیابان، کوچه، پلاک..."></textarea></div>
-            <div class="d-flex justify-content-end gap-2 mt-4">
-                <button type="button" class="btn-custom btn-secondary cancel-form-btn">انصراف</button>
-                <button type="submit" class="btn-custom btn-primary">ذخیره آدرس</button>
-            </div>
-        </form>
+        <p><strong>آدرس تحویل:</strong> تهران، خیابان آزادی، پلاک ۱۲۳، واحد ۴</p>
+        <p><strong>روش پرداخت:</strong> پرداخت آنلاین (موفق)</p>
+        <h5 class="mt-4 mb-2">اقلام سفارش</h5>
+        <ul class="list-unstyled">
+            <li class="order-detail-list-item">
+                <div class="d-flex align-items-center">
+                    <img src="https://via.placeholder.com/80/FF6347/FFFFFF?text=Product1" alt="" class="order-detail-product-info">
+                    <span>هدفون گیمینگ حرفه‌ای (×۱)</span>
+                </div>
+                <strong>۲۵۰,۰۰۰ <small>تومان</small></strong>
+            </li>
+            <li class="order-detail-list-item">
+                <div class="d-flex align-items-center">
+                    <img src="https://via.placeholder.com/80/4682B4/FFFFFF?text=Product2" alt="" class="order-detail-product-info">
+                    <span>موس بی‌سیم (×۱)</span>
+                </div>
+                <strong>۱۳۰,۰۰۰ <small>تومان</small></strong>
+            </li>
+        </ul>
+        <hr>
+        <div class="d-flex justify-content-between"><span>هزینه ارسال:</span> <span>رایگان</span></div>
+        <div class="d-flex justify-content-between mt-2 fs-5 fw-bold"><span>مبلغ کل:</span> <span>۳۸۰,۰۰۰ <small>تومان</small></span></div>
     </div>
 </div>
-
-<div class="wow-notification-container-new" id="notificationToastContainer"></div>
-
-
 
 
 <!--footer :: start------>
@@ -1478,11 +1518,7 @@
 <!--footer :: end-------->
 
 
-<!--این همه جا هست -->
-<script src="assets/js/jquery-3.7.1.min.js"></script>
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script  src="script.js"></script>
-<!--این همه جا هست -->
+
 <!--این همه جا هست -->
 <script src="assets/js/jquery-3.7.1.min.js"></script>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -1491,6 +1527,7 @@
 
 
 <script src="assets/js/profile.js"></script>
+
 
 
 </body>

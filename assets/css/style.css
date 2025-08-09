@@ -3863,7 +3863,7 @@ button.view:disabled { /* استایل برای دکمه view وقتی غیرف�
   }
 }
 #a-s {
-  margin-top: 9% !important;
+  margin-top: 11% !important;
 }
 
 .product-rating {
@@ -9940,6 +9940,7 @@ html[dir=rtl] .wow-notification-close-new {
 .order-footer-new {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap !important;
   align-items: center;
   padding-top: var(--spacing-unit);
   border-top: 1px dashed var(--border-color);
@@ -11653,7 +11654,7 @@ html[dir=rtl] .wow-notification-close-new {
 }
 @media (max-width: 700px) {
   .s-x {
-    padding-right: 180px;
+    padding: 0px 200px !important;
   }
 }
 @media (max-width: 990px) {
@@ -11990,6 +11991,11 @@ html[dir=rtl] .wow-notification-close-new {
   background-color: rgba(255, 58, 140, 0.8);
 }
 
+@media (max-width: 1024px) {
+  .p-for-dl {
+    padding: 0 7px;
+  }
+}
 .story-module-main-wrapper {
   margin: 0;
   display: flex;

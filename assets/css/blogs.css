@@ -605,7 +605,7 @@ body { font-family: var(--font-family-base) !important; color: var(--text-primar
 .blog-s-product-slider .slick-dots li.slick-active button:before { color: var(--primary-accent) !important; }
 
 /* --- سایر استایل‌ها --- */
-.blog-s-related-posts-list { list-style: none !important; padding: 0 !important; }
+.blog-s-related-posts-list { list-style: none !important; padding: 20px 0!important; }
 .blog-s-related-post-link { align-items: center !important; gap: calc(var(--spacing-unit) * 2) !important; text-decoration: none !important; }
 .blog-s-post-footer { margin-top: calc(var(--spacing-unit) * 6) !important; padding-top: calc(var(--spacing-unit) * 4) !important; border-top: 1px solid var(--border-color) !important; text-align: center !important; }
 .blog-s-tags-container a { display: inline-block !important; background-color: rgba(223, 228, 234, 0.5) !important; padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5) !important; border-radius: 99px !important; }

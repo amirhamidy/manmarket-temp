@@ -9197,6 +9197,18 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.cs-wid-2 {
+  width: 130px !important;
+  height: 40px !important;
+}
+.cs-wid-2 img {
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain !important;
+}
+
 :root {
   --primary-accent: #ff7151;
   --primary-accent-darker: #EE5253;

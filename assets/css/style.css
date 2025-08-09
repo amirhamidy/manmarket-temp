@@ -19,6 +19,14 @@ body * {
   font-feature-settings: "lnum" on;
 }
 
+/* غیرفعال کردن قابلیت انتخاب متن */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 :root {
   --spanish-gray: hsl(0, 0%, 60%);
   --sonic-silver: hsl(0, 0%, 47%);

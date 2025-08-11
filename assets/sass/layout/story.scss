@@ -367,7 +367,7 @@
 }
 
 .story-module-nav-button-prev {
-    right: -5%;
+    right: -2%;
     left: auto;
 }
 #close-btn-story{
@@ -378,33 +378,31 @@
 }
 
 .story-module-nav-button-next {
-    left: -5%;
+    left: -2%;
     right: auto;
 }
 
-/* --- شروع تغییرات برای Video.js و کپشن --- */
 
-/* این استایل Video.js .vjs-tech برای اطمینان از object-fit: contain */
 .story-module-modal-story-media .video-js {
     width: 100% !important;
     height: 100% !important;
-    position: absolute !important; /* این مهم است */
+    position: absolute !important;
     top: 0;
     left: 0;
-    object-fit: contain !important; /* این مهم است */
+    object-fit: contain !important;
     background-color: black;
     z-index: 15;
 }
 
 .story-module-modal-story-media .video-js .vjs-tech {
-    object-fit: contain !important; /* مهم: برای خود تگ video در Video.js */
+    object-fit: contain !important;
 }
 
 .video-js .vjs-control-bar {
     display: flex !important;
     background-color: rgba(0, 0, 0, 0.5) !important;
     height: 40px !important;
-    z-index: 20 !important; /* z-index بالا برای دیده شدن */
+    z-index: 20 !important;
     opacity: 1 !important;
     visibility: visible !important;
     transition: opacity 0.3s ease, visibility 0.3s ease !important;

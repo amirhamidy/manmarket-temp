@@ -232,7 +232,11 @@ html[dir="rtl"] .wow-notification-new { transform: translateX(-100%); } html[dir
 .product-card-minimal-img { width: 80px; height: 80px; object-fit: cover; border-radius: var(--border-radius-sm); flex-shrink: 0; }
 .product-card-minimal-info { flex-grow: 1; display: flex; flex-direction: column; }
 .product-card-minimal-info h6 { font-size: 1rem; font-weight: 600; margin-bottom: calc(var(--spacing-unit)*0.25); }
-.product-card-minimal-info .category-text { font-size: 0.8rem; color: var(--text-muted); margin-bottom: calc(var(--spacing-unit)*0.5); }
+.product-card-minimal-info .category-text {  font-size: 0.8rem; color: var(--text-muted); margin-bottom: calc(var(--spacing-unit)*0.5);     display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  -webkit-line-clamp: 2 !important;
+  white-space: normal !important;}
 .product-card-minimal-info .price-text { font-size: 0.95rem; font-weight: 500; color: var(--secondary-accent); margin-bottom: var(--spacing-unit); }
 .product-card-minimal-actions { margin-top: auto; }
 /* --- RESPONSIVE --- */

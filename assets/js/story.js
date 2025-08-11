@@ -6,22 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalHeaderAvatar = modal.querySelector('.story-module-story-header-avatar');
     const modalHeaderUsername = modal.querySelector('.story-module-story-header-username');
     const modalHeaderTime = modal.querySelector('.story-module-story-header-time');
-    // const closeModalBtn = modal.querySelector('.story-module-modal-close'); // این خط حذف شد
     const modalProgressBarContainer = modal.querySelector('.story-module-modal-progress-bar-container');
     const modalMediaContainer = modal.querySelector('.story-module-modal-story-media');
     const modalNavPrevBtn = modalContent.querySelector('.story-module-nav-button-prev');
     const modalNavNextBtn = modalContent.querySelector('.story-module-nav-button-next');
-
     const externalCaptionElement = modalContent.querySelector('#story-module-external-caption');
-    const captionTextElement = externalCaptionElement.querySelector('#story-module-caption-text');
-    captionTextElement.setAttribute('href' , '')
-    captionTextElement.setAttribute('target' , '_blank')
-    captionTextElement.style.cursor = 'pointer'
+    const captionLinkElement = externalCaptionElement.querySelector('#story-module-caption-text');
 
-    captionTextElement.addEventListener('click' , ()=>{
-        window.location.href = '../../single.product.html'
-    })
-
+    captionLinkElement.style.cursor = 'pointer';
 
     let currentStoryUserIndex = 0;
     let currentStoryMediaIndex = 0;
@@ -32,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let videoPlayer = null;
 
     let isMobile = window.matchMedia("(max-width: 768px)").matches;
-
     let isDragging = false;
     let startPos = 0;
     let scrollLeft = 0;
@@ -96,10 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
         currentStoryMediaIndex = mediaIndex;
 
         modal.classList.add('story-module-active');
-
         modalContent.style.transform = isMobile ? 'translateY(100vh)' : 'scale(0.9)';
         modal.style.opacity = '0';
-
         void modalContent.offsetWidth;
 
         requestAnimationFrame(() => {
@@ -123,9 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
             videoPlayer = null;
         }
         hideLoader();
-
-
-
         modalContent.style.transition = 'transform 0.3s ease-in, opacity 0.3s ease-in';
         modal.style.transition = 'opacity 0.3s ease-in';
 
@@ -146,11 +132,11 @@ document.addEventListener('DOMContentLoaded', () => {
             modalMediaContainer.style.transform = '';
             resetProgressBars();
             currentMediaElement = null;
-            if (captionTextElement) {
-                captionTextElement.textContent = '';
+            if (captionLinkElement) {
+                captionLinkElement.textContent = '';
+                captionLinkElement.setAttribute('href', '');
             }
             externalCaptionElement.classList.add('story-module-d-none');
-
         }, 300);
     }
 
@@ -188,13 +174,20 @@ document.addEventListener('DOMContentLoaded', () => {
         modalHeaderTime.textContent = '';
 
         const captionText = currentMediaOriginal.getAttribute('data-caption');
-        if (captionTextElement) {
-            captionTextElement.textContent = captionText || '';
-            externalCaptionElement.classList.remove('story-module-d-none');
+        const productUrl = currentUserItem.getAttribute('data-product-url');
+
+        if (captionLinkElement) {
+            captionLinkElement.textContent = captionText || '';
+            if (productUrl) {
+                captionLinkElement.setAttribute('href', productUrl);
+                captionLinkElement.setAttribute('target', '_blank');
+                externalCaptionElement.classList.remove('story-module-d-none');
+            } else {
+                externalCaptionElement.classList.add('story-module-d-none');
+            }
         } else {
             externalCaptionElement.classList.add('story-module-d-none');
         }
-
 
         modalMediaContainer.innerHTML = '';
         modalMediaContainer.style.transition = 'none';
@@ -290,7 +283,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 startProgressBar(mediaDuration);
                 storyInterval = setTimeout(nextStory, mediaDuration);
-
                 let remainingTime = mediaDuration;
                 const updateHeaderTime = () => {
                     modalHeaderTime.textContent = formatTime(remainingTime / 1000);
@@ -300,7 +292,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 };
                 updateHeaderTime();
-
             } catch (error) {
                 hideLoader();
                 nextStory();
@@ -331,11 +322,9 @@ document.addEventListener('DOMContentLoaded', () => {
             innerBar.classList.add('story-module-progress-inner');
             currentProgressBar.innerHTML = '';
             currentProgressBar.appendChild(innerBar);
-
             innerBar.style.transition = 'none';
             innerBar.style.width = '0%';
             void innerBar.offsetWidth;
-
             innerBar.style.transition = `width ${duration / 1000}s linear`;
             innerBar.style.width = '100%';
         }
@@ -365,13 +354,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     innerBar.style.transition = 'none';
                     innerBar.style.width = `${elapsedRatio * 100}%`;
                     void innerBar.offsetWidth;
-
                     let remainingTimeInSeconds = videoPlayer.duration() - videoPlayer.currentTime();
                     if (remainingTimeInSeconds < 0) remainingTimeInSeconds = 0;
-
                     innerBar.style.transition = `width ${remainingTimeInSeconds}s linear`;
                     innerBar.style.width = '100%';
-
                 } else {
                     totalDuration = parseInt(currentMediaElement.getAttribute('data-duration'));
                     const currentWidthPx = parseFloat(window.getComputedStyle(innerBar).width);
@@ -379,7 +365,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     const progressRatio = currentWidthPx / totalWidthPx;
                     let remainingDuration = totalDuration * (1 - progressRatio);
                     if (remainingDuration < 0) remainingDuration = 0;
-
                     innerBar.style.transition = `width ${remainingDuration / 1000}s linear`;
                     innerBar.style.width = '100%';
                 }
@@ -389,7 +374,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function nextStory() {
         pauseCurrentMedia();
-
         if (currentStoryUserIndex < storyItems.length && progressBarElements[currentStoryMediaIndex]) {
             progressBarElements[currentStoryMediaIndex].classList.add('story-module-completed');
             const innerBar = progressBarElements[currentStoryMediaIndex].querySelector('.story-module-progress-inner');
@@ -398,9 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 innerBar.style.width = '100%';
             }
         }
-
         currentStoryMediaIndex++;
-
         const currentUserItem = storyItems[currentStoryUserIndex];
         let mediaElements = [];
         if (currentUserItem) {
@@ -409,13 +391,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 mediaElements = Array.from(mediaListContainer.children);
             }
         }
-
         if (currentStoryMediaIndex < mediaElements.length) {
             renderStory();
         } else {
             currentStoryUserIndex++;
             currentStoryMediaIndex = 0;
-
             if (currentStoryUserIndex < storyItems.length) {
                 openStoryModal(currentStoryUserIndex);
             } else {
@@ -426,7 +406,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function prevStory() {
         pauseCurrentMedia();
-
         if (currentStoryUserIndex < storyItems.length && progressBarElements[currentStoryMediaIndex]) {
             progressBarElements[currentStoryMediaIndex].classList.remove('story-module-completed');
             const innerBar = progressBarElements[currentStoryMediaIndex].querySelector('.story-module-progress-inner');
@@ -435,9 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 innerBar.style.width = '0%';
             }
         }
-
         currentStoryMediaIndex--;
-
         const currentUserItem = storyItems[currentStoryUserIndex];
         let mediaElements = [];
         if (currentUserItem) {
@@ -446,7 +423,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 mediaElements = Array.from(mediaListContainer.children);
             }
         }
-
         if (currentStoryMediaIndex >= 0) {
             if (currentStoryUserIndex < storyItems.length && progressBarElements[currentStoryMediaIndex]) {
                 progressBarElements[currentStoryMediaIndex].classList.remove('story-module-completed');
@@ -464,12 +440,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const prevMediaListContainer = prevUserItem.querySelector('.story-module-media-list');
                 const prevMediaElements = Array.from(prevMediaListContainer.children);
                 currentStoryMediaIndex = prevMediaElements.length - 1;
-
                 const userStoryItemBorder = prevUserItem.querySelector('.story-module-story-gradient-border');
                 if (userStoryItemBorder && userStoryItemBorder.classList.contains('story-module-story-seen')) {
                     userStoryItemBorder.classList.remove('story-module-story-seen');
                 }
-
                 openStoryModal(currentStoryUserIndex, currentStoryMediaIndex);
             } else {
                 closeStoryModal();
@@ -487,31 +461,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             closeStoryModal();
         }
     });
-    let CloseStoryInMB = document.getElementById('close-btn-story')
-    CloseStoryInMB.addEventListener('click' , ()=>{
+
+    let CloseStoryInMB = document.getElementById('close-btn-story');
+    CloseStoryInMB.addEventListener('click', () => {
         closeStoryModal();
-    })
+    });
+
     modalContent.addEventListener('click', (e) => {
         e.stopPropagation();
     });
 
-
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modal.classList.contains('story-module-active')) {
             closeStoryModal();
-
         }
         if (e.key === 'ArrowRight' && modal.classList.contains('story-module-active')) {
-            prevStory();
+            nextStory();
         }
         if (e.key === 'ArrowLeft' && modal.classList.contains('story-module-active')) {
-            nextStory();
+            prevStory();
         }
     });
 
@@ -610,11 +583,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const hrefSlides = document.querySelectorAll('.href-slide');
-
 hrefSlides.forEach(link => {
     link.setAttribute('target', '_blank');
 });
-
-
-
-

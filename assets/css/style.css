@@ -12403,6 +12403,10 @@ html[dir=rtl] .wow-notification-close-new {
   object-fit: contain !important;
 }
 
+#story-module-caption-text {
+  color: white !important;
+}
+
 .video-js .vjs-control-bar {
   display: flex !important;
   background-color: rgba(0, 0, 0, 0.5) !important;
@@ -12422,7 +12426,6 @@ html[dir=rtl] .wow-notification-close-new {
   direction: ltr;
 }
 
-/* این بلاک برای اینکه کنترل‌بار در حالت عدم فعالیت کاربر پنهان شود. */
 .video-js:not(.vjs-user-inactive) .vjs-control-bar {
   opacity: 1 !important;
   visibility: visible !important;

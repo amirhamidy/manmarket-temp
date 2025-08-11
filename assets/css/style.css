@@ -390,6 +390,10 @@ header {
   fill: white !important;
 }
 
+.ddd-sss {
+  margin-top: -5px !important;
+}
+
 .product {
   position: relative;
   border-radius: 8px;
@@ -12932,6 +12936,7 @@ html[dir=rtl] .wow-notification-close-new {
 .toast-meta {
   font-size: var(--fs-10);
   color: var(--sonic-silver);
+  margin-top: -2px;
 }
 
 /*HEADER*/

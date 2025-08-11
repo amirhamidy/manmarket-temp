@@ -30,10 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
             Swal.fire({
                 title: 'وب اپلیکیشن من مارکت را به صفحه اصلی خود اضافه کنید',
                 html: `
-                    <ol style="direction: rtl; text-align: right; margin-right: 20px;">
-                        <li style="margin-bottom: 10px;">در نوار پایین گزینه " share " را انتخاب کنید.</li>
-                        <li style="margin-bottom: 10px;">در منوی باز شد گزینه + " Add to Home Screen" را انتخاب کنید.</li>
-                        <li>در مرحله بعد " Add " را انتخاب کنید.</li>
+                    <ol style="direction: rtl; text-align: center; margin-right: 20px; margin-top: 20px;">
+                        <li style="margin-bottom: 10px;">1 . در نوار پایین گزینه " share " را انتخاب کنید.</li>
+                        <li style="margin-bottom: 10px;">2 . در منوی باز شد گزینه <button class="btn bg-light text-dark fs-14 py-1 px-2">+</button> " Add to Home Screen" را انتخاب کنید.</li>
+                        <li>3 . در مرحله بعد " Add " را انتخاب کنید.</li>
                     </ol>
                 `,
                 icon: 'info',

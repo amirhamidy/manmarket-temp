@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    //
+    // --- Mobile Filters & Bottom Sheet Management ---
+    //
     const mobileFilterBar = document.getElementById('mobileFilterBar');
     const filtersBottomSheetOverlay = document.getElementById('filtersBottomSheetOverlay');
     const filtersBottomSheet = document.getElementById('filtersBottomSheet');
@@ -6,12 +9,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBottomSheetButton = document.getElementById('closeBottomSheetButton');
     const sidebarFilterContentWrapper = document.querySelector('.fill-filters-sidebar-content-wrapper');
 
+    //
+    // --- Layout Management ---
+    //
     const layoutToggleButton = document.getElementById('layoutToggleButton');
     const layoutPopover = document.getElementById('layoutPopover');
     const resultsGrid = document.getElementById('resultsGrid');
     const layoutOptions = document.querySelectorAll('.layout-popover .layout-option');
 
+    //
+    // --- Price Slider Management ---
+    //
+    const priceSliderTrack = document.getElementById('priceSliderTrack');
+    const minPriceHandle = document.getElementById('minPriceHandle');
+    const maxPriceHandle = document.getElementById('maxPriceHandle');
+    const minPriceDisplay = document.getElementById('minPriceDisplay');
+    const maxPriceDisplay = document.getElementById('maxPriceDisplay');
+    const minPriceValueInput = document.getElementById('minPriceValue');
+    const maxPriceValueInput = document.getElementById('maxPriceValue');
+    const priceSliderRange = document.getElementById('priceSliderRange');
+
+    const actualMinProductPrice = 100;
+    const actualMaxProductPrice = 180000000;
+    const PRICE_STEP = 1000000;
+    let currentMinPrice = actualMinProductPrice;
+    let currentMaxPrice = actualMaxProductPrice;
+    let activeHandle = null;
+
+    // --- Helper Functions ---
+    
     const isMobile = () => window.innerWidth < 992;
+
+    const saveLayoutPreference = (layout) => {
+        localStorage.setItem('userLayoutPreference', layout);
+    };
+
+    const getLayoutPreference = () => {
+        return localStorage.getItem('userLayoutPreference');
+    };
 
     const setLayout = (layout) => {
         if (!resultsGrid || !layoutOptions) return;
@@ -32,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const updateLayoutBasedOnWidth = () => {
+        const userLayout = getLayoutPreference();
         if (isMobile()) {
             document.body.classList.add('is-mobile-layout');
             if (sidebarFilterContentWrapper && bottomSheetFilterContent) {
@@ -39,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     bottomSheetFilterContent.appendChild(sidebarFilterContentWrapper);
                 }
             }
-            setLayout('list');
+            setLayout(userLayout || 'list');
         } else {
             document.body.classList.remove('is-mobile-layout');
             const desktopSidebar = document.querySelector('.fill-filters-sidebar-container');
@@ -48,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     desktopSidebar.appendChild(sidebarFilterContentWrapper);
                 }
             }
-            setLayout('grid');
+            setLayout(userLayout || 'grid');
         }
     };
 
@@ -60,8 +96,40 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
+    //
+    // --- Event Listeners ---
+    //
+    
     updateLayoutBasedOnWidth();
     window.addEventListener('resize', debounce(updateLayoutBasedOnWidth, 250));
+
+    if (layoutOptions) {
+        layoutOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const selectedLayout = option.dataset.layout;
+                setLayout(selectedLayout);
+                saveLayoutPreference(selectedLayout);
+                if (layoutPopover && layoutToggleButton) {
+                    layoutPopover.classList.remove('show');
+                    layoutToggleButton.classList.remove('popover-active');
+                }
+            });
+        });
+    }
+
+    if (layoutToggleButton) {
+        layoutToggleButton.addEventListener('click', (event) => {
+            layoutPopover.classList.toggle('show');
+            layoutToggleButton.classList.toggle('popover-active');
+            event.stopPropagation();
+        });
+    }
+    document.addEventListener('click', (event) => {
+        if (layoutPopover && layoutToggleButton && !layoutPopover.contains(event.target) && !layoutToggleButton.contains(event.target)) {
+            layoutPopover.classList.remove('show');
+            layoutToggleButton.classList.remove('popover-active');
+        }
+    });
 
     const filterChips = document.querySelectorAll('.mobile-filter-bar .btn-filter-chip[data-filter-target="all"]');
     filterChips.forEach(chip => {
@@ -94,21 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const priceSliderTrack = document.getElementById('priceSliderTrack');
-    const minPriceHandle = document.getElementById('minPriceHandle');
-    const maxPriceHandle = document.getElementById('maxPriceHandle');
-    const minPriceDisplay = document.getElementById('minPriceDisplay');
-    const maxPriceDisplay = document.getElementById('maxPriceDisplay');
-    const minPriceValueInput = document.getElementById('minPriceValue');
-    const maxPriceValueInput = document.getElementById('maxPriceValue');
-    const priceSliderRange = document.getElementById('priceSliderRange');
-
-    const actualMinProductPrice = 100;
-    const actualMaxProductPrice = 180000000;
-    const PRICE_STEP = 1000000;
-
-    let currentMinPrice = actualMinProductPrice;
-    let currentMaxPrice = actualMaxProductPrice;
+    //
+    // --- Price Slider Logic ---
+    //
 
     const formatPrice = (price) => {
         return new Intl.NumberFormat('fa-IR').format(price);
@@ -151,8 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    let activeHandle = null;
-
     const getClientX = (e) => {
         return e.touches ? e.touches[0].clientX : e.clientX;
     };
@@ -176,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         percent = Math.max(0, Math.min(100, percent));
 
         let rawValue = actualMinProductPrice + (percent / 100) * (actualMaxProductPrice - actualMinProductPrice);
+        const PRICE_STEP = 1000000;
         const newValue = Math.round(rawValue / PRICE_STEP) * PRICE_STEP;
 
         if (activeHandle === minPriceHandle) {
@@ -212,6 +267,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updatePriceDisplays();
     updateSliderUI();
+    
+    //
+    // --- Clear Filters Logic ---
+    //
 
     const clearFiltersButton = document.getElementById('clearFiltersButton');
     if (clearFiltersButton) {
@@ -228,34 +287,6 @@ document.addEventListener('DOMContentLoaded', () => {
             currentMaxPrice = actualMaxProductPrice;
             updateSliderUI();
             updatePriceDisplays();
-        });
-    }
-
-    if (layoutToggleButton) {
-        layoutToggleButton.addEventListener('click', (event) => {
-            layoutPopover.classList.toggle('show');
-            layoutToggleButton.classList.toggle('popover-active');
-            event.stopPropagation();
-        });
-    }
-
-    document.addEventListener('click', (event) => {
-        if (layoutPopover && layoutToggleButton && !layoutPopover.contains(event.target) && !layoutToggleButton.contains(event.target)) {
-            layoutPopover.classList.remove('show');
-            layoutToggleButton.classList.remove('popover-active');
-        }
-    });
-
-    if (layoutOptions) {
-        layoutOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                const selectedLayout = option.dataset.layout;
-                setLayout(selectedLayout);
-                if (layoutPopover && layoutToggleButton) {
-                    layoutPopover.classList.remove('show');
-                    layoutToggleButton.classList.remove('popover-active');
-                }
-            });
         });
     }
 });

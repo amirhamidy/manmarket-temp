@@ -184,7 +184,7 @@ a {
     display: flex !important;
     flex-direction: column !important;
     gap: calc(8px * 1.5) !important;
-    padding: 0 !important;
+    padding: 0 10px !important;
     list-style: none !important;
     height: 160px;
     overflow-y: scroll;
@@ -219,6 +219,10 @@ a {
     display: flex !important;
     flex-wrap: wrap !important;
     gap: 8px !important;
+    height: 85px;
+    overflow-y: scroll;
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent !important;
+    scrollbar-width: thin !important;
 }
 
 .b-cs-blog-tags-cloud a {

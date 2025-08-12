@@ -288,7 +288,8 @@ html[dir="rtl"] .wow-notification-new { transform: translateX(-100%); } html[dir
 .main-container { max-width: 1200px; margin: calc(var(--spacing-unit) * 3) auto; padding: 0 calc(var(--spacing-unit) * 2); }
 .btn-custom { padding: calc(var(--spacing-unit)*1.2) calc(var(--spacing-unit)*2.5); border-radius: var(--border-radius-md); font-weight: 500; font-size: 0.9rem; transition: var(--transition-cubic); border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-unit); }
 .btn-custom.btn-primary { background-color: var(--primary-accent); color: white; font-size: 15px }
-.form-control-custom { width: 100%; padding: calc(var(--spacing-unit)*1.2) calc(var(--spacing-unit)*1.5); font-size: 0.9rem; line-height: 1.5; color: var(--text-primary); background-color: var(--input-bg); border: 1px solid var(--input-border); border-radius: var(--border-radius-md); transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; }
+.form-control-custom {    position: relative;
+  z-index: 99999999999999999999999999999999; width: 100%; padding: calc(var(--spacing-unit)*1.2) calc(var(--spacing-unit)*1.5); font-size: 0.9rem; line-height: 1.5; color: var(--text-primary); background-color: var(--input-bg); border: 1px solid var(--input-border); border-radius: var(--border-radius-md); transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out; }
 .form-control-custom:focus { border-color: var(--primary-accent); outline: 0; box-shadow: 0 0 0 0.2rem rgba(var(--primary-accent-rgb), 0.25); }
 .form-label-custom { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); margin-bottom: calc(var(--spacing-unit)*0.75); display: block; }
 .form-group-custom { margin-bottom: calc(var(--spacing-unit)*2.5); position: relative; }
@@ -715,13 +716,13 @@ html[dir="rtl"] .wow-notification-close-new {
 
 
 .cs-po-ico{
-  top: 10%;
+  top: 13%;
   right: 40%;
 }
 
 @media (max-width: 1026px){
   .cs-po-ico{
-    top: 20% !important;
+    top: 23% !important;
     right: 60% !important;
   }
 }

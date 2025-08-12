@@ -11166,6 +11166,8 @@ html[dir=rtl] .wow-notification-close-new {
 }
 
 .form-control-custom {
+  position: relative;
+  z-index: 100000000000000000000000000000000;
   width: 100%;
   padding: calc(var(--spacing-unit) * 1.2) calc(var(--spacing-unit) * 1.5);
   font-size: 0.9rem;
@@ -12017,13 +12019,13 @@ html[dir=rtl] .wow-notification-close-new {
   }
 }
 .cs-po-ico {
-  top: 10%;
+  top: 13%;
   right: 40%;
 }
 
 @media (max-width: 1026px) {
   .cs-po-ico {
-    top: 20% !important;
+    top: 23% !important;
     right: 60% !important;
   }
 }

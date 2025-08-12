@@ -268,6 +268,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const currentPage = document.body.dataset.currentPage;
     if (currentPage) {
@@ -294,4 +296,58 @@ $('#birthDate').persianDatepicker({
     initialValue: false,
     autoClose: true
 });
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const editButtons = document.querySelectorAll('.edit-trigger-btn');
+    const cancelButtons = document.querySelectorAll('.cancel-btn');
+    const saveButtons = document.querySelectorAll('.save-btn');
+    const emailIcon = document.querySelector('.cs-po-ico-2');
+    const phoneIcon = document.querySelector('.cs-po-ico');
+
+    const showIcons = () => {
+        if (emailIcon) {
+            emailIcon.style.visibility = 'visible';
+            emailIcon.style.opacity = '1';
+        }
+        if (phoneIcon) {
+            phoneIcon.style.visibility = 'visible';
+            phoneIcon.style.opacity = '1';
+        }
+    };
+
+    editButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const parentRow = button.closest('.account-detail-row');
+            const labelText = parentRow.querySelector('.account-detail-label').innerText.trim();
+
+            if (labelText === 'ایمیل') {
+                if (emailIcon) {
+                    emailIcon.style.display = 'none';
+                    emailIcon.style.opacity = '0';
+                }
+            } else if (labelText === 'شماره همراه') {
+                if (phoneIcon) {
+                    phoneIcon.style.display = 'none';
+                    phoneIcon.style.opacity = '0';
+                }
+            }
+        });
+    });
+
+    cancelButtons.forEach(button => {
+        button.addEventListener('click', showIcons);
+    });
+
+    saveButtons.forEach(button => {
+        button.addEventListener('click', showIcons);
+    });
+});
+
+
+
+
+
+
 

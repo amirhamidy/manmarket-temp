@@ -414,7 +414,7 @@ html[dir="rtl"] .wow-notification-new { transform: translateX(-100%); } html[dir
     padding: 5px 10px !important;
   }
   .account-detail-row {
-     height: 90px !important;
+     height: 110px !important;
    }
   .max-se-text{
     width: 100% !important;
@@ -716,19 +716,44 @@ html[dir="rtl"] .wow-notification-close-new {
 
 
 .cs-po-ico{
-  top: 13%;
-  right: 40%;
+  top: 30%;
+  right: 73%;
+}
+.cs-po-ico-2{
+  top: 30%;
+  right: 85%;
 }
 
-@media (max-width: 1026px){
+@media (max-width: 1140px){
   .cs-po-ico{
+    top: 23% !important;
+    right: 50% !important;
+  }
+  .cs-po-ico-2{
     top: 23% !important;
     right: 60% !important;
   }
 }
 @media (max-width: 510px){
   .cs-po-ico{
-    top: 4% !important;
-    right: 17% !important;
+    top: 70% !important;
+    right: 40% !important;
+  }
+  .cs-po-ico-2{
+    top: 70% !important;
+    right: 75% !important;
+  }
+}
+
+@media (max-width: 510px){
+  .save-cancel-btns{
+    margin-bottom: 50%;
+  }
+}
+
+@media (max-width: 510px){
+  .cs-po-ico{
+    top: 70% !important;
+    right: 37% !important;
   }
 }

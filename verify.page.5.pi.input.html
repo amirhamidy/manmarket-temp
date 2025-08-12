@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>تایید ایمیل</title>
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+
+
+<div class="px-1 py-1" style="height: 100vh ; width: 100%;display: flex; justify-content: center;align-items: center;">
+    <div class="ki-ta-form-container">
+        <form id="ki-ta-verification-form">
+            <div class="ki-ta-effect-box">
+                <div class="ki-ta-icon-container">
+                    <svg class="ki-ta-check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="ki-ta-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="ki-ta-check-path" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <h2 class="ki-ta-title my-4">کد تایید را وارد کنید</h2>
+                <div class="ki-ta-pin-input-container mt-3">
+                    <input type="tel" maxlength="1" class="ki-ta-pin-input rounded-3" autofocus>
+                    <input type="tel" maxlength="1" class="ki-ta-pin-input rounded-3">
+                    <input type="tel" maxlength="1" class="ki-ta-pin-input rounded-3">
+                    <input type="tel" maxlength="1" class="ki-ta-pin-input rounded-3">
+                    <input type="tel" maxlength="1" class="ki-ta-pin-input rounded-3">
+                </div>
+            </div>
+            <button type="submit" class="ki-ta-submit-btn fs-14">تایید</button>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const pinInputs = document.querySelectorAll('.ki-ta-pin-input');
+
+        pinInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                const value = e.target.value.replace(/[^0-9]/g, '');
+                e.target.value = value;
+
+                if (value.length === 1 && index < pinInputs.length - 1) {
+                    pinInputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && e.target.value.length === 0 && index > 0) {
+                    pinInputs[index - 1].focus();
+                }
+            });
+        });
+    });
+
+
+</script>
+
+
+</body>
+</html>

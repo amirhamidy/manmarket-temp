@@ -79,7 +79,7 @@ html[dir="rtl"] .wow-notification-new { transform: translateX(-100%); } html[dir
 .mobile-nav-item { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.7rem; text-align: center; padding: calc(var(--spacing-unit)*1.2) 0; }
 .mobile-nav-item.active { color: var(--primary-accent); } .mobile-nav-item svg { width: 22px; height: 22px; margin-bottom: 2px; }
 /* --- PAGE-SPECIFIC STYLES: Account Details (for demo) --- */
-.account-detail-row { height: 60px; display: flex; align-items: flex-start; padding: calc(var(--spacing-unit)*1.5) 0; border-bottom: 1px solid var(--border-color); }
+.account-detail-row { height: 70px; display: flex; align-items: flex-start; padding: calc(var(--spacing-unit)*1.5) 0; border-bottom: 1px solid var(--border-color); }
 .account-detail-row:last-child { border-bottom: none; }
 .account-detail-label { font-size: 0.88rem; color: var(--text-secondary); width: 130px; flex-shrink: 0; padding-top: calc(var(--spacing-unit)*0.25); }
 .account-detail-value-wrapper { flex-grow: 1; display: flex; justify-content: space-between; align-items: flex-start; }
@@ -710,5 +710,24 @@ html[dir="rtl"] .wow-notification-close-new {
 @media (max-width: 1024px){
   .p-for-dl{
     padding: 0 7px;
+  }
+}
+
+
+.cs-po-ico{
+  top: 10%;
+  right: 40%;
+}
+
+@media (max-width: 1026px){
+  .cs-po-ico{
+    top: 20% !important;
+    right: 60% !important;
+  }
+}
+@media (max-width: 510px){
+  .cs-po-ico{
+    top: 4% !important;
+    right: 17% !important;
   }
 }

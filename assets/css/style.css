@@ -9617,7 +9617,7 @@ html[dir=rtl] .wow-notification-close-new {
 
 /* --- PAGE-SPECIFIC STYLES: Account Details (for demo) --- */
 .account-detail-row {
-  height: 60px;
+  height: 70px;
   display: flex;
   align-items: flex-start;
   padding: calc(var(--spacing-unit) * 1.5) 0;
@@ -12014,6 +12014,23 @@ html[dir=rtl] .wow-notification-close-new {
 @media (max-width: 1024px) {
   .p-for-dl {
     padding: 0 7px;
+  }
+}
+.cs-po-ico {
+  top: 10%;
+  right: 40%;
+}
+
+@media (max-width: 1026px) {
+  .cs-po-ico {
+    top: 20% !important;
+    right: 60% !important;
+  }
+}
+@media (max-width: 510px) {
+  .cs-po-ico {
+    top: 4% !important;
+    right: 17% !important;
   }
 }
 .story-module-main-wrapper {

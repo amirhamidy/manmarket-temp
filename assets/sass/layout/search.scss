@@ -114,6 +114,13 @@ html, body {
   border-top-color: transparent !important;
   border-bottom-color: transparent !important;
 }
+
+
+button {
+  -webkit-appearance: none ;
+  -moz-appearance: none ;
+  appearance: none ;
+}
 .accordion-button.collapsed:focus { border-right-color: transparent !important; }
 
 .accordion-button:not(.collapsed) {

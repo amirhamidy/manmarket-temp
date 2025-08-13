@@ -716,11 +716,11 @@ html[dir="rtl"] .wow-notification-close-new {
 
 
 .cs-po-ico{
-  top: 30%;
+  top: 26%;
   right: 73%;
 }
 .cs-po-ico-2{
-  top: 30%;
+  top: 20%;
   right: 85%;
 }
 
@@ -734,26 +734,37 @@ html[dir="rtl"] .wow-notification-close-new {
     right: 60% !important;
   }
 }
-@media (max-width: 510px){
+@media (max-width: 580px){
   .cs-po-ico{
     top: 70% !important;
     right: 40% !important;
   }
-  .cs-po-ico-2{
-    top: 70% !important;
-    right: 75% !important;
+  .cs-po-ico-2 {
+    top: 58% !important;
+    right: 77% !important;
   }
 }
 
-@media (max-width: 510px){
+@media (max-width: 580px){
   .save-cancel-btns{
     margin-bottom: 50%;
   }
 }
 
 @media (max-width: 510px){
-  .cs-po-ico{
-    top: 70% !important;
-    right: 37% !important;
+  .cs-po-ico {
+    top: 65% !important;
+    right: 47% !important;
+  }
+}
+
+@media (max-width: 460px){
+  .cs-po-ico {
+    top: 65% !important;
+    left: 8% !important;
+  }
+  .cs-po-ico-2 {
+    top: 58% !important;
+    left: 2% !important;
   }
 }

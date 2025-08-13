@@ -23,7 +23,6 @@ body * {
   -webkit-overflow-scrolling: touch;
 }
 
-/* غیرفعال کردن قابلیت انتخاب متن */
 body {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -11787,6 +11786,24 @@ html[dir=rtl] .wow-notification-close-new {
   }
 }
 @media (max-width: 700px) {
+  .s-x {
+    overflow-x: scroll !important;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+  }
+  .man-d-b-2 {
+    -webkit-overflow-scrolling: touch;
+  }
+  .s-x::-webkit-scrollbar {
+    height: 8px;
+  }
+  .s-x::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .s-x::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
   .s-x {
     padding: 0px 306px !important;
   }

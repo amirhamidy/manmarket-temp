@@ -394,9 +394,32 @@ html[dir="rtl"] .wow-notification-new { transform: translateX(-100%); } html[dir
   .main-container { padding-top: 100px;     padding-left: 25px !important; }
 }
 @media (max-width: 700px) {
+
+  .s-x {
+    overflow-x: scroll !important;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+  }
+
+  .man-d-b-2 {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .s-x::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .s-x::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .s-x::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+  }
+
   .s-x{
     padding: 0px 306px !important;
-
   }
   .m-i-sd:last-child {
     margin-left: 40px !important;
@@ -421,6 +444,14 @@ html[dir="rtl"] .wow-notification-new { transform: translateX(-100%); } html[dir
     padding: 5px 10px !important;
   }
 }
+
+
+
+
+
+
+
+
 
 
 

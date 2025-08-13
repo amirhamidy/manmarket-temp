@@ -19,6 +19,10 @@ body * {
   font-feature-settings: "lnum" on;
 }
 
+.man-d-b-2 {
+  -webkit-overflow-scrolling: touch;
+}
+
 /* غیرفعال کردن قابلیت انتخاب متن */
 body {
   -webkit-user-select: none;

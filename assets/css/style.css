@@ -12154,33 +12154,33 @@ html[dir=rtl] .wow-notification-close-new {
   }
 }
 .cs-po-ico {
-  top: 26%;
-  right: 73%;
+  top: 20%;
+  left: 8%;
 }
 
 .cs-po-ico-2 {
   top: 20%;
-  right: 85%;
+  left: 8%;
 }
 
 @media (max-width: 1140px) {
   .cs-po-ico {
     top: 23% !important;
-    right: 50% !important;
+    left: 15% !important;
   }
   .cs-po-ico-2 {
     top: 23% !important;
-    right: 60% !important;
+    left: 15% !important;
   }
 }
-@media (max-width: 580px) {
+@media (max-width: 665px) {
   .cs-po-ico {
-    top: 70% !important;
-    right: 40% !important;
+    top: 30% !important;
+    left: 7% !important;
   }
   .cs-po-ico-2 {
-    top: 58% !important;
-    right: 77% !important;
+    top: 30% !important;
+    left: 7% !important;
   }
 }
 @media (max-width: 580px) {
@@ -12188,20 +12188,24 @@ html[dir=rtl] .wow-notification-close-new {
     margin-bottom: 50%;
   }
 }
-@media (max-width: 510px) {
+@media (max-width: 665px) {
   .cs-po-ico {
     top: 65% !important;
-    right: 47% !important;
+    left: 7% !important;
+  }
+  .cs-po-ico-2 {
+    top: 65% !important;
+    left: 7% !important;
   }
 }
 @media (max-width: 460px) {
   .cs-po-ico {
     top: 65% !important;
-    left: 8% !important;
+    left: 3% !important;
   }
   .cs-po-ico-2 {
-    top: 58% !important;
-    left: 2% !important;
+    top: 65% !important;
+    left: 3% !important;
   }
 }
 .story-module-main-wrapper {

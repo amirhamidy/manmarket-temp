@@ -331,7 +331,6 @@ header {
   }
 }
 .cus-fs-1 {
-  font-size: 15px !important;
   color: black;
 }
 
@@ -419,10 +418,17 @@ header {
   pointer-events: none;
 }
 
+.cs-mn-fonts {
+  font-size: 19px !important;
+  white-space: nowrap !important;
+  width: 100% !important;
+}
+
 .d-bx {
   width: 100%;
   text-align: -webkit-left;
   white-space: nowrap !important;
+  font-size: 19px !important;
 }
 
 @media only screen and (max-width: 550px) {
@@ -6320,7 +6326,7 @@ button {
 }
 
 .cs-fs-se {
-  font-size: 12px !important;
+  font-size: 11px !important;
 }
 
 .fill-clear-filters-container {

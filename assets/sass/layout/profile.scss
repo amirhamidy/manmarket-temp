@@ -385,7 +385,13 @@ html[dir="rtl"] .wow-notification-new { transform: translateX(-100%); } html[dir
   font-size: 14px !important;
 }
 
-
+@supports (-webkit-touch-callout: none) {
+  #open-mn-btn,
+  a,
+  button {
+    color: #000 !important;
+  }
+}
 
 
 @media (max-width: 991.98px) {
@@ -393,12 +399,23 @@ html[dir="rtl"] .wow-notification-new { transform: translateX(-100%); } html[dir
   .profile-sidebar-new { display: none; }
   .main-container { padding-top: 100px;     padding-left: 25px !important; }
 }
+
+.s-x{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 @media (max-width: 700px) {
 
   .s-x {
     overflow-x: scroll !important;
     scrollbar-width: thin;
     scrollbar-color: #ccc transparent;
+    -webkit-overflow-scrolling: touch !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 500px;
   }
 
   .man-d-b-2 {

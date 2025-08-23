@@ -47,7 +47,7 @@
     .hero-section {
       width: 100%;
       /*background: linear-gradient(to bottom, #f96747, rgba(249, 71, 71, 0.88));*/
-      background-color: #6346ce;
+      background: linear-gradient(to right, rgb(25, 123, 255) 0%, rgb(25, 123, 255) 100%, rgb(223, 228, 235) 100%, rgb(223, 228, 235) 100%);
       padding: 80px 20px;
       text-align: center;
       font-family: sans-serif;
@@ -177,9 +177,7 @@
       font-size: 1.2rem;
     }
 
-    /* ================================
-       Calculator Section
-    ================================ */
+
     .calculator {
       background: #fff;
       padding: 35px;
@@ -230,29 +228,248 @@
     .calculator button:hover {
       background: #155ab6;
     }
+    .gh-s-container {
+      max-width: 700px;
+      margin: 50px auto;
+      text-align: center;
+    }
 
-    .result-box {
-      margin-top: 25px;
-      padding: 18px;
-      background: #f1f6ff;
+    .gh-s-title {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .gh-s-timeline {
+      position: relative;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .gh-s-timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 50%;
+      width: 2px;
+      background: #ddd;
+      transform: translateX(50%);
+    }
+
+    .gh-s-step {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin: 30px 0;
+      position: relative;
+    }
+
+    .gh-s-circle {
+      width: 40px;
+      height: 40px;
+      background: #007bff;
+      color: #fff;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      position: absolute;
+      right: 50%;
+      transform: translateX(50%);
+      z-index: 2;
+    }
+
+    .gh-s-content {
+      background: #fff;
+      padding: 15px 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+      width: 280px;
+      line-height: 1.6;
+    }
+
+    .gh-s-step:nth-child(odd) .gh-s-content {
+      margin-right: calc(50% + 30px);
+      text-align: right;
+    }
+    .gh-s-step:nth-child(even) .gh-s-content {
+      margin-left: calc(50% + 30px);
+      text-align: right;
+    }
+
+    .loan-calculator {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 420px;
+      overflow: hidden;
+    }
+
+    .calculator-header {
+      background: linear-gradient(270deg, #3498db, #2c79c7);
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .calculator-header h1 {
+      font-size: 20px;
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .calculator-header p {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .left-section {
+      flex: 1;
+      padding: 30px;
+      background: linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .right-section {
+      flex: 1;
+      padding: 30px;
+      border-left: 1px solid #eee;
+    }
+    .repayment-title {
+      font-size: 22px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .final-repayment {
+      font-size: 32px;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 15px 0;
+      text-align: center;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .detail-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .detail-item:last-child {
+      border-bottom: none;
+    }
+    .detail-label {
+      font-size: 16px;
+    }
+    .detail-value {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .note {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    .loan-type {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    .bank-box {
+      background-color: #1e88e5;
+      color: white;
+      padding: 15px;
       border-radius: 8px;
+      margin-bottom: 25px;
       text-align: center;
       font-weight: bold;
+      font-size: 20px;
     }
-
-    /* ================================
-       Request Form
-    ================================ */
-    .request-form {
-      background: #fff;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-      margin-top: 50px;
+    .range-container {
+      margin-bottom: 25px;
     }
-
-    .request-form h2 {
+    .range-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      color: #555;
+    }
+    input[type="range"] {
+      width: 100%;
+      height: 10px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: #ddd;
+      outline: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #1e88e5;
+      cursor: pointer;
+      border: 4px solid white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.1);
+      background: #0d47a1;
+    }
+    .repayment-period {
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
       text-align: center;
+      font-size: 18px;
+      color: #333;
+      font-weight: 500;
+      border: 1px dashed #ddd;
+    }
+    .value-display {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #1e88e5;
+      margin: 15px 0;
+      padding: 10px;
+      background-color: #f0f8ff;
+      border-radius: 8px;
+    }
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .left-section, .right-section {
+        width: 100%;
+      }
+      .right-section {
+        border-left: none;
+        border-top: 1px solid #eee;
+      }
     }
 
   </style>
@@ -266,25 +483,25 @@
   <section class="hero-section">
     <div class="hero-bg">
       <div class="hero-container py-4 px-1 ">
-        <h3 class=" text-light fw-bold">خرید از من مارکت، وام از GSMPay</h3>
-        <p class=" text-light f-14 my-3">همین امروز می‌توانید بدون نیاز به ضامن تا ۵۰ میلیون تومان از جی‌اس‌ام پی وام بگیرید و گوشی دلخواه‌تان را از من مارکت بخرید.</p>
+        <h3 class="text-light fw-bold">خرید از من مارکت، وام از GSMPay</h3>
+        <p class="text-light f-14 my-3">همین امروز می‌توانید بدون نیاز به ضامن تا ۵۰ میلیون تومان از جی‌اس‌ام پی وام بگیرید و گوشی دلخواه‌تان را از من مارکت بخرید.</p>
 
         <div class="features-cards row mt-4">
           <div class="feature-card col-md-2 col-sm-5 col-5 align-items-center d-flex justify-content-center flex-column ">
             <img src="assets/img/DN/verified.svg" alt="مزیت ۱">
-            <h4 class=" text-light f-14">قیمت منصفانه</h4>
+            <h4 class="text-light f-14">قیمت منصفانه</h4>
           </div>
           <div class="feature-card col-md-2 col-sm-5 col-5 align-items-center d-flex justify-content-center flex-column ">
             <img src="assets/img/DN/express.svg" alt="مزیت ۲">
-            <h4 class=" text-light f-14">ارسال سریع (زیر ۳ ساعت)</h4>
+            <h4 class="text-light f-14">ارسال سریع (زیر ۳ ساعت)</h4>
           </div>
           <div class="feature-card col-md-2 col-sm-5 col-5 align-items-center d-flex justify-content-center flex-column ">
             <img class=" w-auto mb-3" src="assets/img/DN/main.logo2.png" alt="مزیت ۳">
-            <h4 class=" text-light f-14">بیمه با تخفیف ویژه</h4>
+            <h4 class="text-light f-14">بیمه با تخفیف ویژه</h4>
           </div>
           <div class="feature-card col-md-2 col-sm-5 col-5 align-items-center d-flex justify-content-center flex-column ">
             <img src="assets/img/DN/store.svg" alt="مزیت ۴">
-            <h4 class=" text-light f-14">امکان تحویل حضوری کالا</h4>
+            <h4 class="text-light f-14">امکان تحویل حضوری کالا</h4>
           </div>
         </div>
 
@@ -293,8 +510,164 @@
     </div>
   </section>
 
+  <div class="gh-s-container">
+    <h2 class="gh-s-title f-14">مراحل خرید اقساطی از من مارکت</h2>
+
+    <div class="gh-s-timeline">
+      <div class="gh-s-step">
+        <div class="gh-s-circle f-14">1</div>
+        <div class="gh-s-content f-14">دریافت اعتبار از <a href="#">GSMpay.ir</a></div>
+      </div>
+      <div class="gh-s-step">
+        <div class="gh-s-circle f-14">2</div>
+        <div class="gh-s-content f-14">انتخاب گوشی در <a href="index.html">manmarket.ir</a></div>
+      </div>
+      <div class="gh-s-step">
+        <div class="gh-s-circle f-14">3</div>
+        <div class="gh-s-content f-14">
+          انجام فرآیند خرید و انتخاب شیوه دریافت به صورت حضوری یا ارسال سریع
+        </div>
+      </div>
+      <div class="gh-s-step">
+        <div class="gh-s-circle f-14">4</div>
+        <div class="gh-s-content f-14">انتخاب گزینه پرداخت قسطی</div>
+      </div>
+      <div class="gh-s-step">
+        <div class="gh-s-circle f-14">5</div>
+        <div class="gh-s-content f-14">گوشی جدید مبارکه :)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container d-flex justify-content-between px-3 py-2 gap-3">
+    <div class="right-section">
+    <div class="loan-type">نوع تسهیلات</div>
+    <div class="bank-box">بلو بانک</div>
+
+    <div class="range-container">
+      <div class="value-display" id="loanValue">10,000,000 تومان</div>
+      <div class="range-label">
+        <span>10,000,000 تومان</span>
+        <span>50,000,000 تومان</span>
+      </div>
+      <input type="range" id="loanRange" min="10000000" max="50000000" step="5000000" value="10000000">
+    </div>
+
+    <div class="repayment-period">دوره بازپرداخت: 12 ماهه</div>
+  </div>
+    <div class="left-section">
+      <div class="repayment-title">بازپرداخت نهایی</div>
+      <div class="final-repayment" id="finalRepayment">12,384,160 تومان</div>
+
+      <div class="detail-box">
+        <div class="detail-item">
+          <span class="detail-label">مبلغ هر قسط:</span>
+          <span class="detail-value" id="monthlyPayment">940,764 تومان</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">سود تسهیلات:</span>
+          <span class="detail-value" id="interestAmount">2,384,160 تومان</span>
+        </div>
+      </div>
+
+      <div class="note">مقادیر بر اساس دوره بازپرداخت ۱۲ ماهه محاسبه شده است.</div>
+    </div>
+  </div>
+
+
 </main>
 
 
+
+<script>
+  const loanRange = document.getElementById('loanRange');
+  const loanValue = document.getElementById('loanValue');
+  const finalRepayment = document.getElementById('finalRepayment');
+  const monthlyPayment = document.getElementById('monthlyPayment');
+  const interestAmount = document.getElementById('interestAmount');
+
+  // تابع برای فرمت کردن اعداد به صورت فارسی
+  function toPersianNumber(number) {
+    const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    return number.toString().replace(/\d/g, digit => persianDigits[parseInt(digit)]);
+  }
+
+  // تابع برای فرمت کردن اعداد با جداکننده هزارگان
+  function formatNumber(num) {
+    return toPersianNumber(num.toLocaleString('fa-IR'));
+  }
+
+  // محاسبه بازپرداخت نهایی بر اساس مبلغ وام
+  function calculateFinalRepayment(loanAmount) {
+    const amounts = {
+      10000000: 12384160,
+      15000000: 18576239,
+      20000000: 24768318,
+      25000000: 30960398,
+      30000000: 37152477,
+      35000000: 43344557,
+      40000000: 49536636,
+      45000000: 55728716,
+      50000000: 61920795
+    };
+
+    return amounts[loanAmount] || loanAmount;
+  }
+
+  // محاسبه مبلغ هر قسط (بر اساس مقادیر دقیق ارائه شده)
+  function calculateMonthlyPayment(loanAmount) {
+    const amounts = {
+      10000000: 940764,
+      15000000: 1411145,
+      20000000: 1881527,
+      25000000: 2351909,
+      30000000: 2822290,
+      35000000: 3292672,
+      40000000: 3763053,
+      45000000: 4233435,
+      50000000: 4703817
+    };
+
+    return amounts[loanAmount] || 0;
+  }
+
+  // محاسبه سود تسهیلات (بر اساس مقادیر دقیق ارائه شده)
+  function calculateInterest(loanAmount) {
+    const amounts = {
+      10000000: 1289160,
+      15000000: 1933739,
+      20000000: 2578318,
+      25000000: 3222898,
+      30000000: 3867477,
+      35000000: 4512056,
+      40000000: 5156635,
+      45000000: 5801214,
+      50000000: 6445794
+    };
+
+    return amounts[loanAmount] || 0;
+  }
+
+  // به روز رسانی مقادیر بر اساس موقعیت اسلایدر
+  function updateValues() {
+    const loan = parseInt(loanRange.value);
+    loanValue.textContent = formatNumber(loan) + ' تومان';
+
+    const final = calculateFinalRepayment(loan);
+    finalRepayment.textContent = formatNumber(final) + ' تومان';
+
+    const monthly = calculateMonthlyPayment(loan);
+    monthlyPayment.textContent = formatNumber(monthly) + ' تومان';
+
+    const interest = calculateInterest(loan);
+    interestAmount.textContent = formatNumber(interest) + ' تومان';
+  }
+
+  // رویداد تغییر اسلایدر
+  loanRange.addEventListener('input', updateValues);
+
+  // مقداردهی اولیه
+  updateValues();
+</script>
 </body>
 </html>

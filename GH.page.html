@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/splide.lib.css"/>
 
   <title>Document</title>
 
@@ -47,7 +48,7 @@
     .hero-section {
       width: 100%;
       /*background: linear-gradient(to bottom, #f96747, rgba(249, 71, 71, 0.88));*/
-      background: linear-gradient(to right, rgb(25, 123, 255) 0%, rgb(25, 123, 255) 100%, rgb(223, 228, 235) 100%, rgb(223, 228, 235) 100%);
+      background-color: #1e88e5;
       padding: 80px 20px;
       text-align: center;
       font-family: sans-serif;
@@ -57,18 +58,20 @@
     .hero-container {
       max-width: 1200px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      background-image: linear-gradient(to bottom, #5d99e9 , #5421ec);
+      background-color: #1e88e5;
       margin: 0 auto;
       border-radius: 15px;
     }
 
+    .btn-sub-gh{
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
     .hero-container h1 {
-      font-size: 36px;
       margin-bottom: 20px;
     }
 
     .hero-container p {
-      font-size: 18px;
       margin-bottom: 40px;
       line-height: 1.5;
     }
@@ -97,7 +100,6 @@
     }
 
     .feature-card h4 {
-      font-size: 16px;
     }
 
 
@@ -127,9 +129,8 @@
     .feature-card .icon {
       width: 70px;
       height: 70px;
-      background: #1a73e8;
+      background-color: #1e88e5;
       color: #fff;
-      font-size: 1.8rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -174,7 +175,6 @@
       justify-content: center;
       margin: 0 auto 12px;
       font-weight: bold;
-      font-size: 1.2rem;
     }
 
 
@@ -189,7 +189,6 @@
     .calculator h2 {
       text-align: center;
       margin-bottom: 25px;
-      font-size: 1.8rem;
     }
 
     .calculator form {
@@ -214,7 +213,7 @@
     }
 
     .calculator button {
-      background: #1a73e8;
+      background-color: #1e88e5;
       color: #fff;
       border: none;
       padding: 14px 25px;
@@ -226,7 +225,7 @@
     }
 
     .calculator button:hover {
-      background: #155ab6;
+      background-color: #1e88e5;
     }
     .gh-s-container {
       max-width: 700px;
@@ -235,7 +234,6 @@
     }
 
     .gh-s-title {
-      font-size: 26px;
       font-weight: bold;
       margin-bottom: 40px;
     }
@@ -268,7 +266,7 @@
     .gh-s-circle {
       width: 40px;
       height: 40px;
-      background: #007bff;
+      background-color: #1e88e5;
       color: #fff;
       font-weight: bold;
       display: flex;
@@ -308,29 +306,20 @@
       overflow: hidden;
     }
 
-    .calculator-header {
-      background: linear-gradient(270deg, #3498db, #2c79c7);
-      color: white;
-      padding: 20px;
-      text-align: center;
-      position: relative;
-    }
 
     .calculator-header h1 {
-      font-size: 20px;
       margin-bottom: 5px;
       font-weight: 700;
     }
 
     .calculator-header p {
-      font-size: 13px;
       opacity: 0.9;
     }
 
     .left-section {
       flex: 1;
       padding: 30px;
-      background: linear-gradient(135deg, #1e88e5 0%, #0d47a1 100%);
+      background-color: #1e88e5;
       color: white;
       display: flex;
       flex-direction: column;
@@ -342,13 +331,11 @@
       border-left: 1px solid #eee;
     }
     .repayment-title {
-      font-size: 22px;
       margin-bottom: 20px;
       text-align: center;
       font-weight: 600;
     }
     .final-repayment {
-      font-size: 32px;
       font-weight: bold;
       background: rgba(255, 255, 255, 0.15);
       padding: 20px;
@@ -376,20 +363,16 @@
       border-bottom: none;
     }
     .detail-label {
-      font-size: 16px;
     }
     .detail-value {
-      font-size: 18px;
       font-weight: 600;
     }
     .note {
       text-align: center;
       margin-top: 20px;
-      font-size: 14px;
       opacity: 0.9;
     }
     .loan-type {
-      font-size: 18px;
       color: #333;
       margin-bottom: 10px;
       font-weight: 600;
@@ -402,7 +385,6 @@
       margin-bottom: 25px;
       text-align: center;
       font-weight: bold;
-      font-size: 20px;
     }
     .range-container {
       margin-bottom: 25px;
@@ -444,14 +426,12 @@
       padding: 15px;
       border-radius: 8px;
       text-align: center;
-      font-size: 18px;
       color: #333;
       font-weight: 500;
       border: 1px dashed #ddd;
     }
     .value-display {
       text-align: center;
-      font-size: 24px;
       font-weight: bold;
       color: #1e88e5;
       margin: 15px 0;
@@ -470,6 +450,10 @@
         border-left: none;
         border-top: 1px solid #eee;
       }
+    }
+
+    .bg-gh{
+      background-color: #1e88e5;
     }
 
   </style>
@@ -505,7 +489,7 @@
           </div>
         </div>
 
-        <button class="bg-light text-dark rounded-3 px-3 py-2">محاسبه وام</button>
+        <button class=" bg-gh text-light btn-sub-gh rounded-3 px-3 py-2">محاسبه وام</button>
       </div>
     </div>
   </section>
@@ -539,7 +523,7 @@
     </div>
   </div>
 
-  <div class="container d-flex justify-content-between px-3 py-2 gap-3">
+  <div class="container d-flex justify-content-between px-3 py-2 gap-3 f-14">
     <div class="right-section">
     <div class="loan-type">نوع تسهیلات</div>
     <div class="bank-box">بلو بانک</div>
@@ -575,9 +559,76 @@
   </div>
 
 
+  <section class="row">
+    <div class="col-md-3">
+      <h4 class="text-center">
+        محبوب ترین گوشی های <a href="index.html"> من مارکت </a>
+      </h4>
+    </div>
+    <div class="col-md-9">
+      <ul class="splide__list ">
+        <li class="splide__slide SH-HS-related-product-item w-center ">
+          <a href="[لینک-محصول-مرتبط-1]" class="SH-HS-product-link w-center">
+            <img src="assets/img/main.logo.jpg" alt="نام محصول 1" class="SH-HS-product-thumbnail">
+            <h5 class="card-title mt-4 w-right text-dark">گوشی موبایل سامسونگ مدل Galaxy A06 دو سیم کارت ظرفیت 128 گیگابایت و رم 6 گیگابایت</h5>
+            <span class="SH-HS-product-price my-2">1,250,000 تومان</span>
+          </a>
+          <button class="SH-HS-btn-add-to-cart">افزودن به سبد خرید</button>
+        </li>
+        <li class="splide__slide SH-HS-related-product-item w-center ">
+          <a href="[لینک-محصول-مرتبط-1]" class="SH-HS-product-link w-center">
+            <img src="assets/img/main.logo.jpg" alt="نام محصول 1" class="SH-HS-product-thumbnail">
+            <h5 class="card-title mt-4 w-right text-dark">گوشی موبایل سامسونگ مدل Galaxy A06 دو سیم کارت ظرفیت 128 گیگابایت و رم 6 گیگابایت</h5>
+            <span class="SH-HS-product-price my-2 w-center">1,250,000 تومان</span>
+          </a>
+          <button class="SH-HS-btn-add-to-cart">افزودن به سبد خرید</button>
+        </li>
+        <li class="splide__slide SH-HS-related-product-item w-center ">
+          <a href="[لینک-محصول-مرتبط-1]" class="SH-HS-product-link w-center">
+            <img src="assets/img/main.logo.jpg" alt="نام محصول 1" class="SH-HS-product-thumbnail">
+            <h5 class="card-title mt-4 w-right text-dark">گوشی موبایل سامسونگ مدل Galaxy A06 دو سیم کارت ظرفیت 128 گیگابایت و رم 6 گیگابایت</h5>
+            <span class="SH-HS-product-price my-2 w-center">1,250,000 تومان</span>
+          </a>
+          <button class="SH-HS-btn-add-to-cart">افزودن به سبد خرید</button>
+        </li>
+        <li class="splide__slide SH-HS-related-product-item w-center ">
+          <a href="[لینک-محصول-مرتبط-1]" class="SH-HS-product-link w-center">
+            <img src="assets/img/main.logo.jpg" alt="نام محصول 1" class="SH-HS-product-thumbnail">
+            <h5 class="card-title mt-4 w-right text-dark">گوشی موبایل سامسونگ مدل Galaxy A06 دو سیم کارت ظرفیت 128 گیگابایت و رم 6 گیگابایت</h5>
+            <span class="SH-HS-product-price my-2">1,250,000 تومان</span>
+          </a>
+          <button class="SH-HS-btn-add-to-cart">افزودن به سبد خرید</button>
+        </li>
+        <li class="splide__slide SH-HS-related-product-item w-center ">
+          <a href="[لینک-محصول-مرتبط-1]" class="SH-HS-product-link w-center">
+            <img src="assets/img/main.logo.jpg" alt="نام محصول 1" class="SH-HS-product-thumbnail">
+            <h5 class="card-title mt-4 w-right text-dark">گوشی موبایل سامسونگ مدل Galaxy A06 دو سیم کارت ظرفیت 128 گیگابایت و رم 6 گیگابایت</h5>
+            <span class="SH-HS-product-price my-2">1,250,000 تومان</span>
+          </a>
+          <button class="SH-HS-btn-add-to-cart">افزودن به سبد خرید</button>
+        </li>
+        <li class="splide__slide SH-HS-related-product-item w-center ">
+          <a href="[لینک-محصول-مرتبط-1]" class="SH-HS-product-link w-center">
+            <img src="assets/img/main.logo.jpg" alt="نام محصول 1" class="SH-HS-product-thumbnail">
+            <h5 class="card-title mt-4 w-right text-dark">گوشی موبایل سامسونگ مدل Galaxy A06 دو سیم کارت ظرفیت 128 گیگابایت و رم 6 گیگابایت</h5>
+            <span class="SH-HS-product-price my-2">1,250,000 تومان</span>
+          </a>
+          <button class="SH-HS-btn-add-to-cart">افزودن به سبد خرید</button>
+        </li>
+      </ul>
+
+    </div>
+  </section>
+
+
 </main>
 
 
+
+
+<script src="assets/js/sweet.alert.lib.js"></script>
+
+<script src="assets/js/splide.lib.js"></script>
 
 <script>
   const loanRange = document.getElementById('loanRange');
@@ -668,6 +719,8 @@
 
   // مقداردهی اولیه
   updateValues();
+
 </script>
+
 </body>
 </html>

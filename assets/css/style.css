@@ -31,6 +31,10 @@ body * {
   -webkit-overflow-scrolling: touch;
 }
 
+.f-14 {
+  font-size: 14px !important;
+}
+
 body {
   -webkit-user-select: none;
   -moz-user-select: none;

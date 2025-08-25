@@ -45,6 +45,10 @@
       border-radius: 15px;
     }
 
+    .ro-cs {
+        border-radius: 15px;
+    }
+
     .btn-sub-gh{
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
@@ -452,6 +456,13 @@
     }
 
 
+    .icon-bank{
+        width: 30px !important;
+        object-fit: cover;
+        height: auto;
+    }
+
+
   </style>
 
 
@@ -519,73 +530,114 @@
     </div>
   </div>
 
-  <div class="container d-flex justify-content-between px-3 py-2 gap-3 f-14">
-    <div class="right-section">
-    <div class="loan-type">نوع تسهیلات</div>
-    <div class="bank-box">بلو بانک</div>
-
-    <div class="range-container">
-      <div class="value-display" id="loanValue">10,000,000 تومان</div>
-      <div class="range-label">
-        <span>10,000,000 تومان</span>
-        <span>50,000,000 تومان</span>
-      </div>
-      <input type="range" id="loanRange" min="10000000" max="50000000" step="5000000" value="10000000">
-    </div>
-
-    <div class="repayment-period">دوره بازپرداخت: 12 ماهه</div>
-  </div>
-    <div class="left-section">
-      <div class="repayment-title">بازپرداخت نهایی</div>
-      <div class="final-repayment" id="finalRepayment">12,384,160 تومان</div>
-
-      <div class="detail-box">
-        <div class="detail-item">
-          <span class="detail-label">مبلغ هر قسط:</span>
-          <span class="detail-value" id="monthlyPayment">940,764 تومان</span>
-        </div>
-        <div class="detail-item">
-          <span class="detail-label">سود تسهیلات:</span>
-          <span class="detail-value" id="interestAmount">2,384,160 تومان</span>
-        </div>
-      </div>
-
-      <div class="note">مقادیر بر اساس دوره بازپرداخت ۱۲ ماهه محاسبه شده است.</div>
-    </div>
-
-  </div>
 
 
-    <div class="story-m-calculator container story-m-calculator-soft f-14 d-flex justify-content-center">
-        <div class="story-m-range-box right-section">
-            <div class="loan-type">نوع تسهیلات</div>
-            <div class="bank-box">های بانک</div>
-            <div class="range-container w-100">
-                <span class="f-14 value-display w-100" id="loanValue2">۵,۰۰۰,۰۰۰</span>
+    <ul class="nav nav-tabs mb-0 b-none w-center justify-content-center flex-nowrap mx-1 px-1" id="productTab" role="tablist">
+        <li class="nav-item " role="presentation">
+            <button class=" active text-nowrap text-dark d-flex justify-content-center align-items-center" id="description-tab" data-bs-toggle="tab" data-bs-target="#descriptionPane" type="button" role="tab" aria-controls="descriptionPane" aria-selected="true">
+                بلو بانک
+                <img class="icon-bank mx-2" alt="" src="assets/img/DN/blubank-for-iphone.png">
+            </button>
+        </li>
+        <li class="nav-item " role="presentation"><button class="text-nowrap text-dark" id="description-tab2" data-bs-toggle="tab" data-bs-target="#descriptionPane2" type="button" role="tab" aria-controls="descriptionPane" aria-selected="false">
+            های بانک
+        </button></li>
+    </ul>
+
+    <div class="tab-content p-3" id="productTabContent">
+        <div class="tab-pane fade show active" id="descriptionPane" role="tabpanel" aria-labelledby="description-tab">
+            <!-- pagination :: start--------->
+            <div class="container d-flex justify-content-between px-3 py-2 gap-3 f-14">
+                <div class="right-section">
+                    <div class="loan-type">نوع تسهیلات</div>
+                    <div class="bank-box">بلو بانک</div>
+
+                    <div class="range-container">
+                        <div class="value-display" id="loanValue">10,000,000 تومان</div>
+                        <div class="range-label">
+                            <span>5,000,000 تومان</span>
+                            <span>50,000,000 تومان</span>
+                        </div>
+                        <input type="range" id="loanRange" min="5000000" max="50000000" step="5000000" value="5000000">
+                    </div>
+
+                    <div class="repayment-period">دوره بازپرداخت: 12 ماهه</div>
+                </div>
+                <div class="left-section ro-cs">
+                    <div class="repayment-title">بازپرداخت نهایی</div>
+                    <div class="final-repayment" id="finalRepayment">12,384,160 تومان</div>
+
+                    <div class="detail-box">
+                        <div class="detail-item">
+                            <span class="detail-label">مبلغ هر قسط:</span>
+                            <span class="detail-value" id="monthlyPayment">940,764 تومان</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">سود تسهیلات:</span>
+                            <span class="detail-value" id="interestAmount">2,384,160 تومان</span>
+                        </div>
+                    </div>
+
+                    <div class="note">مقادیر بر اساس دوره بازپرداخت ۱۲ ماهه محاسبه شده است.</div>
+                </div>
+
             </div>
-
-            <label class="f-14" for="loanRange2"></label>
-            <div class="range-label my-2">
-                <span>10,000,000 تومان</span>
-                <span>50,000,000 تومان</span>
-            </div>
-            <input class="f-14" type="range" id="loanRange2" min="5000000" max="50000000" step="5000000" value="5000000">
+            <!-- pagination :: end------------>
         </div>
+        <div class="tab-pane fade show " id="descriptionPane2" role="tabpanel" aria-labelledby="description-tab2">
+            <!-- pagination :: start--------->
+            <div class="story-m-calculator container story-m-calculator-soft f-14 d-flex justify-content-center">
+                <div class="story-m-range-box right-section">
+                    <div class="loan-type">نوع تسهیلات</div>
+                    <div class="bank-box">های بانک</div>
+                    <div class="range-container w-100">
+                        <span class="f-14 value-display w-100" id="loanValue2">۵,۰۰۰,۰۰۰</span>
+                    </div>
 
-        <div class="story-m-results left-section">
-            <p class="f-14 text-light repayment-title">بازپرداخت نهایی:
-                <br>
-                <span class="text-light final-repayment" id="finalPayment2">
+                    <label class="f-14" for="loanRange2"></label>
+                    <div class="range-label my-2">
+                        <span>5,000,000 تومان</span>
+                        <span>50,000,000 تومان</span>
+                    </div>
+                    <input class="f-14" type="range" id="loanRange2" min="5000000" max="50000000" step="5000000" value="5000000">
+
+                    <div class="repayment-period mt-3">دوره بازپرداخت: 12 ماهه</div>
+
+                </div>
+
+                <div class="story-m-results left-section ro-cs">
+                    <p class="f-14 text-light repayment-title">بازپرداخت نهایی
+                        <br>
+                        <span class="text-light final-repayment" id="finalPayment2">
                     ۶٬۱۹۴٬۵۸۱
                 </span>
-            </p>
+                    </p>
 
-            <p class="f-14 text-light">مبلغ هر قسط: <span class="text-light" id="installment2">۴۷۰٬۳۸۲</span></p>
-            <p class="f-14 text-light">سود تسهیلات (۲۳٪ سالانه): <span class="text-light" id="interest2">۶۴۴٬۵۸۱</span></p>
-            <p class="f-14 text-light">مجموع اقساط: <span class="text-light" id="totalInstallments2">۵٬۶۴۴٬۵۸۱</span></p>
-            <p class="f-14 text-light">سهم تامین‌کننده: <span class="text-light" id="supplier2">۵۵۰٬۰۰۰</span></p>
+
+                    <div class="detail-box">
+                        <p class="f-14 text-light my-2 d-flex justify-content-between w-100 detail-label detail-item">مبلغ هر قسط:
+
+                            <span class="text-light detail-value" id="installment2">۴۷۰٬۳۸۲</span>
+                        </p>
+                        <p class="f-14 text-light my-2 d-flex justify-content-between w-100 detail-label detail-item">سود تسهیلات :
+                            <span class="text-light detail-value" id="interest2">۶۴۴٬۵۸۱</span>
+                        </p>
+                        <p class="f-14 text-light my-2 d-flex justify-content-between w-100 detail-label detail-item d-none">مجموع اقساط:
+                            <span class="text-light detail-value" id="totalInstallments2">۵٬۶۴۴٬۵۸۱</span>
+                        </p>
+                        <p class="f-14 text-light my-2 d-flex justify-content-between w-100 detail-label detail-item d-none">سهم تامین‌کننده:
+                            <span class="text-light detail-value" id="supplier2">۵۵۰٬۰۰۰</span>
+                        </p>
+                    </div>
+
+                    <div class="note">مقادیر بر اساس دوره بازپرداخت ۱۲ ماهه محاسبه شده است.</div>
+
+                </div>
+            </div>
+            <!-- pagination :: end------------>
         </div>
     </div>
+
 
 
     <section class="row align-items-center">
@@ -1033,9 +1085,6 @@
 
 
 
-
-
-
 </main>
 
 
@@ -1049,7 +1098,6 @@
     const supplier2 = document.getElementById("supplier2");
     const finalPayment2 = document.getElementById("finalPayment2");
 
-    // دیتا برای هر مرحله
     const loanData2 = {
         5000000: {
             installment: "۴۷۰٬۳۸۲  تومان",
@@ -1073,53 +1121,53 @@
             final: "۱۸٬۵۸۳٬۷۳۹ تومان",
         },
         20000000: {
-            installment: "۱٬۸۸۱٬۵۲۷",
-            interest: "۲٬۵۷۸٬۳۱۸",
-            total: "۲۲٬۵۷۸٬۳۱۸",
-            supplier: "۲٬۲۰۰٬۰۰۰",
-            final: "۲۴٬۷۷۸٬۳۱۸",
+            installment: "۱٬۸۸۱٬۵۲۷  تومان",
+            interest: "۲٬۵۷۸٬۳۱۸  تومان",
+            total: "۲۲٬۵۷۸٬۳۱۸  تومان",
+            supplier: "۲٬۲۰۰٬۰۰۰  تومان",
+            final: "۲۴٬۷۷۸٬۳۱۸  تومان",
         },
         25000000: {
-            installment: "۲٬۳۵۱٬۹۰۹",
-            interest: "۳٬۲۲۲٬۸۹۸",
-            total: "۲۸٬۲۲۲٬۸۹۸",
-            supplier: "۲٬۷۵۰٬۰۰۰",
-            final: "۳۰٬۹۷۲٬۸۹۸",
+            installment: "۲٬۳۵۱٬۹۰۹  تومان",
+            interest: "۳٬۲۲۲٬۸۹۸  تومان",
+            total: "۲۸٬۲۲۲٬۸۹۸  تومان",
+            supplier: "۲٬۷۵۰٬۰۰۰  تومان",
+            final: "۳۰٬۹۷۲٬۸۹۸  تومان",
         },
         30000000: {
-            installment: "۲٬۸۲۲٬۲۹۱",
-            interest: "۳٬۸۶۷٬۴۷۷",
-            total: "۳۳٬۸۶۷٬۴۷۷",
-            supplier: "۳٬۳۰۰٬۰۰۰",
-            final: "۳۷٬۱۶۷٬۴۷۷",
+            installment: "۲٬۸۲۲٬۲۹۱  تومان",
+            interest: "۳٬۸۶۷٬۴۷۷  تومان",
+            total: "۳۳٬۸۶۷٬۴۷۷  تومان",
+            supplier: "۳٬۳۰۰٬۰۰۰  تومان",
+            final: "۳۷٬۱۶۷٬۴۷۷  تومان",
         },
         35000000: {
-            installment: "۳٬۲۹۲٬۶۷۳",
-            interest: "۴٬۵۱۲٬۰۵۶",
-            total: "۳۹٬۵۱۲٬۰۵۶",
-            supplier: "۳٬۸۵۰٬۰۰۰",
-            final: "۴۳٬۳۶۲٬۰۵۶",
+            installment: "۳٬۲۹۲٬۶۷۳ تومان",
+            interest: "۴٬۵۱۲٬۰۵۶ تومان",
+            total: "۳۹٬۵۱۲٬۰۵۶ تومان",
+            supplier: "۳٬۸۵۰٬۰۰۰ تومان",
+            final: "۴۳٬۳۶۲٬۰۵۶ تومان",
         },
         40000000: {
-            installment: "۳٬۷۶۳٬۰۵۵",
-            interest: "۵٬۱۵۶٬۶۳۶",
-            total: "۴۵٬۱۵۶٬۶۳۶",
-            supplier: "۴٬۴۰۰٬۰۰۰",
-            final: "۴۹٬۵۵۶٬۶۳۶",
+            installment: "۳٬۷۶۳٬۰۵۵  تومان",
+            interest: "۵٬۱۵۶٬۶۳۶  تومان",
+            total: "۴۵٬۱۵۶٬۶۳۶  تومان",
+            supplier: "۴٬۴۰۰٬۰۰۰  تومان",
+            final: "۴۹٬۵۵۶٬۶۳۶  تومان",
         },
         45000000: {
-            installment: "۴٬۲۳۳٬۴۳۶",
-            interest: "۵٬۸۰۱٬۲۱۵",
-            total: "۵۰٬۸۰۱٬۲۱۵",
-            supplier: "۴٬۹۵۰٬۰۰۰",
-            final: "۵۵٬۷۵۱٬۲۱۵",
+            installment: "۴٬۲۳۳٬۴۳۶  تومان",
+            interest: "۵٬۸۰۱٬۲۱۵  تومان",
+            total: "۵۰٬۸۰۱٬۲۱۵  تومان",
+            supplier: "۴٬۹۵۰٬۰۰۰  تومان",
+            final: "۵۵٬۷۵۱٬۲۱۵  تومان",
         },
         50000000: {
-            installment: "۴٬۷۰۳٬۸۱۸",
-            interest: "۶٬۴۴۵٬۷۹۴",
-            total: "۵۶٬۴۴۵٬۷۹۴",
-            supplier: "۵٬۵۰۰٬۰۰۰",
-            final: "۶۱٬۹۴۵٬۷۹۴",
+            installment: "۴٬۷۰۳٬۸۱۸  تومان",
+            interest: "۶٬۴۴۵٬۷۹۴  تومان",
+            total: "۵۶٬۴۴۵٬۷۹۴  تومان",
+            supplier: "۵٬۵۰۰٬۰۰۰  تومان",
+            final: "۶۱٬۹۴۵٬۷۹۴  تومان",
         },
     };
 
@@ -1145,7 +1193,6 @@
         updateCalculator2(Number(e.target.value));
     });
 
-    // مقدار اولیه
     updateCalculator2(5000000);
 </script>
 
@@ -1168,15 +1215,16 @@
 
   function calculateFinalRepayment(loanAmount) {
     const amounts = {
-      10000000: 12384160,
-      15000000: 18576239,
-      20000000: 24768318,
-      25000000: 30960398,
-      30000000: 37152477,
-      35000000: 43344557,
-      40000000: 49536636,
-      45000000: 55728716,
-      50000000: 61920795
+        5000000: 6222081,
+        10000000: 12384160,
+        15000000: 18576239,
+        20000000: 24768318,
+        25000000: 30960398,
+        30000000: 37152477,
+        35000000: 43344557,
+        40000000: 49536636,
+        45000000: 55728716,
+        50000000: 61920795
     };
 
     return amounts[loanAmount] || loanAmount;
@@ -1184,7 +1232,8 @@
 
   function calculateMonthlyPayment(loanAmount) {
     const amounts = {
-      10000000: 940764,
+        5000000: 470382,
+        10000000: 940764,
       15000000: 1411145,
       20000000: 1881527,
       25000000: 2351909,
@@ -1200,7 +1249,8 @@
 
   function calculateInterest(loanAmount) {
     const amounts = {
-      10000000: 1289160,
+        5000000: 644581,
+        10000000: 1289160,
       15000000: 1933739,
       20000000: 2578318,
       25000000: 3222898,

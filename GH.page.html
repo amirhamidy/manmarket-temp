@@ -395,13 +395,9 @@
     }
 
     .story-m-calculator-soft {
-        max-width: 400px;
         margin: 20px auto;
         padding: 20px;
-        background: #fff;
         border-radius: 16px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        font-family: "IRANSans", sans-serif;
     }
 
     .story-m-calculator-soft .story-m-title {
@@ -562,22 +558,20 @@
   </div>
 
 
-    <div class="story-m-calculator story-m-calculator-soft f-14">
-        
-        <h3 class="story-m-title f-14">ماشین حساب جدید</h3>
-
-        <div class="story-m-range-box">
+    <div class="story-m-calculator container story-m-calculator-soft f-14 d-flex justify-content-center">
+        <div class="story-m-range-box right-section">
             <label class="f-14" for="loanRange2">مبلغ وام</label>
             <input class="f-14" type="range" id="loanRange2" min="5000000" max="50000000" step="5000000" value="5000000">
             <span class="f-14" id="loanValue2">۵,۰۰۰,۰۰۰</span>
         </div>
 
-        <div class="story-m-results">
-            <p class="f-14">مبلغ هر قسط: <span id="installment2">۴۷۰٬۳۸۲</span></p>
-            <p class="f-14">سود تسهیلات (۲۳٪ سالانه): <span id="interest2">۶۴۴٬۵۸۱</span></p>
-            <p class="f-14">مجموع اقساط: <span id="totalInstallments2">۵٬۶۴۴٬۵۸۱</span></p>
-            <p class="f-14">سهم تامین‌کننده: <span id="supplier2">۵۵۰٬۰۰۰</span></p>
-            <p class="f-14">بازپرداخت نهایی: <span id="finalPayment2">۶٬۱۹۴٬۵۸۱</span></p>
+        <div class="story-m-results left-section">
+            <p class="f-14 text-light">بازپرداخت نهایی: <span class="text-light" id="finalPayment2">۶٬۱۹۴٬۵۸۱</span></p>
+
+            <p class="f-14 text-light">مبلغ هر قسط: <span class="text-light" id="installment2">۴۷۰٬۳۸۲</span></p>
+            <p class="f-14 text-light">سود تسهیلات (۲۳٪ سالانه): <span class="text-light" id="interest2">۶۴۴٬۵۸۱</span></p>
+            <p class="f-14 text-light">مجموع اقساط: <span class="text-light" id="totalInstallments2">۵٬۶۴۴٬۵۸۱</span></p>
+            <p class="f-14 text-light">سهم تامین‌کننده: <span class="text-light" id="supplier2">۵۵۰٬۰۰۰</span></p>
         </div>
     </div>
 

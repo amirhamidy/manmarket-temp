@@ -951,18 +951,15 @@
   const monthlyPayment = document.getElementById('monthlyPayment');
   const interestAmount = document.getElementById('interestAmount');
 
-  // تابع برای فرمت کردن اعداد به صورت فارسی
   function toPersianNumber(number) {
     const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
     return number.toString().replace(/\d/g, digit => persianDigits[parseInt(digit)]);
   }
 
-  // تابع برای فرمت کردن اعداد با جداکننده هزارگان
   function formatNumber(num) {
     return toPersianNumber(num.toLocaleString('fa-IR'));
   }
 
-  // محاسبه بازپرداخت نهایی بر اساس مبلغ وام
   function calculateFinalRepayment(loanAmount) {
     const amounts = {
       10000000: 12384160,
@@ -979,7 +976,6 @@
     return amounts[loanAmount] || loanAmount;
   }
 
-  // محاسبه مبلغ هر قسط (بر اساس مقادیر دقیق ارائه شده)
   function calculateMonthlyPayment(loanAmount) {
     const amounts = {
       10000000: 940764,
@@ -996,7 +992,6 @@
     return amounts[loanAmount] || 0;
   }
 
-  // محاسبه سود تسهیلات (بر اساس مقادیر دقیق ارائه شده)
   function calculateInterest(loanAmount) {
     const amounts = {
       10000000: 1289160,
@@ -1013,7 +1008,6 @@
     return amounts[loanAmount] || 0;
   }
 
-  // به روز رسانی مقادیر بر اساس موقعیت اسلایدر
   function updateValues() {
     const loan = parseInt(loanRange.value);
     loanValue.textContent = formatNumber(loan) + ' تومان';
@@ -1028,17 +1022,13 @@
     interestAmount.textContent = formatNumber(interest) + ' تومان';
   }
 
-  // رویداد تغییر اسلایدر
   loanRange.addEventListener('input', updateValues);
 
-  // مقداردهی اولیه
   updateValues();
 
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 
 
 
@@ -1061,6 +1051,8 @@
 
 
 <!--THIS IS FOR BASE-->
+<script src="assets/js/jquery-3.7.1.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
 <script  src="script.js"></script>
 <!--THIS IS FOR BASE-->
 

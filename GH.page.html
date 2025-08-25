@@ -394,6 +394,69 @@
       margin-bottom: 1.5rem;
     }
 
+    .story-m-calculator-soft {
+        max-width: 400px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        font-family: "IRANSans", sans-serif;
+    }
+
+    .story-m-calculator-soft .story-m-title {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        text-align: center;
+        color: #333;
+    }
+
+    .story-m-calculator-soft .story-m-range-box {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .story-m-calculator-soft input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 8px;
+        border-radius: 5px;
+        background: #e0e0e0;
+        outline: none;
+        margin: 10px 0;
+    }
+
+    .story-m-calculator-soft input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #4caf50;
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .story-m-calculator-soft input[type="range"]::-moz-range-thumb {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #4caf50;
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .story-m-calculator-soft .story-m-results p {
+        margin: 6px 0;
+        font-size: 1rem;
+        color: #555;
+    }
+
+    .story-m-calculator-soft .story-m-results span {
+        font-weight: bold;
+        color: #222;
+    }
+
 
   </style>
 
@@ -495,9 +558,31 @@
 
       <div class="note">مقادیر بر اساس دوره بازپرداخت ۱۲ ماهه محاسبه شده است.</div>
     </div>
+
   </div>
 
-  <section class="row align-items-center">
+
+    <div class="story-m-calculator story-m-calculator-soft f-14">
+        
+        <h3 class="story-m-title f-14">ماشین حساب جدید</h3>
+
+        <div class="story-m-range-box">
+            <label class="f-14" for="loanRange2">مبلغ وام</label>
+            <input class="f-14" type="range" id="loanRange2" min="5000000" max="50000000" step="5000000" value="5000000">
+            <span class="f-14" id="loanValue2">۵,۰۰۰,۰۰۰</span>
+        </div>
+
+        <div class="story-m-results">
+            <p class="f-14">مبلغ هر قسط: <span id="installment2">۴۷۰٬۳۸۲</span></p>
+            <p class="f-14">سود تسهیلات (۲۳٪ سالانه): <span id="interest2">۶۴۴٬۵۸۱</span></p>
+            <p class="f-14">مجموع اقساط: <span id="totalInstallments2">۵٬۶۴۴٬۵۸۱</span></p>
+            <p class="f-14">سهم تامین‌کننده: <span id="supplier2">۵۵۰٬۰۰۰</span></p>
+            <p class="f-14">بازپرداخت نهایی: <span id="finalPayment2">۶٬۱۹۴٬۵۸۱</span></p>
+        </div>
+    </div>
+
+
+    <section class="row align-items-center">
     <div class="col-md-3 mt-0">
       <h4 class="text-center">
         محبوب ترین گوشی های <a href="index.html" class="text-primary"> من مارکت </a>
@@ -938,23 +1023,8 @@
     </div>
   </div>
 
-    <div class="story-m-calculator">
-        <h3 class="story-m-title">ماشین حساب جدید</h3>
 
-        <div class="story-m-range-box">
-            <label for="loanRange2">مبلغ وام (تومان)</label>
-            <input type="range" id="loanRange2" min="5000000" max="50000000" step="5000000" value="5000000">
-            <span id="loanValue2">۵,۰۰۰,۰۰۰</span>
-        </div>
 
-        <div class="story-m-results">
-            <p>مبلغ هر قسط: <span id="installment2">۴۷۰٬۳۸۲</span></p>
-            <p>سود تسهیلات (۲۳٪ سالانه): <span id="interest2">۶۴۴٬۵۸۱</span></p>
-            <p>مجموع اقساط: <span id="totalInstallments2">۵٬۶۴۴٬۵۸۱</span></p>
-            <p>سهم تامین‌کننده: <span id="supplier2">۵۵۰٬۰۰۰</span></p>
-            <p>بازپرداخت نهایی: <span id="finalPayment2">۶٬۱۹۴٬۵۸۱</span></p>
-        </div>
-    </div>
 
 
 

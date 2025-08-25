@@ -938,10 +938,140 @@
     </div>
   </div>
 
+    <div class="story-m-calculator">
+        <h3 class="story-m-title">ماشین حساب جدید</h3>
+
+        <div class="story-m-range-box">
+            <label for="loanRange2">مبلغ وام (تومان)</label>
+            <input type="range" id="loanRange2" min="5000000" max="50000000" step="5000000" value="5000000">
+            <span id="loanValue2">۵,۰۰۰,۰۰۰</span>
+        </div>
+
+        <div class="story-m-results">
+            <p>مبلغ هر قسط: <span id="installment2">۴۷۰٬۳۸۲</span></p>
+            <p>سود تسهیلات (۲۳٪ سالانه): <span id="interest2">۶۴۴٬۵۸۱</span></p>
+            <p>مجموع اقساط: <span id="totalInstallments2">۵٬۶۴۴٬۵۸۱</span></p>
+            <p>سهم تامین‌کننده: <span id="supplier2">۵۵۰٬۰۰۰</span></p>
+            <p>بازپرداخت نهایی: <span id="finalPayment2">۶٬۱۹۴٬۵۸۱</span></p>
+        </div>
+    </div>
+
+
+
+
 
 </main>
 
 
+<script>
+    const loanRange2 = document.getElementById("loanRange2");
+    const loanValue2 = document.getElementById("loanValue2");
+
+    const installment2 = document.getElementById("installment2");
+    const interest2 = document.getElementById("interest2");
+    const totalInstallments2 = document.getElementById("totalInstallments2");
+    const supplier2 = document.getElementById("supplier2");
+    const finalPayment2 = document.getElementById("finalPayment2");
+
+    // دیتا برای هر مرحله
+    const loanData2 = {
+        5000000: {
+            installment: "۴۷۰٬۳۸۲",
+            interest: "۶۴۴٬۵۸۱",
+            total: "۵٬۶۴۴٬۵۸۱",
+            supplier: "۵۵۰٬۰۰۰",
+            final: "۶٬۱۹۴٬۵۸۱",
+        },
+        10000000: {
+            installment: "۹۴۰٬۷۶۴",
+            interest: "۱٬۲۸۹٬۱۶۰",
+            total: "۱۱٬۲۸۹٬۱۶۰",
+            supplier: "۱٬۱۰۰٬۰۰۰",
+            final: "۱۲٬۳۸۹٬۱۶۰",
+        },
+        15000000: {
+            installment: "۱٬۴۱۱٬۱۴۵",
+            interest: "۱٬۹۳۳٬۷۳۹",
+            total: "۱۶٬۹۳۳٬۷۳۹",
+            supplier: "۱٬۶۵۰٬۰۰۰",
+            final: "۱۸٬۵۸۳٬۷۳۹",
+        },
+        20000000: {
+            installment: "۱٬۸۸۱٬۵۲۷",
+            interest: "۲٬۵۷۸٬۳۱۸",
+            total: "۲۲٬۵۷۸٬۳۱۸",
+            supplier: "۲٬۲۰۰٬۰۰۰",
+            final: "۲۴٬۷۷۸٬۳۱۸",
+        },
+        25000000: {
+            installment: "۲٬۳۵۱٬۹۰۹",
+            interest: "۳٬۲۲۲٬۸۹۸",
+            total: "۲۸٬۲۲۲٬۸۹۸",
+            supplier: "۲٬۷۵۰٬۰۰۰",
+            final: "۳۰٬۹۷۲٬۸۹۸",
+        },
+        30000000: {
+            installment: "۲٬۸۲۲٬۲۹۱",
+            interest: "۳٬۸۶۷٬۴۷۷",
+            total: "۳۳٬۸۶۷٬۴۷۷",
+            supplier: "۳٬۳۰۰٬۰۰۰",
+            final: "۳۷٬۱۶۷٬۴۷۷",
+        },
+        35000000: {
+            installment: "۳٬۲۹۲٬۶۷۳",
+            interest: "۴٬۵۱۲٬۰۵۶",
+            total: "۳۹٬۵۱۲٬۰۵۶",
+            supplier: "۳٬۸۵۰٬۰۰۰",
+            final: "۴۳٬۳۶۲٬۰۵۶",
+        },
+        40000000: {
+            installment: "۳٬۷۶۳٬۰۵۵",
+            interest: "۵٬۱۵۶٬۶۳۶",
+            total: "۴۵٬۱۵۶٬۶۳۶",
+            supplier: "۴٬۴۰۰٬۰۰۰",
+            final: "۴۹٬۵۵۶٬۶۳۶",
+        },
+        45000000: {
+            installment: "۴٬۲۳۳٬۴۳۶",
+            interest: "۵٬۸۰۱٬۲۱۵",
+            total: "۵۰٬۸۰۱٬۲۱۵",
+            supplier: "۴٬۹۵۰٬۰۰۰",
+            final: "۵۵٬۷۵۱٬۲۱۵",
+        },
+        50000000: {
+            installment: "۴٬۷۰۳٬۸۱۸",
+            interest: "۶٬۴۴۵٬۷۹۴",
+            total: "۵۶٬۴۴۵٬۷۹۴",
+            supplier: "۵٬۵۰۰٬۰۰۰",
+            final: "۶۱٬۹۴۵٬۷۹۴",
+        },
+    };
+
+    function updateCalculator2(value) {
+        loanValue2.innerText = value.toLocaleString("fa-IR");
+
+        if (loanData2[value]) {
+            installment2.innerText = loanData2[value].installment;
+            interest2.innerText = loanData2[value].interest;
+            totalInstallments2.innerText = loanData2[value].total;
+            supplier2.innerText = loanData2[value].supplier;
+            finalPayment2.innerText = loanData2[value].final;
+        } else {
+            installment2.innerText = "—";
+            interest2.innerText = "—";
+            totalInstallments2.innerText = "—";
+            supplier2.innerText = "—";
+            finalPayment2.innerText = "—";
+        }
+    }
+
+    loanRange2.addEventListener("input", (e) => {
+        updateCalculator2(Number(e.target.value));
+    });
+
+    // مقدار اولیه
+    updateCalculator2(5000000);
+</script>
 
 
 <script>

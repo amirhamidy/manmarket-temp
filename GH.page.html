@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -27,6 +27,13 @@
       margin: auto;
     }
 
+    .my-fix-class {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
 
     .hero-section {
       width: 100%;
@@ -51,6 +58,10 @@
 
     .btn-sub-gh{
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        color: #1e88e5;
+    }
+    .btn-sub-gh:hover{
+        color: #1e88e5;
     }
 
     .hero-container h1 {
@@ -185,9 +196,9 @@
     }
 
     .gh-s-circle {
+        background-color: #1e88e5;
       width: 40px;
       height: 40px;
-      background-color: #1e88e5;
       color: #fff;
       font-weight: bold;
       display: flex;
@@ -231,10 +242,9 @@
     }
 
     .left-section {
-      flex: 1;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        flex: 1;
       padding: 30px;
-      background-color: #1e88e5;
-      color: white;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -242,39 +252,39 @@
     .right-section {
       flex: 1;
       padding: 30px;
-      border-left: 1px solid #eee;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        border-radius: 15px;
     }
     .repayment-title {
-      margin-bottom: 20px;
+      margin: 10px 0 !important;
+        padding: 10px 0;
       text-align: center;
       font-weight: 600;
+        border-bottom: 1px ridge #eeeeee;
+
     }
     .final-repayment {
       font-weight: bold;
-      background: rgba(255, 255, 255, 0.15);
-      padding: 20px;
-      border-radius: 12px;
-      margin: 15px 0;
+        padding: 10px 0;
       text-align: center;
       width: 100%;
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1px ridge #eeeeee;
     }
     .detail-box {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.69);
       padding: 15px;
       border-radius: 10px;
-      margin-top: 20px;
       border: 1px solid rgba(255, 255, 255, 0.15);
     }
     .detail-item {
       display: flex;
       justify-content: space-between;
-      padding: 12px 0;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    .detail-item:last-child {
-      border-bottom: none;
+        margin: 10px 0;
+        padding: 10px 0;
+        border-bottom: 1px ridge #eeeeee;
+
     }
     .detail-label {
     }
@@ -292,16 +302,16 @@
       font-weight: 600;
     }
     .bank-box {
-      background-color: #1e88e5;
       color: white;
       padding: 15px;
       border-radius: 8px;
-      margin-bottom: 25px;
       text-align: center;
       font-weight: bold;
+        background-color: #1e88e5;
+
     }
     .range-container {
-      margin-bottom: 25px;
+      margin-bottom: 15px;
     }
     .range-label {
       display: flex;
@@ -386,11 +396,6 @@
       border-color: rgba(0,0,0,.125);
     }
 
-    .accordion-button::after {
-      margin-right: auto;
-      margin-left: 0;
-    }
-
 
     .title {
       color: var(--primary-color);
@@ -399,8 +404,6 @@
     }
 
     .story-m-calculator-soft {
-        margin: 20px auto;
-        padding: 20px;
         border-radius: 16px;
     }
 
@@ -496,7 +499,7 @@
           </div>
         </div>
 
-        <button class=" bg-gh text-light btn-sub-gh rounded-3 px-3 py-2">محاسبه وام</button>
+        <a href="#productTab" class=" bg-gh bg-light btn-sub-gh fs-14 rounded-3 px-3 py-2 d-inline">محاسبه وام</a>
       </div>
     </div>
   </section>
@@ -516,7 +519,7 @@
       <div class="gh-s-step">
         <div class="gh-s-circle f-14">3</div>
         <div class="gh-s-content f-14">
-          انجام فرآیند خرید و انتخاب شیوه دریافت به صورت حضوری یا ارسال سریع
+          انجام فرآیند خرید و انتخاب شیوه با ارسال سریع
         </div>
       </div>
       <div class="gh-s-step">
@@ -548,18 +551,18 @@
     <div class="tab-content p-3" id="productTabContent">
         <div class="tab-pane fade show active" id="descriptionPane" role="tabpanel" aria-labelledby="description-tab">
             <!-- pagination :: start--------->
-            <div class="container d-flex justify-content-between px-3 py-2 gap-3 f-14">
+            <div class="container d-flex align-items-center justify-content-between px-3 py-2 gap-3 f-14">
                 <div class="right-section">
                     <div class="loan-type">نوع تسهیلات</div>
                     <div class="bank-box">بلو بانک</div>
 
                     <div class="range-container">
                         <div class="value-display" id="loanValue">10,000,000 تومان</div>
-                        <div class="range-label">
-                            <span>5,000,000 تومان</span>
+                        <div class="range-label ">
                             <span>50,000,000 تومان</span>
+                            <span>5,000,000 تومان</span>
                         </div>
-                        <input type="range" id="loanRange" min="5000000" max="50000000" step="5000000" value="5000000">
+                        <input dir="ltr" class="" type="range" id="loanRange" min="5000000" max="50000000" step="5000000" value="5000000">
                     </div>
 
                     <div class="repayment-period">دوره بازپرداخت: 12 ماهه</div>
@@ -577,62 +580,68 @@
                             <span class="detail-label">سود تسهیلات:</span>
                             <span class="detail-value" id="interestAmount">2,384,160 تومان</span>
                         </div>
+                        <!-- اضافه شده: مجموع اقساط -->
+                        <div class="detail-item">
+                            <span class="detail-label">مجموع اقساط:</span>
+                            <span class="detail-value" id="totalInstallments">11,289,160 تومان</span>
+                        </div>
+                        <!-- اضافه شده: سهم تامین‌کننده -->
+                        <div class="detail-item">
+                            <span class="detail-label">سهم تامین‌کننده:</span>
+                            <span class="detail-value" id="supplierShare">1,155,000 تومان</span>
+                        </div>
                     </div>
 
-                    <div class="note">مقادیر بر اساس دوره بازپرداخت ۱۲ ماهه محاسبه شده است.</div>
+                    <div class="note">مقادیر بر اساس دوره بازپرداخت 12 ماهه محاسبه شده است.</div>
                 </div>
-
             </div>
             <!-- pagination :: end------------>
         </div>
         <div class="tab-pane fade show " id="descriptionPane2" role="tabpanel" aria-labelledby="description-tab2">
             <!-- pagination :: start--------->
-            <div class="story-m-calculator container story-m-calculator-soft f-14 d-flex justify-content-center">
+            <div class="story-m-calculator  container align-items-center story-m-calculator-soft container d-flex justify-content-between px-3 gap-3 f-14">
                 <div class="story-m-range-box right-section">
                     <div class="loan-type">نوع تسهیلات</div>
-                    <div class="bank-box">های بانک</div>
+                    <div class="bank-box bg-success">های بانک</div>
                     <div class="range-container w-100">
-                        <span class="f-14 value-display w-100" id="loanValue2">۵,۰۰۰,۰۰۰</span>
+                        <span class="f-14 value-display w-100 text-success" id="loanValue2">5,000,000</span>
                     </div>
 
                     <label class="f-14" for="loanRange2"></label>
-                    <div class="range-label my-2">
-                        <span>5,000,000 تومان</span>
+                    <div class="range-label">
                         <span>50,000,000 تومان</span>
+                        <span>5,000,000 تومان</span>
                     </div>
-                    <input class="f-14" type="range" id="loanRange2" min="5000000" max="50000000" step="5000000" value="5000000">
+                    <input dir="ltr" class="f-14" type="range" id="loanRange2" min="5000000" max="50000000" step="5000000" value="5000000">
 
                     <div class="repayment-period mt-3">دوره بازپرداخت: 12 ماهه</div>
 
                 </div>
 
-                <div class="story-m-results left-section ro-cs">
-                    <p class="f-14 text-light repayment-title">بازپرداخت نهایی
-                        <br>
-                        <span class="text-light final-repayment" id="finalPayment2">
-                    ۶٬۱۹۴٬۵۸۱
-                </span>
+                <div class="story-m-results  left-section ro-cs ">
+                    <p class="f-14 repayment-title">
+                        بازپرداخت نهایی
                     </p>
 
+                    <span class="final-repayment" id="finalPayment2">
+            ۶,۱۹۴,۵۸۱
+        </span>
 
                     <div class="detail-box">
-                        <p class="f-14 text-light my-2 d-flex justify-content-between w-100 detail-label detail-item">مبلغ هر قسط:
-
-                            <span class="text-light detail-value" id="installment2">۴۷۰٬۳۸۲</span>
+                        <p class="f-14 d-flex justify-content-between w-100 detail-label detail-item">مبلغ هر قسط:
+                            <span class="detail-value" id="installment2">۴۷۰,۳۸۲</span>
                         </p>
-                        <p class="f-14 text-light my-2 d-flex justify-content-between w-100 detail-label detail-item">سود تسهیلات :
-                            <span class="text-light detail-value" id="interest2">۶۴۴٬۵۸۱</span>
+                        <p class="f-14 d-flex justify-content-between w-100 detail-label detail-item">سود تسهیلات :
+                            <span class="detail-value" id="interest2">۶۴۴,۵۸۱</span>
                         </p>
-                        <p class="f-14 text-light my-2 d-flex justify-content-between w-100 detail-label detail-item d-none">مجموع اقساط:
-                            <span class="text-light detail-value" id="totalInstallments2">۵٬۶۴۴٬۵۸۱</span>
+                        <p class="f-14  d-flex justify-content-between w-100 detail-label detail-item">مجموع اقساط:
+                            <span class="detail-value" id="totalInstallments2">۵,۶۴۴,۵۸۱</span>
                         </p>
-                        <p class="f-14 text-light my-2 d-flex justify-content-between w-100 detail-label detail-item d-none">سهم تامین‌کننده:
-                            <span class="text-light detail-value" id="supplier2">۵۵۰٬۰۰۰</span>
+                        <p class="f-14  d-flex justify-content-between w-100 detail-label detail-item">سهم تامین‌کننده:
+                            <span class="detail-value" id="supplier2">۵۵۰,۰۰۰</span>
                         </p>
                     </div>
-
-                    <div class="note">مقادیر بر اساس دوره بازپرداخت ۱۲ ماهه محاسبه شده است.</div>
-
+                    <div class="note">مقادیر بر اساس دوره بازپرداخت 12 ماهه محاسبه شده است.</div>
                 </div>
             </div>
             <!-- pagination :: end------------>
@@ -644,7 +653,7 @@
     <section class="row align-items-center">
     <div class="col-md-3 mt-0">
       <h4 class="text-center">
-        محبوب ترین گوشی های <a href="index.html" class="text-primary"> من مارکت </a>
+        محبوب ترین گوشی های <a href="index.html" class="theme-c"> من مارکت </a>
       </h4>
     </div>
     <div class="col-md-9 mt-0">
@@ -997,7 +1006,7 @@
         </div>
         <div class="d-flex justify-content-center mt-4">
           <a href="blog.html">
-            <button class=" bg-gh text-light btn-sub-gh rounded-3 px-3 py-2">مشاهده همه</button>
+            <button class=" bg-gh text-light theme-color rounded-3 px-3 py-2">مشاهده همه</button>
           </a>
         </div>
       </section>
@@ -1011,24 +1020,23 @@
         <div class="text-center mb-4 f-14">
           <h2 class="title text-dark">سوالات متداول</h2>
         </div>
-
-          <div class="accordion" id="faqAccordion">
-              <div class="accordion-item">
+          <div class="accordion d-flex justify-content-start w-right flex-column" id="faqAccordion">
+              <div class="accordion-item w-right">
                   <h2 class="accordion-header" id="headingOne">
-                      <button class="accordion-button f-14" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          چگونه می‌توانم گوشی دلخواهم را از جی‌اس‌ام به‌صورت قسطی بخرم؟
+                      <button class="accordion-button w-right f-14" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          چگونه می‌توانم گوشی دلخواهم را از من مارکت به‌صورت قسطی بخرم؟
                       </button>
                   </h2>
                   <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
                       <div class="accordion-body f-14">
-                          برای خرید قسطی کافیست در جی‌اس‌ام پی ثبت نام کنید و فرایند دریافت اعتبار را با کلیک روی اعتبار سایت GSM.ir از سایت جی‌اس‌ام پی دریافت کنید.
+                          برای خرید قسطی کافیست در جی‌اس‌ام پی ثبت نام کنید و فرایند دریافت اعتبار را با کلیک روی اعتبار سایت GSMPAY.IR از سایت جی‌اس‌ام پی دریافت کنید.
                       </div>
                   </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item w-right">
                   <h2 class="accordion-header" id="headingTwo">
-                      <button class="accordion-button collapsed f-14" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <button class="accordion-button w-right collapsed f-14" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                           مدت زمان بازپرداخت وام چقدر است؟
                       </button>
                   </h2>
@@ -1039,9 +1047,9 @@
                   </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item w-right">
                   <h2 class="accordion-header" id="headingThree">
-                      <button class="accordion-button f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      <button class="accordion-button w-right f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                           برای دریافت وام نیاز به افتتاح حساب در چه بانکی دارم؟
                       </button>
                   </h2>
@@ -1052,22 +1060,22 @@
                   </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item w-right">
                   <h2 class="accordion-header" id="headingFour">
-                      <button class="accordion-button f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                          آیا خرید قسطی موبایل بدون ضامن از جی‌اس‌ام امکان‌پذیر است؟
+                      <button class="accordion-button w-right f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                          آیا خرید قسطی موبایل بدون ضامن از من مارکت امکان‌پذیر است؟
                       </button>
                   </h2>
                   <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
                       <div class="accordion-body f-14">
-                          بله، در جی‌اس‌ام برای خرید اقساطی نیازی به ضامن نیست. تنها یک برگ چک صیادی به نام خودتان به‌عنوان ضمانت کافی است.
+                          بله، در من مارکت برای خرید اقساطی نیازی به ضامن نیست. تنها یک برگ چک صیادی به نام خودتان به‌عنوان ضمانت کافی است.
                       </div>
                   </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item w-right">
                   <h2 class="accordion-header" id="headingFive">
-                      <button class="accordion-button f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                      <button class="accordion-button w-right f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                           اگر وام دریافت شده از مبلغ گوشی بیشتر باشد، مابه‌التفاوت را چگونه باید پرداخت کنم؟
                       </button>
                   </h2>
@@ -1078,9 +1086,9 @@
                   </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item w-right">
                   <h2 class="accordion-header" id="headingSix">
-                      <button class="accordion-button f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                      <button class="accordion-button w-right f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                           اگر وام دریافت شده بیشتر از مبلغ گوشی باشد امکان استفاده از باقی‌مانده اعتبار وجود دارد؟
                       </button>
                   </h2>
@@ -1091,9 +1099,9 @@
                   </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item w-right">
                   <h2 class="accordion-header" id="headingSeven">
-                      <button class="accordion-button f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                      <button class="accordion-button w-right f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                           آیا می‌توان اعتبار دریافت شده یا باقی مانده آن پس از خرید را به پول نقد تبدیل کرد؟
                       </button>
                   </h2>
@@ -1104,9 +1112,9 @@
                   </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item w-right">
                   <h2 class="accordion-header" id="headingEight">
-                      <button class="accordion-button f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                      <button class="accordion-button w-right f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                           آیا می‌توان کمتر از ۵۰ میلیون تومان اعتبار خرید گوشی گرفت؟
                       </button>
                   </h2>
@@ -1117,9 +1125,9 @@
                   </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item w-right">
                   <h2 class="accordion-header" id="headingNine">
-                      <button class="accordion-button f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                      <button class="accordion-button w-right f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
                           حداقل و حداکثر مدت زمان پرداخت اقساط چقدر است؟
                       </button>
                   </h2>
@@ -1130,9 +1138,9 @@
                   </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item w-right">
                   <h2 class="accordion-header" id="headingTen">
-                      <button class="accordion-button f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                      <button class="accordion-button w-right f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
                           چه مدارکی برای خرید اقساطی موبایل نیاز است؟
                       </button>
                   </h2>
@@ -1143,15 +1151,15 @@
                   </div>
               </div>
 
-              <div class="accordion-item">
+              <div class="accordion-item w-right">
                   <h2 class="accordion-header" id="headingEleven">
-                      <button class="accordion-button f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                      <button class="accordion-button w-right f-14 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
                           آیا تحویل گوشی قسطی، فوری انجام می‌شود؟
                       </button>
                   </h2>
                   <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-bs-parent="#faqAccordion">
                       <div class="accordion-body f-14">
-                          بله، پس از دریافت اعتبار، ثبت سفارش از طریق سایت جی‌اس‌ام می‌توانید گوشی را بلافاصله از فروشگاه‌های حضوری جی‌اس‌ام تحویل بگیرید. همچنین در شهرهای تحت پوشش، با انتخاب گزینه تحویل زیر ۳ ساعت، گوشی مستقیماً درب منزل شما ارسال خواهد شد.
+                          بله، پس از دریافت اعتبار، ثبت سفارش از طریق سایت من مارکت می‌توانید گوشی را بلافاصله از فروشگاه‌های من مارکت تحویل بگیرید. همچنین در شهرهای تحت پوشش، با انتخاب گزینه تحویل زیر ۳ ساعت، گوشی مستقیماً درب منزل شما ارسال خواهد شد.
                       </div>
                   </div>
               </div>
@@ -1170,7 +1178,6 @@
 <script>
     const loanRange2 = document.getElementById("loanRange2");
     const loanValue2 = document.getElementById("loanValue2");
-
     const installment2 = document.getElementById("installment2");
     const interest2 = document.getElementById("interest2");
     const totalInstallments2 = document.getElementById("totalInstallments2");
@@ -1179,86 +1186,90 @@
 
     const loanData2 = {
         5000000: {
-            installment: "۴۷۰٬۳۸۲  تومان",
-            interest: "۶۴۴٬۵۸۱  تومان",
-            total: "۵٬۶۴۴٬۵۸۱  تومان",
-            supplier: "۵۵۰٬۰۰۰  تومان",
-            final: "۶٬۱۹۴٬۵۸۱  تومان",
+            installment: 470382,
+            interest: 644581,
+            total: 5644581,
+            supplier: 550000,
+            final: 6194581,
         },
         10000000: {
-            installment: "۹۴۰٬۷۶۴ تومان",
-            interest: "۱٬۲۸۹٬۱۶۰ تومان",
-            total: "۱۱٬۲۸۹٬۱۶۰ تومان",
-            supplier: "۱٬۱۰۰٬۰۰۰ تومان",
-            final: "۱۲٬۳۸۹٬۱۶۰ تومان",
+            installment: 940764,
+            interest: 1289160,
+            total: 11289160,
+            supplier: 1100000,
+            final: 12389160,
         },
         15000000: {
-            installment: "۱٬۴۱۱٬۱۴۵ تومان",
-            interest: "۱٬۹۳۳٬۷۳۹ تومان",
-            total: "۱۶٬۹۳۳٬۷۳۹ تومان",
-            supplier: "۱٬۶۵۰٬۰۰۰ تومان",
-            final: "۱۸٬۵۸۳٬۷۳۹ تومان",
+            installment: 1411145,
+            interest: 1933739,
+            total: 16933739,
+            supplier: 1650000,
+            final: 18583739,
         },
         20000000: {
-            installment: "۱٬۸۸۱٬۵۲۷  تومان",
-            interest: "۲٬۵۷۸٬۳۱۸  تومان",
-            total: "۲۲٬۵۷۸٬۳۱۸  تومان",
-            supplier: "۲٬۲۰۰٬۰۰۰  تومان",
-            final: "۲۴٬۷۷۸٬۳۱۸  تومان",
+            installment: 1881527,
+            interest: 2578318,
+            total: 22578318,
+            supplier: 2200000,
+            final: 24778318,
         },
         25000000: {
-            installment: "۲٬۳۵۱٬۹۰۹  تومان",
-            interest: "۳٬۲۲۲٬۸۹۸  تومان",
-            total: "۲۸٬۲۲۲٬۸۹۸  تومان",
-            supplier: "۲٬۷۵۰٬۰۰۰  تومان",
-            final: "۳۰٬۹۷۲٬۸۹۸  تومان",
+            installment: 2351909,
+            interest: 3222898,
+            total: 28222898,
+            supplier: 2750000,
+            final: 30972898,
         },
         30000000: {
-            installment: "۲٬۸۲۲٬۲۹0  تومان",
-            interest: "۳٬۸۶۷٬۴۷۷  تومان",
-            total: "۳۳٬۸۶۷٬۴۷۷  تومان",
-            supplier: "۳٬۳۰۰٬۰۰۰  تومان",
-            final: "۳۷٬۱۶۷٬۴۷۷  تومان",
+            installment: 2822290,
+            interest: 3867477,
+            total: 33867477,
+            supplier: 3300000,
+            final: 37167477,
         },
         35000000: {
-            installment: "۳٬۲۹۲٬۶۷۳ تومان",
-            interest: "۴٬۵۱۲٬۰۵۶ تومان",
-            total: "۳۹٬۵۱۲٬۰۵۶ تومان",
-            supplier: "۳٬۸۵۰٬۰۰۰ تومان",
-            final: "۴۳٬۳۶۲٬۰۵۶ تومان",
+            installment: 3292673,
+            interest: 4512056,
+            total: 39512056,
+            supplier: 3850000,
+            final: 43362056,
         },
         40000000: {
-            installment: "۳٬۷۶۳٬۰۵۳  تومان",
-            interest: "۵٬۱۵۶٬۶۳۵  تومان",
-            total: "۴۵٬۱۵۶٬۶۳۶  تومان",
-            supplier: "۴٬۴۰۰٬۰۰۰  تومان",
-            final: "۴۹٬۵۵۶٬۶۳۶  تومان",
+            installment: 3763053,
+            interest: 5156635,
+            total: 45156636,
+            supplier: 4400000,
+            final: 49556636,
         },
         45000000: {
-            installment: "۴٬۲۳۳٬۴۳۶  تومان",
-            interest: "۵٬۸۰۱٬۲۱۵  تومان",
-            total: "۵۰٬۸۰۱٬۲۱۵  تومان",
-            supplier: "۴٬۹۵۰٬۰۰۰  تومان",
-            final: "۵۵٬۷۵۱٬۲۱۵  تومان",
+            installment: 4233436,
+            interest: 5801215,
+            total: 50801215,
+            supplier: 4950000,
+            final: 55751215,
         },
         50000000: {
-            installment: "۴٬۷۰۳٬۸۱۸  تومان",
-            interest: "۶٬۴۴۵٬۷۹۴  تومان",
-            total: "۵۶٬۴۴۵٬۷۹۴  تومان",
-            supplier: "۵٬۵۰۰٬۰۰۰  تومان",
-            final: "۶۱٬۹۴۵٬۷۹۴  تومان",
+            installment: 4703818,
+            interest: 6445794,
+            total: 56445794,
+            supplier: 5500000,
+            final: 61945794,
         },
     };
 
+    function formatNumber(num) {
+        return num.toLocaleString('en-US');
+    }
+
     function updateCalculator2(value) {
-        loanValue2.innerText = value.toLocaleString("fa-IR");
+        loanValue2.innerText = formatNumber(value) + " تومان";
 
         if (loanData2[value]) {
-            installment2.innerText = loanData2[value].installment;
-            interest2.innerText = loanData2[value].interest;
-            totalInstallments2.innerText = loanData2[value].total;
-            supplier2.innerText = loanData2[value].supplier;
-            finalPayment2.innerText = loanData2[value].final;
+            installment2.innerText = formatNumber(loanData2[value].installment) + " تومان";
+            interest2.innerText = formatNumber(loanData2[value].interest) + " تومان";
+            totalInstallments2.innerText = formatNumber(loanData2[value].total) + " تومان";
+            supplier2.innerText = formatNumber(loanData2[value].supplier) + " تومان";
+            finalPayment2.innerText = formatNumber(loanData2[value].final) + " تومان";
         } else {
             installment2.innerText = "—";
             interest2.innerText = "—";
@@ -1275,97 +1286,113 @@
     updateCalculator2(5000000);
 </script>
 
-
 <script>
-  const loanRange = document.getElementById('loanRange');
-  const loanValue = document.getElementById('loanValue');
-  const finalRepayment = document.getElementById('finalRepayment');
-  const monthlyPayment = document.getElementById('monthlyPayment');
-  const interestAmount = document.getElementById('interestAmount');
+    const loanRange = document.getElementById('loanRange');
+    const loanValue = document.getElementById('loanValue');
+    const finalRepayment = document.getElementById('finalRepayment');
+    const monthlyPayment = document.getElementById('monthlyPayment');
+    const interestAmount = document.getElementById('interestAmount');
+    const totalInstallments = document.getElementById('totalInstallments');
+    const supplierShare = document.getElementById('supplierShare');
 
-  function toPersianNumber(number) {
-    const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-    return number.toString().replace(/\d/g, digit => persianDigits[parseInt(digit)]);
-  }
-
-  function formatNumber(num) {
-    return toPersianNumber(num.toLocaleString('fa-IR'));
-  }
-
-  function calculateFinalRepayment(loanAmount) {
-    const amounts = {
-        5000000: 6222081,
-        10000000: 12384160,
-        15000000: 18576239,
-        20000000: 24768318,
-        25000000: 30960398,
-        30000000: 37152477,
-        35000000: 43344557,
-        40000000: 49536636,
-        45000000: 55728716,
-        50000000: 61920795
+    const totalInstallmentsData = {
+        5000000: 5644581,
+        10000000: 11289160,
+        15000000: 16933739,
+        20000000: 22578318,
+        25000000: 28222898,
+        30000000: 33867477,
+        35000000: 39512056,
+        40000000: 45156636,
+        45000000: 50801215,
+        50000000: 56445794
     };
 
-    return amounts[loanAmount] || loanAmount;
-  }
-
-  function calculateMonthlyPayment(loanAmount) {
-    const amounts = {
-        5000000: 470382,
-        10000000: 940764,
-      15000000: 1411145,
-      20000000: 1881527,
-      25000000: 2351909,
-      30000000: 2822290,
-      35000000: 3292672,
-      40000000: 3763053,
-      45000000: 4233435,
-      50000000: 4703817
+    const supplierShareData = {
+        5000000: 577500,
+        10000000: 1155000,
+        15000000: 1732500,
+        20000000: 2310000,
+        25000000: 2887500,
+        30000000: 3465000,
+        35000000: 4042500,
+        40000000: 4620000,
+        45000000: 5197500,
+        50000000: 5775000
     };
 
-    return amounts[loanAmount] || 0;
-  }
+    function formatNumber(num) {
+        return num.toLocaleString('en-US');
+    }
 
-  function calculateInterest(loanAmount) {
-    const amounts = {
-        5000000: 644581,
-        10000000: 1289160,
-      15000000: 1933739,
-      20000000: 2578318,
-      25000000: 3222898,
-      30000000: 3867477,
-      35000000: 4512056,
-      40000000: 5156635,
-      45000000: 5801214,
-      50000000: 6445794
-    };
+    function calculateFinalRepayment(loanAmount) {
+        const amounts = {
+            5000000: 6222081,
+            10000000: 12384160,
+            15000000: 18576239,
+            20000000: 24768318,
+            25000000: 30960398,
+            30000000: 37152477,
+            35000000: 43344557,
+            40000000: 49536636,
+            45000000: 55728716,
+            50000000: 61920795
+        };
+        return amounts[loanAmount] || loanAmount;
+    }
 
-    return amounts[loanAmount] || 0;
-  }
+    function calculateMonthlyPayment(loanAmount) {
+        const amounts = {
+            5000000: 470382,
+            10000000: 940764,
+            15000000: 1411145,
+            20000000: 1881527,
+            25000000: 2351909,
+            30000000: 2822290,
+            35000000: 3292672,
+            40000000: 3763053,
+            45000000: 4233435,
+            50000000: 4703817
+        };
+        return amounts[loanAmount] || 0;
+    }
 
-  function updateValues() {
-    const loan = parseInt(loanRange.value);
-    loanValue.textContent = formatNumber(loan) + ' تومان';
+    function calculateInterest(loanAmount) {
+        const amounts = {
+            5000000: 644581,
+            10000000: 1289160,
+            15000000: 1933739,
+            20000000: 2578318,
+            25000000: 3222898,
+            30000000: 3867477,
+            35000000: 4512056,
+            40000000: 5156635,
+            45000000: 5801214,
+            50000000: 6445794
+        };
+        return amounts[loanAmount] || 0;
+    }
 
-    const final = calculateFinalRepayment(loan);
-    finalRepayment.textContent = formatNumber(final) + ' تومان';
+    function updateValues() {
+        const loan = parseInt(loanRange.value);
+        loanValue.textContent = formatNumber(loan) + ' تومان';
 
-    const monthly = calculateMonthlyPayment(loan);
-    monthlyPayment.textContent = formatNumber(monthly) + ' تومان';
+        const final = calculateFinalRepayment(loan);
+        finalRepayment.textContent = formatNumber(final) + ' تومان';
 
-    const interest = calculateInterest(loan);
-    interestAmount.textContent = formatNumber(interest) + ' تومان';
-  }
+        const monthly = calculateMonthlyPayment(loan);
+        monthlyPayment.textContent = formatNumber(monthly) + ' تومان';
 
-  loanRange.addEventListener('input', updateValues);
+        const interest = calculateInterest(loan);
+        interestAmount.textContent = formatNumber(interest) + ' تومان';
 
-  updateValues();
+        totalInstallments.textContent = formatNumber(totalInstallmentsData[loan]) + ' تومان';
+        supplierShare.textContent = formatNumber(supplierShareData[loan]) + ' تومان';
+    }
 
+    loanRange.addEventListener('input', updateValues);
+    updateValues();
 </script>
-
-
-
-
 
 <!--THIS IS LIB FOR HOME PAGE-->
 <script src="assets/js/owl.js"></script>

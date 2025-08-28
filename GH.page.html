@@ -551,7 +551,7 @@
     <div class="tab-content p-3" id="productTabContent">
         <div class="tab-pane fade show active" id="descriptionPane" role="tabpanel" aria-labelledby="description-tab">
             <!-- pagination :: start--------->
-            <div class="container d-flex align-items-center justify-content-between px-3 py-2 gap-3 f-14">
+            <div class="container d-flex align-items-center justify-content-between px-3 py-2 my-fix-class gap-3 f-14">
                 <div class="right-section">
                     <div class="loan-type">نوع تسهیلات</div>
                     <div class="bank-box">بلو بانک</div>
@@ -580,12 +580,10 @@
                             <span class="detail-label">سود تسهیلات:</span>
                             <span class="detail-value" id="interestAmount">2,384,160 تومان</span>
                         </div>
-                        <!-- اضافه شده: مجموع اقساط -->
                         <div class="detail-item">
                             <span class="detail-label">مجموع اقساط:</span>
                             <span class="detail-value" id="totalInstallments">11,289,160 تومان</span>
                         </div>
-                        <!-- اضافه شده: سهم تامین‌کننده -->
                         <div class="detail-item">
                             <span class="detail-label">سهم تامین‌کننده:</span>
                             <span class="detail-value" id="supplierShare">1,155,000 تومان</span>
@@ -599,15 +597,13 @@
         </div>
         <div class="tab-pane fade show " id="descriptionPane2" role="tabpanel" aria-labelledby="description-tab2">
             <!-- pagination :: start--------->
-            <div class="story-m-calculator  container align-items-center story-m-calculator-soft container d-flex justify-content-between px-3 gap-3 f-14">
-                <div class="story-m-range-box right-section">
+            <div class="container d-flex align-items-center justify-content-between px-3 py-2 my-fix-class gap-3 f-14">
+                <div class="right-section ">
                     <div class="loan-type">نوع تسهیلات</div>
                     <div class="bank-box bg-success">های بانک</div>
-                    <div class="range-container w-100">
+                    <div class="w-100">
                         <span class="f-14 value-display w-100 text-success" id="loanValue2">5,000,000</span>
                     </div>
-
-                    <label class="f-14" for="loanRange2"></label>
                     <div class="range-label">
                         <span>50,000,000 تومان</span>
                         <span>5,000,000 تومان</span>
@@ -617,11 +613,10 @@
                     <div class="repayment-period mt-3">دوره بازپرداخت: 12 ماهه</div>
 
                 </div>
-
-                <div class="story-m-results  left-section ro-cs ">
-                    <p class="f-14 repayment-title">
+                <div class="left-section ro-cs">
+                    <div class="f-14 repayment-title ">
                         بازپرداخت نهایی
-                    </p>
+                    </div>
 
                     <span class="final-repayment" id="finalPayment2">
             ۶,۱۹۴,۵۸۱
@@ -641,7 +636,7 @@
                             <span class="detail-value" id="supplier2">۵۵۰,۰۰۰</span>
                         </p>
                     </div>
-                    <div class="note">مقادیر بر اساس دوره بازپرداخت 12 ماهه محاسبه شده است.</div>
+                    <div class="note mt-4">مقادیر بر اساس دوره بازپرداخت 12 ماهه محاسبه شده است.</div>
                 </div>
             </div>
             <!-- pagination :: end------------>

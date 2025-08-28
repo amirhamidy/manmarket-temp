@@ -37,7 +37,7 @@
 
     .hero-section {
       width: 100%;
-      background-color: #1e88e5;
+      background-color: #EEEEEE;
       padding: 80px 20px;
       text-align: center;
       font-family: sans-serif;
@@ -47,7 +47,7 @@
     .hero-container {
       max-width: 1200px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      background-color: #1e88e5;
+      background-color: #f96747;
       margin: 0 auto;
       border-radius: 15px;
     }
@@ -196,7 +196,7 @@
     }
 
     .gh-s-circle {
-        background-color: #1e88e5;
+        background-color: #f96747;
       width: 40px;
       height: 40px;
       color: #fff;
@@ -327,7 +327,6 @@
       background: #ddd;
       outline: none;
       border-radius: 5px;
-      margin-bottom: 10px;
     }
     input[type="range"]::-webkit-slider-thumb {
       -webkit-appearance: none;
@@ -342,7 +341,6 @@
       transition: all 0.2s ease;
     }
     input[type="range"]::-webkit-slider-thumb:hover {
-      transform: scale(1.1);
       background: #0d47a1;
     }
     .repayment-period {
@@ -377,7 +375,7 @@
     }
 
     .bg-gh{
-      background-color: #1e88e5;
+      background-color: #f96747;
     }
 
     :root {
@@ -459,10 +457,28 @@
     }
 
 
+
+
     .icon-bank{
         width: 35px !important;
         object-fit: cover;
         height: auto;
+    }
+
+    #loanRange2::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        background: #198754;
+        width: 26px;
+      height: 26px;
+      border-radius: 50%;
+    }
+
+    #loanRange2::-moz-range-thumb {
+        background: #198754;
+        border: none;
+              width: 26px;
+      height: 26px;
+      border-radius: 50%;
     }
 
 
@@ -499,7 +515,7 @@
           </div>
         </div>
 
-        <a href="#productTab" class=" bg-gh bg-light btn-sub-gh fs-14 rounded-3 px-3 py-2 d-inline">محاسبه وام</a>
+        <a href="#productTab" class=" bg-gh bg-light btn-sub-gh text-dark fs-14 rounded-3 px-3 py-2 d-inline">محاسبه وام</a>
       </div>
     </div>
   </section>
@@ -608,7 +624,7 @@
                         <span>50,000,000 تومان</span>
                         <span>5,000,000 تومان</span>
                     </div>
-                    <input dir="ltr" class="f-14" type="range" id="loanRange2" min="5000000" max="50000000" step="5000000" value="5000000">
+                    <input  dir="ltr" class="f-14 ran-2-r" type="range" id="loanRange2" min="5000000" max="50000000" step="5000000" value="5000000">
 
                     <div class="repayment-period mt-3">دوره بازپرداخت: 12 ماهه</div>
 

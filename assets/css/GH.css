@@ -447,3 +447,18 @@ input[type="range"]::-webkit-slider-thumb:hover {
     height: 26px;
     border-radius: 50%;
 }
+
+
+
+.fs-16{
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: black !important;
+}
+
+
+.cs-fs-14{
+    font-size: 14px !important;
+    color: gray !important;
+}
+

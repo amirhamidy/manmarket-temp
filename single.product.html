@@ -16,8 +16,29 @@
     <!--    فقط سینگل پروداکت -->
 
 
+    <style>
+        /* چشمک زدن */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
 
-<!--    اینا مال همه جاس-->
+        .type-btn.blink {
+            animation: blink 2s ease-in-out 2; /* دو بار چشمک، هر بار ۲ ثانیه */
+        }
+
+        /* افکت تایپ */
+        .type-btn.typing {
+            border-right: 2px solid black; /* مثل نشانگر تایپ */
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+
+
+
+
+    <!--    اینا مال همه جاس-->
     <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 <!--    اینا مال همه جاس-->
@@ -1636,7 +1657,9 @@
                                 <span class="section-text" style="font-size: 14px;">آخرین بروز رسانی قیمت : ساعت 10:45 امروز </span>
                             </div>
                             <div class="panel-action">
-                                <button class="add-to-cart-btn" style="font-size: 16px;">افزودن به سبد خرید</button>
+                                <button class="add-to-cart-btn type-btn" style="font-size: 16px;">
+                                    افزودن به سبد خرید
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -2060,6 +2083,7 @@
 <script src="assets/js/sweet.alert.lib.js"></script>
 <script src="assets/js/splide.lib.js"></script>
 <!--اینا همه مال سینگل پروداکته -->
+
 
 <!--این اونیه که مال سینگل پروداکته -->
 <script src="assets/js/single.product.js"></script>

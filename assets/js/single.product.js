@@ -1,3 +1,39 @@
+
+
+const btn = document.querySelector('.type-btn');
+const oldText = 'افزودن به سبد خرید';
+const newText = 'بخر ببر بعدا حساب کن!';
+
+function runEffect() {
+    btn.textContent = oldText;
+    btn.classList.remove('typing');
+
+    btn.classList.add('blink');
+
+    setTimeout(() => {
+        btn.classList.remove('blink');
+        btn.textContent = '';
+        btn.classList.add('typing');
+
+        let i = 0;
+        function type() {
+            if (i < newText.length) {
+                btn.textContent += newText.charAt(i);
+                i++;
+                setTimeout(type, 100);
+            } else {
+                btn.classList.remove('typing');
+            }
+        }
+        type();
+    }, 4000);
+}
+
+runEffect();
+
+setInterval(runEffect, 9000);
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const galleryTopSwiperEl = document.getElementById('galleryTopSwiper');
     const galleryThumbsSwiperEl = document.getElementById('galleryThumbsSwiper');

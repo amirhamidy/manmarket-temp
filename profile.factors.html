@@ -32,14 +32,86 @@
     <div class="invoice-paper">
         <div class="invoice-content">
             <header class="invoice-header">
-                <div class="invoice-header-section text-right"><b>صورت حساب آقا / خانم :</b> <span id="customerName"></span><br><b>شماره تماس :</b> <span id="customerPhone"></span><br><b>آدرس :</b> <span id="customerAddress"></span></div>
-                <div class="invoice-logo-section"><img alt="logo" class="w-25 my-3" src="assets/img/main.logo.jpg">
-                    <h2> من مارکت</h2>
-                    <p class="my-2">فروشگاه اینترنتی، حضوری</p></div>
-                <div class="invoice-header-section text-left"><b>تاریخ :</b> <span id="invoiceDate"></span><br><b>شماره فاکتور :</b> <span id="invoiceNumber"></span></div>
+                <div class="invoice-header-section text-right text-nowrap">
+                    <b>صورت حساب آقا / خانم : <br> مهناز حسینی بینا - پیندو</b>
+                    <span id="customerName"></span>
+                    <br>
+                    <b>شماره تماس : 09120493957</b>
+                    <span id="customerPhone"></span>
+                    <br>
+                    <b>آدرس :</b>
+                    <span id="customerAddress"></span>
+                </div>
+
+                <div class="invoice-logo-section">
+                    <img alt="logo" class="w-25 my-3" src="assets/img/main.logo.jpg">
+                    <h2>من مارکت</h2>
+                    <p class="my-2">فروشگاه اینترنتی، حضوری</p>
+                </div>
+
+                <div class="invoice-header-section text-left">
+                    <b>تاریخ   :  1404/6/21</b>
+                    <span id="invoiceDate"></span>
+                    <br>
+                    <b>شماره فاکتور : 14030623101</b>
+                    <span id="invoiceNumber"></span>
+                </div>
             </header>
-            <div class="invoice-table-wrapper"><div class="invoice-watermark"><img alt="logo" class="w-100" src="assets/img/main.logo.jpg"></div><table class="invoice-table"><thead><tr><th>ردیف</th><th>کد</th><th class="col-name">نام محصول</th><th>تعداد</th><th>بهای واحد</th><th>مبلغ کل</th><th class="col-desc">شرح کالا</th></tr></thead><tbody id="invoiceTableBody"><tr class="print-hide"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr class="print-hide"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></div>
-            <div class="invoice-summary"><table class="summary-table"><tbody><tr><td>جمع کل فاکتور</td><td id="summarySubtotal"></td></tr><tr><td>مالیات بر ارزش افزوده</td><td id="summaryVat"></td></tr><tr><td>مبلغ قابل پرداخت</td><td id="summaryTotal"></td></tr></tbody></table></div>
+            <div class="invoice-table-wrapper">
+                <div class="invoice-watermark">
+                    <img alt="logo" class="w-100" src="assets/img/main.logo.jpg">
+                </div>
+                <table class="invoice-table">
+                    <thead>
+                    <tr>
+                        <th class="px-2 text-center align-items-center">ردیف</th>
+                        <th class="px-2 text-center align-items-center">کد</th>
+                        <th class="px-2 text-center align-items-center">نام محصول</th>
+                        <th class="px-2 text-center align-items-center">تعداد</th>
+                        <th class="px-2 text-center align-items-center">بهای واحد</th>
+                        <th class="px-2 text-center align-items-center">مبلغ کل</th>
+                        <th class="px-2 text-center align-items-center">شرح کالا</th>
+                    </tr>
+                    </thead>
+                    <tbody id="invoiceTableBody">
+                    <tr class="print-hide">
+                        <td class="px-2 text-center align-items-center">1</td>
+                        <td class="px-2 text-center align-items-center">901</td>
+                        <td class="px-2 text-center align-items-center">سامسونگ S24 Fe 256/8 Vietnam</td>
+                        <td class="px-2 text-center align-items-center">1</td>
+                        <td class="px-2 text-center align-items-center">47,999,000</td>
+                        <td class="px-2 text-center align-items-center">47,999,000</td>
+                        <td class="px-2 text-center align-items-center">کد فعال سازی ریجستری + گارانتی 18 ماهه کاریان - رنگ گرافیت</td>
+                    </tr>
+                    <tr class="print-hide">
+                        <td class="px-2 text-center align-items-center">2</td>
+                        <td class="px-2 text-center align-items-center">001</td>
+                        <td class="px-2 text-center align-items-center">هزینه ارسال</td>
+                        <td class="px-2 text-center align-items-center">1</td>
+                        <td class="px-2 text-center align-items-center">200,000</td>
+                        <td class="px-2 text-center align-items-center">200,000</td>
+                        <td class="px-2 text-center align-items-center"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="invoice-summary">
+                <table class="summary-table"><tbody>
+                <tr>
+                    <td> جمع کل فاکتور : 48,199,000</td>
+                    <td id="summarySubtotal"></td>
+                </tr>
+                <tr>
+                    <td>مالیات بر ارزش افزوده</td>
+                    <td id="summaryVat"></td>
+                </tr>
+                <tr>
+                    <td> مبلغ قابل پرداخت  : 48,199,000 </td>
+                    <td id="summaryTotal"></td>
+                </tr>
+                </tbody>
+                </table>
+            </div>
             <footer class="invoice-footer">
                 <div class="footer-info left">
                     <div class="footer-info-item"><div class="icon-shape"><svg

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>فاکتور</title>
+    <!-- External Links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/factors.css">
+</head>
+<body>
+
+<!-- ⬇️ SVG ICONS UPDATED ⬇️ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
+    </symbol>
+    <symbol id="logo-s-shape" viewBox="0 0 100 100"><path d="M85.4,36.5c-7.1-8.5-17.7-13.4-29.3-13.4c-9.1,0-17.5,3.3-24.1,8.9c-8.9,7.6-13.9,18.5-13.9,30.3c0,8.2,2.8,15.8,7.7,22.1c7.1,8.5,17.7,13.4,29.3,13.4c9.1,0,17.5-3.3,24.1-8.9c8.9-7.6,13.9,18.5,13.9-30.3C92.7,49.2,89.9,41.7,85.4,36.5z M47.9,82c-12.2-0.8-22-11.4-22-23.9c0-9.8,5.9-18.4,14.6-22.3c1-0.5,2.1,0.1,2.6,1.1c0.5,1,0.1,2.1-0.8,2.7c-7,3.2-11.6,10.2-11.6,18.5c0,10.1,8.3,18.4,18.5,18.4c1.1,0,2,0.9,2,2S49,82,47.9,82z M81.5,50.3c-0.5-1-1.5-1.6-2.6-1.1c-1,0.5-1.5,1.5-1.1,2.6c2.9,7.3-0.2,15.8-7.5,18.7c-8.1,3.2-17.1-0.8-20.3-8.9c-0.4-1.1,0.2-2.3,1.3-2.7c1.1-0.4,2.3,0.2,2.7,1.3c2.3,6,8.7,9.1,14.8,6.8c5.8-2.2,8.8-8.4,6.8-14.2c-1.9-5.5-7.3-9.1-13.2-8.3c-1.1,0.1-2.1-0.6-2.3-1.7c-0.1-1.1,0.6-2.1,1.7-2.3c7.7-1,15.2,3.4,17.7,10.8C76,48.2,78.5,51.5,81.5,50.3z"></path></symbol>
+</svg>
+
+<div class="page-container">
+    <div class="page-actions-bar p-0 align-items-center">
+        <a href="" class="btn-custom btn-primary">بازگشت</a>
+        <button id="printInvoiceBtn" class="btn-custom btn-primary"><svg class="svg-icon"><use xlink:href="#icon-download"></use></svg>دانلود / چاپ</button>
+    </div>
+
+    <div style=" border-radius: 4px; background-color: var(--bg-secondary-light); box-shadow: var(--shadow-md); position: relative; width: 100%;">
+        <div class="invoice-content">
+            <header class="invoice-header">
+                <div class="invoice-header-section text-right text-nowrap">
+                    <span id="customerName"></span>
+                    <br>
+                    <span id="customerPhone"></span>
+                    <br>
+                    <span id="customerAddress"></span>
+                </div>
+
+                <div class="invoice-logo-section">
+                    <img alt="logo" class="w-25" src="assets/img/main.logo.jpg">
+                    <h2>من مارکت</h2>
+                    <p class="my-2">فروشگاه اینترنتی، حضوری</p>
+                </div>
+
+                <div class="invoice-header-section text-left">
+                    <span id="invoiceDate"></span>
+                    <br>
+                    <span id="invoiceNumber"></span>
+                </div>
+            </header>
+            <div class="invoice-table-wrapper">
+                <div class="invoice-watermark">
+                    <img alt="logo" class="w-100" src="assets/img/main.logo.jpg">
+                </div>
+                <table class="invoice-table w-100 my-3">
+                    <h6 class="">مشخصات گیرنده</h6>
+                    <thead>
+                    <tr>
+                        <th class="px-2 text-center align-items-center">عنوان</th>
+                        <th class="px-2 text-center align-items-center">مشخصات</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="px-2 text-center align-items-center">نام و نام خانوادگی</td>
+                        <td class="px-2 text-center align-items-center">رضا زارع</td>
+                    </tr>
+                    <tr>
+                        <td class="px-2 text-center align-items-center">آدرس</td>
+                        <td class="px-2 text-center align-items-center">فارس, شیراز, هفت تنان, خ.سفر, خ.کاراندیش, بن.کاراندیش 8, پلاک 6, واحد 1</td>
+                    </tr>
+                    <tr>
+                        <td class="px-2 text-center align-items-center">کد پستی</td>
+                        <td class="px-2 text-center align-items-center">7145734838</td>
+                    </tr>
+                    <tr>
+                        <td class="px-2 text-center align-items-center">شماره تماس</td>
+                        <td class="px-2 text-center align-items-center">09304332754</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="invoice-table w-100 mt-3">
+                    <h6 class="">مشخصات فرستنده</h6>
+                    <thead>
+                    <tr>
+                        <th class="px-2 text-center align-items-center">عنوان</th>
+                        <th class="px-2 text-center align-items-center">مشخصات</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="px-2 text-center align-items-center">نام و نام خانوادگی</td>
+                        <td class="px-2 text-center align-items-center">من مارکت</td>
+                    </tr>
+                    <tr>
+                        <td class="px-2 text-center align-items-center">آدرس</td>
+                        <td class="px-2 text-center align-items-center">میدان آیت الله طالقانی , ساختمان اکسیژن , طبقه هفتم , واحد 703 , پلاک 99</td>
+                    </tr>
+                    <tr>
+                        <td class="px-2 text-center align-items-center">کد پستی</td>
+                        <td class="px-2 text-center align-items-center">9717697958</td>
+                    </tr>
+                    <tr>
+                        <td class="px-2 text-center align-items-center">شماره تماس</td>
+                        <td class="px-2 text-center align-items-center">09120983422</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => { document.getElementById('printInvoiceBtn').addEventListener('click', () => { window.print(); }); });
+</script>
+
+</body>
+</html>
